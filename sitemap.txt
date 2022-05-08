@@ -22,7 +22,7 @@ https://luoyu-ying.github.io/daily/index.html
 https://luoyu-ying.github.io/categories/index.html
 https://luoyu-ying.github.io/tags/index.html
 https://luoyu-ying.github.io/list/index.html
-https://luoyu-ying.github.io/2022/04/18/hello-world/
+https://luoyu-ying.github.io/2022/04/14/hello-world/
 https://luoyu-ying.github.io/
 https://luoyu-ying.github.io/tags/Android/
 https://luoyu-ying.github.io/tags/Animation/
@@ -30,8 +30,8 @@ https://luoyu-ying.github.io/tags/Drawable/
 https://luoyu-ying.github.io/tags/Handler/
 https://luoyu-ying.github.io/tags/Java/
 https://luoyu-ying.github.io/tags/JVM/
-https://luoyu-ying.github.io/tags/GC/
 https://luoyu-ying.github.io/tags/Class-Loading/
+https://luoyu-ying.github.io/tags/GC/
 https://luoyu-ying.github.io/tags/%E5%9B%BE%E8%AE%BA/
 https://luoyu-ying.github.io/tags/XCPC/
 https://luoyu-ying.github.io/tags/ThreadLocal/
