@@ -1583,10 +1583,10 @@ figure.highlight pre .css .id,
 figure.highlight pre .tag .name,
 figure.highlight pre .css .class,
 figure.highlight pre .css .pseudo {
-  color: #ff5370;
+  color: #db7093;
 }
 figure.highlight pre .tag {
-  color: #89ddff;
+  color: #7b68ee;
 }
 figure.highlight pre .number,
 figure.highlight pre .preprocessor,
@@ -1615,7 +1615,7 @@ figure.highlight pre .formula {
 figure.highlight pre .keyword,
 figure.highlight pre .title,
 figure.highlight pre .css .hexcolor {
-  color: #89ddff;
+  color: #7b68ee;
 }
 figure.highlight pre .function,
 figure.highlight pre .python .decorator,

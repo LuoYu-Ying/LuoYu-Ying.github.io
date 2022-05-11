@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luoyu-ying.github.io/2022/05/11/OkHttp-%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/2022/04/23/Java-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/</loc>
     
     <lastmod>2022-05-05</lastmod>
@@ -229,7 +238,7 @@
 
   <url>
     <loc>https://luoyu-ying.github.io/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -237,112 +246,119 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Android/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Animation/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/Drawable/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/Drawable/</loc>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Java/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/JVM/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/Class-Loading/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/GC/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/Class-Loading/</loc>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/%E5%9B%BE%E8%AE%BA/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/XCPC/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/OkHttp/</loc>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/ThreadLocal/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/View/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/ikbc/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/markdown/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/mermaid/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Window/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -351,70 +367,70 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/Android/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/JVM/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/Java/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/ikbc/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/Markdown/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%9B%BE%E8%AE%BA/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/Markdown/mermaid/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
-    <lastmod>2022-05-08</lastmod>
+    <lastmod>2022-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
