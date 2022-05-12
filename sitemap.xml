@@ -345,6 +345,13 @@
   </url>
   
   <url>
+    <loc>https://luoyu-ying.github.io/tags/ikbc/</loc>
+    <lastmod>2022-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/tags/markdown/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -360,13 +367,6 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Window/</loc>
-    <lastmod>2022-05-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/ikbc/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -403,7 +403,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%9B%BE%E8%AE%BA/</loc>
+    <loc>https://luoyu-ying.github.io/categories/ikbc/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -424,14 +424,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%85%B6%E4%BB%96/</loc>
+    <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%9B%BE%E8%AE%BA/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/ikbc/</loc>
+    <loc>https://luoyu-ying.github.io/categories/XCPC/%E5%85%B6%E4%BB%96/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
