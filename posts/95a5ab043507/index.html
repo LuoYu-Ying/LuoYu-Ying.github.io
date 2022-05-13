@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JVM 垃圾回收机制 | 洛语 の Blog</title><meta name="keywords" content="Java,JVM,GC"><meta name="author" content="LuoYu-Ying"><meta name="copyright" content="LuoYu-Ying"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文参考自：  Java 虚拟机 | CS-Notes JVM中的新生代和老年代（Eden空间、两个Survior空间）    判断一个对象是否可以被回收  引用计数算法 可达性分析算法 方法区的回收 finalize 方法   四种引用类型  强引用：被强引用关联的对象不会被回收。 软引用：被软引用关联的对象只会在内存不足的情况下被回收。 弱引用：被弱引用关联的对象一定会被回收，只能活到下次垃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM 垃圾回收机制">
+<meta property="og:url" content="https://luoyu-ying.github.io/posts/95a5ab043507/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="本文参考自：  Java 虚拟机 | CS-Notes JVM中的新生代和老年代（Eden空间、两个Survior空间）    判断一个对象是否可以被回收  引用计数算法 可达性分析算法 方法区的回收 finalize 方法   四种引用类型  强引用：被强引用关联的对象不会被回收。 软引用：被软引用关联的对象只会在内存不足的情况下被回收。 弱引用：被弱引用关联的对象一定会被回收，只能活到下次垃">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/QQ图片20210106231236.jpg">
+<meta property="article:published_time" content="2022-04-22T06:43:39.000Z">
+<meta property="article:modified_time" content="2022-05-05T09:36:14.000Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="GC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/QQ图片20210106231236.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luoyu-ying.github.io/posts/95a5ab043507/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":180,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JVM 垃圾回收机制',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-05 17:36:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/post-transparent.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/white-code-box.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/default-cover.jpg" onerror="onerror=null;src='img/default-cover.jpg'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/toolbox/"><i class="fa-fw fas fa-box"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/QQ图片20210106231236.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">洛语 の Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/toolbox/"><i class="fa-fw fas fa-box"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM 垃圾回收机制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-22T06:43:39.000Z" title="发表于 2022-04-22 14:43:39">2022-04-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-05T09:36:14.000Z" title="更新于 2022-05-05 17:36:14">2022-05-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM 垃圾回收机制"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.cyc2018.xyz/">Java 虚拟机 | CS-Notes</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jisuanjiguoba/article/details/80156781">JVM中的新生代和老年代（Eden空间、两个Survior空间）</a></li>
+</ul>
+</blockquote>
+<h1 id="判断一个对象是否可以被回收"><a class="markdownIt-Anchor" href="#判断一个对象是否可以被回收"></a> 判断一个对象是否可以被回收</h1>
+<ol>
+<li>引用计数算法</li>
+<li>可达性分析算法</li>
+<li>方法区的回收</li>
+<li><code>finalize</code> 方法</li>
+</ol>
+<h1 id="四种引用类型"><a class="markdownIt-Anchor" href="#四种引用类型"></a> 四种引用类型</h1>
+<ol>
+<li>强引用：被强引用关联的对象不会被回收。</li>
+<li>软引用：被软引用关联的对象只会在内存不足的情况下被回收。</li>
+<li>弱引用：被弱引用关联的对象一定会被回收，只能活到下次垃圾回收之前。</li>
+<li>虚引用：无法通过虚引用创建一个对象。为对象创建虚引用的唯一目的是在这个对象在被回收时受到一个系统消息。</li>
+</ol>
+<h1 id="垃圾收集算法"><a class="markdownIt-Anchor" href="#垃圾收集算法"></a> 垃圾收集算法</h1>
+<ol>
+<li>标记-清除算法</li>
+<li>标记-复制算法</li>
+<li>复制算法</li>
+<li>分代收集算法</li>
+</ol>
+<h1 id="垃圾收集器"><a class="markdownIt-Anchor" href="#垃圾收集器"></a> 垃圾收集器</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li>并行与串行</li>
+<li>单线程与多线程</li>
+</ol>
+<h2 id="主要收集器"><a class="markdownIt-Anchor" href="#主要收集器"></a> 主要收集器</h2>
+<h3 id="cms"><a class="markdownIt-Anchor" href="#cms"></a> CMS</h3>
+<p>CMS(Concurrent Mark Sweep，即多线程的标记-清除算法)</p>
+<p>分为四个流程：</p>
+<ol>
+<li><strong>初始标记</strong><br />
+仅仅是标记一下 GC Roots 能直接关联到的对象。</li>
+<li><strong>并发标记</strong><br />
+进行 GC Roots Trancing 的过程。</li>
+<li><strong>重新标记</strong><br />
+为了修正并发标记期间因用户线程继续运作而产生变动的那一部分的对象的标记记录。</li>
+<li><strong>并发清除</strong><br />
+对标记出来的垃圾进行清除操作。</li>
+</ol>
+<p>具有以下的缺点：</p>
+<ol>
+<li>吞吐量低：低停顿时间是以牺牲吞吐量为代价的，导致 CPU 利用率不高。</li>
+<li>标记-清除算法导致的空间碎片，导致往往出现老年代空间剩余，但是无法找到一段连续的空间用于存储对象，而不得不进行一次 Full GC。</li>
+<li>无法处理浮动垃圾，而导致 Concurrent Mode Failure。其中，浮动垃圾是指在并发清除阶段由于用户线程的继续运行而产生的垃圾。</li>
+</ol>
+<h3 id="g1garbage-first"><a class="markdownIt-Anchor" href="#g1garbage-first"></a> G1(Garbage First)</h3>
+<p>G1 垃圾收集器是面向客户端的垃圾收集器，在多 CPU 和大内存场景下有很好的性能。</p>
+<p>堆被分为新生代和老年代，G1 收集器可以直接对新生代和老年代一起回收。</p>
+<p>G1 把堆划分成多个大小相等的独立区域（Region），新生代和老年代不再物理隔离。</p>
+<p>通过引入 Region 的概念，从而将原来的一整块内存空间划分成多个的小空间，使得每个小空间可以单独进行垃圾回收。这种划分方法带来了很大的灵活性，使得可预测的停顿时间模型成为可能。通过记录每个 Region 垃圾回收时间以及回收所获得的空间（这两个值是通过过去回收的经验获得），并维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的 Region。</p>
+<p>每个 Region 都有一个 Remembered Set，用来记录该 Region 对象的引用对象所在的 Region。通过使用 Remembered Set，在做可达性分析的时候就可以避免全堆扫描。</p>
+<p>G1 收集器的运作大致分为以下的几个部分：</p>
+<ol>
+<li><strong>初始标记</strong><br />
+仅仅是标记 GC Roots 能够直接标记到的对象。</li>
+<li><strong>并发标记</strong><br />
+进行 GC Roots Tracing 的过程。</li>
+<li><strong>最终标记</strong><br />
+为了修正在并发标记期间因用户线程继续运行而导致标记产生变动的那一部分标记记录。</li>
+<li><strong>筛选回收</strong><br />
+首先对各个 Region 中的回收价值和成本进行排序，根据用户所期望的 GC 停顿时间来制定回收计划。此阶段其实也可以做到与用户程序一起并发执行，但是因为只回收一部分 Region，时间是用户可控制的，而且停顿用户线程将大幅度提高收集效率。</li>
+</ol>
+<p>具备如下的特点：</p>
+<ol>
+<li>空间整合：从整体上看是基于标记-整理算法实现的收集器，从局部上看是居于复制算法实现的，这就意味着运行期间不会产生内存空闲碎片。</li>
+<li>可预测的停顿：能够有用户自定义 GC收集器 上所消耗的时间。</li>
+</ol>
+<h2 id="其他收集器"><a class="markdownIt-Anchor" href="#其他收集器"></a> 其他收集器</h2>
+<div class="mermaid-wrap"><pre class="mermaid-src" hidden>
+  graph TB
+
+subgraph 新生代 
+    Serial
+    ParNew
+    Parallel_Scaevnge[Parallel Scavenge]
+end
+
+subgraph 老年代
+    Serial_Old[Serial Old]
+    Parallel_Old[Parallel Old]
+end
+  </pre></div>
+<h1 id="内存分配和回收策略"><a class="markdownIt-Anchor" href="#内存分配和回收策略"></a> 内存分配和回收策略</h1>
+<h2 id="回收策略"><a class="markdownIt-Anchor" href="#回收策略"></a> 回收策略</h2>
+<ol>
+<li>Minor GC</li>
+<li>Full GC</li>
+</ol>
+<h2 id="内存分配策略"><a class="markdownIt-Anchor" href="#内存分配策略"></a> 内存分配策略</h2>
+<ol>
+<li>
+<p>一个人（对象）出来（new 出来）后会在Eden Space（伊甸园）无忧无虑的生活，直到GC到来打破了他们平静的生活。GC会逐一问清楚每个对象的情况，有没有钱（此对象的引用）啊，因为GC想赚钱呀，有钱的才可以敲诈嘛。然后富人就会进入Survivor Space（幸存者区），穷人的就直接kill掉。</p>
+</li>
+<li>
+<p>并不是进入Survivor Space（幸存者区）后就保证人身是安全的，但至少可以活段时间。GC会定期（可以自定义）会对这些人进行敲诈，亿万富翁每次都给钱，GC很满意，就让其进入了Genured Gen(养老区)。万元户经不住几次敲诈就没钱了，GC看没有啥价值啦，就直接kill掉了。</p>
+</li>
+<li>
+<p>进入到养老区的人基本就可以保证人身安全啦，但是亿万富豪有的也会挥霍成穷光蛋，只要钱没了，GC还是kill掉。</p>
+</li>
+</ol>
+<p><strong>总结</strong></p>
+<ol>
+<li>对象优先在 Eden 分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活的对象直接进入老年代</li>
+<li>动态对象年龄判定</li>
+<li>空间分配担保</li>
+</ol>
+<h2 id="full-gc-出触发条件"><a class="markdownIt-Anchor" href="#full-gc-出触发条件"></a> Full GC 出触发条件</h2>
+<ol>
+<li>调用 <code>System.gc()</code></li>
+<li>老年代空间不足</li>
+<li>空间分配担保失败</li>
+<li>JDK 1.8 之前的永久代空间不足</li>
+<li>Concurrent Mode Failure</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">LuoYu-Ying</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luoyu-ying.github.io/posts/95a5ab043507/">https://luoyu-ying.github.io/posts/95a5ab043507/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luoyu-ying.github.io" target="_blank">洛语 の Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/JVM/">JVM</a><a class="post-meta__tags" href="/tags/GC/">GC</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/QQ图片20210106231236.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/d278b3f4f3e3/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/109951162988952225.jpg" onerror="onerror=null;src='/img/default-cover.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java 面试问题整理</div></div></a></div><div class="next-post pull-right"><a href="/posts/b16a9e46aacf/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/少女人 ID=60909952.png" onerror="onerror=null;src='/img/default-cover.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">修改 mermaid 流程图的样式以及连线的曲直</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/a6e2a4ac3de9/" title="JVM  运行时数据区域"><img class="cover" src="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/あさひ＠クロイ ID=60141148.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">JVM  运行时数据区域</div></div></a></div><div><a href="/posts/fcd8ff3809b7/" title="JVM 类加载机制"><img class="cover" src="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/id=53474510.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-19</div><div class="title">JVM 类加载机制</div></div></a></div><div><a href="/posts/d278b3f4f3e3/" title="Java 面试问题整理"><img class="cover" src="https://cdn.jsdelivr.net/gh/LuoYu-Ying/Blog_img/109951162988952225.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-23</div><div class="title">Java 面试问题整理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6"><span class="toc-number">1.</span> <span class="toc-text"> 判断一个对象是否可以被回收</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 四种引用类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text"> 垃圾收集算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text"> 垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.</span> <span class="toc-text"> 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text"> 主要收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cms"><span class="toc-number">4.2.1.</span> <span class="toc-text"> CMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#g1garbage-first"><span class="toc-number">4.2.2.</span> <span class="toc-text"> G1(Garbage First)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text"> 其他收集器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5"><span class="toc-number">5.</span> <span class="toc-text"> 内存分配和回收策略</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5"><span class="toc-number">5.1.</span> <span class="toc-text"> 回收策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">5.2.</span> <span class="toc-text"> 内存分配策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#full-gc-%E5%87%BA%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6"><span class="toc-number">5.3.</span> <span class="toc-text"> Full GC 出触发条件</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By LuoYu-Ying</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
