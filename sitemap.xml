@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/posts/76aedbc4e682/</loc>
-    
-    <lastmod>2022-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://luoyu-ying.github.io/posts/19429a22b2b2/</loc>
     
     <lastmod>2022-05-14</lastmod>
@@ -372,14 +363,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/View/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Typora/</loc>
     <lastmod>2022-05-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Typora/</loc>
+    <loc>https://luoyu-ying.github.io/tags/View/</loc>
     <lastmod>2022-05-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
