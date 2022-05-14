@@ -18,8 +18,8 @@
   
   <entry>
     <title>Typora 流程图中文字显示不全 [转载]</title>
-    <link href="https://luoyu-ying.github.io/posts/b97556f04186/"/>
-    <id>https://luoyu-ying.github.io/posts/b97556f04186/</id>
+    <link href="https://luoyu-ying.github.io/posts/Typora-%E6%B5%81%E7%A8%8B%E5%9B%BE%E4%B8%AD%E6%96%87%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%85%A8-%E8%BD%AC%E8%BD%BD/"/>
+    <id>https://luoyu-ying.github.io/posts/Typora-%E6%B5%81%E7%A8%8B%E5%9B%BE%E4%B8%AD%E6%96%87%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%85%A8-%E8%BD%AC%E8%BD%BD/</id>
     <published>2022-05-14T15:49:44.000Z</published>
     <updated>2022-05-14T15:58:46.661Z</updated>
     
@@ -47,8 +47,8 @@
   
   <entry>
     <title>RecyclerView - Android校招面试整理</title>
-    <link href="https://luoyu-ying.github.io/posts/743419965876/"/>
-    <id>https://luoyu-ying.github.io/posts/743419965876/</id>
+    <link href="https://luoyu-ying.github.io/posts/RecyclerView-Android%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    <id>https://luoyu-ying.github.io/posts/RecyclerView-Android%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/</id>
     <published>2022-05-13T09:14:02.000Z</published>
     <updated>2022-05-14T08:50:04.000Z</updated>
     
@@ -73,8 +73,8 @@
   
   <entry>
     <title>OkHttp 解析 [转载]</title>
-    <link href="https://luoyu-ying.github.io/posts/85849a386862/"/>
-    <id>https://luoyu-ying.github.io/posts/85849a386862/</id>
+    <link href="https://luoyu-ying.github.io/posts/OkHttp-%E8%A7%A3%E6%9E%90-%E8%BD%AC%E8%BD%BD/"/>
+    <id>https://luoyu-ying.github.io/posts/OkHttp-%E8%A7%A3%E6%9E%90-%E8%BD%AC%E8%BD%BD/</id>
     <published>2022-05-10T16:41:06.000Z</published>
     <updated>2022-05-12T13:52:14.767Z</updated>
     
@@ -103,8 +103,8 @@
   
   <entry>
     <title>c++ 不同数据类型 scanf 输入输出写法</title>
-    <link href="https://luoyu-ying.github.io/posts/645f57a51719/"/>
-    <id>https://luoyu-ying.github.io/posts/645f57a51719/</id>
+    <link href="https://luoyu-ying.github.io/posts/cpp-%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-scanf-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%86%99%E6%B3%95/"/>
+    <id>https://luoyu-ying.github.io/posts/cpp-%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-scanf-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%86%99%E6%B3%95/</id>
     <published>2022-05-08T15:28:06.000Z</published>
     <updated>2022-05-11T07:14:43.000Z</updated>
     
@@ -130,8 +130,8 @@
   
   <entry>
     <title>K 短路模板</title>
-    <link href="https://luoyu-ying.github.io/posts/ac36d4ee2e65/"/>
-    <id>https://luoyu-ying.github.io/posts/ac36d4ee2e65/</id>
+    <link href="https://luoyu-ying.github.io/posts/K%E7%9F%AD%E8%B7%AF%E6%A8%A1%E6%9D%BF/"/>
+    <id>https://luoyu-ying.github.io/posts/K%E7%9F%AD%E8%B7%AF%E6%A8%A1%E6%9D%BF/</id>
     <published>2022-04-28T11:49:23.000Z</published>
     <updated>2022-05-05T09:37:12.612Z</updated>
     
@@ -159,8 +159,8 @@
   
   <entry>
     <title>字符串哈希</title>
-    <link href="https://luoyu-ying.github.io/posts/bb54934ff9ed/"/>
-    <id>https://luoyu-ying.github.io/posts/bb54934ff9ed/</id>
+    <link href="https://luoyu-ying.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/"/>
+    <id>https://luoyu-ying.github.io/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/</id>
     <published>2022-04-28T11:49:23.000Z</published>
     <updated>2022-05-05T09:35:27.250Z</updated>
     
@@ -188,8 +188,8 @@
   
   <entry>
     <title>View 的事件体系</title>
-    <link href="https://luoyu-ying.github.io/posts/38fdb1d1c50f/"/>
-    <id>https://luoyu-ying.github.io/posts/38fdb1d1c50f/</id>
+    <link href="https://luoyu-ying.github.io/posts/View-%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BD%93%E7%B3%BB/"/>
+    <id>https://luoyu-ying.github.io/posts/View-%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BD%93%E7%B3%BB/</id>
     <published>2022-04-27T11:49:25.000Z</published>
     <updated>2022-05-12T14:01:11.322Z</updated>
     
@@ -217,8 +217,8 @@
   
   <entry>
     <title>XCPC 读入操作模板</title>
-    <link href="https://luoyu-ying.github.io/posts/cec9f65c0174/"/>
-    <id>https://luoyu-ying.github.io/posts/cec9f65c0174/</id>
+    <link href="https://luoyu-ying.github.io/posts/XCPC-%E8%AF%BB%E5%85%A5%E6%93%8D%E4%BD%9C%E6%A8%A1%E6%9D%BF/"/>
+    <id>https://luoyu-ying.github.io/posts/XCPC-%E8%AF%BB%E5%85%A5%E6%93%8D%E4%BD%9C%E6%A8%A1%E6%9D%BF/</id>
     <published>2022-04-23T15:48:15.000Z</published>
     <updated>2022-04-29T04:52:40.000Z</updated>
     
@@ -249,8 +249,8 @@
   
   <entry>
     <title>Java 面试问题整理</title>
-    <link href="https://luoyu-ying.github.io/posts/d278b3f4f3e3/"/>
-    <id>https://luoyu-ying.github.io/posts/d278b3f4f3e3/</id>
+    <link href="https://luoyu-ying.github.io/posts/Java-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/"/>
+    <id>https://luoyu-ying.github.io/posts/Java-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/</id>
     <published>2022-04-23T13:57:31.000Z</published>
     <updated>2022-05-12T16:34:22.351Z</updated>
     
@@ -277,8 +277,8 @@
   
   <entry>
     <title>JVM 垃圾回收机制</title>
-    <link href="https://luoyu-ying.github.io/posts/95a5ab043507/"/>
-    <id>https://luoyu-ying.github.io/posts/95a5ab043507/</id>
+    <link href="https://luoyu-ying.github.io/posts/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"/>
+    <id>https://luoyu-ying.github.io/posts/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</id>
     <published>2022-04-22T06:43:39.000Z</published>
     <updated>2022-05-05T09:36:14.999Z</updated>
     
@@ -309,8 +309,8 @@
   
   <entry>
     <title>修改 mermaid 流程图的样式以及连线的曲直</title>
-    <link href="https://luoyu-ying.github.io/posts/b16a9e46aacf/"/>
-    <id>https://luoyu-ying.github.io/posts/b16a9e46aacf/</id>
+    <link href="https://luoyu-ying.github.io/posts/%E4%BF%AE%E6%94%B9-mermaid-%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%9A%84%E6%A0%B7%E5%BC%8F%E4%BB%A5%E5%8F%8A%E8%BF%9E%E7%BA%BF%E7%9A%84%E6%9B%B2%E7%9B%B4/"/>
+    <id>https://luoyu-ying.github.io/posts/%E4%BF%AE%E6%94%B9-mermaid-%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%9A%84%E6%A0%B7%E5%BC%8F%E4%BB%A5%E5%8F%8A%E8%BF%9E%E7%BA%BF%E7%9A%84%E6%9B%B2%E7%9B%B4/</id>
     <published>2022-04-21T13:55:18.000Z</published>
     <updated>2022-04-23T16:02:10.000Z</updated>
     
@@ -339,8 +339,8 @@
   
   <entry>
     <title>ikbc 键盘 Win 键无法响应</title>
-    <link href="https://luoyu-ying.github.io/posts/65315041b85b/"/>
-    <id>https://luoyu-ying.github.io/posts/65315041b85b/</id>
+    <link href="https://luoyu-ying.github.io/posts/ikbc-%E9%94%AE%E7%9B%98-Win-%E9%94%AE%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94/"/>
+    <id>https://luoyu-ying.github.io/posts/ikbc-%E9%94%AE%E7%9B%98-Win-%E9%94%AE%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94/</id>
     <published>2022-04-21T08:56:18.000Z</published>
     <updated>2022-04-21T14:52:42.000Z</updated>
     
@@ -366,8 +366,8 @@
   
   <entry>
     <title>JVM  运行时数据区域</title>
-    <link href="https://luoyu-ying.github.io/posts/a6e2a4ac3de9/"/>
-    <id>https://luoyu-ying.github.io/posts/a6e2a4ac3de9/</id>
+    <link href="https://luoyu-ying.github.io/posts/JVM-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F/"/>
+    <id>https://luoyu-ying.github.io/posts/JVM-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F/</id>
     <published>2022-04-19T19:17:20.000Z</published>
     <updated>2022-04-23T16:01:41.000Z</updated>
     
@@ -401,8 +401,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>JVM 类加载机制</title>
-    <link href="https://luoyu-ying.github.io/posts/fcd8ff3809b7/"/>
-    <id>https://luoyu-ying.github.io/posts/fcd8ff3809b7/</id>
+    <link href="https://luoyu-ying.github.io/posts/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/"/>
+    <id>https://luoyu-ying.github.io/posts/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</id>
     <published>2022-04-19T07:22:30.000Z</published>
     <updated>2022-04-23T16:01:05.000Z</updated>
     
@@ -431,8 +431,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>View 的绘制原理</title>
-    <link href="https://luoyu-ying.github.io/posts/19429a22b2b2/"/>
-    <id>https://luoyu-ying.github.io/posts/19429a22b2b2/</id>
+    <link href="https://luoyu-ying.github.io/posts/View-%E7%9A%84%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86/"/>
+    <id>https://luoyu-ying.github.io/posts/View-%E7%9A%84%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86/</id>
     <published>2022-04-18T13:49:55.000Z</published>
     <updated>2022-05-14T10:49:57.000Z</updated>
     
@@ -460,8 +460,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>Hello World</title>
-    <link href="https://luoyu-ying.github.io/posts/e65ca2457b95/"/>
-    <id>https://luoyu-ying.github.io/posts/e65ca2457b95/</id>
+    <link href="https://luoyu-ying.github.io/posts/hello-world/"/>
+    <id>https://luoyu-ying.github.io/posts/hello-world/</id>
     <published>2022-04-18T12:27:13.950Z</published>
     <updated>2022-04-14T08:50:11.000Z</updated>
     
@@ -480,8 +480,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>Android 动画深入分析</title>
-    <link href="https://luoyu-ying.github.io/posts/89ece43bd0a9/"/>
-    <id>https://luoyu-ying.github.io/posts/89ece43bd0a9/</id>
+    <link href="https://luoyu-ying.github.io/posts/Android-%E5%8A%A8%E7%94%BB%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/"/>
+    <id>https://luoyu-ying.github.io/posts/Android-%E5%8A%A8%E7%94%BB%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/</id>
     <published>2022-04-17T13:54:03.000Z</published>
     <updated>2022-04-27T11:44:43.558Z</updated>
     
@@ -515,8 +515,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>理解 Window 和 WindowManager [转载]</title>
-    <link href="https://luoyu-ying.github.io/posts/1c94cec68685/"/>
-    <id>https://luoyu-ying.github.io/posts/1c94cec68685/</id>
+    <link href="https://luoyu-ying.github.io/posts/%E7%90%86%E8%A7%A3-Window-%E5%92%8C-WindowManager/"/>
+    <id>https://luoyu-ying.github.io/posts/%E7%90%86%E8%A7%A3-Window-%E5%92%8C-WindowManager/</id>
     <published>2022-04-17T13:03:01.000Z</published>
     <updated>2022-04-29T05:00:06.000Z</updated>
     
@@ -546,8 +546,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>Drawable 解析</title>
-    <link href="https://luoyu-ying.github.io/posts/da60d3fddfed/"/>
-    <id>https://luoyu-ying.github.io/posts/da60d3fddfed/</id>
+    <link href="https://luoyu-ying.github.io/posts/Drawable-%E8%A7%A3%E6%9E%90/"/>
+    <id>https://luoyu-ying.github.io/posts/Drawable-%E8%A7%A3%E6%9E%90/</id>
     <published>2022-04-16T10:19:43.000Z</published>
     <updated>2022-04-27T11:44:55.412Z</updated>
     
@@ -573,8 +573,8 @@ subgraph 运行时数据区
   
   <entry>
     <title>ThreadLocal 解析 [转载]</title>
-    <link href="https://luoyu-ying.github.io/posts/03160a3be19b/"/>
-    <id>https://luoyu-ying.github.io/posts/03160a3be19b/</id>
+    <link href="https://luoyu-ying.github.io/posts/ThreadLocal-%E8%A7%A3%E6%9E%90-%E8%BD%AC%E8%BD%BD/"/>
+    <id>https://luoyu-ying.github.io/posts/ThreadLocal-%E8%A7%A3%E6%9E%90-%E8%BD%AC%E8%BD%BD/</id>
     <published>2022-04-16T10:19:43.000Z</published>
     <updated>2022-05-12T13:53:14.691Z</updated>
     
