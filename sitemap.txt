@@ -41,8 +41,8 @@ https://luoyu-ying.github.io/tags/Drawable/
 https://luoyu-ying.github.io/tags/HashMap/
 https://luoyu-ying.github.io/tags/Java/
 https://luoyu-ying.github.io/tags/JVM/
-https://luoyu-ying.github.io/tags/Class-Loading/
 https://luoyu-ying.github.io/tags/GC/
+https://luoyu-ying.github.io/tags/Class-Loading/
 https://luoyu-ying.github.io/tags/%E5%9B%BE%E8%AE%BA/
 https://luoyu-ying.github.io/tags/XCPC/
 https://luoyu-ying.github.io/tags/OkHttp/
@@ -58,8 +58,8 @@ https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%
 https://luoyu-ying.github.io/categories/Android/
 https://luoyu-ying.github.io/categories/Android/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/
 https://luoyu-ying.github.io/categories/JVM/
-https://luoyu-ying.github.io/categories/XCPC/
 https://luoyu-ying.github.io/categories/Java/
+https://luoyu-ying.github.io/categories/XCPC/
 https://luoyu-ying.github.io/categories/Markdown/
 https://luoyu-ying.github.io/categories/XCPC/%E5%9B%BE%E8%AE%BA/
 https://luoyu-ying.github.io/categories/XCPC/%E5%85%B6%E4%BB%96/
