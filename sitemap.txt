@@ -1,3 +1,6 @@
+https://luoyu-ying.github.io/posts/ca56681199c8/
+https://luoyu-ying.github.io/music/index.html
+https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/a2ee5464a9b5/
 https://luoyu-ying.github.io/posts/217436a720e7/
 https://luoyu-ying.github.io/posts/0557737935e1/
@@ -22,12 +25,10 @@ https://luoyu-ying.github.io/posts/38fdb1d1c50f/
 https://luoyu-ying.github.io/posts/bb54934ff9ed/
 https://luoyu-ying.github.io/posts/b97556f04186/
 https://luoyu-ying.github.io/posts/59c5aea57d8c/
-https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/004ee5be31d6/
 https://luoyu-ying.github.io/posts/76aedbc4e682/
 https://luoyu-ying.github.io/link/index.html
 https://luoyu-ying.github.io/toolbox/index.html
-https://luoyu-ying.github.io/music/index.html
 https://luoyu-ying.github.io/daily/index.html
 https://luoyu-ying.github.io/categories/index.html
 https://luoyu-ying.github.io/tags/index.html
@@ -37,6 +38,7 @@ https://luoyu-ying.github.io/
 https://luoyu-ying.github.io/tags/Handler/
 https://luoyu-ying.github.io/tags/Android/
 https://luoyu-ying.github.io/tags/Animation/
+https://luoyu-ying.github.io/tags/ArrayList/
 https://luoyu-ying.github.io/tags/Drawable/
 https://luoyu-ying.github.io/tags/HashMap/
 https://luoyu-ying.github.io/tags/Java/
@@ -46,8 +48,8 @@ https://luoyu-ying.github.io/tags/Class-Loading/
 https://luoyu-ying.github.io/tags/%E5%9B%BE%E8%AE%BA/
 https://luoyu-ying.github.io/tags/XCPC/
 https://luoyu-ying.github.io/tags/OkHttp/
-https://luoyu-ying.github.io/tags/ThreadLocal/
 https://luoyu-ying.github.io/tags/RecyclerView/
+https://luoyu-ying.github.io/tags/ThreadLocal/
 https://luoyu-ying.github.io/tags/Typora/
 https://luoyu-ying.github.io/tags/View/
 https://luoyu-ying.github.io/tags/ikbc/
@@ -58,8 +60,8 @@ https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%
 https://luoyu-ying.github.io/categories/Android/
 https://luoyu-ying.github.io/categories/Android/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/
 https://luoyu-ying.github.io/categories/JVM/
-https://luoyu-ying.github.io/categories/Java/
 https://luoyu-ying.github.io/categories/XCPC/
+https://luoyu-ying.github.io/categories/Java/
 https://luoyu-ying.github.io/categories/Markdown/
 https://luoyu-ying.github.io/categories/XCPC/%E5%9B%BE%E8%AE%BA/
 https://luoyu-ying.github.io/categories/XCPC/%E5%85%B6%E4%BB%96/

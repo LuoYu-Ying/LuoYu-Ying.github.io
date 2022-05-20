@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-05-19T12:21:20.000Z</updated>
+  <updated>2022-05-20T07:40:53.978Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ArrayList - Android校招面试整理</title>
+    <link href="https://luoyu-ying.github.io/posts/ca56681199c8/"/>
+    <id>https://luoyu-ying.github.io/posts/ca56681199c8/</id>
+    <published>2022-05-20T07:21:02.000Z</published>
+    <updated>2022-05-20T07:40:53.978Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文参考自：</p><ul><li><a href="https://blog.csdn.net/qq_51596354/article/details/122398978">Java ArrayList底层原理详情笔记和相关面试题_抹泪的知更鸟的博客-CSDN博客</a></li></ul></blockquote><h1 id="arraylist是如何扩容的"><a class="markdownIt-Anchor" href="#arraylist是如何扩容的"></a> <code>ArrayList</code>是如何扩容的？</h1><p>初始容量为10，第一扩容就为10。</p><p>以后每次的扩容都是原容量的1.5倍。</p><h1 id="arraylist继承关系"><a class="markdownIt-Anchor" href="#arraylist继承关系"></a> <code>ArrayList</code>继承关系</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayList</span>&lt;E&gt; <span class="keyword">extends</span> <span class="title class_">AbstractList</span>&lt;E&gt;</span><br><span class="line">        <span class="keyword">implements</span> <span class="title class_">List</span>&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure><h2 id="实现serializable标记型接口"><a class="markdownIt-Anchor" href="#实现serializable标记型接口"></a> 实现<code>Serializable</code>标记型接口</h2><p>序列化：将对象转化为字节数组的过程</p><p>反序列化：将字节数组转化为对象的过程</p><h2 id="实现cloneable标记型接口"><a class="markdownIt-Anchor" href="#实现cloneable标记型接口"></a> 实现<code>Cloneable</code>标记型接口</h2><p>克隆：将<code>ArrayList</code>集合的数组clone到另一个集合</p><p>实际底层调用的是Object中的<code>clone</code>方法，而<code>clone</code>是一个<code>native</code>方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> list.clone();</span><br><span class="line">System.out.println(o == list);<span class="comment">//地址不一样，深度克隆</span></span><br></pre></td></tr></table></figure><p>使用了<code>Arrays#copyOf</code>方法进行复制</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;?&gt; v = (ArrayList&lt;?&gt;) <span class="built_in">super</span>.clone();</span><br><span class="line">v.elementData = Arrays.copyOf(elementData, size);</span><br></pre></td></tr></table></figure><p>浅拷贝：基本数据类型可以达到完全复制，引用数据类型拷贝的是栈上的地址值，所以修改引用类型的数据，会改变原来的数据。</p><p>深拷贝：基本数据类型和引用类型都可以完全复制，引用对象在堆中创建新的对象，对原数据没有任何影响。</p><p><strong>深拷贝的实现方式：</strong></p><p>实现<code>Cloneable</code>接口并重写<code>clone</code>方法。</p><p>让其<code>clone</code>方法通过序列化和反序列化的方式来生成一个原对象的深拷贝副本</p><h2 id="实现randomaccess标记型接口"><a class="markdownIt-Anchor" href="#实现randomaccess标记型接口"></a> 实现<code>RandomAccess</code>标记型接口</h2><p><strong><code>ArrayList</code>支持随机访问。</strong></p><p>通过<code>get(i)</code>即可获得相应内存中存放的值。原因是因为<code>ArrayList</code>存放的内容在内存中是连续的，数组直接用<code>[]</code>访问，相当于直接操作内存地址，所以随机访问的效率较高。</p><p>普通的for循环是随机访问的，所以遍历<code>ArrayList</code>使用普通<code>for</code>循环比增强<code>for</code>循环和迭代器的效率高。</p><p>而<code>LinkedList</code>是一个双向链表，链表只能顺序访问，不支持随机访问，<code>LinkedList</code>中的<code>get</code>方法是按照顺序从列表的一端开始检查，直到找到要找的地址。所以遍历<code>LinkedList</code>使用增强<code>for</code>循环和迭代器的效率高，使用普通<code>for</code>循环会每次都从头开始遍历，效率较差。</p><h2 id="abstractlist抽象类"><a class="markdownIt-Anchor" href="#abstractlist抽象类"></a> <code>AbstractList</code>抽象类</h2><p><code>AbstractList</code> 虽然是抽象类，但其内部只有一个抽象方法 <code>get</code>：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> E <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure><p>从字面上看这是获取的方法，子类必须实现它，一般是作为获取元素的用途，除此之外，如果子类要操作元素，还需要重写 <code>add</code>、<code>set</code>、 <code>remove</code>方法，因为 <code>AbstractList</code> 虽然定义了这几个方法，但默认是不支持的。</p><h1 id="arraylist频繁扩容导致添加性能急剧下降如何处理"><a class="markdownIt-Anchor" href="#arraylist频繁扩容导致添加性能急剧下降如何处理"></a> <code>ArrayList</code>频繁扩容导致添加性能急剧下降，如何处理？</h1><p>每次扩容都会创建一个数据，将数据复制到新数组，所以在<code>ArrayList</code>中有一个构造方法，参数是自定义长度，指定初始容量。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ArrayList</span><span class="params">(<span class="type">int</span> initialCapacity)</span> &#123; <span class="comment">//手动初始化</span></span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.elementData = <span class="keyword">new</span> <span class="title class_">Object</span>[initialCapacity];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//如果长度为0，使用final修饰的空数组</span></span><br><span class="line">        <span class="built_in">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Illegal Capacity: &quot;</span>+</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="arraylist插入或删除元素一定比linkedlist慢吗"><a class="markdownIt-Anchor" href="#arraylist插入或删除元素一定比linkedlist慢吗"></a> <code>ArrayList</code>插入或删除元素一定比<code>LinkedList</code>慢吗？</h1><p>不一定，<code>LinkedList</code> 其底层调用了 Node的方法,该方法循环也是比较复杂的 , 如果这个<code>LinkedList</code>上的数据很多,虽说进行了折半的 但是效率也是比较低的。</p><p>而<code>ArrayList</code>底层数组需要移动位置，复制数组。</p><h1 id="arraylist是线程安全的吗"><a class="markdownIt-Anchor" href="#arraylist是线程安全的吗"></a> <code>ArrayList</code>是线程安全的吗？</h1><p><code>ArrayList</code>不是线程安全的，效率高。</p><h1 id="如何解决arraylist线程安全问题"><a class="markdownIt-Anchor" href="#如何解决arraylist线程安全问题"></a> 如何解决<code>ArrayList</code>线程安全问题？</h1><p>可以使用安全集合<code>Vector</code>。</p><p>可以使用<code>Collections</code>工具类中的<code>SyschronizedList</code>方法解决<code>ArrayList</code>的线程安全问题</p><p>定义为全局变量，被多个线程所共享，就要考虑线程问题</p><p>定义为局部变量时，调用方法会在虚拟机栈处创建一个栈帧，虚拟机栈线程私有的，每一次只有一个线程执行，所以局部变量的数据是独立的，不需要考虑安全问题</p><h1 id="如何复制一个arraylist集合到另一个arraylist集合中"><a class="markdownIt-Anchor" href="#如何复制一个arraylist集合到另一个arraylist集合中"></a> 如何复制一个<code>ArrayList</code>集合到另一个<code>ArrayList</code>集合中？</h1><p>可以使用clone()方法</p><p>使用其中的构造器</p><p>使用addAll()方法</p><p>for循环遍历复制</p><h1 id="已知成员变量集合存储n多用户名称在多线程的环境下使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合"><a class="markdownIt-Anchor" href="#已知成员变量集合存储n多用户名称在多线程的环境下使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合"></a> 已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？</h1><p>在多线程读写操作，<code>ArrayList</code>会抛出并发异常，所以在进行读写数据时，使用读写的操作时，使用<code>CopyOnWriteArrayList</code>这个读写分离的集合。</p><h1 id="arraylist和linkedlist区别"><a class="markdownIt-Anchor" href="#arraylist和linkedlist区别"></a> <code>ArrayList</code>和<code>LinkedList</code>区别？</h1><p><strong><code>ArrayList</code></strong></p><ul><li><p>基于动态数组的数据结构</p></li><li><p><code>ArrayList</code>支持随机访问</p></li><li><p>查询快，增删慢，但并不一定比<code>LinkedList</code>慢</p></li></ul><p><strong><code>LinkedList</code></strong></p><ul><li><p>基于链表的数据结构</p></li><li><p>对于顺序操作，<code>LinkedList</code>不一定比<code>ArrayList</code>慢</p></li><li><p>查询慢，增删快</p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文参考自：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_51596354/article/details/122398978&quot;&gt;Java ArrayList底层原理详情笔记和相关面试题_抹泪的知更</summary>
+      
+    
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    
+    <category term="ArrayList" scheme="https://luoyu-ying.github.io/tags/ArrayList/"/>
+    
+  </entry>
   
   <entry>
     <title>HashMap - Android校招面试整理</title>
@@ -556,36 +583,6 @@ subgraph 运行时数据区
     <category term="Java" scheme="https://luoyu-ying.github.io/tags/Java/"/>
     
     <category term="JVM" scheme="https://luoyu-ying.github.io/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM 类加载机制</title>
-    <link href="https://luoyu-ying.github.io/posts/fcd8ff3809b7/"/>
-    <id>https://luoyu-ying.github.io/posts/fcd8ff3809b7/</id>
-    <published>2022-04-19T07:22:30.000Z</published>
-    <updated>2022-05-17T14:49:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h1><p>Java 语言的类型可以分为两个大类：基本类型和引用类型。</p><p>其中的引用类型，Java 又将其细分为了四种：类、接口、数组类以及泛型参数。</p><p>其中，泛型参数会在编译过程中被擦除，数组类则是由 Java 虚拟机直接在内存中动态构造出来的。所以我们只讨论类和接口的加载过程。</p><hr /><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graph LRsubgraph 类加载过程     subgraph 链接        验证 --&gt; 准备 --&gt; 解析    end    加载 --&gt; 验证    解析 --&gt; 初始化end  </pre></div><hr /><h1 id="触发类加载的条件主动加载"><a class="markdownIt-Anchor" href="#触发类加载的条件主动加载"></a> 触发类加载的条件（主动加载）</h1><ol><li><p>遇到 <code>new</code>，<code>getstatic</code>，<code>putstatic</code> 或 <code>invokestatic</code> 这4条字节码指令时，如果类没有进行过初始化，则需要先触发初始化。<br />生成这4条指令的最常见的Java代码场景是：</p><ol><li>使用new关键字实例化对象的时候</li><li>读取或设置一个类的静态字段的时候</li><li>调用一个类的静态方法的时候</li></ol></li><li><p>使用 <code>java.lang.reflect</code> 包的方法对类进行反射调用的时候。</p></li><li><p>当初始化一个类的时候，发现其父类还没有进行过初始化，则需要先出发父类的初始化。</p></li><li><p>当虚拟机启动时，用户需要指定一个要执行的主类（包含 <code>main()</code> 方法的那个类），虚拟机会先初始化这个主类。</p></li></ol><hr /><h1 id="加载"><a class="markdownIt-Anchor" href="#加载"></a> 加载</h1><p>加载阶段是类加载的第一个部分，在此阶段需要完成三件事情：</p><ol><li>通过类的完全限定名找到该类对应的二进制字节流。</li><li>将该字节流表示的静态存储结构转换为方法区的运行时存储结构。</li><li>在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。</li></ol><p>对于非数组类的其他类而言，Java 虚拟机需要通过类加载器来完成查找字节流的过程。</p><h2 id="类加载器"><a class="markdownIt-Anchor" href="#类加载器"></a> 类加载器</h2><p>加载过程需要使用类加载器来完成。</p><p>在 Java 9 以前，一共有三种类加载器：</p><ul><li>启动类加载器</li><li>扩展类加载器</li><li>应用类加载器</li></ul><p>在 Java 9 之后，经过更改后变成了两种：</p><ul><li>启动类加载器</li><li>平台类加载器</li></ul><p>启动类加载器是所有类加载器的祖先，由 C++ 编程，没有对应的 Java 对象，因此在 Java 中用 <code>null</code> 来指代。</p><p>除了启动类加载器，其他的加载器都有对应的 Java 对象。这些类加载器需要先由另一个类加载器，比如说启动类加载器，加载至 Java 虚拟机中，方能执行类加载。</p><h2 id="双亲委派机制"><a class="markdownIt-Anchor" href="#双亲委派机制"></a> 双亲委派机制</h2><p>双亲委派模型的工作流程是：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把请求委托给父加载器去完成，依次向上，因此，所有的类加载请求最终都应该被传递到顶层的启动类加载器中，只有当父加载器在它的搜索范围中没有找到所需的类时，即无法完成该加载，子加载器才会尝试自己去加载该类。</p><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graph LRsubgraph 双亲委派模型    自定义类加载器 --&gt; 应用类加载器 --&gt; 扩展类加载器 --&gt; 启动类加载器end  </pre></div><h1 id="验证"><a class="markdownIt-Anchor" href="#验证"></a> 验证</h1><p>验证阶段是连接阶段的第一步，目的是为了确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</p><h1 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h1><p>准备阶段是正式为类变量（即静态变量，被 <code>static</code> 修饰的变量）分配内存并设置类变量初始值的阶段。</p><p>这些变量所使用的内存都将在方法区中分配，只包括类变量。</p><p>初始值“通常情况”下是数据类型的零值。</p><p>“特殊情况”下，如果类字段的字段属性表中存在 ConstantValue 属性（即被 <code>final</code> 修饰的变量），那么在准备阶段变量的值就会被初始化为 ConstantValue 属性所指定的值。</p><h1 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h1><p>虚拟机将常量池内的符号引用替换为直接引用的过程。</p><h1 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h1><p>类加载过程中的最后一步。</p><p>初始化阶段是执行类构造器 <code>&lt;clinit&gt;()</code> 方法的过程。</p><p><code>&lt;clinit&gt;()</code> 方法是由编译器自动收集类中的所有类变量的赋值动作和静态语句块中的语句合并产生的。</p><p><code>&lt;clinit&gt;()</code> 与类的构造函数不同，它不需要显示地调用父类构造器，虚拟机会保证在子类的 <code>&lt;clinit&gt;()</code> 方法执行之前，父类的 <code>&lt;clinit&gt;()</code> 方法已经执行完毕。</p><p><strong>简单地说，初始化就是对类变量进行赋值及执行静态代码块。</strong></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;引言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#引言&quot;&gt;&lt;/a&gt; 引言&lt;/h1&gt;
-&lt;p&gt;Java 语言的类型可以分为两个大类：基本类型和引用类型。&lt;/p&gt;
-&lt;p&gt;其中的引用类型，Java 又将其细分为了四种：类、接口、数组类以及泛型</summary>
-      
-    
-    
-    
-    <category term="JVM" scheme="https://luoyu-ying.github.io/categories/JVM/"/>
-    
-    
-    <category term="Java" scheme="https://luoyu-ying.github.io/tags/Java/"/>
-    
-    <category term="JVM" scheme="https://luoyu-ying.github.io/tags/JVM/"/>
-    
-    <category term="Class Loading" scheme="https://luoyu-ying.github.io/tags/Class-Loading/"/>
     
   </entry>
   
