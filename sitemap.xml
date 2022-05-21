@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/posts/335a768ca0c3/</loc>
+    <loc>https://luoyu-ying.github.io/posts/9856c35835bc/</loc>
     
     <lastmod>2022-05-21</lastmod>
     
@@ -369,6 +369,13 @@
   </url>
   
   <url>
+    <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
+    <lastmod>2022-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/tags/Android/</loc>
     <lastmod>2022-05-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -377,13 +384,6 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Animation/</loc>
-    <lastmod>2022-05-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
     <lastmod>2022-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

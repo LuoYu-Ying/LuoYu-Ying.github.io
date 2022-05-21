@@ -1,5 +1,5 @@
 https://luoyu-ying.github.io/posts/4aa0626e110f/
-https://luoyu-ying.github.io/posts/335a768ca0c3/
+https://luoyu-ying.github.io/posts/9856c35835bc/
 https://luoyu-ying.github.io/posts/bb54934ff9ed/
 https://luoyu-ying.github.io/posts/19429a22b2b2/
 https://luoyu-ying.github.io/posts/03160a3be19b/
@@ -39,9 +39,9 @@ https://luoyu-ying.github.io/tags/index.html
 https://luoyu-ying.github.io/list/index.html
 https://luoyu-ying.github.io/
 https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/
+https://luoyu-ying.github.io/tags/Activity/
 https://luoyu-ying.github.io/tags/Android/
 https://luoyu-ying.github.io/tags/Animation/
-https://luoyu-ying.github.io/tags/Activity/
 https://luoyu-ying.github.io/tags/ArrayList/
 https://luoyu-ying.github.io/tags/Drawable/
 https://luoyu-ying.github.io/tags/Handler/
