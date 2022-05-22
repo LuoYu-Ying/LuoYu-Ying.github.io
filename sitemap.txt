@@ -39,9 +39,9 @@ https://luoyu-ying.github.io/tags/index.html
 https://luoyu-ying.github.io/list/index.html
 https://luoyu-ying.github.io/
 https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/
-https://luoyu-ying.github.io/tags/Activity/
 https://luoyu-ying.github.io/tags/Android/
 https://luoyu-ying.github.io/tags/Animation/
+https://luoyu-ying.github.io/tags/Activity/
 https://luoyu-ying.github.io/tags/ArrayList/
 https://luoyu-ying.github.io/tags/Drawable/
 https://luoyu-ying.github.io/tags/Handler/
@@ -61,13 +61,13 @@ https://luoyu-ying.github.io/tags/View/
 https://luoyu-ying.github.io/tags/ikbc/
 https://luoyu-ying.github.io/tags/markdown/
 https://luoyu-ying.github.io/tags/mermaid/
-https://luoyu-ying.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/
 https://luoyu-ying.github.io/tags/Window/
+https://luoyu-ying.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/
 https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/
 https://luoyu-ying.github.io/categories/Android/
 https://luoyu-ying.github.io/categories/Hexo/
 https://luoyu-ying.github.io/categories/JVM/
-https://luoyu-ying.github.io/categories/XCPC/
 https://luoyu-ying.github.io/categories/Java/
+https://luoyu-ying.github.io/categories/XCPC/
 https://luoyu-ying.github.io/categories/Markdown/
 https://luoyu-ying.github.io/categories/ikbc/
