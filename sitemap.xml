@@ -378,6 +378,13 @@
   </url>
   
   <url>
+    <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
+    <lastmod>2022-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/tags/Android/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -386,13 +393,6 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Animation/</loc>
-    <lastmod>2022-05-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -414,13 +414,6 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
-    <lastmod>2022-05-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/HashMap/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -456,6 +449,13 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Class-Loading/</loc>
+    <lastmod>2022-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/HashMap/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -539,14 +539,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Window/</loc>
+    <loc>https://luoyu-ying.github.io/tags/AutoHotKey/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/AutoHotKey/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Window/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -583,14 +583,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
+    <loc>https://luoyu-ying.github.io/categories/Java/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/Java/</loc>
+    <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
