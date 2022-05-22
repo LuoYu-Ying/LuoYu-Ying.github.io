@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luoyu-ying.github.io/posts/0242ff6238d0/</loc>
+    
+    <lastmod>2022-05-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/posts/4aa0626e110f/</loc>
     
     <lastmod>2022-05-21</lastmod>
@@ -388,14 +397,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Drawable/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Drawable/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -558,14 +567,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/Java/</loc>
+    <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
+    <loc>https://luoyu-ying.github.io/categories/Java/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
