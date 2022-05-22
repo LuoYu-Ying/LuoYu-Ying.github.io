@@ -1,0 +1,352 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Android 动画深入分析 | 洛语 の Blog</title><meta name="keywords" content="Android,Animation"><meta name="author" content="LuoYu-Ying"><meta name="copyright" content="LuoYu-Ying"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="动画的三个分类   View动画   帧动画   属性动画    View动画  四个动画效果 View动画的作用对象是View，它有四个动画效果：平移动画、缩放动画、旋转动画、透明度动画。 View动画的四个变化效果对应着Animation的四个子类：  平移动画：TranslateAnimation，XML中对应的标签为&lt;translate&gt; 缩放动画：ScaleAnimatio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 动画深入分析">
+<meta property="og:url" content="https://luoyu-ying.github.io/posts/89ece43bd0a9/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="动画的三个分类   View动画   帧动画   属性动画    View动画  四个动画效果 View动画的作用对象是View，它有四个动画效果：平移动画、缩放动画、旋转动画、透明度动画。 View动画的四个变化效果对应着Animation的四个子类：  平移动画：TranslateAnimation，XML中对应的标签为&lt;translate&gt; 缩放动画：ScaleAnimatio">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=55325876(loundraw).jpg">
+<meta property="article:published_time" content="2022-04-17T13:54:03.000Z">
+<meta property="article:modified_time" content="2022-05-18T08:53:23.817Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Animation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=55325876(loundraw).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luoyu-ying.github.io/posts/89ece43bd0a9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":180,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Android 动画深入分析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-18 16:53:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/post-transparent.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/white-code-box.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default-cover.jpg" onerror="onerror=null;src='img/default-cover.jpg'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/toolbox/"><i class="fa-fw fas fa-box"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=55325876(loundraw).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">洛语 の Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/toolbox/"><i class="fa-fw fas fa-box"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Android 动画深入分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-17T13:54:03.000Z" title="发表于 2022-04-17 21:54:03">2022-04-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-18T08:53:23.817Z" title="更新于 2022-05-18 16:53:23">2022-05-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Android 动画深入分析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="动画的三个分类"><a class="markdownIt-Anchor" href="#动画的三个分类"></a> 动画的三个分类</h1>
+<ol>
+<li>
+<p>View动画</p>
+</li>
+<li>
+<p>帧动画</p>
+</li>
+<li>
+<p>属性动画</p>
+</li>
+</ol>
+<h1 id="view动画"><a class="markdownIt-Anchor" href="#view动画"></a> <code>View</code>动画</h1>
+<h2 id="四个动画效果"><a class="markdownIt-Anchor" href="#四个动画效果"></a> 四个动画效果</h2>
+<p><code>View</code>动画的作用对象是<code>View</code>，它有四个动画效果：平移动画、缩放动画、旋转动画、透明度动画。</p>
+<p><code>View</code>动画的四个变化效果对应着<code>Animation</code>的四个子类：</p>
+<ol>
+<li>平移动画：<code>TranslateAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;translate&gt;</code></li>
+<li>缩放动画：<code>ScaleAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;scale&gt;</code></li>
+<li>旋转动画：<code>RotateAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;rotate&gt;</code></li>
+<li>透明度动画：<code>AlphaAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;alpha&gt;</code></li>
+</ol>
+<h2 id="set标签"><a class="markdownIt-Anchor" href="#set标签"></a> <code>&lt;set&gt;</code>标签</h2>
+<p><code>&lt;set&gt;</code>标签表示动画的集合，对应着<code>AnimationSet</code>类，其中可以包含着若干的动画，也可以有子动画。</p>
+<p>标签有两个属性：</p>
+<ol>
+<li><code>android:interpolator=&quot;@anim/...&quot;</code>：选定集合所使用的插值器。</li>
+<li><code>android:shareInterpolator=[&quot;true&quot;|&quot;false&quot;]</code>：是否让集合中的动画和集合使用相同的插值器，如果为<code>false</code>，则需要为每一个动画指定一个插值器。</li>
+</ol>
+<h2 id="自定义view动画"><a class="markdownIt-Anchor" href="#自定义view动画"></a> 自定义<code>View</code>动画</h2>
+<p>通过继承抽象类<code>Animation</code>，并重写其中的<code>intialize</code>和<code>applyTransformation</code>方法。</p>
+<p><code>intialize</code>方法做初始化工作。</p>
+<p><code>applyTransformation</code>方法中进行相应的矩阵变换，很多时候需要采用<code>Camera</code>类来简化矩阵变换的过程。</p>
+<h2 id="view动画的特殊使用场景"><a class="markdownIt-Anchor" href="#view动画的特殊使用场景"></a> <code>View</code>动画的特殊使用场景</h2>
+<h3 id="layoutanimation"><a class="markdownIt-Anchor" href="#layoutanimation"></a> <code>LayoutAnimation</code></h3>
+<p><code>LayoutAnimation</code>作用于<code>ViewGroup</code>，为<code>ViewGroup</code>指定一个动画，这样当这个<code>ViewGroup</code>的子元素出场时都会具有这个动画效果。</p>
+<p>常常被用在<code>ListView</code>中，让其中的<code>item</code>在出场时都具有动画效果。</p>
+<p><strong>使用步骤：</strong></p>
+<ol>
+<li>
+<p>在<code>XML</code>中定义<code>LayoutAnimation</code>，标签为<code>&lt;layoutAnimation&gt;</code>。其中有两个参数：<code>android:delay</code>和<code>android:animationOrder</code>。两者的作用如下：</p>
+<ol>
+<li><code>android:delay</code>：使子元素的出场时间向后延迟指定的时间，单位为毫秒。</li>
+<li><code>android:animationOrder</code>：指定子元素的出场顺序。有三种选项：<code>normal</code>顺序出场、<code>reverse</code>逆序出场、<code>random</code>随机出场。</li>
+</ol>
+</li>
+<li>
+<p>在<code>XML</code>中指定出场时的动画。</p>
+</li>
+<li>
+<p>在<code>XML</code>中的<code>ViewGroup</code>部分使用<code>android:layoutAnimation</code>参数指定第1步中的<code>LayoutAnimation</code>文件，便可以为<code>ViewGroup</code>中的子元素指定出场动画。</p>
+<p>除了可以在<code>XML</code>中指定<code>ViewGroup</code>的<code>android:layoutAnimation</code>属性，也可以在代码中通过<code>LayoutAnimationController</code>来实现。</p>
+</li>
+</ol>
+<h3 id="activity的切换效果"><a class="markdownIt-Anchor" href="#activity的切换效果"></a> <code>Activity</code>的切换效果</h3>
+<p><code>View</code>动画也可以对<code>Activity</code>的切换效果进行设置，效果如<code>Navigation</code>的<code>Fragment</code>切换效果。</p>
+<p>这个效果是可以自定义的，我们可以通过<code>overridePendingTransition(int enterAnim, int exitAnim)</code>方法，这个方法<code>startActivity(Intent intent)</code>函数或者<code>finish()</code>函数之后被调用才能生效，否则动画效果将不起作用。</p>
+<p>两个参数分别是设置的<strong>入场动画</strong>和<strong>退场动画</strong>的资源Id。</p>
+<p>使用方法例子如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(...);</span><br><span class="line">startActivity(intent);</span><br><span class="line">overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">finish</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.finish();</span><br><span class="line">    overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="fragment的切换效果"><a class="markdownIt-Anchor" href="#fragment的切换效果"></a> <code>Fragment</code>的切换效果</h3>
+<p>由于<code>Fragment</code>类是在<code>API11</code>中才被新加入的，所以我们使用<code>support-v4</code>这个兼容包。</p>
+<p>我们使用<code>FragmentTransaction</code>类中的<code>setCustomAnimation()</code>方法来添加切换动画，该处的动画<strong>需要是<code>View</code>动画</strong>，而<strong>不能是属性动画</strong>。</p>
+<h1 id="帧动画"><a class="markdownIt-Anchor" href="#帧动画"></a> 帧动画</h1>
+<p>通过<code>&lt;animation-list&gt;</code>标签，并在其中预设好一组图片，类似于电影的播放，按顺序依次播放。</p>
+<p>系统中提供<code>AnimationDrawable</code>类来使用帧动画。</p>
+<p>应避免使用尺寸较大的图片，以防止<code>OOM</code>的发生。</p>
+<h1 id="属性动画"><a class="markdownIt-Anchor" href="#属性动画"></a> 属性动画</h1>
+<p>属性动画<strong>可以对任意对象的属性进行动画</strong>而不仅仅是<code>View</code>。</p>
+<p>动画的默认时间间隔为<code>300ms</code>，默认的帧率为<code>10ms/帧</code>。</p>
+<p>达到的效果是：在一个时间间隔内完成对象从一个属性值到另一个属性值的改变。</p>
+<p>常用的几个动画类是：<code>ValueAnimator</code>、<code>ObjectAnimator</code>和<code>AnimatorSet</code>。</p>
+<p>其中，<code>ObjectAnimator</code>继承自<code>ValueAnimator</code>，<code>AnimatorSet</code>是动画集合，可以定义一组动画。</p>
+<h2 id="nineoldandroids"><a class="markdownIt-Anchor" href="#nineoldandroids"></a> <code>Nineoldandroids</code></h2>
+<p><code>API11</code>前，可以使用<code>nineoldandroids</code>开源动画库完成类似属性动画的效果，其使用的语法与<code>API11</code>后属性动画的语法完全一致，不同的是，<code>nineoldandroids</code>通过<code>View</code>动画来完成属性动画的效果。</p>
+<h2 id="使用方式"><a class="markdownIt-Anchor" href="#使用方式"></a> 使用方式</h2>
+<p>属性动画可以通过代码的方式完成，也可以在<code>XML</code>文件中定义。属性动画需要定义在<code>res/animator</code>中。</p>
+<p>上述三个动画类在<code>XML</code>文件中的表示方式如下：</p>
+<h3 id="animatorset"><a class="markdownIt-Anchor" href="#animatorset"></a> <code>AnimatorSet</code></h3>
+<p>对应的标签为<code>&lt;set&gt;</code>。</p>
+<p>其中的属性<code>android:ordering=[&quot;together&quot;|&quot;sequentially&quot;]</code>有两个可选值：</p>
+<ol>
+<li><code>together</code>表示集合中所有的子动画同时播放。</li>
+<li><code>sequentially</code>表示集合中的子动画依次播放。</li>
+</ol>
+<h3 id="objectanimator"><a class="markdownIt-Anchor" href="#objectanimator"></a> <code>ObjectAnimator</code></h3>
+<p>对应的标签为<code>&lt;objectAnimator&gt;</code>。</p>
+<p>部分属性即解释如下：</p>
+<ul>
+<li>
+<p><code>android:propertyName=&quot;string&quot;</code>：表示属性动画的作用对象的属性的名称。</p>
+</li>
+<li>
+<p><code>android:startOffset=&quot;int&quot;</code>：表示动画的延迟时间，当动画开始后，需要延迟多少毫秒才会真正播放此动画。</p>
+</li>
+<li>
+<p><code>android:repeatCount=&quot;int&quot;</code>：表示动画的重复次数，默认值为<code>0</code>，<code>-1</code>表示无限循环。</p>
+</li>
+<li>
+<p><code>android:repearMode=[&quot;restart&quot;|&quot;reverse&quot;]</code>：表示动画的重复模式。</p>
+<ul>
+<li><code>&quot;restart&quot;</code>表示连续重复，即每次都重新开始播放。</li>
+<li><code>&quot;reverse&quot;</code>表示逆向重复，即第一次正放动画，第二次倒放动画，第三次正放动画，第四次倒放动画，如此反复。</li>
+</ul>
+</li>
+<li>
+<p><code>&quot;android:valueType=[&quot;intType&quot;|&quot;floatType&quot;]</code>：表示<code>android:perpertyName</code>所指定的属性的类型，如果指定的属性为颜色，那么不需要指定该属性，系统会自动对颜色类型的属性做处理。</p>
+</li>
+</ul>
+<h3 id="valueanimator"><a class="markdownIt-Anchor" href="#valueanimator"></a> <code>ValueAnimator</code></h3>
+<p>对应的标签为<code>&lt;animator&gt;</code></p>
+<p>其属性比<code>ObjectAnimator</code>少了一个<code>android:perpertyName</code>，其余的属性都是一样的，故不多介绍。</p>
+<h2 id="理解插值器和估值器"><a class="markdownIt-Anchor" href="#理解插值器和估值器"></a> 理解插值器和估值器</h2>
+<p>插值器和估值器是实现非匀速动画的重要手段。</p>
+<h3 id="timeinterpolator"><a class="markdownIt-Anchor" href="#timeinterpolator"></a> <code>TimeInterpolator</code></h3>
+<p>时间插值器。作用为<strong>根据时间的流逝的百分比计算当前属性值改变的百分比</strong>。</p>
+<p>预设的有多种插值器，常见的三种如下：</p>
+<ol>
+<li><code>LinearInterpolator</code>——线性插值器：匀速动画</li>
+<li><code>AccelerateDecelerateInterpolator</code>——加速减速插值器：动画两头慢中间快</li>
+<li><code>DecelerateInterpolator</code>——减速插值器：动画越来越慢</li>
+</ol>
+<p>三个类都实现了<code>Interpolartor</code>接口，接口内部只有一个用来计算属性值的改变的百分比的<code>getInterpolation</code>方法需要实现。</p>
+<h3 id="typeevaluator"><a class="markdownIt-Anchor" href="#typeevaluator"></a> <code>TypeEvaluator</code></h3>
+<p>类型估值算法，也叫估值器。作用是<strong>根据属性值改变的百分比来计算改变后的属性值</strong>。</p>
+<p>系统预置的有3种：</p>
+<ol>
+<li><code>IntEvaluator</code>：针对整形属性</li>
+<li><code>FloatEvaluator</code>：针对浮点型属性</li>
+<li><code>ArgbEvaluator</code>：针对Color属性</li>
+</ol>
+<p>三个类都实现了<code>TypeEvalator</code>接口，接口内部只有一个用来计算改变后的属性值的<code>evaluate</code>方法需要实现。</p>
+<h3 id="计算顺序"><a class="markdownIt-Anchor" href="#计算顺序"></a> 计算顺序</h3>
+<p>系统会根据当前的帧所在时刻与动画播放的总时间求出时间的流逝的百分比，再通过插值器计算出当前属性值改变的百分比，后用此值通过估值器计算出当前的属性改变后的确定的值是多少并通过<code>set</code>方法对属性赋值。</p>
+<p>故属性动画要求对象的该属性有<code>set</code>方法（必须有）和<code>get</code>方法（可选）。</p>
+<h3 id="自定义插值器和估值器"><a class="markdownIt-Anchor" href="#自定义插值器和估值器"></a> 自定义插值器和估值器</h3>
+<p>我们可以自定义插值器和估值器，来实现自己想要的动画效果。实现方式也很简单。</p>
+<p>因为插值器和估值器都是一个接口，且内部都只有一个方法，所以我们只需要派生一个类并实现接口就可以了，然后就可以做出千奇百怪的动画效果了。即：</p>
+<ul>
+<li>自定义插值器需要实现<code>Interpolator</code>或者<code>TimeInterpolator</code>接口</li>
+<li>自定义估值器需要实现<code>TypeEvaluator</code>接口。</li>
+</ul>
+<h2 id="属性动画的监听器"><a class="markdownIt-Anchor" href="#属性动画的监听器"></a> 属性动画的监听器</h2>
+<p>监听器用于监听动画的播放过程，主要有两个接口：<code>AnimatorUpdateListener</code>和<code>AnimatorListener</code>。</p>
+<h3 id="animatorupdatelistener"><a class="markdownIt-Anchor" href="#animatorupdatelistener"></a> <code>AnimatorUpdateListener</code></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">interface</span> <span class="title class_">AnimatorUpdateListener</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该接口会监听整个动画过程，即每播放一帧，<code>onAnimationUpdate</code>就会被调用一次。</p>
+<h3 id="animatorlistener"><a class="markdownIt-Anchor" href="#animatorlistener"></a> <code>AnimatorListener</code></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">interface</span> <span class="title class_">AnimatiorListener</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onAnimatorStart</span><span class="params">(Animator animation)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onAnimatorEnd</span><span class="params">(Animator animation)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onAnimatorCancel</span><span class="params">(Animator animation)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onAnimatorRepeat</span><span class="params">(Animator animation)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该接口会监听动画的开始、结束、取消以及重复播放。同时为了方便开发，系统还提供了<code>AnimatorListenerAdapter</code>这个类，它是<code>AnimatorListener</code>的适配器类，这样我们就可以有选择地实现上面的4个方法了。</p>
+<h2 id="对任意属性做动画"><a class="markdownIt-Anchor" href="#对任意属性做动画"></a> 对任意属性做动画</h2>
+<p>属性动画<strong>可以对任意对象的属性进行动画</strong>而不仅仅是<code>View</code>。</p>
+<h3 id="属性动画的工作流程"><a class="markdownIt-Anchor" href="#属性动画的工作流程"></a> 属性动画的工作流程</h3>
+<p>属性动画要求动画作用的对象提供该属性的<code>set</code>方法，属性动画根据你传递的该属性的初始值和最终值，以动画的效果多次去调用<code>set</code>方法。每次传递给<code>set</code>方法的值都不一样，确切来说是随着时间的推移，所传递的值越来越接近最终值。如果动画的时候没有传递初始值，那么还要提供<code>get</code>方法，因为系统要去获取属性的初始值。即：</p>
+<ul>
+<li>
+<p>必须要有该属性的<code>set</code>方法（如果这条不满足则会无效果）</p>
+</li>
+<li>
+<p>如果没有传递初始值，那么必须要有该属性的<code>get</code>方法（如果这条不满足则程序直接Crash）</p>
+</li>
+</ul>
+<h3 id="动画不生效时的解决方法"><a class="markdownIt-Anchor" href="#动画不生效时的解决方法"></a> 动画不生效时的解决方法</h3>
+<p>当有些对象的内部并没有该属性的<code>set</code>方法时，动画会无效果，那么我们有三个方法去解决这个问题：</p>
+<ol>
+<li>
+<p><strong>如果有权限的话，直接给对象加上<code>get</code>和<code>set</code>方法</strong></p>
+<p>很多时候，我们是没有权限的去添加方法的，比如我们给<code>Button</code>或者<code>TextView</code>等等，因为这些都是Android SDK内部实现的，我们无法更改。</p>
+</li>
+<li>
+<p><strong>用一个类来包装原始对象，间隔为其提供<code>get</code>和<code>set</code>方法</strong></p>
+<p>因为属性动画可以对任意对象进行动画，所以我们可以用一个类来包装原始对象，并在该类中为原始对象提供<code>get</code>和<code>set</code>方法。</p>
+<p>然后对该类进行属性动画，即可修改原始对象的属性值。</p>
+</li>
+<li>
+<p><strong>利用<code>ValueAnimator</code>，监听动画过程，自己实现属性的改变</strong></p>
+<p>使用<code>AnimatorUpdateListener</code>接口监听整个动画过程，在其中的<code>onAnimationUpdate</code>方法中，对每一帧通过调用插值器和估值器计算当前的属性值，并通过<code>set</code>方法直接为该属性赋值，实现属性的改变。</p>
+</li>
+</ol>
+<p><strong>注：自己写的<code>set</code>方法中，在对属性值进行修改后，需要调用<code>view.requestLayout()</code>方法重绘界面，否则无法显示更改后的界面。</strong></p>
+<h2 id="属性动画的工作原理"><a class="markdownIt-Anchor" href="#属性动画的工作原理"></a> 属性动画的工作原理</h2>
+<p><code>ObjectAnimatior#start</code>方法会调用其父类<code>ValueAnimator#start</code>方法，在父类的<code>start</code>方法中会调用<code>AnimationHandler#start</code>方法，<code>AnimationHandler</code>是一个<code>Runnable</code>，我已属性动画需要运行在有<code>Looper</code>的线程中。</p>
+<p>中间通过一系列的方法调用，然后会使用<code>ValueAnimator#doAnimationFrame</code>方法，在此方法中又调用了<code>animationFrame</code>方法，内部又调用了<code>animateValue</code>方法，其中的<code>calculateValue</code>方法就是计算每帧动画所对应的属性的值，其中的<code>setupValue</code>方法通过反射调用对象的<code>get</code>方法，<code>setAnimationValue</code>方法通过反射的方式调用了对象的<code>set</code>方法。</p>
+<h1 id="使用动画的注意事项"><a class="markdownIt-Anchor" href="#使用动画的注意事项"></a> 使用动画的注意事项</h1>
+<p><strong>来源：《Android开发艺术探索》</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/Android%E5%8A%A8%E7%94%BB%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90.png" alt="" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">LuoYu-Ying</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luoyu-ying.github.io/posts/89ece43bd0a9/">https://luoyu-ying.github.io/posts/89ece43bd0a9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luoyu-ying.github.io" target="_blank">洛语 の Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/Animation/">Animation</a></div><div class="post_share"><div class="social-share" data-image="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=55325876(loundraw).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/19429a22b2b2/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=46014079(oright).jpg" onerror="onerror=null;src='/img/default-cover.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">View 的绘制原理</div></div></a></div><div class="next-post pull-right"><a href="/posts/1c94cec68685/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=37311279(凹).jpg" onerror="onerror=null;src='/img/default-cover.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">理解 Window 和 WindowManager [转载]</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/da60d3fddfed/" title="Drawable 解析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/pic6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-16</div><div class="title">Drawable 解析</div></div></a></div><div><a href="/posts/9435d0391c8a/" title="Handler 机制解析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/pic10.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-16</div><div class="title">Handler 机制解析</div></div></a></div><div><a href="/posts/03160a3be19b/" title="ThreadLocal 解析 [转载]"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=66934796(Y_Y).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-16</div><div class="title">ThreadLocal 解析 [转载]</div></div></a></div><div><a href="/posts/38fdb1d1c50f/" title="View 的事件体系"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=2318466(じむ(kaji).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-27</div><div class="title">View 的事件体系</div></div></a></div><div><a href="/posts/19429a22b2b2/" title="View 的绘制原理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=46014079(oright).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-18</div><div class="title">View 的绘制原理</div></div></a></div><div><a href="/posts/1c94cec68685/" title="理解 Window 和 WindowManager [转载]"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/id=37311279(凹).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-17</div><div class="title">理解 Window 和 WindowManager [转载]</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E7%9A%84%E4%B8%89%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text"> 动画的三个分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#view%E5%8A%A8%E7%94%BB"><span class="toc-number">2.</span> <span class="toc-text"> View动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C"><span class="toc-number">2.1.</span> <span class="toc-text"> 四个动画效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E6%A0%87%E7%AD%BE"><span class="toc-number">2.2.</span> <span class="toc-text"> &lt;set&gt;标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89view%E5%8A%A8%E7%94%BB"><span class="toc-number">2.3.</span> <span class="toc-text"> 自定义View动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#view%E5%8A%A8%E7%94%BB%E7%9A%84%E7%89%B9%E6%AE%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.4.</span> <span class="toc-text"> View动画的特殊使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#layoutanimation"><span class="toc-number">2.4.1.</span> <span class="toc-text"> LayoutAnimation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#activity%E7%9A%84%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C"><span class="toc-number">2.4.2.</span> <span class="toc-text"> Activity的切换效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fragment%E7%9A%84%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C"><span class="toc-number">2.4.3.</span> <span class="toc-text"> Fragment的切换效果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%A7%E5%8A%A8%E7%94%BB"><span class="toc-number">3.</span> <span class="toc-text"> 帧动画</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB"><span class="toc-number">4.</span> <span class="toc-text"> 属性动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nineoldandroids"><span class="toc-number">4.1.</span> <span class="toc-text"> Nineoldandroids</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">4.2.</span> <span class="toc-text"> 使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#animatorset"><span class="toc-number">4.2.1.</span> <span class="toc-text"> AnimatorSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#objectanimator"><span class="toc-number">4.2.2.</span> <span class="toc-text"> ObjectAnimator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#valueanimator"><span class="toc-number">4.2.3.</span> <span class="toc-text"> ValueAnimator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E6%8F%92%E5%80%BC%E5%99%A8%E5%92%8C%E4%BC%B0%E5%80%BC%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text"> 理解插值器和估值器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#timeinterpolator"><span class="toc-number">4.3.1.</span> <span class="toc-text"> TimeInterpolator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#typeevaluator"><span class="toc-number">4.3.2.</span> <span class="toc-text"> TypeEvaluator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.3.3.</span> <span class="toc-text"> 计算顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E5%80%BC%E5%99%A8%E5%92%8C%E4%BC%B0%E5%80%BC%E5%99%A8"><span class="toc-number">4.3.4.</span> <span class="toc-text"> 自定义插值器和估值器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB%E7%9A%84%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 属性动画的监听器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#animatorupdatelistener"><span class="toc-number">4.4.1.</span> <span class="toc-text"> AnimatorUpdateListener</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animatorlistener"><span class="toc-number">4.4.2.</span> <span class="toc-text"> AnimatorListener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%BB%BB%E6%84%8F%E5%B1%9E%E6%80%A7%E5%81%9A%E5%8A%A8%E7%94%BB"><span class="toc-number">4.5.</span> <span class="toc-text"> 对任意属性做动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">4.5.1.</span> <span class="toc-text"> 属性动画的工作流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E4%B8%8D%E7%94%9F%E6%95%88%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">4.5.2.</span> <span class="toc-text"> 动画不生效时的解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">4.6.</span> <span class="toc-text"> 属性动画的工作原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8A%A8%E7%94%BB%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.</span> <span class="toc-text"> 使用动画的注意事项</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By LuoYu-Ying</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">一期一会</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
