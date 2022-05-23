@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title>塞塞塞</title>
-      <link href="/posts/e320d50e8fde/"/>
-      <url>/posts/e320d50e8fde/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>通过 AutoHotKey 简化 Hexo 操作</title>
       <link href="/posts/050a11a7817a/"/>
       <url>/posts/050a11a7817a/</url>
@@ -746,9 +733,9 @@
       
         <tags>
             
-            <tag> Animation </tag>
-            
             <tag> Android </tag>
+            
+            <tag> Animation </tag>
             
         </tags>
       
