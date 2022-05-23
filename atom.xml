@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-05-23T12:52:10.000Z</updated>
+  <updated>2022-05-23T16:24:25.776Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Service - Android校招面试整理</title>
+    <link href="https://luoyu-ying.github.io/posts/94ccd61d6796/"/>
+    <id>https://luoyu-ying.github.io/posts/94ccd61d6796/</id>
+    <published>2022-05-24T08:40:02.000Z</published>
+    <updated>2022-05-23T16:24:25.776Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="todo"><a class="markdownIt-Anchor" href="#todo"></a> TODO</h1><ol><li><code>Service</code> 的生命周期，两种启动方式的区别</li><li><code>Service</code>与<code>Activity</code>怎么实现通信</li><li><code>Service</code> 的 <code>onStartCommand</code> 方法有几种返回值?各代表什么意思?</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;todo&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#todo&quot;&gt;&lt;/a&gt; TODO&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Service&lt;/code&gt; 的生命周期，两种启动方式的区别&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Service&lt;</summary>
+      
+    
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Service" scheme="https://luoyu-ying.github.io/tags/Service/"/>
+    
+  </entry>
   
   <entry>
     <title>通过注册表在微软输入法中加载小鹤双拼</title>
@@ -382,25 +411,6 @@
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     <category term="RecyclerView" scheme="https://luoyu-ying.github.io/tags/RecyclerView/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Service - Android校招面试整理</title>
-    <link href="https://luoyu-ying.github.io/posts/69ac826efbbd/"/>
-    <id>https://luoyu-ying.github.io/posts/69ac826efbbd/</id>
-    <published>2022-05-13T08:40:02.000Z</published>
-    <updated>2022-05-23T12:10:21.822Z</updated>
-    
-    
-    
-    
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    <category term="Service" scheme="https://luoyu-ying.github.io/tags/Service/"/>
     
   </entry>
   
