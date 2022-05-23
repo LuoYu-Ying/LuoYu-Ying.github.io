@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>通过注册表在微软输入法中加载小鹤双拼</title>
+      <link href="/posts/66c4123f82e6/"/>
+      <url>/posts/66c4123f82e6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1><p>在微软拼音输入法中快速使用小鹤双拼。</p><h1 id="操作步骤"><a class="markdownIt-Anchor" href="#操作步骤"></a> 操作步骤</h1><ol><li><p>通过<code>Win + R</code>，输入<code>regedit</code>打开注册表编辑器。</p></li><li><p>通过左侧的各级文件夹，到达<code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\InputMethod\Settings\CHS</code>路径。</p></li><li><p>通过修改右侧的值项，来加载小鹤双拼输入法。</p><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220107194851414.png" alt="image-20220107194851414" /></p></li></ol><p><strong>各项值：</strong></p><p><code>DoublePinyinScheme</code>：<code>DWORD</code>：<code>a（十六进制）</code></p><p><code>Enable Double Pinyin</code>：<code>DWORD</code>：<code>1（十六进制）</code></p><p><code>EnableExtraDomainType</code>：<code>DWORD</code>：<code>1（十六进制）</code></p><p><code>UserDefinedDoublePinyinScheme0</code>：<code>SZ</code>：<code>小鹤双拼*2*^*iuvdjhcwfgrxmlnpbksqszxkrltvyovt</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows OS </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通过 AutoHotKey 简化 Hexo 操作</title>
       <link href="/posts/050a11a7817a/"/>
       <url>/posts/050a11a7817a/</url>
@@ -49,9 +68,9 @@
       
         <tags>
             
-            <tag> Activity </tag>
-            
             <tag> 校招面试整理 </tag>
+            
+            <tag> Activity </tag>
             
         </tags>
       
