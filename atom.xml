@@ -71,9 +71,9 @@
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Activity" scheme="https://luoyu-ying.github.io/tags/Activity/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
   </entry>
   
@@ -362,6 +362,25 @@
   </entry>
   
   <entry>
+    <title>Service - Android校招面试整理</title>
+    <link href="https://luoyu-ying.github.io/posts/69ac826efbbd/"/>
+    <id>https://luoyu-ying.github.io/posts/69ac826efbbd/</id>
+    <published>2022-05-13T08:40:02.000Z</published>
+    <updated>2022-05-23T12:10:21.822Z</updated>
+    
+    
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Service" scheme="https://luoyu-ying.github.io/tags/Service/"/>
+    
+  </entry>
+  
+  <entry>
     <title>已整理问题列表 - Android校招面试整理</title>
     <link href="https://luoyu-ying.github.io/posts/fcc3036e996a/"/>
     <id>https://luoyu-ying.github.io/posts/fcc3036e996a/</id>
@@ -543,36 +562,6 @@
     <category term="Android" scheme="https://luoyu-ying.github.io/tags/Android/"/>
     
     <category term="View" scheme="https://luoyu-ying.github.io/tags/View/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>XCPC 读入操作模板</title>
-    <link href="https://luoyu-ying.github.io/posts/cec9f65c0174/"/>
-    <id>https://luoyu-ying.github.io/posts/cec9f65c0174/</id>
-    <published>2022-04-23T15:48:15.000Z</published>
-    <updated>2022-05-21T04:54:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>本文参考：</p><ul><li><a href="https://www.cnblogs.com/AlvinZH/p/6798023.html">C/C++如何整行读入字符串？</a></li></ul></blockquote><hr /><h1 id="快速读入-int"><a class="markdownIt-Anchor" href="#快速读入-int"></a> 快速读入 <code>int</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">0</span>, f = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch))</span><br><span class="line">        f = (ch == <span class="number">45</span>), ch = <span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch))</span><br><span class="line">        x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (ch ^ <span class="number">48</span>), ch = <span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> f ? (~x + <span class="number">1</span>) : x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr /><h1 id="字符串整行读入"><a class="markdownIt-Anchor" href="#字符串整行读入"></a> 字符串整行读入</h1><h2 id="char-整行读入"><a class="markdownIt-Anchor" href="#char-整行读入"></a> char[] 整行读入</h2><h3 id="使用-gets-推荐"><a class="markdownIt-Anchor" href="#使用-gets-推荐"></a> 使用 <code>gets()</code> [推荐]</h3><p>读入不需要考虑换行符。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s[LEN];</span><br><span class="line"><span class="built_in">gets</span>(s);</span><br></pre></td></tr></table></figure><h3 id="使用-scanf"><a class="markdownIt-Anchor" href="#使用-scanf"></a> 使用 <code>scanf()</code></h3><p>无法读入末尾的换行符，需使用 <code>getchar()</code> 额外读取以便下一行的正常读入。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s[LEN];</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%[^\m]&quot;</span>, s);</span><br><span class="line"><span class="built_in">getchar</span>(); <span class="comment">// 读取末尾换行符</span></span><br></pre></td></tr></table></figure><h3 id="使用-getchar"><a class="markdownIt-Anchor" href="#使用-getchar"></a> 使用 <code>getchar()</code></h3><p>无法读入末尾的换行符，需使用 <code>getchar()</code> 额外读取以便下一行的正常读入。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s[LEN];</span><br><span class="line"><span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> ((s[len] = <span class="built_in">getchar</span>()) != <span class="string">&#x27;\n&#x27;</span>) </span><br><span class="line">  len++;</span><br><span class="line"><span class="built_in">getchar</span>(); <span class="comment">// 读取末尾换行符</span></span><br></pre></td></tr></table></figure><h3 id="使用-getline"><a class="markdownIt-Anchor" href="#使用-getline"></a> 使用 <code>getline()</code></h3><p>读入不需要考虑换行符。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s[LEN];</span><br><span class="line">cin.<span class="built_in">getline</span>(s, LEN);</span><br></pre></td></tr></table></figure><h2 id="string-整行读入"><a class="markdownIt-Anchor" href="#string-整行读入"></a> string 整行读入</h2><h3 id="使用-getline-2"><a class="markdownIt-Anchor" href="#使用-getline-2"></a> 使用 <code>getline()</code></h3><p>读入不需要考虑换行符。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s;</span><br><span class="line"><span class="built_in">getline</span>(cin, s);</span><br></pre></td></tr></table></figure><hr />]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文参考：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/AlvinZH/p/6798023.html&quot;&gt;C/C++如何整行读入字符串？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;hr</summary>
-      
-    
-    
-    
-    <category term="XCPC" scheme="https://luoyu-ying.github.io/categories/XCPC/"/>
-    
-    
-    <category term="XCPC" scheme="https://luoyu-ying.github.io/tags/XCPC/"/>
     
   </entry>
   

@@ -49,9 +49,9 @@
       
         <tags>
             
-            <tag> 校招面试整理 </tag>
-            
             <tag> Activity </tag>
+            
+            <tag> 校招面试整理 </tag>
             
         </tags>
       
@@ -318,6 +318,33 @@
             <tag> 校招面试整理 </tag>
             
             <tag> RecyclerView </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Service - Android校招面试整理</title>
+      <link href="/posts/69ac826efbbd/"/>
+      <url>/posts/69ac826efbbd/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 校招面试整理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 校招面试整理 </tag>
+            
+            <tag> Service </tag>
             
         </tags>
       
