@@ -174,7 +174,7 @@
 </ul>
 <p><strong>实现原理</strong></p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20220522214849.png" style="zoom:67%;" />
-<p><code>HashMap</code>采⽤<code>Entry</code>数组来存储<code>key-value</code>对，每⼀个键值对组成了⼀个<code>Entry</code>实体，<code>Entry</code>类实际上是⼀个单向的链表结构，它具有<code>Next</code>指针，可以连接下⼀个<code>Entry</code>实体。 只是在<code>JDK1.8</code>中，链表⻓度⼤于<code>8</code>的时候，链表会转成<strong>红⿊树</strong>。</p>
+<p><code>HashMap</code>采⽤<code>Entry</code>数组来存储<code>key-value</code>对，每⼀个键值对组成了⼀个<code>Entry</code>实体，<code>Entry</code>类实际上是⼀个单向的链表结构，它具有<code>Next</code>指针，可以连接下⼀个<code>Entry</code>实体。 只是在<code>JDK1.8</code>中，链表⻓度⼤于<code>8</code>的时候，链表会转成<strong>红黑树</strong>。</p>
 <h1 id="为什么使用-链表-数组-的存储方式"><a class="markdownIt-Anchor" href="#为什么使用-链表-数组-的存储方式"></a> 为什么使用 <code>链表</code> + <code>数组</code> 的存储方式？</h1>
 <p>由于我们的数组的值是限制死的，我们在对<code>key</code>值进行散列取到下标以后，放入到数组中时，难免出现两个<code>key</code>值不同，但是却放入到下标相同的<strong>格子</strong>中，此时我们就可以使用链表来对其进行链式的存放。</p>
 <h1 id="用linkedlist代替数组结构可以吗"><a class="markdownIt-Anchor" href="#用linkedlist代替数组结构可以吗"></a> ⽤<code>LinkedList</code>代替<code>数组</code>结构可以吗？</h1>
