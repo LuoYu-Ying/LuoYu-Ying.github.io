@@ -619,4 +619,11 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://luoyu-ying.github.io/categories/AutoHotKey/</loc>
+    <lastmod>2022-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 </urlset>

@@ -74,3 +74,4 @@ https://luoyu-ying.github.io/categories/Java/
 https://luoyu-ying.github.io/categories/XCPC/
 https://luoyu-ying.github.io/categories/Markdown/
 https://luoyu-ying.github.io/categories/ikbc/
+https://luoyu-ying.github.io/categories/AutoHotKey/
