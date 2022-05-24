@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luoyu-ying.github.io/posts/90a21a97c0cb/</loc>
+    
+    <lastmod>2022-05-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/posts/94ccd61d6796/</loc>
     
     <lastmod>2022-05-24</lastmod>
@@ -590,6 +599,13 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/AutoHotKey/</loc>
+    <lastmod>2022-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/Broadcast/</loc>
     <lastmod>2022-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
