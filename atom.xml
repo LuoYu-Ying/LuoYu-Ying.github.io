@@ -44,6 +44,35 @@
   </entry>
   
   <entry>
+    <title>ContentProvider - Android校招面试整理</title>
+    <link href="https://luoyu-ying.github.io/posts/bb5f9e1a55ea/"/>
+    <id>https://luoyu-ying.github.io/posts/bb5f9e1a55ea/</id>
+    <published>2022-05-24T08:09:38.000Z</published>
+    <updated>2022-05-24T08:09:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>答案参考自：</p><ul><li><a href="https://www.cnblogs.com/Lwenlong/p/15941998.html">Android面试——ContentProvider篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li></ul></blockquote><h1 id="什么是contentprovider及其使用"><a class="markdownIt-Anchor" href="#什么是contentprovider及其使用"></a> 什么是<code>ContentProvider</code>及其使用</h1><ol><li><p><code>ContentProvider</code>通过Uri标识其他应用要访问的数据；</p></li><li><p>通过<code>ContentResolver</code>的增删改查方法实现对共享的数据的操作；</p></li><li><p>通过注册<code>ContentObserver</code>来监听数据是否发生了变化来对应的刷新页面</p></li></ol><p><strong><font size="4">作用</font></strong></p><p>为不同应用之间的数据共享提供统一的接口</p><h1 id="contentprovidercontentresolvercontentobserver之间的关系"><a class="markdownIt-Anchor" href="#contentprovidercontentresolvercontentobserver之间的关系"></a> <code>ContentProvider</code>,<code>ContentResolver</code>,<code>ContentObserver</code>之间的关系</h1><ol><li><p><code>ContentProvider</code></p><p>内容提供者：管理数据，提供数据的增删改查操作，数据源可以是数据库，文件，<code>xml</code>，网络等。</p></li><li><p><code>ContentResolver</code></p><p>内容解析者：外部进程通过内容解析者与内容提供者进行交互。</p></li><li><p><code>ContentObserver</code></p><p>内容观察者：观察内容提供者的数据变化，并将变化通知给外界。</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;答案参考自：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/Lwenlong/p/15941998.html&quot;&gt;Android面试——ContentProvider篇 - 向着内核前进！ - 博客园 (</summary>
+      
+    
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="ContentProvider" scheme="https://luoyu-ying.github.io/tags/ContentProvider/"/>
+    
+  </entry>
+  
+  <entry>
     <title>BroadcastReceiver - Android校招面试整理</title>
     <link href="https://luoyu-ying.github.io/posts/90a21a97c0cb/"/>
     <id>https://luoyu-ying.github.io/posts/90a21a97c0cb/</id>
@@ -535,31 +564,6 @@
     
     
     <category term="OkHttp" scheme="https://luoyu-ying.github.io/tags/OkHttp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++ 不同数据类型 scanf 输入输出写法</title>
-    <link href="https://luoyu-ying.github.io/posts/645f57a51719/"/>
-    <id>https://luoyu-ying.github.io/posts/645f57a51719/</id>
-    <published>2022-05-08T15:28:06.000Z</published>
-    <updated>2022-05-21T04:54:28.897Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="signed-int"><a class="markdownIt-Anchor" href="#signed-int"></a> <code>signed int</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="unsigned-int"><a class="markdownIt-Anchor" href="#unsigned-int"></a> <code>unsigned int</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%u&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%u&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="long-long-int"><a class="markdownIt-Anchor" href="#long-long-int"></a> <code>long long int</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">long</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="unsigned-long-long-int"><a class="markdownIt-Anchor" href="#unsigned-long-long-int"></a> <code>unsigned long long int</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%llu&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%llu&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="float"><a class="markdownIt-Anchor" href="#float"></a> <code>float</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="double"><a class="markdownIt-Anchor" href="#double"></a> <code>double</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="long-double"><a class="markdownIt-Anchor" href="#long-double"></a> <code>long double</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">double</span> x;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>, &amp;x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lf&quot;</span>, x);</span><br></pre></td></tr></table></figure><h1 id="char"><a class="markdownIt-Anchor" href="#char"></a> <code>char</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> ch;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>, &amp;ch);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, ch);</span><br></pre></td></tr></table></figure><h1 id="string"><a class="markdownIt-Anchor" href="#string"></a> <code>string</code></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s[LEN];</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;signed-int&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#signed-int&quot;&gt;&lt;/a&gt; &lt;code&gt;signed int&lt;/code&gt;&lt;/h1&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr</summary>
-      
-    
-    
-    
-    <category term="XCPC" scheme="https://luoyu-ying.github.io/categories/XCPC/"/>
-    
-    
-    <category term="XCPC" scheme="https://luoyu-ying.github.io/tags/XCPC/"/>
     
   </entry>
   

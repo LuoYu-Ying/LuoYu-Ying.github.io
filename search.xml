@@ -31,6 +31,33 @@
     
     
     <entry>
+      <title>ContentProvider - Android校招面试整理</title>
+      <link href="/posts/bb5f9e1a55ea/"/>
+      <url>/posts/bb5f9e1a55ea/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>答案参考自：</p><ul><li><a href="https://www.cnblogs.com/Lwenlong/p/15941998.html">Android面试——ContentProvider篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li></ul></blockquote><h1 id="什么是contentprovider及其使用"><a class="markdownIt-Anchor" href="#什么是contentprovider及其使用"></a> 什么是<code>ContentProvider</code>及其使用</h1><ol><li><p><code>ContentProvider</code>通过Uri标识其他应用要访问的数据；</p></li><li><p>通过<code>ContentResolver</code>的增删改查方法实现对共享的数据的操作；</p></li><li><p>通过注册<code>ContentObserver</code>来监听数据是否发生了变化来对应的刷新页面</p></li></ol><p><strong><font size="4">作用</font></strong></p><p>为不同应用之间的数据共享提供统一的接口</p><h1 id="contentprovidercontentresolvercontentobserver之间的关系"><a class="markdownIt-Anchor" href="#contentprovidercontentresolvercontentobserver之间的关系"></a> <code>ContentProvider</code>,<code>ContentResolver</code>,<code>ContentObserver</code>之间的关系</h1><ol><li><p><code>ContentProvider</code></p><p>内容提供者：管理数据，提供数据的增删改查操作，数据源可以是数据库，文件，<code>xml</code>，网络等。</p></li><li><p><code>ContentResolver</code></p><p>内容解析者：外部进程通过内容解析者与内容提供者进行交互。</p></li><li><p><code>ContentObserver</code></p><p>内容观察者：观察内容提供者的数据变化，并将变化通知给外界。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 校招面试整理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 校招面试整理 </tag>
+            
+            <tag> ContentProvider </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>BroadcastReceiver - Android校招面试整理</title>
       <link href="/posts/90a21a97c0cb/"/>
       <url>/posts/90a21a97c0cb/</url>
