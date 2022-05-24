@@ -1,3 +1,4 @@
+https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/bb5f9e1a55ea/
 https://luoyu-ying.github.io/posts/90a21a97c0cb/
 https://luoyu-ying.github.io/posts/94ccd61d6796/
@@ -7,7 +8,6 @@ https://luoyu-ying.github.io/link/index.html
 https://luoyu-ying.github.io/toolbox/index.html
 https://luoyu-ying.github.io/categories/index.html
 https://luoyu-ying.github.io/tags/index.html
-https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/ca56681199c8/
 https://luoyu-ying.github.io/posts/fcc3036e996a/
 https://luoyu-ying.github.io/posts/4aa0626e110f/
