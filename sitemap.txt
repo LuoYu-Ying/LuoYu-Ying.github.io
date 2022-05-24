@@ -74,6 +74,7 @@ https://luoyu-ying.github.io/tags/AutoHotKey/
 https://luoyu-ying.github.io/tags/Window/
 https://luoyu-ying.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/
 https://luoyu-ying.github.io/tags/ContentProvider/
+https://luoyu-ying.github.io/tags/Fragment/
 https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/
 https://luoyu-ying.github.io/categories/Android/
 https://luoyu-ying.github.io/categories/JVM/
