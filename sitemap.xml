@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luoyu-ying.github.io/posts/59c5aea57d8c/</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/posts/95756e730237/</loc>
+    
+    <lastmod>2022-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/about/index.html</loc>
     
     <lastmod>2022-05-24</lastmod>
@@ -111,15 +129,6 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/posts/4aa0626e110f/</loc>
-    
-    <lastmod>2022-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/posts/59c5aea57d8c/</loc>
     
     <lastmod>2022-05-23</lastmod>
     
