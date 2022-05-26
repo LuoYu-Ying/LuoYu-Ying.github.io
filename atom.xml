@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-05-25T08:46:46.000Z</updated>
+  <updated>2022-05-26T12:18:37.000Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM - Android校招面试整理</title>
+    <link href="https://luoyu-ying.github.io/posts/e9e45843b645/"/>
+    <id>https://luoyu-ying.github.io/posts/e9e45843b645/</id>
+    <published>2022-05-26T12:18:37.000Z</published>
+    <updated>2022-05-26T12:18:37.000Z</updated>
+    
+    
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="JVM" scheme="https://luoyu-ying.github.io/tags/JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>OkHttp - Android校招面试整理</title>
@@ -555,30 +574,6 @@
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     <category term="RecyclerView" scheme="https://luoyu-ying.github.io/tags/RecyclerView/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>已整理问题列表 - Android校招面试整理</title>
-    <link href="https://luoyu-ying.github.io/posts/fcc3036e996a/"/>
-    <id>https://luoyu-ying.github.io/posts/fcc3036e996a/</id>
-    <published>2022-05-12T08:40:02.000Z</published>
-    <updated>2022-05-23T01:12:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="activity"><a class="markdownIt-Anchor" href="#activity"></a> <a href="https://luoyu-ying.github.io/posts/4aa0626e110f/"><code>Activity</code></a></h1><ol><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B">1. Activity的启动流程</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#onsaveinstancestate%E5%92%8Conrestoreinstancestate%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA">2. onSaveInstanceState和onRestoreInstanceState的调用时机</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#oncreate%E5%92%8Conrestoreinstance%E6%96%B9%E6%B3%95%E4%B8%AD%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB">3. onCreate和onRestoreInstance方法中恢复数据时的区别</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E6%80%8E%E4%B9%88%E4%BF%9D%E5%AD%98%E7%9A%84%E8%BF%9B%E7%A8%8B%E8%A2%ABkill%E5%90%8E%E4%BF%9D%E5%AD%98%E7%9A%84%E6%95%B0%E6%8D%AE%E6%80%8E%E4%B9%88%E6%81%A2%E5%A4%8D%E7%9A%84">4. Activity的数据是怎么保存的,进程被Kill后,保存的数据怎么恢复的？</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF">5. Activity的启动模式和使用场景</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity%E7%9A%84onnewintent%E6%96%B9%E6%B3%95%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E6%89%A7%E8%A1%8C">6. Activity的onNewIntent方法什么时候会执行</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">7. Activity 生命周期</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#onstart-%E5%92%8C-onresume-onpause-%E5%92%8C-onstop-%E7%9A%84%E5%8C%BA%E5%88%AB">8. onStart 和 onResume、onPause 和 onStop 的区别</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity%E7%9A%84%E6%98%BE%E5%BC%8F%E5%90%AF%E5%8A%A8%E5%92%8C%E9%9A%90%E5%BC%8F%E5%90%AF%E5%8A%A8">9. Activity的显式启动和隐式启动</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activty%E9%97%B4%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E5%BC%8F">10. Activty间传递数据的方式</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#%E6%9C%89%E5%93%AA%E4%BA%9Bactivity%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%87%E8%AE%B0%E4%BD%8Dflags">11. 有哪些Activity常用的标记位Flags</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#activity%E4%BB%BB%E5%8A%A1%E6%A0%88%E6%98%AF%E4%BB%80%E4%B9%88">12. Activity任务栈是什么</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#%E8%B7%A8app%E5%90%AF%E5%8A%A8activity%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">13. 跨App启动Activity的方式,注意事项</a></li><li><a href="https://luoyu-ying.github.io/posts/4aa0626e110f/#anr-%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%9C%BA%E6%99%AF">14. ANR 的四种场景</a></li></ol><h1 id="序列化"><a class="markdownIt-Anchor" href="#序列化"></a> <a href="https://luoyu-ying.github.io/posts/1718d96306cd/">序列化</a></h1><ol><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BA%8F%E5%88%97%E5%8C%96">1. 什么是序列化？</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">2. 为什么需要使用序列化和反序列化？</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%9C%89%E5%93%AA%E4%BA%9B%E5%A5%BD%E5%A4%84">3. 序列化的有哪些好处</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%9C%80%E8%A6%81%E5%BA%8F%E5%88%97%E5%8C%96">4. 什么情况下需要序列化</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E4%BB%80%E4%B9%88%E6%98%AFserialversionuid">5. 什么是serialVersionUID</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E6%98%BE%E7%A4%BA%E6%8C%87%E5%AE%9Aserialversionuid%E7%9A%84%E5%80%BC">6. 为什么还要显示指定serialVersionUID的值?</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#serializable-%E5%92%8C-parcelable-%E7%9A%84%E5%8C%BA%E5%88%AB">7. Serializable 和 Parcelable 的区别</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#java-transient-%E8%A7%A3%E6%9E%90">8. Java transient 解析</a></li><li><a href="https://luoyu-ying.github.io/posts/1718d96306cd/#%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">9. 其他注意事项</a></li></ol><h1 id="arraylist"><a class="markdownIt-Anchor" href="#arraylist"></a> <a href="https://luoyu-ying.github.io/posts/ca56681199c8/"><code>ArrayList</code></a></h1><ol><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#arraylist%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A9%E5%AE%B9%E7%9A%84">1. ArrayList是如何扩容的？</a></li><li>\2. ArrayList继承关系<ol><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#%E5%AE%9E%E7%8E%B0serializable%E6%A0%87%E8%AE%B0%E5%9E%8B%E6%8E%A5%E5%8F%A3">2.1. 实现Serializable标记型接口</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#%E5%AE%9E%E7%8E%B0cloneable%E6%A0%87%E8%AE%B0%E5%9E%8B%E6%8E%A5%E5%8F%A3">2.2. 实现Cloneable标记型接口</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#%E5%AE%9E%E7%8E%B0randomaccess%E6%A0%87%E8%AE%B0%E5%9E%8B%E6%8E%A5%E5%8F%A3">2.3. 实现RandomAccess标记型接口</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#abstractlist%E6%8A%BD%E8%B1%A1%E7%B1%BB">2.4. AbstractList抽象类</a></li></ol></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#arraylist%E9%A2%91%E7%B9%81%E6%89%A9%E5%AE%B9%E5%AF%BC%E8%87%B4%E6%B7%BB%E5%8A%A0%E6%80%A7%E8%83%BD%E6%80%A5%E5%89%A7%E4%B8%8B%E9%99%8D%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86">3. ArrayList频繁扩容导致添加性能急剧下降，如何处理？</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#arraylist%E6%8F%92%E5%85%A5%E6%88%96%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0%E4%B8%80%E5%AE%9A%E6%AF%94linkedlist%E6%85%A2%E5%90%97">4. ArrayList插入或删除元素一定比LinkedList慢吗？</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#arraylist%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97">5. ArrayList是线程安全的吗？</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3arraylist%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98">6. 如何解决ArrayList线程安全问题？</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#%E5%A6%82%E4%BD%95%E5%A4%8D%E5%88%B6%E4%B8%80%E4%B8%AAarraylist%E9%9B%86%E5%90%88%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AAarraylist%E9%9B%86%E5%90%88%E4%B8%AD">7. 如何复制一个ArrayList集合到另一个ArrayList集合中？</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#%E5%B7%B2%E7%9F%A5%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E9%9B%86%E5%90%88%E5%AD%98%E5%82%A8n%E5%A4%9A%E7%94%A8%E6%88%B7%E5%90%8D%E7%A7%B0%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%9C%A8%E8%AF%BB%E5%8F%96%E9%9B%86%E5%90%88%E6%95%B0%E6%8D%AE%E7%9A%84%E5%90%8C%E6%97%B6%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E8%BF%98%E5%8F%AF%E4%BB%A5%E6%AD%A3%E5%B8%B8%E7%9A%84%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE%E5%88%B0%E9%9B%86%E5%90%88">8. 已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？</a></li><li><a href="https://luoyu-ying.github.io/posts/ca56681199c8/#arraylist%E5%92%8Clinkedlist%E5%8C%BA%E5%88%AB">9. ArrayList和LinkedList区别？</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;activity&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#activity&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://luoyu-ying.github.io/posts/4aa0626e110f/&quot;&gt;&lt;code&gt;Activi</summary>
-      
-    
-    
-    
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
   </entry>
   
