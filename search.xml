@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>JVM - Android校招面试整理</title>
+      <link href="/posts/d479c1bb49e9/"/>
+      <url>/posts/d479c1bb49e9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="todo"><a class="markdownIt-Anchor" href="#todo"></a> TODO</h1><ol><li>Jvm的内存模型,每个里面都保存的什么</li><li>类加载机制的几个阶段加载、验证、准备、解析、初始化、使用、卸载</li><li>对象实例化时的顺序</li><li>类加载器,双亲委派及其优势</li><li>垃圾回收机制</li></ol><blockquote><p>答案参考自：</p><ul><li><a href="https://zhuanlan.zhihu.com/p/102702428">十分钟带你了解JVM的结构体系 - 知乎 (zhihu.com)</a></li></ul></blockquote><h1 id="jvm-的体系结构"><a class="markdownIt-Anchor" href="#jvm-的体系结构"></a> <code>JVM</code> 的体系结构</h1><p><code>JVM</code>的组成：</p><ul><li>类加载子系统 Class loader</li><li>运行时数据区 JVM 内存模型</li><li>执行引擎</li></ul><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-f3141f2dd349b87c98543fbc9fc00495_720w.jpg" alt="img" /></p><h1 id="类加载器"><a class="markdownIt-Anchor" href="#类加载器"></a> 类加载器</h1><ul><li>负责加载 <code>class</code>文件(<code>class</code>文件在文件开头有特定的文件标识)，将 <code>class</code>文件字节码内容加载到内存中，并将这些内容转换成方法区中的运行时数据结构。</li><li><code>ClassLoader</code>只负责加载 <code>class</code>文件的加载，至于它是否可以运行，则由<code>Execution Engine</code>决定。</li></ul><p>在 Java 9 以前，一共有三种类加载器：</p><ul><li>启动类加载器</li><li>扩展类加载器</li><li>应用类加载器</li></ul><p>在 Java 9 之后，经过更改后变成了两种：</p><ul><li>启动类加载器</li><li>平台类加载器</li></ul><p>启动类加载器是所有类加载器的祖先，由 C++ 编程，没有对应的 Java 对象，因此在 Java 中用 <code>null</code> 来指代。</p><p>除了启动类加载器，其他的加载器都有对应的 Java 对象。这些类加载器需要先由另一个类加载器，比如说启动类加载器，加载至 Java 虚拟机中，方能执行类加载。</p><h1 id="双亲委派机制及其优势"><a class="markdownIt-Anchor" href="#双亲委派机制及其优势"></a> 双亲委派机制及其优势</h1><ul><li><p><strong>全盘负责：</strong></p><p>当前线程的类加载器负责加载某个<code>Class</code>时，该<code>Class</code>所依赖的和引用的其他<code>Class</code>也将由该类加载器负责载入，除非显示使用<code>CLassLoader.loadClass()</code>指定类加载器来载入。</p></li><li><p><strong>父类委托：</strong></p><p>先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类。所以我们在开发中尽量不要使用与JDK相同的类（例如自定义一个<code>java.lang.System</code>类），因为父类加载器中已经有一份<code>java.lang.System</code>类了，它会直接将该类给程序使用，而你自定义的类压根就不会被加载。</p></li><li><p><strong>双亲委派模型的工作流程：</strong></p><p>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把请求委托给父加载器去完成，依次向上，因此，所有的类加载请求最终都应该被传递到顶层的启动类加载器中。</p><p>只有当父加载器在它的搜索范围中没有找到所需的类时，即无法完成该加载，子加载器才会尝试自己去加载该类。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 校招面试整理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 校招面试整理 </tag>
+            
+            <tag> JVM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式 - Android校招面试整理</title>
       <link href="/posts/bad4a287481b/"/>
       <url>/posts/bad4a287481b/</url>
@@ -23,33 +50,6 @@
             <tag> 校招面试整理 </tag>
             
             <tag> 设计模式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>JVM - Android校招面试整理</title>
-      <link href="/posts/e9e45843b645/"/>
-      <url>/posts/e9e45843b645/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 校招面试整理 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 校招面试整理 </tag>
-            
-            <tag> JVM </tag>
             
         </tags>
       
@@ -804,9 +804,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> JVM </tag>
+            
+            <tag> Java </tag>
             
             <tag> GC </tag>
             
@@ -885,9 +885,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> JVM </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -912,9 +912,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> JVM </tag>
+            
+            <tag> Java </tag>
             
             <tag> Class Loading </tag>
             
