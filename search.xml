@@ -871,33 +871,6 @@
     
     
     <entry>
-      <title>JVM  运行时数据区域</title>
-      <link href="/posts/a6e2a4ac3de9/"/>
-      <url>/posts/a6e2a4ac3de9/</url>
-      
-        <content type="html"><![CDATA[<div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graph subgraph 运行时数据区    subgraph 线程共享        方法区        堆    end    subgraph 线程私有        虚拟机栈        程序计数器        本地方法栈    endend  </pre></div><hr /><h1 id="线程私有内存"><a class="markdownIt-Anchor" href="#线程私有内存"></a> 线程私有内存</h1><h2 id="程序计数器program-counter-register"><a class="markdownIt-Anchor" href="#程序计数器program-counter-register"></a> 程序计数器(Program Counter Register)</h2><p>程序计数器可以看作是当前线程所执行的字节码的行号指示器。</p><p>字节码解释器工作是就是通过改变程序计数器的值来选取下一条需要执行的字节码指令（执行本地方法的时候，程序计数器的值为 <code>null</code>）。</p><p>每条线程都需要有一个独立的程序计数器，各条的程序计数器互不影响，独立存储。</p><p>此内存区域是唯一一个没有规定任何 <code>OutOfMemoryError</code> 情况的区域。</p><h2 id="java-虚拟机栈vm-stack"><a class="markdownIt-Anchor" href="#java-虚拟机栈vm-stack"></a> Java 虚拟机栈(VM Stack)</h2><p>Java 虚拟机栈为虚拟机执行 Java 方法服务。</p><p>Java 虚拟机栈的生命周期和线程相同。</p><p>虚拟机栈描述的是 Java 方法执行的线程内存模型：每个方法被执行的时候，Java 虚拟机都会在虚拟机栈中同步创建一个<strong>栈帧</strong>用于存储局部变量表、操作数栈、方法出口等信息。</p><p>每一个方法被调用直至执行完毕的过程，就对应这一个栈帧在虚拟机栈中从入栈到出栈的过程。</p><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graphsubgraph 栈帧    局部变量表    操作数栈    动态链接    方法出口    ...end  </pre></div><h2 id="本地方法栈native-method-stack"><a class="markdownIt-Anchor" href="#本地方法栈native-method-stack"></a> 本地方法栈(Native Method Stack)</h2><p>本地方法栈为虚拟机使用本地方法服务。</p><hr /><h1 id="线程共享内存"><a class="markdownIt-Anchor" href="#线程共享内存"></a> 线程共享内存</h1><h2 id="java-堆java-heap"><a class="markdownIt-Anchor" href="#java-堆java-heap"></a> Java 堆(Java Heap)</h2><p>Java 堆是虚拟机所管理的内存中最大的一块。Java 堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。</p><p>此内存区域的唯一目的就是存放对象实例，Java 世界里“几乎”所有的对象实例都在这里分配内存。</p><p>Java 堆是垃圾收集器管理的内存区域，因此一些资料中它也被称作“GC堆”。</p><p>Java 堆可以处于物理上不连续的内存空间中，但在逻辑上都连续存放。</p><p>从分配内存的角度看，所有线程共享的 Java 堆中可以划分出多个线程私有的分配缓冲区，以提升对象分配时的效率。无论如何划分，无论是那个区域，存储的都只能是对象的实例。</p><p>Java 堆既可以实现成固定大小的，也可以是扩展的。如果在 Java 堆中没有内存完成对象分配时，并且堆也无法再扩展时，Java 虚拟机将会抛出 <code>OutOfMemoryError</code> 异常。</p><h2 id="方法区method-area"><a class="markdownIt-Anchor" href="#方法区method-area"></a> 方法区(Method Area)</h2><p>方法区与 Java 堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</p><p>如果方法区无法满足新的内存分配需求时，将抛出 <code>OutOfMemoryError</code> 异常。</p><p>在 JDK 1.8 之前，HotSpot 虚拟机把它当作永久代进行垃圾回收。</p><p>在 JDK 1.8 以后，移除永久代，并将永久代拆分至堆和元空间。元空间位于本地内存中，而不是虚拟机内存中，存储类的元数据；堆中则额外存放方法区的静态变量和常量池等。</p><h3 id="运行时常量池runtime-constant-pool"><a class="markdownIt-Anchor" href="#运行时常量池runtime-constant-pool"></a> 运行时常量池(Runtime Constant Pool)</h3><p>运行时常量池是方法区的一部分。</p><p>Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池表，用于存放编译器生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</p><p>除了保存 Class 文件中描述的符号引用外，还会把符号引用翻译出来的直接引用也存储再运行时常量池中。</p><p>运行时常量池是方法区的一部分，自然受到方法区内存的限制，当常量池无法再申请到内存时会抛出 <code>OutOfMemoryError</code> 异常。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> JVM </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JVM </tag>
-            
-            <tag> Java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>View 的绘制原理</title>
       <link href="/posts/19429a22b2b2/"/>
       <url>/posts/19429a22b2b2/</url>
@@ -941,9 +914,9 @@
       
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Animation </tag>
+            
+            <tag> Android </tag>
             
         </tags>
       
