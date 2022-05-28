@@ -257,6 +257,17 @@ end
 <p>其中的引用类型，Java 又将其细分为了四种：类、接口、数组类以及泛型参数。</p>
 <p>其中，泛型参数会在编译过程中被擦除，数组类则是由 Java 虚拟机直接在内存中动态构造出来的。所以我们只讨论类和接口的加载过程。</p>
 </blockquote>
+<p><strong>类的加载过程：</strong></p>
+<p><code>JVM</code> 将 <code>javac</code> 编译好的<code>class</code>字节码文件加载到内存中，并对该数据进行验证、解析和初始化、形成<code>JVM</code>可以直接使用的<code>JAVA</code>类，最终回收(卸载)的过程。</p>
+<p><strong>字节码（<code>.class</code>）文件来源：</strong></p>
+<ul>
+<li>– 从本地系统中直接加载</li>
+<li>– 通过网络下载<code>.class</code>文件</li>
+<li>– 从<code>zip</code>, <code>jar</code>等归档文件中加载<code>.class</code>文件</li>
+<li>– 从专有数据库中提取<code>.class</code>文件</li>
+<li>– 将<code>Java</code>源文件动态编译为<code>.class</code>文件</li>
+</ul>
+<hr />
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/879896-20160414224549770-60006655.png" alt="img" style="zoom:70%;" />
 <h2 id="加载"><a class="markdownIt-Anchor" href="#加载"></a> 加载</h2>
 <p>加载阶段是类加载的第一个部分，在此阶段需要完成三件事情：</p>
