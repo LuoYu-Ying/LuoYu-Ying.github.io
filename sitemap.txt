@@ -1,3 +1,4 @@
+https://luoyu-ying.github.io/posts/59c5aea57d8c/
 https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/ca56681199c8/
 https://luoyu-ying.github.io/posts/0557737935e1/
@@ -12,7 +13,6 @@ https://luoyu-ying.github.io/DeprecatedPost/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9
 https://luoyu-ying.github.io/posts/d479c1bb49e9/
 https://luoyu-ying.github.io/posts/bad4a287481b/
 https://luoyu-ying.github.io/posts/fa6189c97401/
-https://luoyu-ying.github.io/posts/59c5aea57d8c/
 https://luoyu-ying.github.io/posts/95756e730237/
 https://luoyu-ying.github.io/posts/bb5f9e1a55ea/
 https://luoyu-ying.github.io/posts/90a21a97c0cb/
