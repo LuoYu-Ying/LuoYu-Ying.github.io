@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Front-matter 格式 [Hexo]</title>
+      <link href="/posts/a6d8264a3704/"/>
+      <url>/posts/a6d8264a3704/</url>
+      
+        <content type="html"><![CDATA[<h1 id="什么是-front-matter"><a class="markdownIt-Anchor" href="#什么是-front-matter"></a> 什么是 Front-matter</h1><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure><h1 id="部分参数"><a class="markdownIt-Anchor" href="#部分参数"></a> 部分参数</h1><blockquote><p>以下参数不一定全部使用与所有主题的博客，请自行尝试。</p></blockquote><h2 id="page-front-matter"><a class="markdownIt-Anchor" href="#page-front-matter"></a> Page Front-matter</h2><table><thead><tr><th style="text-align:center">Type</th><th style="text-align:center">Explanation</th><th style="text-align:center">Example</th></tr></thead><tbody><tr><td style="text-align:center">title</td><td style="text-align:center">标题</td><td style="text-align:center">title: hello, world</td></tr><tr><td style="text-align:center">date</td><td style="text-align:center">创建日期，默认系统时间</td><td style="text-align:center">date: 2020-7-19</td></tr><tr><td style="text-align:center">updated</td><td style="text-align:center">更新日期，默认再次创建日期</td><td style="text-align:center">update: 2020-7-20</td></tr><tr><td style="text-align:center">type</td><td style="text-align:center">页面类型，tags、link、categories 这三个页面需要配置</td><td style="text-align:center">type: tags</td></tr><tr><td style="text-align:center">comments</td><td style="text-align:center">是否显示评论，默认 true</td><td style="text-align:center">comments: false</td></tr><tr><td style="text-align:center">description</td><td style="text-align:center">描述，没使用过，暂时不太清楚效果</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">top_img</td><td style="text-align:center">顶部图，默认为系统default配置的图</td><td style="text-align:center">top_img: 图片URL或者博客相对路径</td></tr><tr><td style="text-align:center">mathjax</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">katex</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">aside</td><td style="text-align:center">true 表示显示右边信息卡片，默认值；false 表示不显示</td><td style="text-align:center">aside: true</td></tr><tr><td style="text-align:center">aplayer</td><td style="text-align:center">在需要的页面加载 aplayer 的 js 和 css, 请参考文章下面的音乐 配置</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">highlight_shrink</td><td style="text-align:center">配置代码框是否展开，默认为设置中 highlight_shrink 的配置</td><td style="text-align:center">–</td></tr></tbody></table><h2 id="post-front-matter"><a class="markdownIt-Anchor" href="#post-front-matter"></a> Post Front-matter</h2><table><thead><tr><th style="text-align:center">Type</th><th style="text-align:center">Explanation</th><th style="text-align:center">Example</th></tr></thead><tbody><tr><td style="text-align:center">title</td><td style="text-align:center">标题</td><td style="text-align:center">title: Hello,World！</td></tr><tr><td style="text-align:center">date</td><td style="text-align:center">创建日期，默认系统时间</td><td style="text-align:center">date: 2020-7-19</td></tr><tr><td style="text-align:center">updated</td><td style="text-align:center">更新日期，默认再次创建日期</td><td style="text-align:center">update: 2020-7-20</td></tr><tr><td style="text-align:center">tags</td><td style="text-align:center">标签，用 - 列出标签，一个 - 表示一个标签，注意换行以及 - 后面有个空格</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">categories</td><td style="text-align:center">分类，同样用 - 区别多个分类，注意换行以及 - 后面有个空格</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">keywords</td><td style="text-align:center">关键字</td><td style="text-align:center">keywords: ‘a, b’</td></tr><tr><td style="text-align:center">description</td><td style="text-align:center">描述，没使用过，暂时不太清楚效果</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">top_img</td><td style="text-align:center">顶部图，可选项，不写则按缩略图的图片显示</td><td style="text-align:center">top_img: 图片URL或者博客中图片的相对路径</td></tr><tr><td style="text-align:center">comments</td><td style="text-align:center">是否显示评论，默认 true。</td><td style="text-align:center">comments: false</td></tr><tr><td style="text-align:center">cover</td><td style="text-align:center">缩略图</td><td style="text-align:center">cover: 图片URL或者博客中图片的相对路径</td></tr><tr><td style="text-align:center">toc</td><td style="text-align:center">是否显示 toc ，默认 true 显示</td><td style="text-align:center">toc: false</td></tr><tr><td style="text-align:center">toc_number</td><td style="text-align:center">是否显示 toc 数字，默认 true 显示</td><td style="text-align:center">toc_number: false</td></tr><tr><td style="text-align:center">auto_open</td><td style="text-align:center">是否自动打开 TOC (默认为设置中 toc 的 auto_open 配置)</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">copyright</td><td style="text-align:center">是否显示版权，默认 true 显示</td><td style="text-align:center">copyright: false</td></tr><tr><td style="text-align:center">mathjax</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">katex</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">hidden或hide</td><td style="text-align:center">是否隐藏，需安装hide或者indexed插件，true表示隐藏</td><td style="text-align:center">hidden: true</td></tr><tr><td style="text-align:center">sticky</td><td style="text-align:center">文章置顶，数值越大越靠前，需安装indexed插件，默认值为0</td><td style="text-align:center">sticky: 10</td></tr><tr><td style="text-align:center">top</td><td style="text-align:center">文章置顶，需安装index-pin-top 插件，默认值为false，同时为置顶则按时间先后顺序</td><td style="text-align:center">top: true</td></tr><tr><td style="text-align:center">aplayer</td><td style="text-align:center">在需要的页面加载 aplayer 的 js 和 css, 请参考文章下面的音乐 配置</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">highlight_shrink</td><td style="text-align:center">配置代码框是否展开，默认为设置中 highlight_shrink 的配置</td><td style="text-align:center">–</td></tr></tbody></table><h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1><ul><li><p><a href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter | Hexo</a></p></li><li><p><a href="https://caczhtus.github.io/posts/64237/">【Hexo】关于 Hexo-ButterFly 主题的使用记录 | Caczhtus</a></p></li><li><p><a href="https://blog.csdn.net/qq_42549254/article/details/102721177">hexo学习——文章 Front-matter_WMXNLFD的博客-CSDN博客</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>多线程-Android校招面试整理</title>
       <link href="/posts/6797cb29bf4c/"/>
       <url>/posts/6797cb29bf4c/</url>
@@ -98,9 +123,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -127,9 +152,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -154,9 +179,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -183,9 +208,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -212,9 +237,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -241,9 +266,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -318,18 +343,18 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 校招面试整理 </tag>
-            
             <tag> Activity </tag>
+            
+            <tag> 校招面试整理 </tag>
             
         </tags>
       
@@ -372,9 +397,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -459,9 +484,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -488,9 +513,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -517,9 +542,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -571,9 +596,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -600,9 +625,9 @@
       
       <categories>
           
-          <category> 校招面试整理 </category>
-          
           <category> Android </category>
+          
+          <category> 校招面试整理 </category>
           
       </categories>
       
@@ -1052,9 +1077,9 @@
       
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Handler </tag>
+            
+            <tag> Android </tag>
             
         </tags>
       

@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-05-29T01:44:28.000Z</updated>
+  <updated>2022-05-29T13:53:32.000Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Front-matter 格式 [Hexo]</title>
+    <link href="https://luoyu-ying.github.io/posts/a6d8264a3704/"/>
+    <id>https://luoyu-ying.github.io/posts/a6d8264a3704/</id>
+    <published>2022-05-29T13:53:32.000Z</published>
+    <updated>2022-05-29T13:53:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是-front-matter"><a class="markdownIt-Anchor" href="#什么是-front-matter"></a> 什么是 Front-matter</h1><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure><h1 id="部分参数"><a class="markdownIt-Anchor" href="#部分参数"></a> 部分参数</h1><blockquote><p>以下参数不一定全部使用与所有主题的博客，请自行尝试。</p></blockquote><h2 id="page-front-matter"><a class="markdownIt-Anchor" href="#page-front-matter"></a> Page Front-matter</h2><table><thead><tr><th style="text-align:center">Type</th><th style="text-align:center">Explanation</th><th style="text-align:center">Example</th></tr></thead><tbody><tr><td style="text-align:center">title</td><td style="text-align:center">标题</td><td style="text-align:center">title: hello, world</td></tr><tr><td style="text-align:center">date</td><td style="text-align:center">创建日期，默认系统时间</td><td style="text-align:center">date: 2020-7-19</td></tr><tr><td style="text-align:center">updated</td><td style="text-align:center">更新日期，默认再次创建日期</td><td style="text-align:center">update: 2020-7-20</td></tr><tr><td style="text-align:center">type</td><td style="text-align:center">页面类型，tags、link、categories 这三个页面需要配置</td><td style="text-align:center">type: tags</td></tr><tr><td style="text-align:center">comments</td><td style="text-align:center">是否显示评论，默认 true</td><td style="text-align:center">comments: false</td></tr><tr><td style="text-align:center">description</td><td style="text-align:center">描述，没使用过，暂时不太清楚效果</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">top_img</td><td style="text-align:center">顶部图，默认为系统default配置的图</td><td style="text-align:center">top_img: 图片URL或者博客相对路径</td></tr><tr><td style="text-align:center">mathjax</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">katex</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">aside</td><td style="text-align:center">true 表示显示右边信息卡片，默认值；false 表示不显示</td><td style="text-align:center">aside: true</td></tr><tr><td style="text-align:center">aplayer</td><td style="text-align:center">在需要的页面加载 aplayer 的 js 和 css, 请参考文章下面的音乐 配置</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">highlight_shrink</td><td style="text-align:center">配置代码框是否展开，默认为设置中 highlight_shrink 的配置</td><td style="text-align:center">–</td></tr></tbody></table><h2 id="post-front-matter"><a class="markdownIt-Anchor" href="#post-front-matter"></a> Post Front-matter</h2><table><thead><tr><th style="text-align:center">Type</th><th style="text-align:center">Explanation</th><th style="text-align:center">Example</th></tr></thead><tbody><tr><td style="text-align:center">title</td><td style="text-align:center">标题</td><td style="text-align:center">title: Hello,World！</td></tr><tr><td style="text-align:center">date</td><td style="text-align:center">创建日期，默认系统时间</td><td style="text-align:center">date: 2020-7-19</td></tr><tr><td style="text-align:center">updated</td><td style="text-align:center">更新日期，默认再次创建日期</td><td style="text-align:center">update: 2020-7-20</td></tr><tr><td style="text-align:center">tags</td><td style="text-align:center">标签，用 - 列出标签，一个 - 表示一个标签，注意换行以及 - 后面有个空格</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">categories</td><td style="text-align:center">分类，同样用 - 区别多个分类，注意换行以及 - 后面有个空格</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">keywords</td><td style="text-align:center">关键字</td><td style="text-align:center">keywords: ‘a, b’</td></tr><tr><td style="text-align:center">description</td><td style="text-align:center">描述，没使用过，暂时不太清楚效果</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">top_img</td><td style="text-align:center">顶部图，可选项，不写则按缩略图的图片显示</td><td style="text-align:center">top_img: 图片URL或者博客中图片的相对路径</td></tr><tr><td style="text-align:center">comments</td><td style="text-align:center">是否显示评论，默认 true。</td><td style="text-align:center">comments: false</td></tr><tr><td style="text-align:center">cover</td><td style="text-align:center">缩略图</td><td style="text-align:center">cover: 图片URL或者博客中图片的相对路径</td></tr><tr><td style="text-align:center">toc</td><td style="text-align:center">是否显示 toc ，默认 true 显示</td><td style="text-align:center">toc: false</td></tr><tr><td style="text-align:center">toc_number</td><td style="text-align:center">是否显示 toc 数字，默认 true 显示</td><td style="text-align:center">toc_number: false</td></tr><tr><td style="text-align:center">auto_open</td><td style="text-align:center">是否自动打开 TOC (默认为设置中 toc 的 auto_open 配置)</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">copyright</td><td style="text-align:center">是否显示版权，默认 true 显示</td><td style="text-align:center">copyright: false</td></tr><tr><td style="text-align:center">mathjax</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">katex</td><td style="text-align:center">数学公式是否显示，默认为 false ，不显示</td><td style="text-align:center">mathjax: true</td></tr><tr><td style="text-align:center">hidden或hide</td><td style="text-align:center">是否隐藏，需安装hide或者indexed插件，true表示隐藏</td><td style="text-align:center">hidden: true</td></tr><tr><td style="text-align:center">sticky</td><td style="text-align:center">文章置顶，数值越大越靠前，需安装indexed插件，默认值为0</td><td style="text-align:center">sticky: 10</td></tr><tr><td style="text-align:center">top</td><td style="text-align:center">文章置顶，需安装index-pin-top 插件，默认值为false，同时为置顶则按时间先后顺序</td><td style="text-align:center">top: true</td></tr><tr><td style="text-align:center">aplayer</td><td style="text-align:center">在需要的页面加载 aplayer 的 js 和 css, 请参考文章下面的音乐 配置</td><td style="text-align:center">–</td></tr><tr><td style="text-align:center">highlight_shrink</td><td style="text-align:center">配置代码框是否展开，默认为设置中 highlight_shrink 的配置</td><td style="text-align:center">–</td></tr></tbody></table><h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1><ul><li><p><a href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter | Hexo</a></p></li><li><p><a href="https://caczhtus.github.io/posts/64237/">【Hexo】关于 Hexo-ButterFly 主题的使用记录 | Caczhtus</a></p></li><li><p><a href="https://blog.csdn.net/qq_42549254/article/details/102721177">hexo学习——文章 Front-matter_WMXNLFD的博客-CSDN博客</a></p></li></ul>]]></content>
+    
+    
+    <summary type="html">介绍了 Hexo 博客的 Front-matter 格式，以及其中的部分参数。</summary>
+    
+    
+    
+    <category term="Hexo" scheme="https://luoyu-ying.github.io/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://luoyu-ying.github.io/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>多线程-Android校招面试整理</title>
@@ -130,9 +151,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -162,9 +183,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -189,9 +210,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -220,9 +241,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -252,9 +273,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -283,9 +304,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -370,14 +391,14 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     <category term="Activity" scheme="https://luoyu-ying.github.io/tags/Activity/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
   </entry>
   
@@ -427,9 +448,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -521,9 +542,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -552,9 +573,9 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -584,41 +605,14 @@
     
     
     
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
     <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
+    
+    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     <category term="Animation" scheme="https://luoyu-ying.github.io/tags/Animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Typora 流程图中文字显示不全 [转载]</title>
-    <link href="https://luoyu-ying.github.io/posts/b97556f04186/"/>
-    <id>https://luoyu-ying.github.io/posts/b97556f04186/</id>
-    <published>2022-05-14T15:49:44.000Z</published>
-    <updated>2022-05-21T04:52:59.040Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>本文转载自：</p><ul><li><a href="https://blog.csdn.net/qq_28225871/article/details/119521382">Typora流程图中文字显示不全解决_日之朝矣的博客-CSDN博客_typora流程图不显示</a></li></ul></blockquote><p>最近使用 Typora 的流程图，发现流程图里的字总是显示不全，让我感觉十分难受，百度去搜解决方案，却没有人回答，因此写下此文。</p><p>这个是主题的问题，更改为 Github 主题，发现仍然显示不全，但是更改为 PixyII 主题却能正常使用了，推测从官方那里下载来的部分主题是基于 Github 主题进行修改。</p><p>我喜欢我现在的主题，不想换，下面是我的解决方法。</p><p><strong>文件 &gt;&gt; 偏好设置 &gt;&gt; 外观 &gt;&gt; 打开主题文件夹</strong></p><p>找到当前主题对应的 CSS 文件，比如 <code>Github.css</code> ，用记事本或者 VSCode 打开，翻到最下面，另起一行，添加如下代码，保存后，关闭所有 Typora 窗口，重新启动便可解决问题。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.md-require-zoom-fix</span> foreignObject &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: unset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>局限性就是需要把自己喜欢的主题一个一个文件进行添加，但本人日常只用那一个主题。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文转载自：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_28225871/article/details/119521382&quot;&gt;Typora流程图中文字显示不全解决_日之朝矣的博客-CSDN博客_</summary>
-      
-    
-    
-    
-    <category term="Markdown" scheme="https://luoyu-ying.github.io/categories/Markdown/"/>
-    
-    
-    <category term="Typora" scheme="https://luoyu-ying.github.io/tags/Typora/"/>
     
   </entry>
   
