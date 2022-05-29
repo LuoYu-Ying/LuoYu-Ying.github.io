@@ -195,12 +195,10 @@
 <p><strong>双亲委派模型的优势：</strong></p>
 <ol>
 <li>系统类防止内存中出现多份同样的字节码</li>
+<li>保证<code>Java</code>程序安全稳定运行</li>
 </ol>
 </li>
 </ul>
-<ol start="2">
-<li>保证<code>Java</code>程序安全稳定运行</li>
-</ol>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/408997874.png" alt="img" style="zoom:67%;" />
 <h1 id="内存模型"><a class="markdownIt-Anchor" href="#内存模型"></a> 内存模型</h1>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-205a2605346856d95aec826ed9263c03_720w.jpg" alt="img" /></p>
@@ -459,7 +457,7 @@ end
 <p>针对老年代的垃圾回收器也有三个：刚刚提到的 Serial Old 和 Parallel Old，以及 CMS。Serial Old 和 Parallel Old 都是<strong>标记 - 压缩</strong>算法。同样，前者是单线程的，而后者可以看成前者的多线程版本。</p>
 <p>CMS 采用的是<strong>标记 - 清除</strong>算法，并且是并发的。除了少数几个操作需要 Stop-the-world 之外，它可以在应用程序运行过程中进行垃圾回收。在并发收集失败的情况下，Java 虚拟机会使用其他两个压缩型垃圾回收器进行一次垃圾回收。由于 G1 的出现，CMS 在 Java 9 中已被废弃。</p>
 <p>G1（Garbage First）是一个横跨新生代和老年代的垃圾回收器。实际上，它已经打乱了前面所说的堆结构，直接将堆分成极其多个区域。每个区域都可以充当 Eden 区、Survivor 区或者老年代中的一个。它采用的是<strong>标记 - 压缩</strong>算法，而且和 CMS 一样都能够在应用程序运行过程中并发地进行垃圾回收。</p>
-<p>G1 能够针对每个细分的区域来进行垃圾回收。**在选择进行垃圾回收的区域时，它会优先回收死亡对象较多的区域。**这也是 G1 名字的由来。</p>
+<p>G1 能够针对每个细分的区域来进行垃圾回收。<strong>在选择进行垃圾回收的区域时，它会优先回收死亡对象较多的区域。</strong> 这也是 G1 名字的由来。</p>
 <h1 id="回收策略和内存分配策略"><a class="markdownIt-Anchor" href="#回收策略和内存分配策略"></a> 回收策略和内存分配策略</h1>
 <p><strong><font size="4">Minor GC &amp; Full GC</font></strong></p>
 <ul>
