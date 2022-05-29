@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-05-29T13:53:32.000Z</updated>
+  <updated>2022-05-29T14:13:34.000Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -17,7 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Front-matter 格式 [Hexo]</title>
+    <title>Hexo 一篇文章添加多个分类</title>
+    <link href="https://luoyu-ying.github.io/posts/08fcea026748/"/>
+    <id>https://luoyu-ying.github.io/posts/08fcea026748/</id>
+    <published>2022-05-29T14:13:34.000Z</published>
+    <updated>2022-05-29T14:13:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="分类和标签"><a class="markdownIt-Anchor" href="#分类和标签"></a> 分类和标签</h1><p>Hexo 博客中只有文章支持分类和标签，您可以在 Front-matter 中设置。</p><p>在其他系统中，分类和标签听起来很接近，但是在 Hexo 中两者有着明显的差别：分类具有顺序性和层次性，也就是说 Foo, Bar 不等于 Bar, Foo；而标签没有顺序和层次。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">PS3</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Games</span></span><br></pre></td></tr></table></figure><h1 id="分类方法的分歧"><a class="markdownIt-Anchor" href="#分类方法的分歧"></a> 分类方法的分歧</h1><p>如果您有过使用 WordPress 的经验，就很容易误解 Hexo 的分类方式。WordPress 支持对一篇文章设置多个分类，而且这些分类可以是同级的，也可以是父子分类。但是 Hexo 不支持指定多个同级分类。下面的指定方法：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure><p>会使分类 Life 成为 Diary 的子分类，而不是并列分类。因此，有必要为您的文章选择尽可能准确的分类。</p><p>如果你需要为文章添加多个分类，可以尝试以下 list 中的方法。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">PlayStation</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">Games</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Life</span>]</span><br></pre></td></tr></table></figure><p>此时这篇文章同时包括三个分类： PlayStation 和 Games 分别都是父分类 Diary 的子分类，同时 Life 是一个没有子分类的分类。</p><h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1><ul><li><a href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter | Hexo</a></li></ul>]]></content>
+    
+    
+    <summary type="html">记录了如何使得 Hexo 的一篇文章可以添加多个分类。</summary>
+    
+    
+    
+    <category term="Hexo" scheme="https://luoyu-ying.github.io/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://luoyu-ying.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Front-matter 格式介绍</title>
     <link href="https://luoyu-ying.github.io/posts/a6d8264a3704/"/>
     <id>https://luoyu-ying.github.io/posts/a6d8264a3704/</id>
     <published>2022-05-29T13:53:32.000Z</published>
@@ -151,9 +172,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -183,9 +204,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -210,9 +231,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -241,9 +262,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -273,9 +294,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -304,9 +325,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -391,14 +412,14 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
-    <category term="Activity" scheme="https://luoyu-ying.github.io/tags/Activity/"/>
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Activity" scheme="https://luoyu-ying.github.io/tags/Activity/"/>
     
   </entry>
   
@@ -448,9 +469,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -542,9 +563,9 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
@@ -573,46 +594,14 @@
     
     
     
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
+    
+    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
     
     
     <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     <category term="View" scheme="https://luoyu-ying.github.io/tags/View/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Animation - Android校招面试整理</title>
-    <link href="https://luoyu-ying.github.io/posts/004ee5be31d6/"/>
-    <id>https://luoyu-ying.github.io/posts/004ee5be31d6/</id>
-    <published>2022-05-15T11:30:02.000Z</published>
-    <updated>2022-05-15T11:30:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="动画的类型"><a class="markdownIt-Anchor" href="#动画的类型"></a> 动画的类型</h1><blockquote><p>答案参考自：</p><ul><li><a href="https://blog.csdn.net/luzaiyy611/article/details/82083213">Android 属性动画和补间动画的区别和特性_luzaiyy611的博客-CSDN博客_属性动画和补间动画的区别</a></li></ul></blockquote><ol><li><p>View 动画（补间动画）</p><p>只产生了一个动画效果，其真实的坐标并没有发生改变（只是改变了View的显示效果而已，并不会真正的改变View的属性）。View做在做动画的时候，它并没有真正的移动它的位置，而是根据动画时间的插值，计算出一个Matrix，然后不停的invalidate，在onDraw中的Canvas上使用这个计算出来的Matrix去draw这个View的内容，并有onLayout中还是原来的位置，所以点击事件只能点击到原来的位置才能触发</p></li><li><p>帧动画</p></li><li><p>属性动画</p><p>属性动画可以对任何对象的属性做动画而不仅仅是View，甚至可以没有对象。除了作用对象进行扩展外，属性动画的效果也加强了，不仅能实现View动画的四种效果，还能实现其它多种效果，这些效果都是通过<code>ValuAnimator</code>或<code>ObjectAnimator</code>、<code>AnimatorSet</code>等来实现的。我们只需要告诉系统动画的运行时长，需要执行哪种类型的动画，以及动画的初始值和结束值，剩下的工作就可以全部交给系统去完成了。</p></li></ol><h1 id="补间动画和属性动画的区别"><a class="markdownIt-Anchor" href="#补间动画和属性动画的区别"></a> 补间动画和属性动画的区别</h1><blockquote><p>答案参考自：</p><ul><li><a href="https://www.cnblogs.com/lgdcoder/p/10684996.html">Android补间动画和属性动画的区别及属性动画使用详解</a></li></ul></blockquote><ol start="2"><li>作用对象不同，补间动画只能作用在view上，属性动画可以作用在所有对象上。</li><li>属性变化不同，补间动画只是改变显示效果，不会改变view的属性，比如位置、宽高等，而属性动画实际改变对象的属性。</li><li>动画效果不同，补间动画只能实现位移、缩放、旋转和透明度四种动画操作，而属性动画还能实现补间动画所有效果及其他更多动画效果。</li></ol><h1 id="objectanimatorvalueanimator及其区别"><a class="markdownIt-Anchor" href="#objectanimatorvalueanimator及其区别"></a> <code>ObjectAnimator</code>，<code>ValueAnimator</code>及其区别</h1><p><strong>ValueAnimator</strong></p><p>ValueAnimator是整个属性动画机制当中最核心的一个类，前面我们已经提到了，属性动画的运行机制是通过不断地<strong>对值进行操作</strong>来实现的，而初始值和结束值之间的动画过渡就是由ValueAnimator这个类来负责计算的。它的内部使用一种时间循环的机制来计算值与值之间的动画过渡，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值这样的效果。除此之外，ValueAnimator还负责管理动画的播放次数、播放模式、以及对动画设置监听器等，确实是一个非常重要的类。</p><p><strong>ObjectAnimator</strong></p><p>相比于ValueAnimator，ObjectAnimator可能才是我们最常接触到的类，因为ValueAnimator只不过是对值进行了一个平滑的动画过渡，但我们实际使用到这种功能的场景好像并不多。而ObjectAnimator则就不同了，它是可以直接<strong>对任意对象的任意属性进行动画操作</strong>的，比如说View的alpha属性。</p><p>不过虽说ObjectAnimator会更加常用一些，但是它其实是继承自ValueAnimator的，底层的动画实现机制也是基于ValueAnimator来完成的，因此ValueAnimator仍然是整个属性动画当中最核心的一个类。</p><p><strong>总结</strong></p><p><code>ValueAnimator</code> 是<strong>对 数值 进行平滑操作</strong>。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ValueAnimator</span> <span class="variable">anim</span> <span class="operator">=</span> ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">1f</span>);  </span><br></pre></td></tr></table></figure><p><code>ObjectAnimator</code> 功能更加强大，是<strong>对 任意对象 的 任意属性值 进行平滑操作</strong>。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ObjectAnimator</span> <span class="variable">animator</span> <span class="operator">=</span> ObjectAnimator.ofFloat(textview, <span class="string">&quot;alpha&quot;</span>, <span class="number">1f</span>, <span class="number">0f</span>, <span class="number">1f</span>);</span><br></pre></td></tr></table></figure><h1 id="timeinterpolator插值器typeevaluator估值器"><a class="markdownIt-Anchor" href="#timeinterpolator插值器typeevaluator估值器"></a> TimeInterpolator插值器，TypeEvaluator估值器</h1><blockquote><p>答案参考自：</p><ul><li><a href="https://luoyu-ying.github.io/posts/89ece43bd0a9/">Android 动画深入分析 | 洛语 の Blog (luoyu-ying.github.io)</a></li></ul></blockquote><p>插值器和估值器是实现非匀速动画的重要手段。</p><h3 id="timeinterpolator"><a class="markdownIt-Anchor" href="#timeinterpolator"></a> <code>TimeInterpolator</code></h3><p>时间插值器。作用为<strong>根据时间的流逝的百分比计算当前属性值改变的百分比</strong>。</p><p>预设的有多种插值器，常见的三种如下：</p><ol><li><code>LinearInterpolator</code>——线性插值器：匀速动画</li><li><code>AccelerateDecelerateInterpolator</code>——加速减速插值器：动画两头慢中间快</li><li><code>DecelerateInterpolator</code>——减速插值器：动画越来越慢</li></ol><p>三个类都实现了<code>Interpolartor</code>接口，接口内部只有一个用来计算属性值的改变的百分比的<code>getInterpolation</code>方法需要实现。</p><h3 id="typeevaluator"><a class="markdownIt-Anchor" href="#typeevaluator"></a> <code>TypeEvaluator</code></h3><p>类型估值算法，也叫估值器。作用是<strong>根据属性值改变的百分比来计算改变后的属性值</strong>。</p><p>系统预置的有3种：</p><ol><li><code>IntEvaluator</code>：针对整形属性</li><li><code>FloatEvaluator</code>：针对浮点型属性</li><li><code>ArgbEvaluator</code>：针对Color属性</li></ol><p>三个类都实现了<code>TypeEvalator</code>接口，接口内部只有一个用来计算改变后的属性值的<code>evaluate</code>方法需要实现。</p><h3 id="计算顺序"><a class="markdownIt-Anchor" href="#计算顺序"></a> 计算顺序</h3><p>系统会根据当前的帧所在时刻与动画播放的总时间求出时间的流逝的百分比，再通过插值器计算出当前属性值改变的百分比，后用此值通过估值器计算出当前的属性改变后的确定的值是多少并通过<code>set</code>方法对属性赋值。</p><p>故属性动画要求对象的该属性有<code>set</code>方法（必须有）和<code>get</code>方法（可选）。</p><h1 id="自定义插值器和估值器"><a class="markdownIt-Anchor" href="#自定义插值器和估值器"></a> 自定义插值器和估值器</h1><p>我们可以自定义插值器和估值器，来实现自己想要的动画效果。实现方式也很简单。</p><p>因为插值器和估值器都是一个接口，且内部都只有一个方法，所以我们只需要派生一个类并实现接口就可以了，然后就可以做出千奇百怪的动画效果了。即：</p><ul><li>自定义插值器需要实现<code>Interpolator</code>或者<code>TimeInterpolator</code>接口</li><li>自定义估值器需要实现<code>TypeEvaluator</code>接口。</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;动画的类型&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#动画的类型&quot;&gt;&lt;/a&gt; 动画的类型&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;答案参考自：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net</summary>
-      
-    
-    
-    
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/categories/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="校招面试整理" scheme="https://luoyu-ying.github.io/tags/%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    <category term="Animation" scheme="https://luoyu-ying.github.io/tags/Animation/"/>
     
   </entry>
   

@@ -4,7 +4,32 @@
   
     
     <entry>
-      <title>Front-matter 格式 [Hexo]</title>
+      <title>Hexo 一篇文章添加多个分类</title>
+      <link href="/posts/08fcea026748/"/>
+      <url>/posts/08fcea026748/</url>
+      
+        <content type="html"><![CDATA[<h1 id="分类和标签"><a class="markdownIt-Anchor" href="#分类和标签"></a> 分类和标签</h1><p>Hexo 博客中只有文章支持分类和标签，您可以在 Front-matter 中设置。</p><p>在其他系统中，分类和标签听起来很接近，但是在 Hexo 中两者有着明显的差别：分类具有顺序性和层次性，也就是说 Foo, Bar 不等于 Bar, Foo；而标签没有顺序和层次。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">PS3</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Games</span></span><br></pre></td></tr></table></figure><h1 id="分类方法的分歧"><a class="markdownIt-Anchor" href="#分类方法的分歧"></a> 分类方法的分歧</h1><p>如果您有过使用 WordPress 的经验，就很容易误解 Hexo 的分类方式。WordPress 支持对一篇文章设置多个分类，而且这些分类可以是同级的，也可以是父子分类。但是 Hexo 不支持指定多个同级分类。下面的指定方法：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure><p>会使分类 Life 成为 Diary 的子分类，而不是并列分类。因此，有必要为您的文章选择尽可能准确的分类。</p><p>如果你需要为文章添加多个分类，可以尝试以下 list 中的方法。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">PlayStation</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">Games</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Life</span>]</span><br></pre></td></tr></table></figure><p>此时这篇文章同时包括三个分类： PlayStation 和 Games 分别都是父分类 Diary 的子分类，同时 Life 是一个没有子分类的分类。</p><h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1><ul><li><a href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter | Hexo</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo Front-matter 格式介绍</title>
       <link href="/posts/a6d8264a3704/"/>
       <url>/posts/a6d8264a3704/</url>
       
@@ -123,9 +148,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -152,9 +177,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -179,9 +204,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -208,9 +233,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -237,9 +262,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -266,9 +291,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -343,18 +368,18 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Activity </tag>
-            
             <tag> 校招面试整理 </tag>
+            
+            <tag> Activity </tag>
             
         </tags>
       
@@ -397,9 +422,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -484,9 +509,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -513,9 +538,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -542,9 +567,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -596,9 +621,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -625,9 +650,9 @@
       
       <categories>
           
-          <category> Android </category>
-          
           <category> 校招面试整理 </category>
+          
+          <category> Android </category>
           
       </categories>
       
@@ -969,9 +994,9 @@
       
         <tags>
             
-            <tag> Animation </tag>
-            
             <tag> Android </tag>
+            
+            <tag> Animation </tag>
             
         </tags>
       
@@ -1077,9 +1102,9 @@
       
         <tags>
             
-            <tag> Handler </tag>
-            
             <tag> Android </tag>
+            
+            <tag> Handler </tag>
             
         </tags>
       
