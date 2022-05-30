@@ -4,12 +4,22 @@
     src: url('../font/JetBrainsMono-Regular.ttf') format("truetype");
 }
 
-@font-face{
-    font-family: 'PT Serif';
-    font-display: swap;
-    src: url('../font/pt-serif-v11-latin-regular.woff2') format('woff2');
+#article-container code {
+    font-family: 'JetBrains Mono';
+}
+
+#article-container .code {
+    font-family: 'JetBrains Mono';
 }
 
 #article-container {
+    font-family: 'JetBrains Mono';
+}
+
+#card-toc {
+    font-family: 'JetBrains Mono';
+}
+
+.post-content {
     font-family: 'JetBrains Mono';
 }
