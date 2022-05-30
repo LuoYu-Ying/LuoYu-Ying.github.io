@@ -1,0 +1,15 @@
+@font-face{
+    font-family: 'JetBrains Mono';
+    font-display: swap;
+    src: url('../font/JetBrainsMono-Regular.ttf') format("truetype");
+}
+
+@font-face{
+    font-family: 'PT Serif';
+    font-display: swap;
+    src: url('../font/pt-serif-v11-latin-regular.woff2') format('woff2');
+}
+
+#article-container {
+    font-family: 'JetBrains Mono';
+}
