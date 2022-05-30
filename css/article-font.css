@@ -4,7 +4,12 @@
     src: url('../font/JetBrainsMono-Regular.ttf') format("truetype");
 }
 
-#article-container code {
+body {
+    font-family: 'JetBrains Mono';
+}
+
+/* 
+#article-container {
     font-family: 'JetBrains Mono';
 }
 
@@ -23,3 +28,5 @@
 .post-content {
     font-family: 'JetBrains Mono';
 }
+
+*/
