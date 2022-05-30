@@ -495,21 +495,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
-    <lastmod>2022-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/Android/</loc>
-    <lastmod>2022-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://luoyu-ying.github.io/tags/Animation/</loc>
+    <lastmod>2022-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -523,7 +516,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Broadcast/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Android/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -537,7 +530,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Drawable/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Broadcast/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -551,14 +544,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Drawable/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/HashMap/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -572,7 +565,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/JVM/</loc>
+    <loc>https://luoyu-ying.github.io/tags/HashMap/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -580,6 +573,13 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Java/</loc>
+    <lastmod>2022-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/JVM/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -621,6 +621,13 @@
   </url>
   
   <url>
+    <loc>https://luoyu-ying.github.io/tags/View/</loc>
+    <lastmod>2022-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/tags/ThreadLocal/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -629,13 +636,6 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Typora/</loc>
-    <lastmod>2022-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/View/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -677,14 +677,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Window/</loc>
+    <loc>https://luoyu-ying.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Window/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -728,14 +728,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/JVM/</loc>
+    <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/XCPC/</loc>
+    <loc>https://luoyu-ying.github.io/categories/JVM/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
