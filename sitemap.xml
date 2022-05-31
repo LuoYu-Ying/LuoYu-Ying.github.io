@@ -495,21 +495,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Animation/</loc>
-    <lastmod>2022-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://luoyu-ying.github.io/tags/Activity/</loc>
-    <lastmod>2022-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://luoyu-ying.github.io/tags/ArrayList/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -523,7 +509,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/ContentProvider/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Animation/</loc>
+    <lastmod>2022-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/ArrayList/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -537,7 +530,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
+    <loc>https://luoyu-ying.github.io/tags/ContentProvider/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -552,6 +545,13 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/tags/Fragment/</loc>
+    <lastmod>2022-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/Handler/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -579,7 +579,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/OkHttp/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Java/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -600,7 +600,7 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Java/</loc>
+    <loc>https://luoyu-ying.github.io/tags/OkHttp/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -628,14 +628,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/View/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Typora/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Typora/</loc>
+    <loc>https://luoyu-ying.github.io/tags/View/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -670,14 +670,14 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/Window/</loc>
+    <loc>https://luoyu-ying.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+    <loc>https://luoyu-ying.github.io/tags/Window/</loc>
     <lastmod>2022-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
