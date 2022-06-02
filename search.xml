@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>计算机操作系统-知识整理</title>
+      <link href="/posts/75b6e1fc4978/"/>
+      <url>/posts/75b6e1fc4978/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文整理自：</p><ul><li><a href="http://www.cyc2018.xyz/">CS-Notes (cyc2018.xyz)</a></li></ul></blockquote><h1 id="四个基本特征"><a class="markdownIt-Anchor" href="#四个基本特征"></a> 四个基本特征</h1><ol><li><p>并发</p><p>并发是指宏观上在一段时间内能同时运行多个程序，而并行则指同一时刻能运行多个指令。</p><p>并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统。</p><p>操作系统通过引入进程和线程，使得程序能够并发运行。</p></li><li><p>共享</p><p>共享是指系统中的资源可以被多个并发进程共同使用。</p><p>有两种共享方式：互斥共享和同时共享。</p><p>互斥共享的资源称为临界资源，例如打印机等，在同一时刻只允许一个进程访问，需要用同步机制来实现互斥访问。</p></li><li><p>虚拟</p><p>虚拟技术把一个物理实体转换为多个逻辑实体。</p><p>主要有两种虚拟技术：时（时间）分复用技术和空（空间）分复用技术。</p><p>多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占用处理器，每次只执行一小个时间片并快速切换。</p><p>虚拟内存使用了空分复用技术，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。地址空间的页被映射到物理内存，地址空间的页并不需要全部在物理内存中，当使用到一个没有在物理内存的页时，执行页面置换算法，将该页置换到内存中。</p></li><li><p>异步</p><p>异步指进程不是一次性执行完毕，而是走走停停，以不可知的速度向前推进。</p></li></ol><h1 id="基本功能"><a class="markdownIt-Anchor" href="#基本功能"></a> 基本功能</h1><ol><li><p>进程管理</p><p>进程控制、进程同步、进程通信、死锁处理、处理机调度等。</p></li><li><p>内存管理</p><p>内存分配、地址映射、内存保护与共享、虚拟内存等。</p></li><li><p>文件管理</p><p>文件存储空间的管理、目录管理、文件读写管理和保护等。</p></li><li><p>设备管理</p><p>完成用户的 I/O 请求，方便用户使用各种设备，并提高设备的利用率。</p><p>主要包括缓冲管理、设备分配、设备处理、虛拟设备等。</p></li></ol><h1 id="系统调用"><a class="markdownIt-Anchor" href="#系统调用"></a> 系统调用</h1><p>如果一个进程在用户态需要使用内核态的功能，就进行系统调用从而陷入内核，由操作系统代为完成。</p><p><img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/tGPV0.png" alt="img" /></p><h1 id="进程和线程"><a class="markdownIt-Anchor" href="#进程和线程"></a> 进程和线程</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 操作系统 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>操作系统-Android校招面试整理</title>
+      <link href="/posts/cb424ce63dec/"/>
+      <url>/posts/cb424ce63dec/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 校招面试整理 </category>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 校招面试整理 </tag>
+            
+            <tag> 操作系统 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo 一篇文章添加多个分类</title>
       <link href="/posts/08fcea026748/"/>
       <url>/posts/08fcea026748/</url>
