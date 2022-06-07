@@ -152,7 +152,7 @@
 <p><code>serialVersionUID</code>的详细工作机制是这样的：</p>
 <p>序列化的时候系统会把当前类的<code>serialVersionUID</code>写入序列化的文件中(也可能是其他中介)。当反序列化的时候系统会去检测文件中的<code>serialVersionUID</code>，看它是否和当前类的<code>serialVersionUID</code>一致，如果一致就说明序列化的类的版本和当前类的版本是相同的，这个时候可以成功反序列化；否则就说明当前类和序列化的类相比发生了某些变换，比如成员变量的数量、类型可能会发生变化，这时候就无法正常的反序列化。</p>
 <p>以一般来说，我们应该手动去指定<code>serialVersionUID</code>的值，比如&quot;1L&quot;,也可以让IDE根据当前类的结构去生成对应的<code>hash</code>值，这样序列化和反序列化时两者的<code>serialVersionUID</code>是相同的，因此可以正常的进行反序列化。如果不不设置<code>serialVersionUID</code>，系统在序列化的时候默认会根据类的结构在生成对应的<code>serialVersionUID</code>，在反序列化的时候，如果当类有变化，比如增加或者减少字段，这时候当前的类的<code>serialVersionUID</code>和序列化的时候的<code>serialVersionUID</code>就不一样了，就会出现反序列化失败，如果没有捕获异常会导致<code>crash</code>。</p>
-<p><strong>所以当我们手动制订了它之后，就可以很大程度上避免了反序列化过程的失败。</strong></p>
+<p><strong>所以当我们手动指定了它之后，就可以很大程度上避免了反序列化过程的失败。</strong></p>
 <p>比如当版本升级以后，我们可能删除了某个成员变量也可能增加一些新的成员变量，这个时候我们的反序列化过程仍然可以成功，程序仍然能够最大限度地恢复数据。相反 如果我们没有指定<code>serialVersionUID</code>的话，程序就会挂掉。</p>
 <p>当然我们也要考虑到另外一种情况，如果类结构发生了非常规性的改变，比如修改了类名，修改了成员变量的类型，这个时候尽管<code>serialVersionUID</code>验证通过了，但是反序列化过程还是会失败，因为类的而结构有了重大改变，根本无法从老版本的数据还原出一个新的类结构对象。</p>
 <p><strong>注意</strong></p>
