@@ -139,7 +139,7 @@
 <p>找到 <code>themes\butterfly\scripts\helpers\aside_categories.js</code> 文件，并修改源代码。</p>
 </li>
 <li>
-<p>找到并修改为以下代码：</p>
+<p>修改以下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// const orderby = options.orderby || &#x27;name&#x27; // 默认-&gt;name-&gt;按categories字母顺序</span></span><br><span class="line"><span class="keyword">const</span> orderby = options.<span class="property">orderby</span> || <span class="string">&#x27;length&#x27;</span>  <span class="comment">// length-&gt;按categories下文章数量排序</span></span><br><span class="line"><span class="comment">// const order = options.order || 1  // 默认-&gt;1-&gt;升序 -1-&gt;逆序</span></span><br><span class="line"><span class="keyword">const</span> order = options.<span class="property">order</span> || -<span class="number">1</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>
