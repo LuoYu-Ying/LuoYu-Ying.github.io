@@ -235,6 +235,7 @@
 <p>把需要并行处理的代码放在<code>run</code>方法中，<code>start</code>方法启动线程将自动调用 <code>run</code>方法，这是由<code>JVM</code>的内存机制规定的。并且<code>run</code>方法必须是<code>public</code>访问权限，返回值类型为<code>void</code>。</p>
 </li>
 </ol>
+<hr />
 <h1 id="线程死锁如何有效的避免线程死锁"><a class="markdownIt-Anchor" href="#线程死锁如何有效的避免线程死锁"></a> 线程死锁，如何有效的避免线程死锁？</h1>
 <blockquote>
 <p>答案参考自：</p>
@@ -274,6 +275,7 @@
 <p>靠按序申请资源来预防。按某一顺序申请资源，释放资源则反序释放。破坏循环等待条件。</p>
 </li>
 </ol>
+<hr />
 <h1 id="如何保证线程安全"><a class="markdownIt-Anchor" href="#如何保证线程安全"></a> 如何保证线程安全</h1>
 <blockquote>
 <p>答案参考自：</p>
@@ -442,6 +444,7 @@
 </ol>
 <h1 id="为何不用volatile替代synchronized"><a class="markdownIt-Anchor" href="#为何不用volatile替代synchronized"></a> 为何不用volatile替代synchronized？</h1>
 <p>因为 volatile 不能保证原子性，当有多个线程修改同一个变量时，例如++操作，无法保证线程同步。</p>
+<hr />
 <h1 id="synchronized和lock的比较"><a class="markdownIt-Anchor" href="#synchronized和lock的比较"></a> synchronized和Lock的比较</h1>
 <blockquote>
 <p>答案参考自：</p>
@@ -532,6 +535,7 @@
 <p>随着锁的竞争，锁的状态会从偏向锁到轻量级锁，再到重量级锁。而且锁的状态只有升级，没有降级。也就是只有偏向锁-&gt;轻量级锁-&gt;重量级锁，没有重量级锁-&gt;轻量级锁-&gt;偏向锁。</p>
 <p>锁状态的改变是根据竞争激烈程度进行的，在几乎无竞争的条件下，会使用偏向锁，在轻度竞争的条件下，会由偏向锁升级为轻量级锁， 在重度竞争的情况下，会升级到重量级锁。</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190620153844690.png" alt="在这里插入图片描述" style="zoom: 80%;" />
+<hr />
 <h1 id="cas原理"><a class="markdownIt-Anchor" href="#cas原理"></a> CAS原理</h1>
 <blockquote>
 <p>答案参考自：</p>
@@ -557,6 +561,7 @@
 <p>当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量<code>i＝2, j=a</code>，合并一下<code>i, j=2a</code>，然后用CAS来操作<code>i, j</code>。从Java1.5开始 JDK 提供了 <code>AtomicReference</code> 类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行 CAS 操作。</p>
 </li>
 </ol>
+<hr />
 <h1 id="java-线程池"><a class="markdownIt-Anchor" href="#java-线程池"></a> Java 线程池</h1>
 <blockquote>
 <p>答案参考自：</p>
@@ -710,11 +715,13 @@
 <li>newSingleThreadExecutor</li>
 </ol>
 <p>这四个线程池可以通过Executors类获取。</p>
+<hr />
 <h1 id="android-多线程通信"><a class="markdownIt-Anchor" href="#android-多线程通信"></a> Android 多线程通信</h1>
 <ol>
 <li><code>Handler</code> 机制</li>
 <li><code>AsyncTask</code> 类</li>
 </ol>
+<hr />
 <h1 id="todo"><a class="markdownIt-Anchor" href="#todo"></a> TODO</h1>
 <ol>
 <li>CLH 与 AQS</li>
