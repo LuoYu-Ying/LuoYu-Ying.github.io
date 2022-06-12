@@ -163,16 +163,19 @@
 <p><strong>RetryAndFollowUpInterceptor 拦截器</strong></p>
 <ul>
 <li>RetryAndFollowUpInterceptor 此拦截器顾名思义就是主要负责失败重连工作，但是并不是所有的网络请求都会进行失败重连的,在此拦截器内部会进行网络请求的异常检测和响应码的判断,如果都在限制范围内,那么就可以进行失败重连。</li>
+<li>一个循环来不停的获取response。每循环一次都会获取下一个request，如果没有，则返回response，退出循环。而获取下一个request的逻辑，是根据上一个response返回的状态码，分别作处理。</li>
 </ul>
+<p><strong>桥接拦截器</strong></p>
+<ol>
+<li>请求从应用层数据类型类型转化为网络调用层的数据类型。</li>
+<li>将网络层返回的数据类型 转化为 应用层数据类型。</li>
+</ol>
 <p><strong>CacheInterceptor 拦截器</strong></p>
 <ul>
-<li>
-<p>如果当前未使用网络，并且缓存不可以使用，通过构建者模式创建一个 Response 响应,抛出504错误。</p>
-</li>
-<li>
-<p>如果有缓存 但是不能使用网络 ，直接返回缓存结果。这是在进行网络请求之前所做的事情，当网络请求完成，得到下一个拦截器返回的 response 之后，判断 response 的响应码是否是 HTTP_NOT_MODIFIED = 304（未改变），是则从缓存中读取数据。</p>
-</li>
+<li>作用：将HTPTP和HTTPS的网络返回数据缓存到文件系统中，以便在服务端数据没发生变化的情况下复用，节省时间和带宽；</li>
 </ul>
+<p><strong>连接拦截器 和 最后的请求服务器的拦截器</strong></p>
+<p>这两个连接器基本上完成了最后发起网络请求的工作。</p>
 <h1 id="addinterceptor-和-addnetworkdinterceptor区别"><a class="markdownIt-Anchor" href="#addinterceptor-和-addnetworkdinterceptor区别"></a> <code>addInterceptor</code> 和 <code>addNetworkdInterceptor</code>区别</h1>
 <blockquote>
 <p>答案参考自：</p>
