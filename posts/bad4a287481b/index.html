@@ -161,7 +161,17 @@
 <p>缺点：第一次加载的时候反应稍慢。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;  </span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span> <span class="params">()</span> &#123;&#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getSingleton</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123;  </span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;  </span><br><span class="line">                <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123;  </span><br><span class="line">                    singleton = <span class="keyword">new</span> <span class="title class_">Singleton</span>();  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> singleton;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用<code>volatile</code>是为了防止指令重排序问题，避免第8行代码被分配了控件但是值为<code>null</code>的情况。</p>
-<p>使用<code>DCL</code>是为了防止两个线程如果都通过了第一个<code>if</code>语句后，出现两次赋值的过程。</p>
+<p>两次 if 语句的作用：</p>
+<ul>
+<li>
+<p>第一个 if 语句</p>
+<p>防止在变量实例化后仍有线程获取锁，造成性能的开销。</p>
+</li>
+<li>
+<p>第二个 if 语句</p>
+<p>防止变量的重复实例化。</p>
+</li>
+</ul>
 </li>
 <li>
 <p>静态内部类</p>
