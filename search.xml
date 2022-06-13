@@ -171,7 +171,7 @@
           
           <category> 校招面试整理 </category>
           
-          <category> 操作系统 </category>
+          <category> 计算机操作系统 </category>
           
       </categories>
       
@@ -180,7 +180,7 @@
             
             <tag> 校招面试整理 </tag>
             
-            <tag> 操作系统 </tag>
+            <tag> 计算机操作系统 </tag>
             
         </tags>
       
@@ -930,7 +930,7 @@
     
     
     <entry>
-      <title>K 短路模板</title>
+      <title>XCPC K短路模板</title>
       <link href="/posts/ac36d4ee2e65/"/>
       <url>/posts/ac36d4ee2e65/</url>
       
@@ -957,7 +957,7 @@
     
     
     <entry>
-      <title>字符串哈希</title>
+      <title>XCPC 字符串哈希</title>
       <link href="/posts/bb54934ff9ed/"/>
       <url>/posts/bb54934ff9ed/</url>
       
