@@ -891,13 +891,6 @@
   </url>
   
   <url>
-    <loc>https://luoyu-ying.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2022-06-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://luoyu-ying.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2022-06-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -906,6 +899,13 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/</loc>
+    <lastmod>2022-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BAF%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2022-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
