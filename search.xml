@@ -38,9 +38,9 @@
       
       <categories>
           
-          <category> Windows OS </category>
-          
           <category> Microsoft Applications </category>
+          
+          <category> Windows OS </category>
           
       </categories>
       
@@ -140,18 +140,18 @@
       
       <categories>
           
-          <category> 计算机网络 </category>
-          
           <category> 2022校招面试整理 </category>
+          
+          <category> 计算机网络 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 计算机网络 </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> 计算机网络 </tag>
             
         </tags>
       
@@ -203,9 +203,9 @@
       
         <tags>
             
-            <tag> 计算机操作系统 </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> 计算机操作系统 </tag>
             
         </tags>
       
@@ -282,9 +282,9 @@
       
         <tags>
             
-            <tag> 多线程 </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> 多线程 </tag>
             
         </tags>
       
@@ -302,18 +302,18 @@
       
       <categories>
           
-          <category> JVM </category>
-          
           <category> 2022校招面试整理 </category>
+          
+          <category> JVM </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JVM </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> JVM </tag>
             
         </tags>
       
@@ -338,9 +338,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -367,9 +367,9 @@
       
         <tags>
             
-            <tag> OkHttp </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> OkHttp </tag>
             
         </tags>
       
@@ -423,9 +423,9 @@
       
         <tags>
             
-            <tag> Service </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> Service </tag>
             
         </tags>
       
@@ -452,9 +452,9 @@
       
         <tags>
             
-            <tag> ContentProvider </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> ContentProvider </tag>
             
         </tags>
       
@@ -481,9 +481,9 @@
       
         <tags>
             
-            <tag> Broadcast </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> Broadcast </tag>
             
         </tags>
       
@@ -510,9 +510,9 @@
       
         <tags>
             
-            <tag> Fragment </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> Fragment </tag>
             
         </tags>
       
@@ -641,9 +641,9 @@
       
         <tags>
             
-            <tag> 序列化 </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> 序列化 </tag>
             
         </tags>
       
@@ -670,9 +670,9 @@
       
         <tags>
             
-            <tag> ArrayList </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> ArrayList </tag>
             
         </tags>
       
@@ -699,9 +699,9 @@
       
         <tags>
             
-            <tag> HashMap </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> HashMap </tag>
             
         </tags>
       
@@ -728,9 +728,9 @@
       
         <tags>
             
-            <tag> Handler </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> Handler </tag>
             
         </tags>
       
@@ -757,9 +757,9 @@
       
         <tags>
             
-            <tag> View </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> View </tag>
             
         </tags>
       
@@ -786,9 +786,9 @@
       
         <tags>
             
-            <tag> Animation </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> Animation </tag>
             
         </tags>
       
@@ -840,9 +840,9 @@
       
         <tags>
             
-            <tag> View </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> View </tag>
             
         </tags>
       
@@ -869,9 +869,9 @@
       
         <tags>
             
-            <tag> RecyclerView </tag>
-            
             <tag> 2022校招面试整理 </tag>
+            
+            <tag> RecyclerView </tag>
             
         </tags>
       
