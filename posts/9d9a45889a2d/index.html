@@ -163,7 +163,7 @@
 <h2 id="movz-movs"><a class="markdownIt-Anchor" href="#movz-movs"></a> <code>MOVZ</code> &amp; <code>MOVS</code></h2>
 <p>当源操作数的数位小于目的操作数时，便会对目的操作数剩余的字节进行扩展。</p>
 <p>指令的最后两个字符表示了源操作数的大小以及目的操作数的大小。</p>
-<p>零扩展中没有的 movzlq 指令可以通过 movl 指令实现。</p>
+<p>零扩展中没有的 <code>movzlq</code> 指令可以通过 <code>movl</code> 指令实现。</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-f59c8e900d14a5597a87959a6df649c7_720w.jpg" alt="img" style="zoom: 90%;" />
 <h1 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h1>
 <h2 id="栈的结构"><a class="markdownIt-Anchor" href="#栈的结构"></a> 栈的结构</h2>
@@ -209,19 +209,31 @@
 <p>CPU 维护一组单个位的条件码寄存器，检测条件分支指令，描述了最近执行操作的属性。</p>
 <ul>
 <li>
-<p>CF  Carry Flag —— 进位标志</p>
+<p>CF</p>
+<blockquote>
+<p><code>Carry Flag</code> —— 进位标志</p>
+</blockquote>
 <p>最近的操作让最高位进位，可以检查无符号操作数的溢出。</p>
 </li>
 <li>
-<p>ZF Zero Flag —— 零标志</p>
+<p>ZF</p>
+<blockquote>
+<p><code>Zero Flag</code> —— 零标志</p>
+</blockquote>
 <p>当最近操作的结果等于0时，需标志(ZF)会被置为1。</p>
 </li>
 <li>
-<p>SF Sign Flag —— 符号标志</p>
+<p>SF</p>
+<blockquote>
+<p><code>Sign Flag</code> —— 符号标志</p>
+</blockquote>
 <p>当最近的操作结果小于零时，符号标志(SF)会被置为1。</p>
 </li>
 <li>
-<p>OF Overflow Flag —— 溢出标志</p>
+<p>OF</p>
+<blockquote>
+<p><code>Overflow Flag</code> —— 溢出标志</p>
+</blockquote>
 <p>针对有符号数，最近的操作导致正溢出或者负溢出时，溢出标志(OF)会被置1（操作导致补码溢出）。</p>
 </li>
 </ul>
