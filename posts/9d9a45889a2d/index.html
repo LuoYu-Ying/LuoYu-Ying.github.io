@@ -136,7 +136,7 @@
 <h2 id="调用者保存"><a class="markdownIt-Anchor" href="#调用者保存"></a> 调用者保存</h2>
 <p>调用者保存是指当P函数调用Q函数时，该寄存器中的内容由调用者P负责保存，Q可以直接使用该寄存器。</p>
 <h2 id="被调用者保存"><a class="markdownIt-Anchor" href="#被调用者保存"></a> 被调用者保存</h2>
-<p>调用者保存是指当P函数调用Q函数时，该寄存器中的内容由调用者Q负责保存，Q可以直接使用该寄存器。</p>
+<p>被调用者保存是指当P函数调用Q函数时，该寄存器中的内容由被调用者Q负责保存。</p>
 <h2 id="调用者保存寄存器caller-saved-registers"><a class="markdownIt-Anchor" href="#调用者保存寄存器caller-saved-registers"></a> 调用者保存寄存器（<code>caller saved registers</code>）</h2>
 <p>也叫<strong>易失性寄存器</strong>，在程序调用的过程中，这些寄存器中的值不需要被保存（即压入到栈中再从栈中取出），如果某一个程序需要保存这个寄存器的值，需要调用者自己压入栈；</p>
 <h2 id="被调用者保存寄存器callee-saved-registers"><a class="markdownIt-Anchor" href="#被调用者保存寄存器callee-saved-registers"></a> 被调用者保存寄存器（<code>callee saved registers</code>）</h2>
