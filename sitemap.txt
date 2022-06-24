@@ -1,3 +1,4 @@
+https://luoyu-ying.github.io/posts/e8e9356f3f9b/
 https://luoyu-ying.github.io/toolbox/index.html
 https://luoyu-ying.github.io/posts/9d9a45889a2d/
 https://luoyu-ying.github.io/posts/c0ead3b585d4/
@@ -96,6 +97,7 @@ https://luoyu-ying.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%
 https://luoyu-ying.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/
 https://luoyu-ying.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/
 https://luoyu-ying.github.io/tags/AutoHotKey/
+https://luoyu-ying.github.io/tags/Toast/
 https://luoyu-ying.github.io/categories/Android/
 https://luoyu-ying.github.io/categories/Java/
 https://luoyu-ying.github.io/categories/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/
