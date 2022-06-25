@@ -149,7 +149,7 @@
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220621113704881.png" alt="image-20220621113704881" style="zoom:40%;" />
 <h1 id="操作数格式"><a class="markdownIt-Anchor" href="#操作数格式"></a> 操作数格式</h1>
 <p>比例因子的取值和源代码中存储对象的类型有关，且只能为1，2，4，8（分别对应着 <code>char</code>，<code>short</code>，<code>int</code>，<code>long</code>四个数据类型）。</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-d7021bb4e0ae239f27691c4388de267d_1440w.jpg" alt="img" style="zoom: 50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220625211452247.png" alt="image-20220625211452247" style="zoom:80%;" />
 <h1 id="mov-指令"><a class="markdownIt-Anchor" href="#mov-指令"></a> <code>MOV</code> 指令</h1>
 <p>源操作数和目的操作数不能同时为寄存器地址。</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220621180210624.png" alt="image-20220621180210624" style="zoom: 80%;" />
@@ -271,7 +271,8 @@
 <p>switch（开关）语句可以根据一个整数索引值进行多重分支 (multiway branching) 。在 处理具有多种可能结果的测试时，这种语句特别有用。</p>
 <p>它们不仅提高了 C 代码的可读性， 而且通过使用跳转表(jump table) 这种数据结构使得实现更加高效。</p>
 <p>跳转表是一个数组，表项 i 是一个代码段的地址，这个代码段实现当开关索引值等于 i 时程序应该采取的动作。</p>
-<p>和使用一 组很长的 if-else 语句相比，使用跳转表的优点是执行开关语句的时间与开关情况的数量无关。</p>
+<p>和使用一 组很长的 if-else 语句相比，使用跳转表的优点是执行开关语句的时间与开关情况的数量无关。 当 switch 语句有上百种情况的时候，也可以只用一次跳转表访问去处理。</p>
+<p>GCC 根据开关情况的数量和开关情况值的稀疏程度来翻译开关语句。当开关情况数量比较多（例如 4 个以上），并且值的范围跨度比较小时，就会使用跳转表。情况数量较少或者值的范围跨度比较大时，会使用非常多的 <code>CMP</code> 指令，其实在这种情况下和使用多个 <code>if-else if</code> 一样。</p>
 </blockquote>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220625191557467.png" alt="image-20220625191557467" style="zoom:80%;" />
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220625191608408.png" alt="image-20220625191608408" style="zoom:80%;" />
