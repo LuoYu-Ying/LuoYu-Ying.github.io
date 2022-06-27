@@ -317,17 +317,15 @@
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190829223517134.png" alt="在这里插入图片描述" style="zoom:67%;" />
 <p>6个状态标志位定义如下：</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190830001628834.png" alt="在这里插入图片描述" style="zoom:67%;" />
-<blockquote>
-<p><strong>进位标志：</strong> 用于反映运算是否产生进位或借位。如果运算结果的最高位产生一个进位或借位，则CF置1，否则置0。运算结果的最高位包括字操作的第15位和字节操作的第7位。移位指令也会将操作数的最高位或最低位移入CF。<br />
-<strong>奇偶标志：</strong> 用于反映运算结果低8位中“1”的个数。“1”的个数为偶数，则PF置1，否则置0。<br />
-<strong>辅助进位标志：</strong> 算数操作结果的第三位（从0开始计数）如果产生了进位或者借位则将其置为1，否则置为0，常在BCD(binary-codedecimal)算术运算中被使用。<br />
-<strong>零标志：</strong> 用于判断结果是否为0。运算结果0，ZF置1，否则置0。<br />
-<strong>符号标志：</strong> 用于反映运算结果的符号，运算结果为负，SF置1，否则置0。因为有符号数采用补码的形式表示，所以SF与运算结果的最高位相同。<br />
-<strong>溢出标志：</strong> 反映有符号数加减运算是否溢出。如果运算结果超过了8位或者16位有符号数的表示范围，则OF置1，否则置0。</p>
-</blockquote>
+<p><strong>进位标志：</strong> 用于反映运算是否产生进位或借位。如果运算结果的最高位产生一个进位或借位，则CF置1，否则置0。运算结果的最高位包括字操作的第15位和字节操作的第7位。移位指令也会将操作数的最高位或最低位移入CF。</p>
+<p><strong>奇偶标志：</strong> 用于反映运算结果低8位中“1”的个数。“1”的个数为偶数，则PF置1，否则置0。</p>
+<p><strong>辅助进位标志：</strong> 算数操作结果的第三位（从0开始计数）如果产生了进位或者借位则将其置为1，否则置为0，常在BCD(binary-code decimal)算术运算中被使用。</p>
+<p><strong>零标志：</strong> 用于判断结果是否为0。运算结果0，ZF置1，否则置0。</p>
+<p><strong>符号标志：</strong> 用于反映运算结果的符号，运算结果为负，SF置1，否则置0。因为有符号数采用补码的形式表示，所以SF与运算结果的最高位相同。</p>
+<p><strong>溢出标志：</strong> 反映有符号数加减运算是否溢出。如果运算结果超过了8位或者16位有符号数的表示范围，则OF置1，否则置0。</p>
 <hr />
 <blockquote>
-<p>关于C语言的跳转及分支，下面描述正确的是(     )</p>
+<p>关于C语言的跳转及分支，下面描述正确的是(   D   )</p>
 <p>A. 稀疏的Switch语句使用跳转表</p>
 <p>B. C语言不允许switch语句根据一个整数索引值进行多重分支</p>
 <p>C. 大的Switch语句使用决策树</p>
