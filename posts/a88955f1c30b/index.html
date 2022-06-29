@@ -177,6 +177,7 @@
 <p>C.3</p>
 <p>D.0.01</p>
 </blockquote>
+<p>a 的值为 1e5，小于 <code>float</code> 的有效位数，所以可以正常进行数值运算。</p>
 <hr />
 <blockquote>
 <p>单CPU中可以通过线程进行并行操作。(  A  )</p>
@@ -203,6 +204,7 @@
 <p>C. 78</p>
 <p>D. 12</p>
 </blockquote>
+<p><code>show_bytes(byte_pointer, int x)</code> 函数的作用为输出 <code>byte_pointer</code> 的第 <code>x</code> 个字节。</p>
 <hr />
 <blockquote>
 <p>已知x和y的字节值分别为0x69和0x55。计算C表达式 x &amp; y 的字节值为（  B ）</p>
@@ -259,7 +261,7 @@
 <p>C. 27</p>
 <p>D. 5</p>
 </blockquote>
-<p>x + y = -27，其补码为 10 0101，由于 w = 5，所有截取低5位，得到的结果位 0 0101，值为 5 ，选项 D 正确。</p>
+<p>x + y = -27，其补码为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><mtext> </mtext><mn>0101</mn></mrow><annotation encoding="application/x-tex">10\space 0101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace"> </span><span class="mord">0</span><span class="mord">1</span><span class="mord">0</span><span class="mord">1</span></span></span></span>，由于 w = 5，所有截取低5位，得到的结果位 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mtext> </mtext><mn>0101</mn></mrow><annotation encoding="application/x-tex">0\space 0101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace"> </span><span class="mord">0</span><span class="mord">1</span><span class="mord">0</span><span class="mord">1</span></span></span></span>，值为 5 ，选项 D 正确。</p>
 <hr />
 <blockquote>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">2</span>; </span><br><span class="line"><span class="type">int</span> y = <span class="number">2</span>; </span><br><span class="line">x &lt;&lt;= <span class="number">6</span>; </span><br><span class="line">x -= y; </span><br><span class="line">y &lt;&lt;= <span class="number">3</span>; </span><br><span class="line">x -= y; </span><br></pre></td></tr></table></figure>
@@ -313,7 +315,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42109012/article/details/100148721">8086标志寄存器（Flag Register）_有人_295的博客-CSDN博客_8086标志寄存器</a></li>
 </ul>
 </blockquote>
-<p>标志<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AF%84%E5%AD%98%E5%99%A8&amp;spm=1001.2101.3001.7020">寄存器</a>设计为16位，实际使用9位，其中6位用以存放算术逻辑单元运算后的结果特征，称为<strong>状态标志</strong>；另外3位通过人为设置，用以控制8086的三种特定操作，称为<strong>控制标志</strong>。</p>
+<p>标志寄存器设计为16位，实际使用9位，其中6位用以存放算术逻辑单元运算后的结果特征，称为<strong>状态标志</strong>；另外3位通过人为设置，用以控制8086的三种特定操作，称为<strong>控制标志</strong>。</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190829223517134.png" alt="在这里插入图片描述" style="zoom:67%;" />
 <p>6个状态标志位定义如下：</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190830001628834.png" alt="在这里插入图片描述" style="zoom:67%;" />
@@ -361,15 +363,15 @@
 <hr />
 <blockquote>
 <p>下列汇编指令，错误的是(   C  )</p>
-<p>A.movb   (%rdi, %rcx), %al</p>
-<p>B.movw  %bp, %sp</p>
-<p>C.movb  (%rbx), (%rsp)</p>
-<p>D.movl    $0x4050, %eax</p>
+<p>A. movb   (%rdi, %rcx), %al</p>
+<p>B. movw  %bp, %sp</p>
+<p>C. movb  (%rbx), (%rsp)</p>
+<p>D. movl    $0x4050, %eax</p>
 </blockquote>
 <p><code>MOV</code> 指令 源操作数和目的操作数不能同时为寄存器地址。</p>
 <hr />
 <blockquote>
-<p>对命令行：linux&gt;gcc -Og -S mstore.c，使用-S选项的作用是（  D ）</p>
+<p>对命令行：linux&gt;gcc -Og -S mstore.c，使用 -S 选项的作用是（  D ）</p>
 <p>A.GCC运行编译器，并进行反汇编</p>
 <p>B.GCC运行编译器，产生一个汇编文件 mstore.s，且会产生目标文件</p>
 <p>C.GCC运行编译器，并进行一个标准优化</p>
@@ -384,6 +386,7 @@
 <p>D.参数全部用固定的寄存器传递</p>
 </blockquote>
 <p>x8086 架构中，前6个参数存放在寄存器中，后所有参数都存放在栈中。</p>
+<p>参数传递遵循调用约定，与目标机CPU和编译器都相关。</p>
 <hr />
 <blockquote>
 <p>x86-64的机器代码和原始的C代码差别非常大。一些通常对C语言程序员隐藏的处理器状态都是可见的，下面描述正确的是 ( A B C D )</p>
@@ -400,7 +403,7 @@
 <p>C.所有寄存器都由被调用函数保护，调用函数可以自由使用</p>
 <p>D.有的寄存器由调用函数保护，被调用函数可以自由使用</p>
 </blockquote>
-<p>分为调用者寄存器和被调用者寄存器。</p>
+<p>寄存器分为调用者寄存器和被调用者寄存器。</p>
 <hr />
 <blockquote>
 <p>对命令行：linux&gt; gcc -Og -c mstore.c，说法正确的是（  C D ）</p>
@@ -475,6 +478,7 @@
 <p>答案参考自：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346864380">简述risc和cisc的区别（转发） - 知乎 (zhihu.com)</a></li>
+<li>《深入理解计算机系统》</li>
 </ul>
 </blockquote>
 <p>CISC的英文全称为“Complex Instruction Set Computer”，即“复杂指令系统计算机”，从计算机诞生以来，人们一直沿用CISC指令集方式。目前，桌面计算机流行的x86体系结构即使用CISC。在CISC微处理器中，程序的各条指令是按顺序串行执行的，每条指令中的各个操作也是按顺序串行执行的。顺序执行的优点是控制简单，但计算机各部分的利用率不高，执行速度慢。</p>
@@ -588,6 +592,8 @@
 <p>D.写回和更新PC</p>
 <p>E.取指</p>
 </blockquote>
+<p>几乎所有的冯·诺伊曼型计算机的CPU，其工作都可以分为5个阶段：取指令、指令译码、执行指令、访存取数、结果写回。</p>
+<p>各个阶段具体内容参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/aigoogle/article/details/23750257">一条指令在cpu中的执行流程（理解CPU组成）_编码那些事儿的博客-CSDN博客</a></p>
 <hr />
 <h1 id="第六章"><a class="markdownIt-Anchor" href="#第六章"></a> 第六章</h1>
 <hr />
