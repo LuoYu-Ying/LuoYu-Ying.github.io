@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-07-06T15:49:26.000Z</updated>
+  <updated>2022-07-08T04:41:57.000Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kotlin 类的创建与继承</title>
+    <link href="https://luoyu-ying.github.io/posts/8aab3d7fde77/"/>
+    <id>https://luoyu-ying.github.io/posts/8aab3d7fde77/</id>
+    <published>2022-07-08T04:41:57.000Z</published>
+    <updated>2022-07-08T04:41:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基本写法"><a class="markdownIt-Anchor" href="#基本写法"></a> 基本写法</h1><h2 id="创建一个类"><a class="markdownIt-Anchor" href="#创建一个类"></a> 创建一个类</h2><p>通过 <code>class</code> 关键字创建一个类：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$name</span> is eating.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>实例化方式：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> person = Person()</span><br></pre></td></tr></table></figure><h2 id="继承"><a class="markdownIt-Anchor" href="#继承"></a> 继承</h2><p><strong>默认所有非抽象类都是不可以被继承的</strong>。</p><p>如果需要将其变为父类，则需要在 <code>class</code> 前使用 <code>open</code> 关键字：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$name</span> is eating.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如果需要继承另一个类，则使用 <code>:</code> 符号：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> : <span class="type">Person</span></span>() &#123;</span><br><span class="line">    <span class="keyword">var</span> grade = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="构造函数"><a class="markdownIt-Anchor" href="#构造函数"></a> 构造函数</h1><p><code>Kotlin</code> 将构造函数分为了两种：主构造函数和次构造函数。</p><h2 id="主构造函数"><a class="markdownIt-Anchor" href="#主构造函数"></a> 主构造函数</h2><p>主构造函数是最常使用的构造函数，每个类默认都会有一个不带参数的主构造函数。</p><p>（特殊情况：如果在没有实现主构造函数的情况下实现了次构造函数，则会失去该不带参数的主构造函数。）</p><p>当然也是可以显式地为其指明参数。主构造函数的特点就是没有函数体，直接定义在类名的后面即可：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>(<span class="keyword">val</span> studentNo: String, <span class="keyword">var</span> grade: <span class="built_in">Int</span>) : Person() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们在实例化的时候需要传入构造函数中的所有的参数：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> student = Student(<span class="string">&quot;123456789&quot;</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure><p>由于主构造函数没有函数体，所以我们无法直接在其中编写一些逻辑。但是 <code>Kotlin</code> 给我们提供了一个 <code>init</code> 结构体，所以主构造函数得逻辑都可以写在里面：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>(<span class="keyword">val</span> studentNo: String, <span class="keyword">var</span> grade: <span class="built_in">Int</span>) : Person() &#123;</span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Student No is <span class="variable">$studentNo</span> AND grade is <span class="variable">$grade</span>.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>根据 <code>Java</code> 语言继承特性中的一个规定：子类的构造函数必须调用父类中的构造函数。这个规定在 <code>Kotlin</code> 中也要遵守。</p><p>所以在上文中 <code>class Student : Person()</code> 以及 <code>class Student(val studentNo: String, var grade: Int) : Person()</code> 中 <code>Person</code> 类后面的一对空括号表示 <code>Student</code> 类的主构造函数在初始化的时候会调用 <code>Person</code> 类的无参数构造函数，及时在自身的主构造函数为默认的无参数的时候也是不能省略的。</p><p>现在我们将 <code>Person</code> 类改造一下，将姓名和年龄都放到主构造函数中，即：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">var</span> age: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$name</span> is eating.&quot;</span>)</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>因为我们自定义了主构造函数，所以默认提供的无参数的主构造函数就不存在了，所以我们也需要修改一下 <code>Student</code> 类的表示方法：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>(<span class="keyword">val</span> studentNo: String, <span class="keyword">var</span> grade: <span class="built_in">Int</span>, name: String, age: <span class="built_in">Int</span>) :</span><br><span class="line">        Person(name, age) &#123;</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Student No is <span class="variable">$studentNo</span> AND grade is <span class="variable">$grade</span>.&quot;</span>)</span><br><span class="line">    &#125;    </span><br><span class="line">            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注意，我们在 <code>Student</code> 类的主构造函数中增加 <code>name</code> 和 <code>age</code> 这两个字段时，不能再将它们声明成 <code>val</code>，因为在主构造函数中声明成 <code>val</code> 或者 <code>var</code> 的参数将自动成为该类的字段,这就会导致和父类中同名的 <code>name</code> 和 <code>age</code> 字段造成冲突。因此，<strong>这里的 <code>name</code> 和 <code>age</code> 参数前面我们不用加任何关键字,让它的作用域仅限定在主构造函数当中即可</strong> 。</p><p>现在就可以通过如下的代码来创建一个 Student 类的实例并使用了：</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> student = Student(<span class="string">&quot;123456789&quot;</span>, <span class="number">3</span>, <span class="string">&quot;LiHua&quot;</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure><h2 id="次构造函数"><a class="markdownIt-Anchor" href="#次构造函数"></a> 次构造函数</h2>]]></content>
+    
+    
+    <summary type="html">记录了 Kotlin 中类的创建与继承的语法。</summary>
+    
+    
+    
+    <category term="Kotlin" scheme="https://luoyu-ying.github.io/categories/Kotlin/"/>
+    
+    
+    <category term="Kotlin" scheme="https://luoyu-ying.github.io/tags/Kotlin/"/>
+    
+  </entry>
   
   <entry>
     <title>Kotlin 学习笔记</title>
@@ -466,35 +487,6 @@
     
     
     <category term="2022校招面试整理" scheme="https://luoyu-ying.github.io/tags/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Service - Android校招面试整理2022</title>
-    <link href="https://luoyu-ying.github.io/posts/94ccd61d6796/"/>
-    <id>https://luoyu-ying.github.io/posts/94ccd61d6796/</id>
-    <published>2022-05-24T08:40:02.000Z</published>
-    <updated>2022-06-17T11:13:05.310Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="service-的生命周期两种启动方式的区别"><a class="markdownIt-Anchor" href="#service-的生命周期两种启动方式的区别"></a> <code>Service</code> 的生命周期，两种启动方式的区别</h1><blockquote><p>答案参考自：</p><ul><li><a href="https://www.cnblogs.com/jisheng/archive/2011/12/13/2286262.html">Service生命周期 - Hecker385 - 博客园 (cnblogs.com)</a></li><li><a href="https://www.cnblogs.com/Lwenlong/p/15939996.html">Android面试——Service篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li><li><a href="https://www.jianshu.com/p/a58780595d2b">Service-服务(一)生命周期及使用方式 - 简书 (jianshu.com)</a></li></ul></blockquote><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/15821503-f7f98e2e43fa178b.png" alt="img" /></p><h2 id="使用contextstartservice-启动service"><a class="markdownIt-Anchor" href="#使用contextstartservice-启动service"></a> <strong>使用<code>context.startService</code> 启动<code>Service</code></strong></h2><p>其生命周期为<em>context.startService()</em> -&gt; <code>onCreate()</code>- &gt; <code>onStartCommand()</code>-&gt; <strong>Service</strong> <strong>running</strong> -&gt; <em>context.stopService()</em> | -&gt; <code>onDestroy()</code> -&gt; <strong>Service</strong> <strong>stop</strong></p><ol><li>如果<code>Service</code>还没有运行，则<code>Android</code>先调用<code>onCreate()</code>然后调用onStart()；</li><li>如果<code>Service</code>已经运行，则只调用<code>onStartCommand()</code>，所以一个<code>Service</code>的<code>onStartCommand</code>方法可能会重复调用多次。</li></ol><p><code>stopService</code>的时候直接<code>onDestroy</code>，如果是调用者自己直接退出而没有调用<code>stopService</code>的话，<code>Service</code>会一直在后台运行。该Service的调用者再启动起来后可以通过<code>stopService</code>关闭<code>Service</code>。</p><p><strong>所以调用<code>startService</code>的生命周期为：<code>onCreate</code> --&gt; <code>onStartCommand</code>(可多次调用) --&gt; <code>onDestroy</code></strong>。</p><h2 id="对于bindservice启动service会经历"><a class="markdownIt-Anchor" href="#对于bindservice启动service会经历"></a> <strong>对于<code>bindService</code>启动<code>Service</code>会经历：</strong></h2><p><em>context.bindService()</em> -&gt; <code>onCreate()</code>-&gt; <code>onBind()</code> -&gt;<strong>Service running</strong> -&gt; <code>onUnbind()</code> -&gt; <code>onDestroy()</code> -&gt; <strong>Service stop</strong></p><p><code>onBind</code>将返回给客户端一个<code>IBind</code>接口实例，<code>IBind</code>允许客户端回调服务的方法，比如得到<code>Service</code>运行的状态或其他操作。</p><p>这个时候把调用者（<code>Context</code>，例如<code>Activity</code>）会和<code>Service</code>绑定在一起，<code>Context</code>退出了，<code>Srevice</code>就会调用<code>onUnbind</code> -&gt; <code>onDestroy</code>相应退出。</p><p><strong>所以调用<code>bindService</code>的生命周期为：<code>onCreate</code> --&gt; <code>onBind</code>(只一次，不可多次绑定) --&gt; <code>onUnbind</code> --&gt; <code>onDestory</code>。</strong></p><p>一但销毁<code>activity</code>它就结束，如果按<code>home</code>把它放到后台，那他就不退出。</p><p><strong><font size="4">补充</font></strong></p><p>在Service每一次的开启关闭过程中，只有<code>onStartCommand</code>可被多次调用(通过多次<code>startService</code>调用)，<br />其他<code>onCreate</code>，<code>onBind</code>，<code>onUnbind</code>，<code>onDestory</code>在一个生命周期中只能被调用一次。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;service-的生命周期两种启动方式的区别&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#service-的生命周期两种启动方式的区别&quot;&gt;&lt;/a&gt; &lt;code&gt;Service&lt;/code&gt; 的生命周期，两种启动方式的区别&lt;/h1&gt;
-&lt;</summary>
-      
-    
-    
-    
-    <category term="Android" scheme="https://luoyu-ying.github.io/categories/Android/"/>
-    
-    <category term="2022校招面试整理" scheme="https://luoyu-ying.github.io/categories/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="2022校招面试整理" scheme="https://luoyu-ying.github.io/tags/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
-    
-    <category term="Service" scheme="https://luoyu-ying.github.io/tags/Service/"/>
     
   </entry>
   
