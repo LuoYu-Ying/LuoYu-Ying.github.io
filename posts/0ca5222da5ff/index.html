@@ -181,8 +181,9 @@
 <p>在这种情况下，<code>object</code> 关键字可以被省略。这时候它在语法层面就不再是匿名内部类了，它更像是 <code>Lambda</code> 表达式了，因此它里面 <code>override</code> 的方法也要跟着删掉：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image.setOnClickListener(View.OnClickListener &#123; v: View? -&gt;</span><br><span class="line">    gotoPreview(v)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>上面的 <code>View.OnClickListener</code> 被称为 <code>SAM Constructor</code>（SAM 构造器），它是编译器为我们生成的。</p>
+<p>这段代码明显简化了很多，既可以实现同样的功能，又不会造成任何歧义。因为 <code>View.OnClickListener</code> 中只有一个待实现方法,即使这里没有显式地重写 onClick() 方法，<code>Kotlin</code> 也能自动明白 <code>View.OnClickListener</code> 后面的 <code>Lambda</code> 表达式就是要在 <code>onClick()</code> 方法中实现的内容。</p>
 <p><strong><font size="4">第 3 种写法</font></strong></p>
-<p>由于 <code>Kotlin</code> 的 <code>Lambda</code> 表达式是不需要 <code>SAM Constructor</code> 的，所以它也可以被删掉：</p>
+<p>如果一个 <code>Java</code> 方法的参数列表中不存在一个以上 <code>Java</code> 单抽象方法接口参数，我们还可以将接口名进行省略（且<code>Kotlin</code> 的 <code>Lambda</code> 表达式是不需要 <code>SAM Constructor</code> 的），所以它也可以被删掉：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image.setOnClickListener(&#123; v: View? -&gt;</span><br><span class="line">    gotoPreview(v)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong><font size="4">第 4 种写法</font></strong></p>
 <p>由于 <code>Kotlin</code> 支持类型推导，所以 <code>View</code> 可以被删掉：</p>
