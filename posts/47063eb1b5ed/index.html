@@ -175,8 +175,9 @@
 <p>通过对上文中的 <code>findListNode</code> 方法对 <strong>加了 <code>tailrec</code> 关键字</strong> 与 <strong>去除 <code>tailrec</code> 关键字</strong> 的两份代码分别进行反编译，我们发现：</p>
 <ul>
 <li>
-<p>没有优化的 <code>findListNode</code> 对应的 <code>Java</code> 代码依然是递归函数；</p>
+<p>没有优化的 <code>findListNode</code> 对应的 <code>Java</code> 代码依然是递归函数，并且递归运行次数较大时出现了 <code>StackOverflowError</code> 错误；</p>
 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135701617.png" alt="img" style="zoom: 90%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135611929.png" alt="img" style="zoom:87%;" />
 </li>
 <li>
 <p>优化后（即添加了 <code>tailrec</code> 关键字）的 <code>findListNode</code> 方法对应的 <code>Java</code> 代码已经不再是递归函数，而是通过循环来实现功能，这样就不会再出现 <code>stackoverflowerror</code> 了。</p>
