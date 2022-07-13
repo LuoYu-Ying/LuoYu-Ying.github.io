@@ -6,7 +6,7 @@
   <link href="https://luoyu-ying.github.io/atom.xml" rel="self"/>
   
   <link href="https://luoyu-ying.github.io/"/>
-  <updated>2022-07-12T09:33:37.000Z</updated>
+  <updated>2022-07-13T05:26:11.000Z</updated>
   <id>https://luoyu-ying.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kotlin 标准函数</title>
+    <link href="https://luoyu-ying.github.io/posts/d15d647b4c31/"/>
+    <id>https://luoyu-ying.github.io/posts/d15d647b4c31/</id>
+    <published>2022-07-13T05:26:11.000Z</published>
+    <updated>2022-07-13T05:26:11.000Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>AutoHotKey 类的定义与部分使用技巧</title>
@@ -422,27 +435,6 @@
     <category term="2022校招面试整理" scheme="https://luoyu-ying.github.io/tags/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     
     <category term="计算机操作系统" scheme="https://luoyu-ying.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo 一篇文章添加多个分类</title>
-    <link href="https://luoyu-ying.github.io/posts/08fcea026748/"/>
-    <id>https://luoyu-ying.github.io/posts/08fcea026748/</id>
-    <published>2022-05-29T14:13:34.000Z</published>
-    <updated>2022-05-29T14:13:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="分类和标签"><a class="markdownIt-Anchor" href="#分类和标签"></a> 分类和标签</h1><p>Hexo 博客中只有文章支持分类和标签，您可以在 Front-matter 中设置。</p><p>在其他系统中，分类和标签听起来很接近，但是在 Hexo 中两者有着明显的差别：分类具有顺序性和层次性，也就是说 Foo, Bar 不等于 Bar, Foo；而标签没有顺序和层次。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">PS3</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Games</span></span><br></pre></td></tr></table></figure><h1 id="分类方法的分歧"><a class="markdownIt-Anchor" href="#分类方法的分歧"></a> 分类方法的分歧</h1><p>如果您有过使用 WordPress 的经验，就很容易误解 Hexo 的分类方式。WordPress 支持对一篇文章设置多个分类，而且这些分类可以是同级的，也可以是父子分类。但是 Hexo 不支持指定多个同级分类。下面的指定方法：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure><p>会使分类 Life 成为 Diary 的子分类，而不是并列分类。因此，有必要为您的文章选择尽可能准确的分类。</p><p>如果你需要为文章添加多个分类，可以尝试以下 list 中的方法。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">PlayStation</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">Games</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Life</span>]</span><br></pre></td></tr></table></figure><p>此时这篇文章同时包括三个分类： PlayStation 和 Games 分别都是父分类 Diary 的子分类，同时 Life 是一个没有子分类的分类。</p><h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1><ul><li><a href="https://hexo.io/zh-cn/docs/front-matter.html">Front-matter | Hexo</a></li></ul>]]></content>
-    
-    
-    <summary type="html">记录了如何使得 Hexo 的一篇文章可以添加多个分类。</summary>
-    
-    
-    
-    <category term="Hexo" scheme="https://luoyu-ying.github.io/categories/Hexo/"/>
-    
-    
-    <category term="Hexo" scheme="https://luoyu-ying.github.io/tags/Hexo/"/>
     
   </entry>
   
