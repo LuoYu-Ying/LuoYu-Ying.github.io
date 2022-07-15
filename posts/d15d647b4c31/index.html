@@ -239,18 +239,14 @@
 <p>使用时可以通过简单的规则作出⼀些判断：</p>
 <ol>
 <li>
-<p>返回自身 -----&gt; 从 <code>apply</code> 和 <code>also</code> 中选</p>
+<p>返回自身 -&gt; 从 <code>apply</code> 和 <code>also</code> 中选</p>
 <ul>
 <li>作用域中使用 <code>this</code> 作为参数 -&gt; 选择 <code>apply</code></li>
-</ul>
-</li>
-</ol>
-<ul>
 <li>作用域中使用 <code>it</code> 作为参数 -&gt; 选择 <code>also</code></li>
 </ul>
-<ol start="2">
+</li>
 <li>
-<p>不需要返回自身（可以返回任意类型） -----&gt; 从 <code>run</code> 和 <code>let</code> 中选择</p>
+<p>不需要返回自身（可以返回任意类型） -&gt; 从 <code>run</code> 和 <code>let</code> 中选择</p>
 <ul>
 <li>作用域中使用 <code>this</code> 作为参数 -&gt; 选择 <code>run</code></li>
 <li>作用域中使用 <code>it</code> 作为参数 -&gt; 选择 <code>let</code></li>
