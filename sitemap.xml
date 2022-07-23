@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://luoyu-ying.github.io/posts/a3b80f176756/</loc>
+    
+    <lastmod>2022-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://luoyu-ying.github.io/posts/82303f29c0e9/</loc>
     
     <lastmod>2022-07-23</lastmod>
@@ -953,6 +962,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://luoyu-ying.github.io/tags/Gradle/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -1055,6 +1071,13 @@
   
   <url>
     <loc>https://luoyu-ying.github.io/categories/Kotlin/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://luoyu-ying.github.io/categories/Gradle/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

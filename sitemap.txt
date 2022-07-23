@@ -1,4 +1,5 @@
 https://luoyu-ying.github.io/gallery/wallpaper/index.html
+https://luoyu-ying.github.io/posts/a3b80f176756/
 https://luoyu-ying.github.io/posts/82303f29c0e9/
 https://luoyu-ying.github.io/posts/d15d647b4c31/
 https://luoyu-ying.github.io/posts/61bd48ea70cc/
@@ -112,6 +113,7 @@ https://luoyu-ying.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/
 https://luoyu-ying.github.io/tags/AutoHotKey/
 https://luoyu-ying.github.io/tags/Toast/
 https://luoyu-ying.github.io/tags/Kotlin/
+https://luoyu-ying.github.io/tags/Gradle/
 https://luoyu-ying.github.io/categories/Android/
 https://luoyu-ying.github.io/categories/Java/
 https://luoyu-ying.github.io/categories/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/
@@ -127,3 +129,4 @@ https://luoyu-ying.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%
 https://luoyu-ying.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/
 https://luoyu-ying.github.io/categories/AutoHotKey/
 https://luoyu-ying.github.io/categories/Kotlin/
+https://luoyu-ying.github.io/categories/Gradle/
