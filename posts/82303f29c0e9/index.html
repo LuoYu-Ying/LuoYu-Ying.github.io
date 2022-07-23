@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>AutoHotKey 变量和字符串 | 洛语 の Blog</title><meta name="keywords" content="AutoHotKey"><meta name="author" content="LuoYu-Ying"><meta name="copyright" content="LuoYu-Ying"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录了 AutoHotKey 中变量以及字符串的基本概念与使用方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoHotKey 变量和字符串">
+<meta property="og:url" content="https://luoyu-ying.github.io/posts/82303f29c0e9/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="记录了 AutoHotKey 中变量以及字符串的基本概念与使用方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/1ac53f991c2180da8d0324056f6628b7979542a6.jpg">
+<meta property="article:published_time" content="2022-07-23T08:23:08.000Z">
+<meta property="article:modified_time" content="2022-07-23T08:23:08.000Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="AutoHotKey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/1ac53f991c2180da8d0324056f6628b7979542a6.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luoyu-ying.github.io/posts/82303f29c0e9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":180,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AutoHotKey 变量和字符串',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-23 16:23:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/article-font.css"><link rel="stylesheet" href="/css/post-transparent.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/white-code-box.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/default-cover.jpg" onerror="onerror=null;src='img/default_avatar.jpg'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/toolbox/"><i class="fa-fw fas fa-box"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/1ac53f991c2180da8d0324056f6628b7979542a6.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">洛语 の Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/toolbox/"><i class="fa-fw fas fa-box"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">AutoHotKey 变量和字符串</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-23T08:23:08.000Z" title="发表于 2022-07-23 16:23:08">2022-07-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-23T08:23:08.000Z" title="更新于 2022-07-23 16:23:08">2022-07-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AutoHotKey/">AutoHotKey</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="AutoHotKey 变量和字符串"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Variables.htm">变量和表达式 | AutoHotkey (autoahk.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.autohotkey.com/boards/viewtopic.php?t=14633">String literal that spans multiple lines? - AutoHotkey Community</a></li>
+</ul>
+</blockquote>
+<hr />
+<blockquote>
+<p>下文中的链接皆指向 AHK 技术文档，可放心查看。</p>
+</blockquote>
+<hr />
+<h1 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h1>
+<p>有关一般说明和变量如何工作的详细信息, 请参阅<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Concepts.htm#variables">变量</a>.</p>
+<h2 id="给变量赋值"><a class="markdownIt-Anchor" href="#给变量赋值"></a> <strong>给变量赋值</strong></h2>
+<p>要将字符串或数字存储在变量中, 有两种方法: <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#legacy-syntax">传统方式</a>和<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#expressions">表达式</a>. 传统方法使用<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/SetEnv.htm">等号运算符(=)</a> 来指定<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#unquoted-text"><strong>不加引号的</strong>原义字符串</a>或用百分号括起来的变量. 例如:</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyNumber = <span class="number">123</span></span><br><span class="line">MyString = This is a literal string.</span><br><span class="line">CopyOfVar = <span class="variable">%Var%</span>  <span class="comment">; 和 = 运算符一起使用时, 需要使用百分号来获取变量的内容.</span></span><br></pre></td></tr></table></figure>
+<p>与之相比, 表达式方法使用<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/SetExpression.htm">冒号等号运算符(:=)</a> 来保存数字, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#strings"><strong>加引号的</strong>字符串</a>和其他类型的<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#expressions">表达式</a>. 以下示例在功能上与前面的例子相同:</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyNumber := <span class="number">123</span></span><br><span class="line">MyString := <span class="string">&quot;This is a literal string.&quot;</span></span><br><span class="line">CopyOfVar := Var  <span class="comment">; 和前面段落中与其作用相同的语句不同, 百分号不和 := 运算符一起使用.</span></span><br></pre></td></tr></table></figure>
+<p><strong>后一种方法由于其更清晰并且与其他许多语言几乎一致的<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#expressions">表达式语法</a>成为大多数人的首选方法.</strong></p>
+<p>从上面的例子中您可能已经想到了有两种方法来清除变量的内容(即让变量为空):</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyVar =</span><br><span class="line">MyVar := <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>上面的这对空引号只能和 := 运算符一起使用, 因为和 = 运算符一起使用时, 则会在变量中保存两个原义的引号字符.</p>
+<h2 id="获取变量的内容"><a class="markdownIt-Anchor" href="#获取变量的内容"></a> <strong>获取变量的内容</strong></h2>
+<p>如同赋值有两种方法, 获取变量的内容也有两种方法: <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#legacy-syntax">传统方法</a>和<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#variables">表达式方法</a>. 传统方法需要将变量名包围在百分号中来获取变量的内容. 例如:</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MsgBox The value in the variable named Var is <span class="variable">%Var%</span>.</span><br><span class="line">CopyOfVar = <span class="variable">%Var%</span></span><br></pre></td></tr></table></figure>
+<p>与之相比, 表达式方法省去了变量名两边的百分号, 但<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#strings">原义的字符串</a>必须包围在双引号中. 所以, 下面的表达式作用等同于上面的例子:</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MsgBox %</span> <span class="string">&quot;The value in the variable named Var is &quot;</span> . Var . <span class="string">&quot;.&quot;</span>  <span class="comment">; 使用句点连接(join 拼接) 两个字符串.</span></span><br><span class="line">CopyOfVar := Var</span><br></pre></td></tr></table></figure>
+<p>在上面的 MsgBox 这行, 通过使用<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Language.htm#-expression">百分号和空格</a>把参数从传统模式改变为表达式模式. 因为所有的命令默认情况下使用传统模式(除了另外注明的那些), 所以这是必须的.</p>
+<h2 id="变量的比较"><a class="markdownIt-Anchor" href="#变量的比较"></a> <strong>变量的比较</strong></h2>
+<p>请阅读下面表达式部分中关于不同类型变量比较的重要提示, 尤其是关于何时使用小括号的内容.</p>
+<hr />
+<h1 id="字符串"><a class="markdownIt-Anchor" href="#字符串"></a> 字符串</h1>
+<h2 id="保存带有引号的字符串"><a class="markdownIt-Anchor" href="#保存带有引号的字符串"></a> 保存带有引号的字符串</h2>
+<p>如果我们想用变量保存一个带有双引号的字符串，需要使用 = 操作符：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var = this is <span class="string">&quot; ; 输出的字符串中包含双引号</span></span><br></pre></td></tr></table></figure>
+<h2 id="保存多行字符串"><a class="markdownIt-Anchor" href="#保存多行字符串"></a> 保存多行字符串</h2>
+<p>如果我们想要保存多行的字符串，可以使用 <code>()</code> 包含文本内容并使用 <code>=</code> 且 <strong>不加 <code>&quot;&quot;</code></strong> 的方式（文本中每行的字符串形式与使用 <code>=</code> 操作符保存单行字符串的形式相同）：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var = string</span><br><span class="line"></span><br><span class="line">exampleString =</span><br><span class="line">(                      <span class="comment">; 左括号右侧的字符会被自动忽略，正文从下行开始</span></span><br><span class="line">    multiple</span><br><span class="line">        lines          <span class="comment">; 该行字符的所有字符（包括空格）会全部输出</span></span><br><span class="line">                       <span class="comment">; 空行也会如实输出</span></span><br><span class="line"><span class="built_in">    of</span></span><br><span class="line"><span class="built_in">        %</span>var%</span><br><span class="line">)                      <span class="comment">; 右括号左侧不能有其他字符，否则将报错</span></span><br><span class="line"><span class="built_in"></span></span><br><span class="line"><span class="built_in">MsgBox,</span> % exampleString</span><br></pre></td></tr></table></figure>
+<p>输出结果截图（第一个非空字符前的空格将忽略）：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220723170233064.png" alt="image-20220723170233064" style="zoom: 50%;" />
+<p><strong>注意：</strong></p>
+<ol>
+<li>该方式中的 <code>()</code> 必须分别、单独在一行，不能接在其他语句末尾。且文本将严格按照输入形式输出，两个括号之间的空行和空格也会如实输出，但是第一个非空字符前的空格将忽略。</li>
+<li>左括号右侧的字符会被自动忽略，正文从下行开始；右括号左侧不能有其他字符，否则将报错。</li>
+<li>如果需要使用 <code>:=</code> 操作符进行多行字符串保存，请使用 ``n` 转义字符进行换行操作。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">LuoYu-Ying</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luoyu-ying.github.io/posts/82303f29c0e9/">https://luoyu-ying.github.io/posts/82303f29c0e9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luoyu-ying.github.io" target="_blank">洛语 の Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AutoHotKey/">AutoHotKey</a></div><div class="post_share"><div class="social-share" data-image="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/1ac53f991c2180da8d0324056f6628b7979542a6.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/d15d647b4c31/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/221.jpg" onerror="onerror=null;src='/img/default-cover.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Kotlin 标准函数</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/050a11a7817a/" title="通过 AutoHotKey 简化 Hexo 操作"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/67000448_p0.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">通过 AutoHotKey 简化 Hexo 操作</div></div></a></div><div><a href="/posts/8f286d636eff/" title="AutoHotHey 问题解决记录"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/83975808_p0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-11</div><div class="title">AutoHotHey 问题解决记录</div></div></a></div><div><a href="/posts/61bd48ea70cc/" title="AutoHotKey 类的定义与部分使用技巧"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/爱上火车last run!!截图_208.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-12</div><div class="title">AutoHotKey 类的定义与部分使用技巧</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text"> 变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="toc-number">1.1.</span> <span class="toc-text"> 给变量赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%8F%98%E9%87%8F%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.</span> <span class="toc-text"> 获取变量的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.3.</span> <span class="toc-text"> 变量的比较</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text"> 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%B8%A6%E6%9C%89%E5%BC%95%E5%8F%B7%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.1.</span> <span class="toc-text"> 保存带有引号的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%A4%9A%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text"> 保存多行字符串</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By LuoYu-Ying</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">一期一会</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
