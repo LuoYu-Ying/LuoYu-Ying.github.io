@@ -178,8 +178,7 @@
 <h1 id="buildgradle"><a class="markdownIt-Anchor" href="#buildgradle"></a> <code>build.gradle</code></h1>
 <h2 id="buildtypes"><a class="markdownIt-Anchor" href="#buildtypes"></a> <code>buildTypes</code></h2>
 <p>通常有 <code>release</code>、<code>debug</code>、<code>develop</code>等等版本，也可以自定义版本。</p>
-<p>通过 Project 形式查看文件结构，可以清楚的发现，我们在 <code>src</code> 文件夹下面，创建类似 <code>main</code> 的层级文件夹 <code>debug</code> 。</p>
-<p>当我们在 <code>Build Varians</code> 选项卡中，选择 <code>debug</code> 构建模式时，便会将 <code>main</code> 下方的文件以及 <code>debug</code> 下方的文件整合到一起执行，其他版本同理。</p>
+<p>通过 Project 形式查看文件结构，可以清楚的发现，当我们在 <code>src</code> 文件夹下面，创建类似 <code>main</code> 的层级文件夹 <code>debug</code> ，并在 <code>Build Varians</code> 选项卡中，选择 <code>debug</code> 构建模式时，AS 便会将 <code>main</code> 下方的文件以及 <code>debug</code> 下方的文件整合到一起执行，其他版本同理。</p>
 <p>所以我们可以通过创建不同版本特有的文件夹，以达到不同版本使用、开发人员的差异化显示以及功能等区别。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220724160910544.png" alt="image-20220724160910544" /></p>
 <h2 id="productflavors"><a class="markdownIt-Anchor" href="#productflavors"></a> <code>productFlavors</code></h2>
