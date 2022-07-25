@@ -1,4 +1,5 @@
 https://luoyu-ying.github.io/gallery/wallpaper/index.html
+https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/a3b80f176756/
 https://luoyu-ying.github.io/posts/82303f29c0e9/
 https://luoyu-ying.github.io/posts/d15d647b4c31/
@@ -8,7 +9,6 @@ https://luoyu-ying.github.io/music/index.html
 https://luoyu-ying.github.io/gallery/index.html
 https://luoyu-ying.github.io/posts/aae775e24f21/
 https://luoyu-ying.github.io/posts/47063eb1b5ed/
-https://luoyu-ying.github.io/about/index.html
 https://luoyu-ying.github.io/posts/0ca5222da5ff/
 https://luoyu-ying.github.io/posts/4c7d77851d24/
 https://luoyu-ying.github.io/posts/ffb71c4ce53a/
