@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>英语 横屏与竖屏</title>
+      <link href="/posts/225ab1cafae6/"/>
+      <url>/posts/225ab1cafae6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1><p>在公司实习的时候，看到代码中的 <code>landscape</code> 以及  <code>portrait</code> 两个单词的时候，并没有意识到这两个单词的含义 。</p><p>还是英语单词的储备量太少了 (´。＿。｀)。</p><hr /><h1 id="landscape"><a class="markdownIt-Anchor" href="#landscape"></a> <code>LANDSCAPE</code></h1><p>手机横屏。代码中可以简写成 <code>land</code>。</p><p>本意为风景、风景画等。</p><p>可能因为这类画作通常以横幅的形式展现，所以便使用了 <code>landscape</code> 这个英语单词表示手机的横屏。</p><hr /><h1 id="portrait"><a class="markdownIt-Anchor" href="#portrait"></a> <code>PORTRAIT</code></h1><p>手机竖屏。代码中可以简写成 <code>port</code>。</p><p>本意为肖像、肖像画等。</p><p>可能因为这类画作基本以竖幅的形式展现，所以使用了 <code>portrait</code> 这个单词表示了手机的竖屏。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Android Gradle 学习笔记一</title>
       <link href="/posts/a3b80f176756/"/>
       <url>/posts/a3b80f176756/</url>
