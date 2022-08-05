@@ -1,4 +1,5 @@
 https://luoyu-ying.github.io/gallery/wallpaper/index.html
+https://luoyu-ying.github.io/posts/71a9e5aa5923/
 https://luoyu-ying.github.io/posts/225ab1cafae6/
 https://luoyu-ying.github.io/toolbox/index.html
 https://luoyu-ying.github.io/about/index.html
@@ -131,3 +132,4 @@ https://luoyu-ying.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%
 https://luoyu-ying.github.io/categories/AutoHotKey/
 https://luoyu-ying.github.io/categories/Kotlin/
 https://luoyu-ying.github.io/categories/Gradle/
+https://luoyu-ying.github.io/categories/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/
