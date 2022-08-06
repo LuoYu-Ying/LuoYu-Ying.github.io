@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>LeetCode | C++ | sort 食用方法</title>
+      <link href="/posts/43b3ec0d3402/"/>
+      <url>/posts/43b3ec0d3402/</url>
+      
+        <content type="html"><![CDATA[<h1 id="出现的问题"><a class="markdownIt-Anchor" href="#出现的问题"></a> 出现的问题</h1><p>在 LeetCode 中做题的时候，使用 <code>sort</code> 函数，并使用另一个比较函数的使用，出现以下的情况：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">bool</span> <span class="title">comp</span><span class="params">(...)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; G;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">            <span class="built_in">sort</span>(G.<span class="built_in">begin</span>(), G.<span class="built_in">end</span>(), comp);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当执行上述代码的时候，便会出现编译错误：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error: reference to non-static member function must be called </span><br><span class="line">    sort(G.begin(), G.end(), comp); </span><br><span class="line">                             ^~~ </span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure><hr /><h1 id="解决方法"><a class="markdownIt-Anchor" href="#解决方法"></a> 解决方法</h1><p>使用 <code>static</code> 修饰比较函数，即</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">static</span> <span class="type">bool</span> <span class="title">comp</span><span class="params">(...)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure><p>即可在类中使用比较函数。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LeetCode 3.无重复字符的最长子串 [双指针法]</title>
       <link href="/posts/71a9e5aa5923/"/>
       <url>/posts/71a9e5aa5923/</url>
