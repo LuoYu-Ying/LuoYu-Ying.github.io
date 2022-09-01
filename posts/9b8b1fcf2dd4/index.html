@@ -160,7 +160,7 @@
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2 &lt;= garbage.length &lt;= 105</span><br><span class="line">garbage[i] 只包含字母 &#x27;M&#x27; ，&#x27;P&#x27; 和 &#x27;G&#x27; 。</span><br><span class="line">1 &lt;= garbage[i].length &lt;= 10</span><br><span class="line">travel.length == garbage.length - 1</span><br><span class="line">1 &lt;= travel[i] &lt;= 100</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p><strong>思考</strong></p>
-<p>三辆车辆都只能不断地向前行驶，直至他们需要收集地最后一个房屋。那么我们就可以逆序遍历 garbage 数组，各种垃圾第一次出现在字符串地时候，便是垃圾车最终停止的地点。</p>
+<p>三辆垃圾车都只能不断地向前行驶，直至他们需要收集的最后一个房屋。我们就可以逆序遍历 garbage 数组，其中各种垃圾第一次出现在字符串的时候，便是垃圾车最终停止的地点。我们可以计算前缀和的方式计算得到每辆垃圾车行驶的时间。</p>
 <p>其次就是计算每个房屋中各个垃圾的数量，我们可以通过 Kotlin 中的 count 函数快速的得到。</p>
 <p>因为计算三种垃圾的代码高度相似，所以我们可以抽象出一个可复用的函数减少代码量，这里使用嵌套函数因为该函数仅仅使用在 solution 方法内，如果写在外部也可。</p>
 <p><strong>代码</strong></p>
