@@ -4,11 +4,11 @@ https://luoyu-ying.github.io/posts/03b86e3ef474/
 https://luoyu-ying.github.io/posts/65315041b85b/
 https://luoyu-ying.github.io/posts/624cb914d8f1/
 https://luoyu-ying.github.io/posts/b928600a96ee/
-https://luoyu-ying.github.io/posts/29bc9cc403e1/
+https://luoyu-ying.github.io/DeprecatedPost/LeetCode-2391-%E6%94%B6%E9%9B%86%E5%9E%83%E5%9C%BE%E7%9A%84%E6%9C%80%E5%B0%91%E6%80%BB%E6%97%B6%E9%97%B4.html
 https://luoyu-ying.github.io/posts/bb54934ff9ed/
 https://luoyu-ying.github.io/posts/e6b5f22ff8f5/
 https://luoyu-ying.github.io/posts/43b3ec0d3402/
-https://luoyu-ying.github.io/posts/71a9e5aa5923/
+https://luoyu-ying.github.io/DeprecatedPost/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.html
 https://luoyu-ying.github.io/posts/225ab1cafae6/
 https://luoyu-ying.github.io/toolbox/index.html
 https://luoyu-ying.github.io/posts/a3b80f176756/
@@ -123,7 +123,6 @@ https://luoyu-ying.github.io/tags/Toast/
 https://luoyu-ying.github.io/tags/Kotlin/
 https://luoyu-ying.github.io/tags/Gradle/
 https://luoyu-ying.github.io/tags/LeetCode/
-https://luoyu-ying.github.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/
 https://luoyu-ying.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/
 https://luoyu-ying.github.io/tags/Android-Studio/
 https://luoyu-ying.github.io/categories/Android/
