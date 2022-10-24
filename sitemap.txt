@@ -52,7 +52,7 @@ https://luoyu-ying.github.io/posts/bd6604dc1b1f/
 https://luoyu-ying.github.io/posts/01f186841de9/
 https://luoyu-ying.github.io/posts/052b259f25f7/
 https://luoyu-ying.github.io/posts/a00ca8ffea9b/
-https://luoyu-ying.github.io/posts/07af833ec811/
+https://luoyu-ying.github.io/DeprecatedPost/Hexo-%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B-%E5%8D%9A%E5%AE%A2%E6%95%B4%E7%90%86.html
 https://luoyu-ying.github.io/posts/f4f7590eb984/
 https://luoyu-ying.github.io/posts/08fcea026748/
 https://luoyu-ying.github.io/posts/a6d8264a3704/
