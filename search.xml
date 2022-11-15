@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>AutoHotKey 萌新学习笔记1</title>
+      <link href="/posts/e7ba750d9a41/"/>
+      <url>/posts/e7ba750d9a41/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>这是分割线，上传前需要删除</p></blockquote><h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1><h2 id="autohotkey-是什么"><a class="markdownIt-Anchor" href="#autohotkey-是什么"></a> <code>AutoHotKey</code> 是什么</h2><p><code>AutoHotkey</code> 是一门 <code>Windows</code> 平台下的脚本语言，支持热键、热字符、Windows API，能够快捷或自动执行重复性任务。</p><h2 id="autohotkey-官网"><a class="markdownIt-Anchor" href="#autohotkey-官网"></a> <code>AutoHotKey</code> 官网</h2><p><a href="https://www.autohotkey.com/">AutoHotkey</a></p><h2 id="本学习笔记使用的-autohotkey-版本"><a class="markdownIt-Anchor" href="#本学习笔记使用的-autohotkey-版本"></a> 本学习笔记使用的 <code>AutoHotKey</code> 版本</h2><p>1.1.35.00</p><h2 id="使用的软件"><a class="markdownIt-Anchor" href="#使用的软件"></a> 使用的软件</h2><p><code>Visual Studio Code with AutoHotkey Extension by Mark Wiemer</code></p><hr /><h1 id="send-函数"><a class="markdownIt-Anchor" href="#send-函数"></a> <code>Send</code> 函数</h1><hr /><h1 id="按键列表"><a class="markdownIt-Anchor" href="#按键列表"></a> 按键列表</h1><hr /><h1 id="热键"><a class="markdownIt-Anchor" href="#热键"></a> 热键</h1><hr /><h1 id="热字串"><a class="markdownIt-Anchor" href="#热字串"></a> 热字串</h1><hr /><h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo Butterfly 美化-修改分割线的样式</title>
       <link href="/posts/53768a5482ee/"/>
       <url>/posts/53768a5482ee/</url>
