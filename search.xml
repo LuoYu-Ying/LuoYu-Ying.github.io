@@ -8,7 +8,7 @@
       <link href="/posts/e7ba750d9a41/"/>
       <url>/posts/e7ba750d9a41/</url>
       
-        <content type="html"><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1><h2 id="autohotkey-是什么"><a class="markdownIt-Anchor" href="#autohotkey-是什么"></a> <code>AutoHotKey</code> 是什么</h2><p><code>AutoHotkey</code> 是一门 <code>Windows</code> 平台下的脚本语言，支持热键、热字符、Windows API，能够快捷或自动执行重复性任务。</p><h2 id="autohotkey-官网"><a class="markdownIt-Anchor" href="#autohotkey-官网"></a> <code>AutoHotKey</code> 官网</h2><p><a href="https://www.autohotkey.com/">AutoHotkey</a></p><h2 id="本学习笔记使用的-autohotkey-版本"><a class="markdownIt-Anchor" href="#本学习笔记使用的-autohotkey-版本"></a> 本学习笔记使用的 <code>AutoHotKey</code> 版本</h2><p>1.1.35.00</p><hr /><h1 id="热键是什么"><a class="markdownIt-Anchor" href="#热键是什么"></a> 热键是什么</h1><blockquote><p>官网文档：<a href="https://wyagd001.github.io/zh-cn/docs/Hotkeys.htm">热键 - 定义与使用 | AutoHotkey (wyagd001.github.io)</a></p></blockquote><p>热键热键是用来触发某些动作的按键或组合按键。有时也称为快捷键，因为它们能简便地触发动作(例如运行程序或键盘宏)。</p><hr /><h1 id="热键形式"><a class="markdownIt-Anchor" href="#热键形式"></a> 热键形式</h1><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">热键::</span></span><br><span class="line">    代码块</span><br><span class="line"><span class="keyword">Return</span></span><br></pre></td></tr></table></figure><p>形如以上代码的代码片段可以被理解为一个热键的实现。</p><p>其中，热键通常由零至多个 <strong>热键修饰符</strong> 和其他按键的组合来触发代码块中的内容。</p><hr /><h1 id="热键修饰符"><a class="markdownIt-Anchor" href="#热键修饰符"></a> 热键修饰符</h1><blockquote><p>在 <code>Windows</code> 操作系统中，可以使用 <code>Win + D</code> 的快捷键来显示桌面。其中 <code>Win</code> 就为修饰符，在 <code>AutoHotKey</code> 中使用 <code>#</code> 来表示作为修饰符的 <code>Win</code>。</p></blockquote><p>在定义热键时您可以使用下列常见的修饰符：</p><table><thead><tr><th style="text-align:center">符号</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:center">#</td><td style="text-align:left"><code>Win</code></td></tr><tr><td style="text-align:center">!</td><td style="text-align:left"><code>Alt</code></td></tr><tr><td style="text-align:center">^</td><td style="text-align:left"><code>Ctrl</code></td></tr><tr><td style="text-align:center">+</td><td style="text-align:left"><code>Shift</code></td></tr><tr><td style="text-align:center">&amp;</td><td style="text-align:left">合并两个按键（含鼠标按键）成为一个自定义热键。</td></tr><tr><td style="text-align:center">&lt;</td><td style="text-align:left">使用成对按键中左边的那个. 例如 <code>&lt;!a</code> 相当于 <code>!a</code>, 只是使用左边的 <code>Alt</code> 才可以触发。</td></tr><tr><td style="text-align:center">&gt;</td><td style="text-align:left">使用成对按键中右边的按键来触发效果。</td></tr><tr><td style="text-align:center">*</td><td style="text-align:left">通配符，只要当前的快捷键输入中包含通配符之后的热键便也会触发该热键效果。<br />如使用<code>*#c::Run Calc.exe</code>，那么<code>Win+C</code>, <code>Shift+Win+C</code>, <code>Ctrl+Win+C</code> 等都会触发此热键。</td></tr><tr><td style="text-align:center">~</td><td style="text-align:left">触发热键时，热键中按键原有的功能不会被屏蔽。</td></tr><tr><td style="text-align:center">$</td><td style="text-align:left">通常只在脚本使用 <code>Send</code> 命令发送包含了热键自身的按键时才需要使用此符号，否则可能会导致热键触发自己。</td></tr><tr><td style="text-align:center"><code>UP</code></td><td style="text-align:left">单词 <code>UP</code> 可以跟在热键名后面使得在释放按键时触发热键，而不是按下时。</td></tr></tbody></table><p>下面将对其中的部分修饰符进行更加详细的解释和用法：</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1><h2 id="autohotkey-是什么"><a class="markdownIt-Anchor" href="#autohotkey-是什么"></a> <code>AutoHotKey</code> 是什么</h2><p><code>AutoHotkey</code> 是一门 <code>Windows</code> 平台下的脚本语言，支持热键、热字符、Windows API，能够快捷或自动执行重复性任务。</p><h2 id="autohotkey-官网"><a class="markdownIt-Anchor" href="#autohotkey-官网"></a> <code>AutoHotKey</code> 官网</h2><p><a href="https://www.autohotkey.com/">AutoHotkey</a></p><h2 id="使用的-autohotkey-版本"><a class="markdownIt-Anchor" href="#使用的-autohotkey-版本"></a> 使用的 <code>AutoHotKey</code> 版本</h2><p>1.1.35.00</p><hr /><h1 id="热键是什么"><a class="markdownIt-Anchor" href="#热键是什么"></a> 热键是什么</h1><blockquote><p>官网文档：<a href="https://wyagd001.github.io/zh-cn/docs/Hotkeys.htm">热键 - 定义与使用 | AutoHotkey (wyagd001.github.io)</a></p></blockquote><p>热键热键是用来触发某些动作的按键或组合按键。有时也称为快捷键，因为它们能简便地触发动作(例如运行程序或键盘宏)。</p><hr /><h1 id="热键形式"><a class="markdownIt-Anchor" href="#热键形式"></a> 热键形式</h1><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">热键::</span></span><br><span class="line">    代码块</span><br><span class="line"><span class="keyword">Return</span></span><br></pre></td></tr></table></figure><p>形如以上代码的代码片段可以被理解为一个热键的实现。</p><p>通常快捷键组合由可选的前缀/修饰键(<code>Ctrl</code>, <code>Alt</code>, <code>Shift</code> 和 <code>LWin</code>/<code>RWin</code>) 和单个后缀键组成，标准的修饰键就是这样设计的，所以按下时通常没有立即效果。</p><hr /><h1 id="热键修饰符"><a class="markdownIt-Anchor" href="#热键修饰符"></a> 热键修饰符</h1><blockquote><p>在 <code>Windows</code> 操作系统中，默认可以使用 <code>Win + D</code> 的快捷键来显示桌面。其中 <code>Win</code> 就为修饰符，在 <code>AutoHotKey</code> 中使用 <code>#</code> 来表示作为修饰符的 <code>Win</code>。</p></blockquote><p><strong>在定义热键时您可以使用下列常见的修饰符：</strong></p><table><thead><tr><th style="text-align:center">符号</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:center">#</td><td style="text-align:left"><code>Win</code></td></tr><tr><td style="text-align:center">!</td><td style="text-align:left"><code>Alt</code></td></tr><tr><td style="text-align:center">^</td><td style="text-align:left"><code>Ctrl</code></td></tr><tr><td style="text-align:center">+</td><td style="text-align:left"><code>Shift</code></td></tr><tr><td style="text-align:center">&amp;</td><td style="text-align:left">合并两个按键（含鼠标按键）成为一个自定义热键。</td></tr><tr><td style="text-align:center">&lt;</td><td style="text-align:left">使用成对按键中左边的那个. 例如 <code>&lt;!a</code> 相当于 <code>!a</code>, 只是使用左边的 <code>Alt</code> 才可以触发。</td></tr><tr><td style="text-align:center">&gt;</td><td style="text-align:left">使用成对按键中右边的按键来触发效果。</td></tr><tr><td style="text-align:center">*</td><td style="text-align:left">通配符，只要当前的快捷键输入中包含通配符之后的热键便也会触发该热键效果。<br />如使用<code>*#c::Run Calc.exe</code>，那么<code>Win+C</code>, <code>Shift+Win+C</code>, <code>Ctrl+Win+C</code> 等都会触发此热键。</td></tr><tr><td style="text-align:center">~</td><td style="text-align:left">触发热键时，热键中按键原有的功能不会被屏蔽。</td></tr><tr><td style="text-align:center">$</td><td style="text-align:left">通常只在脚本使用 <code>Send</code> 命令发送包含了热键自身的按键时才需要使用此符号，否则可能会导致热键触发自己。</td></tr><tr><td style="text-align:center"><code>UP</code></td><td style="text-align:left">单词 <code>UP</code> 可以跟在热键名后面使得在释放按键时触发热键，而不是按下时。</td></tr></tbody></table><p><strong>下面将对其中的部分修饰符进行更加详细的解释和用法：</strong></p><hr /><h1 id="自定义组合键"><a class="markdownIt-Anchor" href="#自定义组合键"></a> 自定义组合键</h1>]]></content>
       
       
       
@@ -810,9 +810,9 @@
       
       <categories>
           
-          <category> 2022校招面试整理 </category>
-          
           <category> Java </category>
+          
+          <category> 2022校招面试整理 </category>
           
       </categories>
       
@@ -1169,9 +1169,9 @@
       
       <categories>
           
-          <category> 2022校招面试整理 </category>
-          
           <category> Java </category>
+          
+          <category> 2022校招面试整理 </category>
           
       </categories>
       
@@ -1198,9 +1198,9 @@
       
       <categories>
           
-          <category> 2022校招面试整理 </category>
-          
           <category> Java </category>
+          
+          <category> 2022校招面试整理 </category>
           
       </categories>
       
