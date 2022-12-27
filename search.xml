@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>MYSQL 密码修改</title>
+      <link href="/posts/baf45ef94c85/"/>
+      <url>/posts/baf45ef94c85/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>文章参考：</p><ul><li><a href="http://c.biancheng.net/view/7152.html">MySQL修改密码的3种方式 (biancheng.net)</a></li></ul></blockquote><hr /><h1 id="使用-mysqladmin-指令修改密码"><a class="markdownIt-Anchor" href="#使用-mysqladmin-指令修改密码"></a> 使用 <code>mysqladmin</code> 指令修改密码</h1><blockquote><p><code>mysqladmin</code> 指令形式：<code>mymysqladmin -u用户名 -p旧密码 password 新密码</code></p><p>注意：下图修改密码的命令中 <code>-uroot</code> 和 <code>-proot</code> 是整体，不要写成 <code>-u</code> <code>root</code> <code>-p</code> <code>root</code>，<code>-u</code> 和 <code>root</code> 间可以加空格，但是会有警告出现，所以就不要加空格了。</p></blockquote><ol><li>打开 <strong>管理员:命令提示符</strong> 。</li><li>输入 <code>mysqladmin</code> 命令修改密码。</li><li>使用 <code>mysql -u用户名 -p</code> 的命令进入数据库。</li></ol><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/5-20011Q60KGc.png" alt="img" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MYSQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MYSQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>深入理解计算机系统 第5-10章 练习题整理</title>
       <link href="/posts/ab3c0562c28c/"/>
       <url>/posts/ab3c0562c28c/</url>
