@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221230231001537.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-909063cd57cd5b2136ff8ed4d04bc5e6_1440w.jpg">
 <meta property="article:published_time" content="2022-12-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-30T17:42:04.150Z">
+<meta property="article:modified_time" content="2022-12-30T17:53:41.176Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -75,11 +75,11 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
+				<li><a href="/" >主页</a></li>
 			
-				<li><a href="/tags" target="_blank">标签</a></li>
+				<li><a href="/tags" >标签</a></li>
 			
-				<li><a href="/updatelog" target="_blank">日志</a></li>
+				<li><a href="/updatelog" >日志</a></li>
 			
 			</ul>
 		</nav>
@@ -102,8 +102,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="https://github.com/LuoYu-Ying/" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" rel="noopener" href="https://github.com/LuoYu-Ying/" 
+												title="GitHub" ><i class="icon-github"></i></a>
 					
 				
 			</div>
@@ -384,13 +384,13 @@
 <ol>
 <li><p>中央处理单元 (<code>CPU</code>) 是<strong>进行算术和逻辑操作</strong>的部件,包含了：</p>
 <ul>
-<li><p>寄存器 (register)<br>  有限数量的存储位置。</p>
+<li><p>寄存器 (register)<br>有限数量的存储位置。</p>
 </li>
-<li><p>一个高频时钟<br>  时钟 (clock) <strong>对 <code>CPU</code> 内部操作与系统其他组件进行同步</strong>。</p>
+<li><p>一个高频时钟<br>时钟 (clock) <strong>对 <code>CPU</code> 内部操作与系统其他组件进行同步</strong>。</p>
 </li>
-<li><p>一个控制单元<br>  控制单元 (control unit，<code>CU</code>) <strong>协调参与机器指令执行的步骤序列</strong>。</p>
+<li><p>一个控制单元<br>控制单元 (control unit，<code>CU</code>) <strong>协调参与机器指令执行的步骤序列</strong>。</p>
 </li>
-<li><p>一个算术逻辑单元<br>  算术逻辑单元 (arithmetic logic unit，<code>ALU</code>) <strong>执行算术运算</strong>，如加法和减法，以及逻辑运算，如 <code>AND</code> (与)、<code>OR</code>(或) 和 <code>NOT</code> (非)。</p>
+<li><p>一个算术逻辑单元<br>算术逻辑单元 (arithmetic logic unit，<code>ALU</code>) <strong>执行算术运算</strong>，如加法和减法，以及逻辑运算，如 <code>AND</code> (与)、<code>OR</code>(或) 和 <code>NOT</code> (非)。</p>
 </li>
 </ul>
 </li>
@@ -514,6 +514,7 @@
 <p>  算术或逻辑操作产生结果为零时，设置（零）标志位；<br>  与目标位置相比，有符号算术运算结果太大或太小时，设置（溢出）标志位。</p>
 </blockquote>
 <p>参考上文整理内容。</p>
+<hr>
 
     
 
@@ -649,6 +650,41 @@
     </div>
   </div>
   
+   <!--《添加网站运行时间  <br/>-->
+   
+	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+	var now = new Date();
+
+	function createtime() {
+		//此处修改你的建站时间或者网站上线时间
+		var create_time = '04/14/2022 18:00:00';
+		now.setTime(now.getTime() + 250);
+		days = (now - grt) / 1000 / 60 / 60 / 24;
+		dnum = Math.floor(days);
+		hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+		hnum = Math.floor(hours);
+		if (String(hnum).length == 1) {
+			hnum = "0" + hnum;
+		}
+		minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+		mnum = Math.floor(minutes);
+		if (String(mnum).length == 1) {
+			mnum = "0" + mnum;
+		}
+		seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+		snum = Math.round(seconds);
+		if (String(snum).length == 1) {
+			snum = "0" + snum;
+		}
+		document.getElementById("timeDate").innerHTML = " | 本站已安全运行 " + dnum + " 天 ";
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+	}
+	setInterval("createtime()", 250);
+	</script>
+
+<!-- 添加网站运行时间》-->
+
   
 	<script src="/lib/busuanzi.pure.js"></script>
 	
@@ -664,40 +700,6 @@
   	</span>
   
 
-   <!--《添加网站运行时间  <br/>-->
-	
-		<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-		<script>
-		var now = new Date();
-
-		function createtime() {
-			//此处修改你的建站时间或者网站上线时间
-			var create_time = '04/14/2022 18:00:00';
-			now.setTime(now.getTime() + 250);
-			days = (now - grt) / 1000 / 60 / 60 / 24;
-			dnum = Math.floor(days);
-			hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
-			hnum = Math.floor(hours);
-			if (String(hnum).length == 1) {
-				hnum = "0" + hnum;
-			}
-			minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
-			mnum = Math.floor(minutes);
-			if (String(mnum).length == 1) {
-				mnum = "0" + mnum;
-			}
-			seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-			snum = Math.round(seconds);
-			if (String(snum).length == 1) {
-				snum = "0" + snum;
-			}
-			document.getElementById("timeDate").innerHTML = " | 本站已安全运行 " + dnum + " 天 ";
-			document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
-		}
-		setInterval("createtime()", 250);
-		</script>
-	
-	<!-- 添加网站运行时间》-->
 </footer>
 
     </div>
@@ -709,7 +711,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: true,
+		open_in_new: false,
 		toc_hide_index: false,
 		root: "/",
 		innerArchive: true,
