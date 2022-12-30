@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221230231001537.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-909063cd57cd5b2136ff8ed4d04bc5e6_1440w.jpg">
 <meta property="article:published_time" content="2022-12-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-30T16:07:18.193Z">
+<meta property="article:modified_time" content="2022-12-30T16:14:49.030Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -333,21 +333,17 @@
 <ol>
 <li><p>中央处理单元 (<code>CPU</code>) 是<strong>进行算术和逻辑操作</strong>的部件,包含了：</p>
 <ul>
-<li><p>寄存器 (register)<br>有限数量的存储位置。</p>
-</li>
-<li><p>一个高频时钟<br>时钟 (clock) <strong>对 <code>CPU</code> 内部操作与系统其他组件进行同步</strong>。</p>
-</li>
-<li><p>一个控制单元<br>控制单元 (control unit，<code>CU</code>) <strong>协调参与机器指令执行的步骤序列</strong>。</p>
-</li>
-<li><p>一个算术逻辑单元<br>算术逻辑单元 (arithmetic logic unit，<code>ALU</code>) <strong>执行算术运算</strong>，如加法和减法，以及逻辑运算，如 <code>AND</code> (与)、<code>OR</code>(或) 和 <code>NOT</code> (非)。</p>
-</li>
+<li>寄存器 (register)<br>有限数量的存储位置。</li>
+<li>一个高频时钟<br>时钟 (clock) <strong>对 <code>CPU</code> 内部操作与系统其他组件进行同步</strong>。</li>
+<li>一个控制单元<br>控制单元 (control unit，<code>CU</code>) <strong>协调参与机器指令执行的步骤序列</strong>。</li>
+<li>一个算术逻辑单元<br>算术逻辑单元 (arithmetic logic unit，<code>ALU</code>) <strong>执行算术运算</strong>，如加法和减法，以及逻辑运算，如 <code>AND</code> (与)、<code>OR</code>(或) 和 <code>NOT</code> (非)。</li>
 </ul>
 </li>
-<li><p>内存存储单元 (memory storage unit) 用于<strong>在程序运行时保存指令与数据</strong>。<br>它接受来自 <code>CPU</code> 的数据请求，<strong>将数据从随机存储器（<code>RAM</code>）传输到 <code>CPU</code>，并从 <code>CPU</code> 传输到内存</strong>。由于所有的数据处理都在 <code>CPU</code> 内进行，因此<strong>保存在内存中的程序在执行前需要被复制到 <code>CPU</code> 中</strong>。程序指令在复制到 <code>CPU</code> 时，可以一次复制一条，也可以一次复制多条。</p>
+<li><p>内存存储单元 (memory storage unit) 用于<strong>在程序运行时保存指令与数据</strong>。<br> 它接受来自 <code>CPU</code> 的数据请求，<strong>将数据从随机存储器（<code>RAM</code>）传输到 <code>CPU</code>，并从 <code>CPU</code> 传输到内存</strong>。由于所有的数据处理都在 <code>CPU</code> 内进行，因此<strong>保存在内存中的程序在执行前需要被复制到 <code>CPU</code> 中</strong>。程序指令在复制到 <code>CPU</code> 时，可以一次复制一条，也可以一次复制多条。</p>
 </li>
 <li><p>CPU 通过主板上 CPU 插座的引脚与计算机其他部分相连。大部分引脚连接的是<strong>数据总线</strong>、<strong>控制总线</strong>和<strong>地址总线</strong>。</p>
 </li>
-<li><p>总线 (bus) 是一组并行线，用于<strong>将数据从计算机一个部分传送到另一个部分</strong>。<br>一个计算机系统通常包含<strong>四类总线：数据类，I&#x2F;O类、控制类和地址类</strong>。</p>
+<li><p>总线 (bus) 是一组并行线，用于<strong>将数据从计算机一个部分传送到另一个部分</strong>。<br> 一个计算机系统通常包含<strong>四类总线：数据类，I&#x2F;O类、控制类和地址类</strong>。</p>
 <ul>
 <li>数据总线 (data bus) <strong>在 <code>CPU</code> 和内存之间传输指令和数据</strong>。</li>
 <li>I&#x2F;O总线<strong>在 <code>CPU</code> 和系统输入&#x2F;输出设备之间传输数据</strong>。</li>
@@ -355,7 +351,7 @@
 <li>当前执行指令在 <code>CPU</code> 和内存之间传输数据时，地址总线 (address bus) <strong>用于保持指令和数据的地址</strong>。</li>
 </ul>
 </li>
-<li><p>时钟︰与 CPU 和系统总线相关的每一个操作都是由一个恒定速率的内部时钟脉冲来进行同步。<br><strong>机器指令的基本时间单位</strong>是机器周期 (machine cycle) 或<strong>时钟周期</strong> (clock cycle)。<br>一个时钟周期的时长是一个完整时钟脉冲所需要的时间。<br><strong>执行一条机器指令最少需要1个时钟周期</strong>，有几个需要的时钟则超过了50个（比如8088处理器中的乘法指令)。<br>由于在 <code>CPU</code>、系统总线和内存电路之间存在速度差异，因此，<strong>需要访问内存的指令常常需要空时钟周期</strong>，也被称为<strong>等待状态</strong> (wait states )。</p>
+<li><p>时钟︰与 CPU 和系统总线相关的每一个操作都是由一个恒定速率的内部时钟脉冲来进行同步。<br> <strong>机器指令的基本时间单位</strong>是机器周期 (machine cycle) 或<strong>时钟周期</strong> (clock cycle)。<br> 一个时钟周期的时长是一个完整时钟脉冲所需要的时间。<br> <strong>执行一条机器指令最少需要1个时钟周期</strong>，有几个需要的时钟则超过了50个（比如8088处理器中的乘法指令)。<br> 由于在 <code>CPU</code>、系统总线和内存电路之间存在速度差异，因此，<strong>需要访问内存的指令常常需要空时钟周期</strong>，也被称为<strong>等待状态</strong> (wait states )。</p>
 </li>
 </ol>
 <h2 id="指令执行周期"><a href="#指令执行周期" class="headerlink" title="指令执行周期"></a>指令执行周期</h2><blockquote>
