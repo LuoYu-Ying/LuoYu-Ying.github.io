@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221230231001537.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-909063cd57cd5b2136ff8ed4d04bc5e6_1440w.jpg">
 <meta property="article:published_time" content="2022-12-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-30T17:53:41.176Z">
+<meta property="article:modified_time" content="2022-12-30T17:58:39.079Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -384,16 +384,20 @@
 <ol>
 <li><p>中央处理单元 (<code>CPU</code>) 是<strong>进行算术和逻辑操作</strong>的部件,包含了：</p>
 <ul>
-<li><p>寄存器 (register)<br>有限数量的存储位置。</p>
+<li>寄存器 (register)<br>有限数量的存储位置。</li>
+</ul>
 </li>
-<li><p>一个高频时钟<br>时钟 (clock) <strong>对 <code>CPU</code> 内部操作与系统其他组件进行同步</strong>。</p>
-</li>
+</ol>
+<ul>
+<li>一个高频时钟<br>时钟 (clock) <strong>对 <code>CPU</code> 内部操作与系统其他组件进行同步</strong>。<ul>
 <li><p>一个控制单元<br>控制单元 (control unit，<code>CU</code>) <strong>协调参与机器指令执行的步骤序列</strong>。</p>
 </li>
 <li><p>一个算术逻辑单元<br>算术逻辑单元 (arithmetic logic unit，<code>ALU</code>) <strong>执行算术运算</strong>，如加法和减法，以及逻辑运算，如 <code>AND</code> (与)、<code>OR</code>(或) 和 <code>NOT</code> (非)。</p>
 </li>
 </ul>
 </li>
+</ul>
+<ol start="2">
 <li><p>内存存储单元 (memory storage unit) 用于<strong>在程序运行时保存指令与数据</strong>。<br> 它接受来自 <code>CPU</code> 的数据请求，<strong>将数据从随机存储器（<code>RAM</code>）传输到 <code>CPU</code>，并从 <code>CPU</code> 传输到内存</strong>。由于所有的数据处理都在 <code>CPU</code> 内进行，因此<strong>保存在内存中的程序在执行前需要被复制到 <code>CPU</code> 中</strong>。程序指令在复制到 <code>CPU</code> 时，可以一次复制一条，也可以一次复制多条。</p>
 </li>
 <li><p>CPU 通过主板上 CPU 插座的引脚与计算机其他部分相连。大部分引脚连接的是<strong>数据总线</strong>、<strong>控制总线</strong>和<strong>地址总线</strong>。</p>
