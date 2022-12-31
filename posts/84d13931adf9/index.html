@@ -17,15 +17,19 @@
 <meta property="og:site_name" content="洛语 の Blog">
 <meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第三章学习笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231164950632.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20221231195555.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231174038959.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231175027618.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231202803655.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231190349341.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231191909818.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231192011363.png">
 <meta property="article:published_time" content="2022-12-31T08:52:41.000Z">
-<meta property="article:modified_time" content="2022-12-31T10:39:18.377Z">
+<meta property="article:modified_time" content="2022-12-31T13:47:34.245Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231164950632.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20221231195555.png">
   
     <link rel="alternative" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
   
@@ -208,7 +212,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.3k字</span>
+      <span class="post-count">2.4k字</span>
     </span>
   </span>
 
@@ -217,7 +221,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -236,7 +240,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E9%83%A8%E5%88%86%E5%9F%BA%E6%9C%AC%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">汇编语言部分基本语言元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">程序模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E3%80%81%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">汇编、连接和运行程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">定义数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">内部数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="toc-number">4.2.</span> <span class="toc-text">初始值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.1.</span> <span class="toc-text">定义整数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">4.2.2.</span> <span class="toc-text">定义字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DUP-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.3.</span> <span class="toc-text">DUP 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.4.</span> <span class="toc-text">定义浮点类型</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E9%83%A8%E5%88%86%E5%9F%BA%E6%9C%AC%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">汇编语言部分基本语言元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">程序模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E3%80%81%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">汇编、连接和运行程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86-1"><span class="toc-number">3.1.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">定义数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">内部数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="toc-number">4.2.</span> <span class="toc-text">初始值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.1.</span> <span class="toc-text">定义整数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">4.2.2.</span> <span class="toc-text">定义字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DUP-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.3.</span> <span class="toc-text">DUP 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.4.</span> <span class="toc-text">定义浮点类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86-2"><span class="toc-number">4.3.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%AB%AF%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">小端顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86-3"><span class="toc-number">5.1.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E5%B8%B8%E9%87%8F"><span class="toc-number">6.</span> <span class="toc-text">符号常量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E5%8F%B7%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">等号伪指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%95%B0%E7%BB%84%E5%A4%A7%E5%B0%8F"><span class="toc-number">6.2.</span> <span class="toc-text">计算数组大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%95%B0%E7%BB%84%E5%92%8C%E5%8F%8C%E5%AD%97%E6%95%B0%E7%BB%84"><span class="toc-number">6.3.</span> <span class="toc-text">字数组和双字数组</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -275,13 +279,27 @@
 <p>伪指令 (directive) 是嵌入源代码中的命令，由汇编器识别和执行。</p>
 <p>伪指令不在运行时执行，但是它们可以定义变量、宏和子程序；为内存段分配名称，执行许多其他与汇编器相关的日常任务。</p>
 <p>默认情况下，伪指令不区分大小写。例如，<code>.data</code>，<code>.DATA</code> 和 <code>.Data</code> 是相同的。</p>
+<p><font size = 5><b>定义段</b></font></p>
+<p>汇编器伪指令的一个重要功能是定义程序区段，也称为段 (segment)。</p>
+<p><font size = 5><b>指令</b></font></p>
+<p>指令 (instruction) 是一种语句，它在程序汇编编译时变得可执行。汇编器将指令翻译为机器语言字节，并且在运行时由 <code>CPU</code> 加载和执行。一条指令有四个组成部分：</p>
+<ol>
+<li>标号（可选）</li>
+<li>指令助记符（必需）</li>
+<li>操作数（通常是必需的）</li>
+<li>注释（可选）</li>
+</ol>
+<h2 id="习题整理"><a href="#习题整理" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
+<hr>
+<p>  计算机的 <code>CPU</code> 每执行一个 ( )，就完成一步基本运算。 （D）<br>  A. 软件<br>  B. 算法<br>  C. 程序<br>  D. 指令</p>
+</blockquote>
+<p>解析见上文整理内容。</p>
 <hr>
 <h1 id="程序模板"><a href="#程序模板" class="headerlink" title="程序模板"></a>程序模板</h1><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 52</p>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 52, 67</p>
 </blockquote>
-<p>汇编语言程序有一个简单的结构，并且变化很小。当开始编写一个新程序时，可以从一个空 shell 程序开始，里面有所有基本的元素。通过填写缺省部分，并在新名字下保存该文件就可以避免键入多余的内容。</p>
-<p>下面的程序 (Template.asm) 易于自定义。注意，插入的注释标注了程序员添加自己代码的地方。关键字大小写均可：</p>
-<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231164950632.png" alt="image" style="zoom:67%;" /></center>
+<p>汇编语言程序有一个简单的结构，并且变化很小。当开始编写一个新程序时，可以从一个空 shell 程序开始，里面有所有基本的元素。通过填写缺省部分，并在新名字下保存该文件就可以避免键入多余的内容。关键字大小写均可：</p>
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20221231195555.png" alt="image" style="zoom:67%;" /></center>
 
 <hr>
 <h1 id="汇编、连接和运行程序"><a href="#汇编、连接和运行程序" class="headerlink" title="汇编、连接和运行程序"></a>汇编、连接和运行程序</h1><blockquote>
@@ -295,21 +313,24 @@
 
 <p>对上图每一个步骤进行说明：</p>
 <ol>
-<li><p>编程者用文本编辑器 (text editor) 创建一个 <code>ASCII</code> 文本文件，称之为<strong>源文件</strong>。</p>
-</li>
-<li><p><strong>汇编器</strong>读取源文件，并<strong>生成目标文件</strong>，即对程序的机器语言翻译。或者，它也会生成列表文件。只要出现任何错误，编程者就必须返回步骤1，修改程序。</p>
-</li>
-<li><p><strong>链接器</strong>读取并<strong>检查目标文件</strong>，以便发现该程序是否包含了任何对链接库中过程的调用。链接器从链接库中复制任何被请求的过程，将它们与目标文件组合，以生成<strong>可执行文件</strong>。</p>
-</li>
-<li><p>操作系统<strong>加载</strong>程序将可执行文件读入内存，并使 CPU 分支到该程序起始地址，然后程序开始执行。</p>
-</li>
+<li>编程者用文本编辑器 (text editor) 创建一个 <code>ASCII</code> 文本文件，称之为<strong>源文件</strong>。</li>
+<li><strong>汇编器</strong>读取源文件，并<strong>生成目标文件</strong>，即对程序的机器语言翻译。或者，它也会生成列表文件。只要出现任何错误，编程者就必须返回步骤1，修改程序。</li>
+<li><strong>链接器</strong>读取并<strong>检查目标文件</strong>，以便发现该程序是否包含了任何对链接库中过程的调用。链接器从链接库中复制任何被请求的过程，将它们与目标文件组合，以生成<strong>可执行文件</strong>。</li>
+<li>操作系统<strong>加载</strong>程序将可执行文件读入内存，并使 CPU 分支到该程序起始地址，然后程序开始执行。</li>
 </ol>
+<h2 id="习题整理-1"><a href="#习题整理-1" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
+<hr>
+<p>  在汇编语言中，能将目标文件生成可执行文件的程序是： （C）<br>  A. 调试程序<br>  B. 汇编程序<br>  C. 链接程序<br>  D. 编译程序</p>
+</blockquote>
+<p>链接器从链接库中复制任何被请求的过程，将它们与目标文件组合，以生成<strong>可执行文件</strong>。</p>
 <hr>
 <h1 id="定义数据"><a href="#定义数据" class="headerlink" title="定义数据"></a>定义数据</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》 Page 55</p>
 </blockquote>
 <p><strong>数据定义语句</strong>形如：<code>count DWORD 12345</code>。</p>
 <h2 id="内部数据类型"><a href="#内部数据类型" class="headerlink" title="内部数据类型"></a>内部数据类型</h2><center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231175027618.png" alt="内部数据类型" style="zoom:67%;" /></center>
+
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231202803655.png" alt="image-20221231202803655" style="zoom: 67%;" /></center>
 
 <h2 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a>初始值</h2><h3 id="定义整数类型"><a href="#定义整数类型" class="headerlink" title="定义整数类型"></a>定义整数类型</h3><p>初始值数据定义中<strong>至少要有一个初始值</strong>，即使该值为 0。</p>
 <p>其他初始值，如果有的话，用逗号分隔（例如初始化数组：<code>list BYTE 10, 20, 30</code>）。<strong>对整数数据类型而言，初始值 (initializer) 是整数常量或是与变量类型</strong>，如 <code>BTYE</code> 或 <code>WORD</code> 相匹配的整数表达式。</p>
@@ -321,7 +342,7 @@
 
 <p>十六进制代码 <code>ODh</code> 和 <code>0Ah</code> 也被称为 <code>CR/LF</code> (回车换行符) 或行结束字符。在编写标准输出时，它们将光标移动到当前行的下一行的左侧。</p>
 <h3 id="DUP-操作符"><a href="#DUP-操作符" class="headerlink" title="DUP 操作符"></a>DUP 操作符</h3><p>DUP 操作符使用一个整数表达式作为计数器，<strong>为多个数据项分配存储空间</strong>。在为字符串或数组分配存储空间时，这个操作符非常有用，它可以使用初始化或非初始化数据：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BYTE20 DUP(O)       ; 20个字节，值都为0</span><br><span class="line">BYTE20 DUP(?)       ; 20个字节，非初始化</span><br><span class="line">BYTE 4 DUP(&quot;STACK&quot;) ; 20个字节</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BYTE 20 DUP(O)       ; 20个字节，值都为0</span><br><span class="line">BYTE 20 DUP(?)       ; 20个字节，非初始化</span><br><span class="line">BYTE  4 DUP(&quot;STACK&quot;) ; 20个字节</span><br></pre></td></tr></table></figure>
 
 <h3 id="定义浮点类型"><a href="#定义浮点类型" class="headerlink" title="定义浮点类型"></a>定义浮点类型</h3><ul>
 <li><p>REAL4定义4字节单精度浮点变量。</p>
@@ -333,6 +354,96 @@
 </ul>
 <p>每个伪指令都需要一个或多个实常数初始值：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rVal1 	    REAL4   -1.2</span><br><span class="line">rVal2 	    REAL8   3.2E-260</span><br><span class="line">rVal3 	    REAL10 	4.6E+4096</span><br><span class="line">shortArray 	REAL4   20 DUP(0.0)</span><br></pre></td></tr></table></figure>
+
+<p>下图描述了标准实数类型的最少有效数字个数和近似范围：</p>
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231190349341.png" alt="标准实数类型" style="zoom:67%;" /></center>
+
+
+
+<h2 id="习题整理-2"><a href="#习题整理-2" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
+<hr>
+<p>  语句“array WORD 6 DUP (4)”分配主存的存储单元个数是：（B）<br>  A. 6<br>  B. 12<br>  C. 24<br>  D. 48</p>
+</blockquote>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115640956">吐血整理！这篇带你彻底理解主存中存储单元地址的分配 - 知乎 (zhihu.com)</a></p>
+<p>通常都是以8位二进制为一个存储单元，也就是一个字节。一个 <code>WORD</code> 拥有2个字节，<code>DUP</code> 前面的数字为6，表示共创建6个 <code>WORD</code>，即共12个字节。</p>
+<blockquote>
+<hr>
+<p>  语句“array WORD 10 DUP (?)”分配主存的存储单元个数是：（20）</p>
+</blockquote>
+<p>解析无</p>
+<blockquote>
+<hr>
+<p>  语句“array DWORD 10,20,30,40”分配主存的存储单元个数是：（16）</p>
+</blockquote>
+<p>解析无</p>
+<blockquote>
+<hr>
+<p>  语句“array WORD 10,20,30,40”分配主存的存储单元个数是：（8）</p>
+</blockquote>
+<p>解析无</p>
+<blockquote>
+<hr>
+<p>  语句“array DWORD 10,20,30,40,50”分配主存的存储单元个数是：（20）</p>
+</blockquote>
+<p>解析无</p>
+<blockquote>
+<hr>
+<p>  语句“array word 5 dup(1, 2)”分配主存的存储单元个数是：（10）</p>
+</blockquote>
+<p><em><strong>待添加注释</strong></em></p>
+<hr>
+<h1 id="小端顺序"><a href="#小端顺序" class="headerlink" title="小端顺序"></a>小端顺序</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 62</p>
+</blockquote>
+<p>x86 处理器在内存中按<strong>小端顺序</strong> (低到高) <strong>存放和检索数据</strong>。</p>
+<p>最低有效字节存放在分配给该数据的第一个内存地址中，剩余字节存放在随后的连续内存位置中。</p>
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231191909818.png" alt="image-20221231191909818" style="zoom:60%;" /></center>
+
+<p>其他有些计算机系统采用的是大端顺序(高到低)。下图展示了 12345678h 从偏移量 0000 开始的大端顺序存放。</p>
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231192011363.png" alt="image-20221231192011363" style="zoom:63%;" /><center>
+
+
+
+<h2 id="习题整理-3"><a href="#习题整理-3" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
+<hr>
+<p>  下列哪个数据伪指令定义32位无符号整数变量：（D）<br>  A. WORD<br>  B. SWORD<br>  C. BYTE<br>  D. DWORD</p>
+</blockquote>
+<p><code>WORD</code> 16位无符号整数；<code>SWORD</code> 16位有符号整数；<code>BYTE</code> 8位无符号整数；<code>DWORD</code> 32位无符号整数。</p>
+<blockquote>
+<hr>
+<p>  下列哪个数据伪指令定义16位有符号整数变量：（B）<br>  A. WORD<br>  B. SWORD<br>  C. BYTE<br>  D. SBYTE</p>
+</blockquote>
+<p><code>WORD</code> 16位无符号整数；<code>SWORD</code> 16位有符号整数；<code>BYTE</code> 8位无符号整数；<code>SBYTE</code> 8位有符号整数。</p>
+<blockquote>
+<hr>
+<p>  下列哪个数据伪指令定义16位无符号整数变量？（C）<br>  A. DWORD<br>  B. SWORD<br>  C. WORD<br>  D. SDWORD</p>
+</blockquote>
+<p>解析无</p>
+<blockquote>
+<hr>
+<p>  下列哪个数据伪指令定义32位有符号整数变量？（D）<br>  A. DWORD<br>  B. SWORD<br>  C. FWORD<br>  D. SDWORD</p>
+</blockquote>
+<p>解析无</p>
+<blockquote>
+<hr>
+<p>  下列哪个数据伪指令定义8位有符号整数变量？（SBYTE）</p>
+</blockquote>
+<hr>
+<h1 id="符号常量"><a href="#符号常量" class="headerlink" title="符号常量"></a>符号常量</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 63</p>
+</blockquote>
+<h2 id="等号伪指令"><a href="#等号伪指令" class="headerlink" title="等号伪指令"></a>等号伪指令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = expression</span><br></pre></td></tr></table></figure>
+
+<p>通常，表达式是一个32位的整数值。当程序进行汇编时，在汇编器预处理阶段，所有出现的 name 都会被替换为 expression。类比 C 语言的 <code>#define name expression</code>。</p>
+<h2 id="计算数组大小"><a href="#计算数组大小" class="headerlink" title="计算数组大小"></a>计算数组大小</h2><p><code>$</code> 运算符（当前地址计数器）返回当前程序语句的偏移量。在下例中，从当前地址计数器（<code>$</code>）中减去list的偏移量，计算得到 ListSize。<strong>ListSize 必须紧跟在 list 的后面。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br></pre></td></tr></table></figure>
+
+<h2 id="字数组和双字数组"><a href="#字数组和双字数组" class="headerlink" title="字数组和双字数组"></a>字数组和双字数组</h2><p>当要计算元素数量的数组中包含的不是字节时，就应该用数组总的大小（按字节计）除以单个元素的大小。</p>
+<p>比如，在下例中，由于数组中的每个字要占2个字节（16位)，因此，地址范围应该除以2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list WORD 1000h, 2000h, 3000h, 4000h</span><br><span class="line">ListSize = ($ - list) / 2</span><br></pre></td></tr></table></figure>
+
+<p>同样，双字数组中每个元素长4个字节，因此，其总长度除以4才能产生数组元素的个数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list DOWRD 10000000h, 20000000h, 30000000h, 40000000h</span><br><span class="line">ListSize = ($ - list) / 4</span><br></pre></td></tr></table></figure>
 
 
     

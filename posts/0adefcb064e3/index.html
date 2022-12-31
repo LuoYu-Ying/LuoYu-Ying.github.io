@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221230231001537.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-909063cd57cd5b2136ff8ed4d04bc5e6_1440w.jpg">
 <meta property="article:published_time" content="2022-12-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-31T07:57:35.966Z">
+<meta property="article:modified_time" content="2022-12-31T13:35:33.515Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -208,7 +208,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">5k字</span>
+      <span class="post-count">5.3k字</span>
     </span>
   </span>
 
@@ -217,7 +217,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">17分</span>
+      <span class="post-count">19分</span>
     </span>
   </span>
 </div>
@@ -403,6 +403,21 @@
 <p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29350001/article/details/51177404">LSB最低有效位和MSB最高有效位_聚优致成的博客-CSDN博客_最低有效位</a></p>
 <p>最低有效位是指一个二进制数字中的即最低位，具有权值为 $2^0$，可以用它来检测数的奇偶性。在大端序中，<code>LSB</code> 指最右边的位。</p>
 <p>最高有效位是指一个n位二进制数字中的最高位，具有最高的权值为 $2^n - 1$。在大端序中，<code>MSB</code> 即指最左端的位。对于有符号二进制数，负数采用反码或补码形式，此时 <code>MSB</code>用来表示符号，<code>MSB</code> 为 1 表示负数，为 0 表示正数。</p>
+<blockquote>
+<hr>
+<p>  对于下列8位有符号数来说，最小的是：（D）<br>  A. 0<br>  B. 00101100B<br>  C. 75H<br>  D. 11010110B</p>
+</blockquote>
+<p>A B C 都为正数。而 D 的符号位为 1，表示负数。</p>
+<blockquote>
+<hr>
+<p>  负数在内存里是以其哪种形式存放？（C）<br>  A. 原码<br>  B. 反码<br>  C. 补码<br>  D. 真值</p>
+</blockquote>
+<p>参考上文整理内容。</p>
+<blockquote>
+<hr>
+<p>  对于下列8位有符号数来说，哪个值最大？（B）<br>  A. FFH<br>  B. 48H<br>  C. 70<br>  D. 11010110</p>
+</blockquote>
+<p>A ：-1；B：72；C：70；D：-42。</p>
 <hr>
 <h1 id="x86-处理器架构"><a href="#x86-处理器架构" class="headerlink" title="x86 处理器架构"></a>x86 处理器架构</h1><h2 id="基本微机设计"><a href="#基本微机设计" class="headerlink" title="基本微机设计"></a>基本微机设计</h2><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 23</p>
@@ -481,6 +496,10 @@
 <p>  当处理器能够在 <code>cache</code> 存储器中发现想要的数据，则称为 <code>cache</code>（命中）。<br>  反之，如果 <code>CPU</code> 在 <code>cache</code> 中没有找到数据，则称为 <code>cache</code>（未命中）。</p>
 </blockquote>
 <p>参考上文整理内容。</p>
+<blockquote>
+<p>  CPU可以用来描述计算机的：（A）<br>  A. 运算速度<br>  B. 输入功率<br>  C. 磁盘转速<br>  D. 更新频率</p>
+</blockquote>
+<p><em><strong>解析待添加</strong></em></p>
 <hr>
 <h1 id="x86-处理器"><a href="#x86-处理器" class="headerlink" title="x86 处理器"></a>x86 处理器</h1><h2 id="操作模式"><a href="#操作模式" class="headerlink" title="操作模式"></a>操作模式</h2><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 27</p>
@@ -539,6 +558,26 @@
 <p>  算术或逻辑操作产生结果为零时，设置（零）标志位；<br>  与目标位置相比，有符号算术运算结果太大或太小时，设置（溢出）标志位。</p>
 </blockquote>
 <p>参考上文整理内容。</p>
+<blockquote>
+<hr>
+<p>  下列标志位中，可用来判断无符号数运算结果太大的是：（B）<br>  A. OF<br>  B. CF<br>  C. ZF<br>  D. SF</p>
+</blockquote>
+<p>参考上文整理内容。</p>
+<blockquote>
+<hr>
+<p>  下列几种存储器中，存取速度最快的是：（B）<br>  A. Cache<br>  B. 寄存器<br>  C. 内存<br>  D. 光盘</p>
+</blockquote>
+<p>在存储器层次结构中，存储器速度从最快到最慢的排列顺序是：<strong>寄存器 -&gt; <code>cache</code> -&gt; 主存 -&gt; 辅存</strong>。</p>
+<blockquote>
+<hr>
+<p>  在程序执行过程中，EIP寄存器保存的是？（B）<br>  A. 上一条已执行指令的地址<br>  B. 下一条即将要执行指令的地址<br>  C. 正在执行指令的地址<br>  D. 当前堆栈的栈顶</p>
+</blockquote>
+<p>参考上文整理内容。</p>
+<blockquote>
+<hr>
+<p>  下列标志位中，可用来判断计算结果为零的是？（$ZF$）</p>
+</blockquote>
+<p>零标志位 (<code>ZF</code>)、算术或逻辑操作产生的<strong>结果为零</strong>时，设置该标志位。</p>
 <hr>
 
     
