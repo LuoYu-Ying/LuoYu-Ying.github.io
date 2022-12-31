@@ -18,8 +18,10 @@
 <meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第三章学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231164950632.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231174038959.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231175027618.png">
 <meta property="article:published_time" content="2022-12-31T08:52:41.000Z">
-<meta property="article:modified_time" content="2022-12-31T09:00:40.013Z">
+<meta property="article:modified_time" content="2022-12-31T09:52:18.859Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -206,7 +208,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">396字</span>
+      <span class="post-count">800字</span>
     </span>
   </span>
 
@@ -215,7 +217,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -234,7 +236,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">汇编语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E5%B8%B8%E9%87%8F"><span class="toc-number">1.1.</span> <span class="toc-text">整数常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F"><span class="toc-number">1.2.</span> <span class="toc-text">字符串常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">伪指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">程序模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E3%80%81%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">汇编、连接和运行程序</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E9%83%A8%E5%88%86%E5%9F%BA%E6%9C%AC%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">汇编部分基本语言元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">程序模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E3%80%81%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">汇编、连接和运行程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">定义数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">内部数据类型</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -261,13 +263,16 @@
 
 <span id="more"></span>
 
-<h1 id="汇编语言基础"><a href="#汇编语言基础" class="headerlink" title="汇编语言基础"></a>汇编语言基础</h1><blockquote>
+<h1 id="汇编部分基本语言元素"><a href="#汇编部分基本语言元素" class="headerlink" title="汇编部分基本语言元素"></a>汇编部分基本语言元素</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》 Page 42</p>
 </blockquote>
-<h2 id="整数常量"><a href="#整数常量" class="headerlink" title="整数常量"></a>整数常量</h2><p>以字母开头的十六进制数必须加个前置0，以防汇编器将其解释为标识符。</p>
-<h2 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h2><p>和字符常量以整数形式存放一样，字符串常量在内存中的保存形式为<strong>整数字节数值序列</strong>。</p>
+<p><font size = 5><b>整数常量</b></font></p>
+<p>以字母开头的十六进制数必须加个前置0，以防汇编器将其解释为标识符。</p>
+<p><font size = 5><b>字符串常量</b></font></p>
+<p>和字符常量以整数形式存放一样，字符串常量在内存中的保存形式为<strong>整数字节数值序列</strong>。</p>
 <p>例如，字符串常量 “ABCD” 就包含四个字节41h、42h、43h、44h。</p>
-<h2 id="伪指令"><a href="#伪指令" class="headerlink" title="伪指令"></a>伪指令</h2><p>伪指令 (directive) 是嵌入源代码中的命令，由汇编器识别和执行。</p>
+<p><font size = 5><b>伪指令</b></font></p>
+<p>伪指令 (directive) 是嵌入源代码中的命令，由汇编器识别和执行。</p>
 <p>伪指令不在运行时执行，但是它们可以定义变量、宏和子程序；为内存段分配名称，执行许多其他与汇编器相关的日常任务。</p>
 <p>默认情况下，伪指令不区分大小写。例如，<code>.data</code>，<code>.DATA</code> 和 <code>.Data</code> 是相同的。</p>
 <hr>
@@ -275,11 +280,36 @@
 <p>  《汇编语言：基于x86处理器（原书第7版）》 Page 52</p>
 </blockquote>
 <p>汇编语言程序有一个简单的结构，并且变化很小。当开始编写一个新程序时，可以从一个空 shell 程序开始，里面有所有基本的元素。通过填写缺省部分，并在新名字下保存该文件就可以避免键入多余的内容。</p>
-<p>下面的程序 (Template.asm) 易于自定义。注意，插入的注释标注了程序员添加自己代码的地方。关键字大小写均可:</p>
+<p>下面的程序 (Template.asm) 易于自定义。注意，插入的注释标注了程序员添加自己代码的地方。关键字大小写均可：</p>
 <center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231164950632.png" alt="image" style="zoom:67%;" /></center>
 
 <hr>
-<h1 id="汇编、连接和运行程序"><a href="#汇编、连接和运行程序" class="headerlink" title="汇编、连接和运行程序"></a>汇编、连接和运行程序</h1>
+<h1 id="汇编、连接和运行程序"><a href="#汇编、连接和运行程序" class="headerlink" title="汇编、连接和运行程序"></a>汇编、连接和运行程序</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 53</p>
+</blockquote>
+<p>用汇编语言编写的源程序不能直接在其目标计算机上执行，必须通过翻译或汇编将其转换为可执行代码。汇编器生成包含机器语言的文件，称为目标文件 (object file)。</p>
+<p>这个文件还没有准备好执行，它还需传递给一个被称为链接器 (linker) 的程序，从而生成可执行文件 (executable file)。</p>
+<p>这个文件就准备好在操作系统命令提示符下执行。</p>
+<p><font size = 5><b>汇编-连接-执行周期</b></font></p>
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231174038959.png" alt="汇编-连接-执行周期" style="zoom: 67%;" /></center>
+
+<p>对上图每一个步骤进行说明：</p>
+<ol>
+<li><p>编程者用文本编辑器 (text editor) 创建一个 <code>ASCII</code> 文本文件，称之为<strong>源文件</strong>。</p>
+</li>
+<li><p><strong>汇编器</strong>读取源文件，并<strong>生成目标文件</strong>，即对程序的机器语言翻译。或者，它也会生成列表文件。只要出现任何错误，编程者就必须返回步骤1，修改程序。</p>
+</li>
+<li><p><strong>链接器</strong>读取并<strong>检查目标文件</strong>，以便发现该程序是否包含了任何对链接库中过程的调用。链接器从链接库中复制任何被请求的过程，将它们与目标文件组合，以生成<strong>可执行文件</strong>。</p>
+</li>
+<li><p>操作系统<strong>加载</strong>程序将可执行文件读入内存，并使 CPU 分支到该程序起始地址，然后程序开始执行。</p>
+</li>
+</ol>
+<hr>
+<h1 id="定义数据"><a href="#定义数据" class="headerlink" title="定义数据"></a>定义数据</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 55</p>
+</blockquote>
+<p><strong>数据定义语句</strong>形如：<code>count DWORD 12345</code>。</p>
+<h2 id="内部数据类型"><a href="#内部数据类型" class="headerlink" title="内部数据类型"></a>内部数据类型</h2><center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221231175027618.png" alt="内部数据类型" style="zoom:67%;" /></center>
     
 
     
