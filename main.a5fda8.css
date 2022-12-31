@@ -4171,7 +4171,7 @@ a.pswp__share--download:hover {
     font-size: 12px;
     padding: 10px;
     position: fixed;
-    right: 35px;
+    right: 40px;
     top: 129px
 }
 
@@ -4330,11 +4330,11 @@ a.pswp__share--download:hover {
     width: 30px;
     min-height: 14px;
     overflow: hidden;
-    padding: 4px 6px 8px 5px;
+    padding: 0px 6px 8px 5px;
     border: 1px solid #ddd;
     border-right: none;
     position: fixed;
-    right: 40px;
+    right: 10px;
     text-align: center;
     background-color: #f9f9f9
 }
