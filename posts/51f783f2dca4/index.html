@@ -374,7 +374,9 @@
 		var now = new Date();
 
 		function createtime() {
-			var grt = new Date("04/14/2022 18:00:00"); //此处修改你的建站时间或者网站上线时间 
+			var create_time = '04/14/2022 18:00:00';
+			var grt = new Date(create_time); //此处修改你的建站时间或者网站上线时间 
+			// var grt = new Date("04/14/2022 18:00:00"); //此处修改你的建站时间或者网站上线时间 
 			now.setTime(now.getTime() + 250);
 			days = (now - grt) / 1000 / 60 / 60 / 24;
 			dnum = Math.floor(days);

@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="2022.12.31  博客更换为 Yilia 主题。  添加了文章目录功能，手机也能更好的跳转文章啦！ 添加了网页运行时间显示，已经运行260天了！     2022.04.14  创建博客，使用了 Butterfly 主题。">
+  <meta name="description" content="2022.12.31  博客更换为 yilia-plus 主题。  添加了文章目录功能，手机也能更好的跳转文章啦！ 添加了网页运行时间显示，已经运行260天了！     2022.04.14  创建博客，使用了 butterfly 主题。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="博客更新日志">
 <meta property="og:url" content="https://luoyu-ying.github.io/updatelog/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="2022.12.31  博客更换为 Yilia 主题。  添加了文章目录功能，手机也能更好的跳转文章啦！ 添加了网页运行时间显示，已经运行260天了！     2022.04.14  创建博客，使用了 Butterfly 主题。">
+<meta property="og:description" content="2022.12.31  博客更换为 yilia-plus 主题。  添加了文章目录功能，手机也能更好的跳转文章啦！ 添加了网页运行时间显示，已经运行260天了！     2022.04.14  创建博客，使用了 butterfly 主题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-31T06:46:30.983Z">
-<meta property="article:modified_time" content="2022-12-31T06:46:30.983Z">
+<meta property="article:published_time" content="2022-12-31T06:52:12.447Z">
+<meta property="article:modified_time" content="2022-12-31T06:52:12.447Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta name="twitter:card" content="summary">
   
@@ -190,7 +190,7 @@
         </span>
 
 <a href="/updatelog/index.html" class="archive-article-date">
-        <time datetime="2022-12-31T06:46:30.983Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-31</time>
+        <time datetime="2022-12-31T06:52:12.447Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-31</time>
 </a>
 
   
@@ -203,7 +203,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">63字</span>
+      <span class="post-count">64字</span>
     </span>
   </span>
 
@@ -232,7 +232,7 @@
     <blockquote>
 <p>  2022.12.31</p>
 </blockquote>
-<p>博客更换为 <code>Yilia</code> 主题。</p>
+<p>博客更换为 <code>yilia-plus</code> 主题。</p>
 <ul>
 <li>添加了文章目录功能，手机也能更好的跳转文章啦！</li>
 <li>添加了网页运行时间显示，已经运行260天了！</li>
@@ -240,7 +240,7 @@
 <blockquote>
 <p>  2022.04.14</p>
 </blockquote>
-<p>创建博客，使用了 <code>Butterfly</code> 主题。</p>
+<p>创建博客，使用了 <code>butterfly</code> 主题。</p>
 
     
 
@@ -332,7 +332,9 @@
 		var now = new Date();
 
 		function createtime() {
-			var grt = new Date("04/14/2022 18:00:00"); //此处修改你的建站时间或者网站上线时间 
+			var create_time = '04/14/2022 18:00:00';
+			var grt = new Date(create_time); //此处修改你的建站时间或者网站上线时间 
+			// var grt = new Date("04/14/2022 18:00:00"); //此处修改你的建站时间或者网站上线时间 
 			now.setTime(now.getTime() + 250);
 			days = (now - grt) / 1000 / 60 / 60 / 24;
 			dnum = Math.floor(days);
