@@ -83,6 +83,10 @@
 				
 			
 				
+					<a q-on="click: openSlider(e, 'onlytopic')" href="javascript:void(0)">专题</a>
+				
+			
+				
 					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
 				
 			
@@ -442,21 +446,29 @@
       
       
     
+      
+      
+      
+    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'onlytopic')"><a href="javascript:void(0)" q-class="active:onlytopic">专题</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 25%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -557,7 +569,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">大三软件工程在读学生<br><br>主要技术学习：<br>移动开发<br>其他技术学习：<br>AutoHotKey<br>Front-End<br><br>欢迎一起来交流！</div>
+  	  		<div class="aboutme-wrap" id="aboutme">大三软件工程在读学生<br><br>主要技术学习：<br>- 移动开发<br>其他技术学习：<br>- AutoHotKey<br>- Front-End<br><br>欢迎一起来交流！</div>
   	  	
     	</section>
     
