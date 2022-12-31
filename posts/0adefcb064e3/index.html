@@ -228,6 +228,36 @@
   
   </header>
   
+
+  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
+  
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">汇编语言基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">数据表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E5%AD%98%E5%82%A8%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.1.</span> <span class="toc-text">整数存储大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">补码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86-1"><span class="toc-number">2.3.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x86-%E5%A4%84%E7%90%86%E5%99%A8%E6%9E%B6%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">x86 处理器架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%BE%AE%E6%9C%BA%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">基本微机设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F"><span class="toc-number">3.2.</span> <span class="toc-text">指令执行周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%86%85%E5%AD%98"><span class="toc-number">3.3.</span> <span class="toc-text">读取内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86-2"><span class="toc-number">3.4.</span> <span class="toc-text">习题整理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x86-%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">x86 处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.1.</span> <span class="toc-text">操作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-number">4.2.</span> <span class="toc-text">地址空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">4.3.1.</span> <span class="toc-text">通用寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%8C%87%E9%92%88"><span class="toc-number">4.3.2.</span> <span class="toc-text">指令指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-number">4.3.3.</span> <span class="toc-text">状态标志位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E6%95%B4%E7%90%86-3"><span class="toc-number">4.4.</span> <span class="toc-text">习题整理</span></a></li></ol></li></ol>
+        </div>
+  <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+  </script>
+      
+  <!-- 目录内容结束 -->
+
+
   <div class="article-entry" itemprop="articleBody">
     
     <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第一、二章学习笔记</b></font></center><br>
@@ -532,7 +562,6 @@
         <li>
           <strong>本文链接：</strong>
           <a href="https://luoyu-ying.github.io/posts/0adefcb064e3/" title="汇编语言:基于x86处理器-学习笔记-Part1" target="_blank">https://luoyu-ying.github.io/posts/0adefcb064e3/</a>
-          <!-- <a href="https://luoyu-ying.github.io/posts/0adefcb064e3/" title="汇编语言:基于x86处理器-学习笔记-Part1" target="_blank">https://luoyu-ying.github.io/posts/0adefcb064e3/</a> -->
         </li>
         
         <li>
