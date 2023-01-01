@@ -22,8 +22,9 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101154536720.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101154801107.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101154848550.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101155132150.png">
 <meta property="article:published_time" content="2023-01-01T05:10:34.000Z">
-<meta property="article:modified_time" content="2023-01-01T07:50:17.641Z">
+<meta property="article:modified_time" content="2023-01-01T07:54:33.613Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -216,7 +217,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.2k字</span>
+      <span class="post-count">1.3k字</span>
     </span>
   </span>
 
@@ -345,7 +346,7 @@
 <p>本例的有效结果是用源操作数的最高位（1）来填充目的操作数ECX的高16位，这种技术称为符号扩展( sign extension)。</p>
 <p>当然，不能总是假设源操作数的最高位是1。</p>
 <p>幸运的是，Intel 的工程师在设计指令集时已经预见到了这个问题，因此，设置了 <strong>MOVZX</strong> 和 <strong>MOVSX</strong> 指令来分别处理<strong>无符号整数</strong>和<strong>有符号整数</strong>。</p>
-<h3 id="MOVZX-指令"><a href="#MOVZX-指令" class="headerlink" title="MOVZX 指令"></a>MOVZX 指令</h3><p>MOVZX 指令（进行全零扩展并传送）将源操作数复制到目的操作数，<strong>并把目的操作数 &#x3D;&#x3D;0 扩展&#x3D;&#x3D;到 16 位或 32 位</strong>。</p>
+<h3 id="MOVZX-指令"><a href="#MOVZX-指令" class="headerlink" title="MOVZX 指令"></a>MOVZX 指令</h3><p>MOVZX 指令（进行全零扩展并传送）将源操作数复制到目的操作数，<strong>并把目的操作数 <mark>0 扩展</mark>到 16 位或 32 位</strong>。</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101154536720.png" alt="image-20230101154536720" style="zoom:53%;" />
 
 <p>这条指令<strong>只用于无符号整数</strong>，有三种不同的形式：</p>
@@ -356,8 +357,13 @@
 
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101154848550.png" alt="" style="zoom:67%;" />
 
-<h3 id="MOVSX-指令"><a href="#MOVSX-指令" class="headerlink" title="MOVSX 指令"></a>MOVSX 指令</h3><p>MOVSX 指令（进行符号扩展并传送）将源操作数内容复制到目的操作数，<strong>并把目的操作数&#x3D;&#x3D;符号扩展&#x3D;&#x3D;到 16 位或 32 位。</strong></p>
-<p>这条指令只用于有符号整数，有三种不同的形式:</p>
+<h3 id="MOVSX-指令"><a href="#MOVSX-指令" class="headerlink" title="MOVSX 指令"></a>MOVSX 指令</h3><p>MOVSX 指令（进行符号扩展并传送）将源操作数内容复制到目的操作数，<strong>并把目的操作数<mark>符号扩展</mark>到 16 位或 32 位。</strong></p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101155132150.png" alt="image-20230101155132150" style="zoom:53%;" />
+
+<p>这条指令只用于有符号整数，有三种不同的形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MOVSX reg32, reg/mem8</span><br><span class="line">MOVSX reg32, reg/mem16</span><br><span class="line">MOVSX reg16, reg/mem8</span><br></pre></td></tr></table></figure>
+
+<p>操作数进行符号扩展时，在目的操作数的全部扩展位上重复(复制)长度较小操作数的最高位。下面的例子是将二进制数1000 1111b进行符号扩展并传送到AX：</p>
 
     
 
