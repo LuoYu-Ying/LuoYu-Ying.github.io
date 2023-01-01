@@ -27,8 +27,11 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164424148.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164502334.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101174947466.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101191245030.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101191614251.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101191653807.png">
 <meta property="article:published_time" content="2023-01-01T05:10:34.000Z">
-<meta property="article:modified_time" content="2023-01-01T11:05:28.395Z">
+<meta property="article:modified_time" content="2023-01-01T11:21:10.479Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -221,7 +224,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3.4k字</span>
+      <span class="post-count">3.7k字</span>
     </span>
   </span>
 
@@ -230,7 +233,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">12分</span>
+      <span class="post-count">13分</span>
     </span>
   </span>
 </div>
@@ -249,7 +252,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">操作数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">操作数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">直接内存操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5-%E5%81%8F%E7%A7%BB%E9%87%8F%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">直接-偏移量操作数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">数据传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MOV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">MOV 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E5%85%A8%E9%9B%B6-x2F-%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.</span> <span class="toc-text">整数的全零&#x2F;符号扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVZX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">MOVZX 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVSX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">MOVSX 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LAHF-%E5%92%8C-SAHF-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">LAHF 和 SAHF 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XCHG-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">XCHG 指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B1"><span class="toc-number">3.</span> <span class="toc-text">程序示例1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E5%92%8C%E5%87%8F%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">加法和减法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#INC-%E5%92%8C-DEC-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">INC 和 DEC 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADD-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">ADD 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUB-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">SUB 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEG-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.4.</span> <span class="toc-text">NEG 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%87%8F%E6%B3%95%E5%BD%B1%E5%93%8D%E7%9A%84%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-number">4.5.</span> <span class="toc-text">加减法影响的标志位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%92%8C%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">和数据相关的操作符和伪指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OFFSET-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.1.</span> <span class="toc-text">OFFSET 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALIGN-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.2.</span> <span class="toc-text">ALIGN 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTR-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.3.</span> <span class="toc-text">PTR 操作符</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">操作数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">操作数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">直接内存操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5-%E5%81%8F%E7%A7%BB%E9%87%8F%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">直接-偏移量操作数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">数据传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MOV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">MOV 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E5%85%A8%E9%9B%B6-x2F-%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.</span> <span class="toc-text">整数的全零&#x2F;符号扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVZX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">MOVZX 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVSX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">MOVSX 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LAHF-%E5%92%8C-SAHF-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">LAHF 和 SAHF 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XCHG-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">XCHG 指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B1"><span class="toc-number">3.</span> <span class="toc-text">程序示例1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E5%92%8C%E5%87%8F%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">加法和减法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#INC-%E5%92%8C-DEC-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">INC 和 DEC 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADD-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">ADD 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUB-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">SUB 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEG-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.4.</span> <span class="toc-text">NEG 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%87%8F%E6%B3%95%E5%BD%B1%E5%93%8D%E7%9A%84%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-number">4.5.</span> <span class="toc-text">加减法影响的标志位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%92%8C%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">和数据相关的操作符和伪指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OFFSET-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.1.</span> <span class="toc-text">OFFSET 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALIGN-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.2.</span> <span class="toc-text">ALIGN 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTR-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.3.</span> <span class="toc-text">PTR 操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TYPE-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.4.</span> <span class="toc-text">TYPE 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LENGTHOF-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.5.</span> <span class="toc-text">LENGTHOF 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIZEOF-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.6.</span> <span class="toc-text">SIZEOF 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LABEL-%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">5.7.</span> <span class="toc-text">LABEL 伪指令</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -403,7 +406,7 @@
 <h1 id="程序示例1"><a href="#程序示例1" class="headerlink" title="程序示例1"></a>程序示例1</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》 Page 79</p>
 </blockquote>
-<p>该程序中包含了本节之前介绍的所有指令，包括：MOV、XCHG、MOVSX 和 MOVZX，展示了字节、字和双字是如何受到它们的影响。同时，程序中还包括了一些直接-偏移量操作数。</p>
+<p>该程序中包含了本文之前介绍的所有指令，包括：MOV、XCHG、MOVSX 和 MOVZX，展示了字节、字和双字是如何受到它们的影响。同时，程序中还包括了一些直接-偏移量操作数。</p>
 <center><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164424148.png" alt="" style="zoom:67%;" /><br><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164502334.png" alt="" style="zoom:67%;" /></p></center>
 
 <hr>
@@ -476,13 +479,32 @@
 <p>请注意，dVal 的偏移量原本是 0040 4005，但是 <code>ALIGN 4</code> 伪指令使它的偏移量成为 0040 4008。</p>
 <h2 id="PTR-操作符"><a href="#PTR-操作符" class="headerlink" title="PTR 操作符"></a>PTR 操作符</h2><p>PTR 操作符来重载操作数声明的默认尺寸，这在试图以不同于变量声明时所使用的尺寸属性访问变量的时候非常有用。</p>
 <p>例如，假设要讲双字变量 myDouble 的低 16 位传送给 AX 寄存器，由于操作数大小不匹配，编译器将不允许下面的数据传送指令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">myDouble DOWRD 12345678h</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">MOV ax, myDouble          ;错误</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">myDouble DOWRD 12345678h</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">MOV ax, myDouble          ; 错误</span><br></pre></td></tr></table></figure>
 
 <p>但是 <code>WORD PTR</code> 操作符使得将低字（5678）传送给 AX 成为可能：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV ax, WORD PTR myDouble</span><br></pre></td></tr></table></figure>
 
 <p>注意，<strong>PTR 必须与一个标准汇编数据类型一起使用</strong>，这些类型包括：BYTE、SBYTE、WORD、SWORD、DWORD、SDWORD、FWORD、QWORD 或 TBYTE。</p>
+<h2 id="TYPE-运算符"><a href="#TYPE-运算符" class="headerlink" title="TYPE 运算符"></a>TYPE 运算符</h2><p>TYPE运算符返回变量单个元素的大小，这个大小是<strong>以字节为单位</strong>计算的。</p>
+<p>比如，TYPE为字节，返回值是1 ；TYPE为字，返回值是2；TYPE为双字，返回值是4；TYPE为四字,返回值是8。</p>
+<p>示例如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">Var1 BYTE  ?</span><br><span class="line">Var2 WORD  ?</span><br><span class="line">Var3 DWORD ?</span><br><span class="line">Var4 QWORD ?</span><br></pre></td></tr></table></figure>
 
+<p>下面是每个 TYPE 表达式的值：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101191245030.png" style="zoom: 67%;" />
+
+<h2 id="LENGTHOF-运算符"><a href="#LENGTHOF-运算符" class="headerlink" title="LENGTHOF 运算符"></a>LENGTHOF 运算符</h2><p>LENGTHOF 运算符计算数组中元素的个数，元素个数是由数组标号同一行出现的数值来定义的。示例如下：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101191614251.png" style="zoom:80%;" />
+
+<p>如果数组定义中出现了嵌套的 DUP 运算符，那么 LENGTHOF 返回的是两个数值的乘积。</p>
+<p>下表列出了每个 LENGTHOF 表达式返回的数值。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101191653807.png" style="zoom:67%;" />
+
+<h2 id="SIZEOF-运算符"><a href="#SIZEOF-运算符" class="headerlink" title="SIZEOF 运算符"></a>SIZEOF 运算符</h2><p>SIZEOF 运算符返回值等于 LENGTHOF 与 TYPE 返回值的乘积。</p>
+<p>如下例所示，intArray 数组的 TYPE &#x3D; 2，LENGTHOF  &#x3D; 32，因此，<code>SIZEOF intArray</code> &#x3D; 64：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">intArray WORD 32 DUP(0)</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">Mov eax, SIZEOF intArray ; 64</span><br></pre></td></tr></table></figure>
+
+<h2 id="LABEL-伪指令"><a href="#LABEL-伪指令" class="headerlink" title="LABEL 伪指令"></a>LABEL 伪指令</h2>
     
 
     
