@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231844357.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231955497.png">
 <meta property="article:published_time" content="2023-01-01T14:40:36.000Z">
-<meta property="article:modified_time" content="2023-01-01T15:21:28.006Z">
+<meta property="article:modified_time" content="2023-01-01T15:43:10.168Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">466字</span>
+      <span class="post-count">740字</span>
     </span>
   </span>
 
@@ -222,7 +222,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -290,7 +290,21 @@
 <li>调用过程时,输入数值也被称为<strong>参数</strong>，通过将其压入堆栈实现参数传递。</li>
 <li>堆栈也为过程局部变量提供了临时存储区域。</li>
 </ul>
-<h2 id="PUSH-和-POP-指令"><a href="#PUSH-和-POP-指令" class="headerlink" title="PUSH 和 POP 指令"></a>PUSH 和 POP 指令</h2><h3 id="PUSH-指令"><a href="#PUSH-指令" class="headerlink" title="PUSH 指令"></a>PUSH 指令</h3><h3 id="POP-指令"><a href="#POP-指令" class="headerlink" title="POP 指令"></a>POP 指令</h3>
+<h2 id="PUSH-和-POP-指令"><a href="#PUSH-和-POP-指令" class="headerlink" title="PUSH 和 POP 指令"></a>PUSH 和 POP 指令</h2><h3 id="PUSH-指令"><a href="#PUSH-指令" class="headerlink" title="PUSH 指令"></a>PUSH 指令</h3><p>使用 PUSH 指令将数据压入栈内。</p>
+<p>PUSH 指令首先减少 ESP 的值，再将源操作数复制到堆栈。操作数是 16 位的，则 ESP 减 2，操作数是 32 位的,则 ESP 减 4。</p>
+<p>例如 <code>push eax</code> 指令执行的过程可以分为两步：</p>
+<ol>
+<li>指向栈顶的寄存器 <code>esp</code> 进行一个减法操作 <code>sub esp, 4 </code>。</li>
+<li>将需要保存的元素复制到新的栈顶位置 <code>mov [esp], %eax </code>。</li>
+</ol>
+<h3 id="POP-指令"><a href="#POP-指令" class="headerlink" title="POP 指令"></a>POP 指令</h3><p>使用 POP 指令从内存中读取数据，并且修改栈顶指针。</p>
+<p>POP 指令首先把 ESP 指向的堆栈元素内容复制到一个 16 位或 32 位目的操作数中，再增加 ESP  的值。如果操作数是 16 位的，ESP 加 2，如果操作数是 32 位的，ESP 加 4。</p>
+<p>例如 <code>pop ebx</code> 指令就是将栈顶保存的数据复制到寄存器 <code>ebx</code> 中，该指令同样也可以分解成两步：</p>
+<ol>
+<li>从栈顶的位置读出数据，复制到寄存器 <code>ebx</code>：<code>mov ebx, [esp] </code>。</li>
+<li>将栈顶的指针加8（因为 <code>q</code> 表示的是8个字节）：<code>add esp, 4</code>。</li>
+</ol>
+
     
 
     
