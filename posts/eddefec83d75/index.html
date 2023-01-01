@@ -17,11 +17,14 @@
 <meta property="og:site_name" content="洛语 の Blog">
 <meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第五章学习笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231844357.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231955497.png">
 <meta property="article:published_time" content="2023-01-01T14:40:36.000Z">
-<meta property="article:modified_time" content="2023-01-01T14:41:46.588Z">
+<meta property="article:modified_time" content="2023-01-01T15:21:28.006Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231844357.png">
   
     <link rel="alternative" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
   
@@ -210,7 +213,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">117字</span>
+      <span class="post-count">466字</span>
     </span>
   </span>
 
@@ -238,7 +241,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">堆栈操作</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">堆栈操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A0%86%E6%A0%88%EF%BC%8832%E4%BD%8D%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">运行时堆栈（32位模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PUSH-%E5%92%8C-POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">PUSH 和 POP 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">PUSH 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">POP 指令</span></a></li></ol></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -269,7 +272,25 @@
 <p>  《汇编语言：基于x86处理器（原书第7版）》 Page 108</p>
 </blockquote>
 <p>堆栈数据结构 (stack data structure) 的原理与盘子堆栈相同：新值添加到栈顶，删除值也在栈顶移除。堆栈也被称为 LIFO 结构 (后进先出，Last-In First-Out)，其原因是，最后进入堆栈的值也是第一个出堆栈的值。</p>
+<h2 id="运行时堆栈（32位模式）"><a href="#运行时堆栈（32位模式）" class="headerlink" title="运行时堆栈（32位模式）"></a>运行时堆栈（32位模式）</h2><p>运行时堆栈是内存数组，CPU 用 ESP (扩展堆栈指针，extended stack pointer) 寄存器对其进行直接管理，该寄存器被称为堆栈指针寄存器 (stack pointer register)。</p>
+<p>32位模式下，ESP寄存器存放的是堆栈中某个位置的 32 位偏移量。ESP 基本上不会直接被程序员控制，反之，它是用 CALL、RET、PUSH 和 POP 等指令间接进行修改。</p>
+<p><font size = 4><b>入栈操作</b></font></p>
+<p>32位入栈操作把栈顶指针减 4，再将数值复制到栈顶指针指向的堆栈位置。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231844357.png" alt="入栈操作" style="zoom:67%;" />
 
+<p><font size = 4><b>出栈操作</b></font></p>
+<p>出栈操作从堆栈删除数据。数值弹出堆栈后，栈顶指针增加(按堆栈元素大小)，指向堆栈中下一个最高位置。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231955497.png" alt="出栈操作" style="zoom:67%;" />
+
+<p><font size = 4><b>堆栈应用</b></font></p>
+<p>运行时堆栈在程序中有一些重要用途：</p>
+<ul>
+<li>当寄存器用于多个目的时，堆栈可以作为寄存器的一个方便的临时保存区。在寄存器被修改后，还可以恢复其初始值。</li>
+<li>执行 CALL 指令时，CPU 在堆栈中保存当前过程的返回地址。</li>
+<li>调用过程时,输入数值也被称为<strong>参数</strong>，通过将其压入堆栈实现参数传递。</li>
+<li>堆栈也为过程局部变量提供了临时存储区域。</li>
+</ul>
+<h2 id="PUSH-和-POP-指令"><a href="#PUSH-和-POP-指令" class="headerlink" title="PUSH 和 POP 指令"></a>PUSH 和 POP 指令</h2><h3 id="PUSH-指令"><a href="#PUSH-指令" class="headerlink" title="PUSH 指令"></a>PUSH 指令</h3><h3 id="POP-指令"><a href="#POP-指令" class="headerlink" title="POP 指令"></a>POP 指令</h3>
     
 
     
