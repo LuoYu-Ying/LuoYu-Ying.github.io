@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164424148.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164502334.png">
 <meta property="article:published_time" content="2023-01-01T05:10:34.000Z">
-<meta property="article:modified_time" content="2023-01-01T08:47:48.256Z">
+<meta property="article:modified_time" content="2023-01-01T09:03:21.284Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -220,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.9k字</span>
+      <span class="post-count">2.5k字</span>
     </span>
   </span>
 
@@ -229,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">7分</span>
+      <span class="post-count">9分</span>
     </span>
   </span>
 </div>
@@ -248,7 +248,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">操作数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">操作数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">直接内存操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5-%E5%81%8F%E7%A7%BB%E9%87%8F%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">直接-偏移量操作数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">数据传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MOV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">MOV 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E5%85%A8%E9%9B%B6-x2F-%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.</span> <span class="toc-text">整数的全零&#x2F;符号扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVZX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">MOVZX 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVSX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">MOVSX 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LAHF-%E5%92%8C-SAHF-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">LAHF 和 SAHF 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XCHG-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">XCHG 指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">程序示例</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">操作数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">操作数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">直接内存操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5-%E5%81%8F%E7%A7%BB%E9%87%8F%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">直接-偏移量操作数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">数据传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MOV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">MOV 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E5%85%A8%E9%9B%B6-x2F-%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.</span> <span class="toc-text">整数的全零&#x2F;符号扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVZX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">MOVZX 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MOVSX-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">MOVSX 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LAHF-%E5%92%8C-SAHF-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">LAHF 和 SAHF 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XCHG-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">XCHG 指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B1"><span class="toc-number">3.</span> <span class="toc-text">程序示例1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E5%92%8C%E5%87%8F%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">加法和减法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#INC-%E5%92%8C-DEC-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">INC 和 DEC 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADD-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">ADD 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUB-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">SUB 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEG-%E6%8C%87%E4%BB%A4"><span class="toc-number">4.4.</span> <span class="toc-text">NEG 指令</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -399,11 +399,34 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov  ax, val1</span><br><span class="line">xchg ax, val2</span><br><span class="line">mov  val1, ax  </span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h1><blockquote>
+<h1 id="程序示例1"><a href="#程序示例1" class="headerlink" title="程序示例1"></a>程序示例1</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》 Page 79</p>
 </blockquote>
+<p>该程序中包含了本节之前介绍的所有指令，包括：MOV、XCHG、MOVSX 和 MOVZX，展示了字节、字和双字是如何受到它们的影响。同时，程序中还包括了一些直接-偏移量操作数。</p>
 <center><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164424148.png" alt="" style="zoom:67%;" /><br><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101164502334.png" alt="" style="zoom:67%;" /></p></center>
 
+<hr>
+<h1 id="加法和减法"><a href="#加法和减法" class="headerlink" title="加法和减法"></a>加法和减法</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 81</p>
+</blockquote>
+<h2 id="INC-和-DEC-指令"><a href="#INC-和-DEC-指令" class="headerlink" title="INC 和 DEC 指令"></a>INC 和 DEC 指令</h2><p>INC (increment) 和 DEC (decrement) 指令从操作数中加 1 或减 1，格式是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INC  reg/mem</span><br><span class="line">DEC  reg/mem</span><br></pre></td></tr></table></figure>
+
+<p>根据目标操作数的值，溢出标志位、符号标志位、零标志位、辅助进位标志位、进位标志位和奇偶标志位会发生变化。</p>
+<p>INC和 DEC指令<strong>不会影响进位标志位</strong>。</p>
+<h2 id="ADD-指令"><a href="#ADD-指令" class="headerlink" title="ADD 指令"></a>ADD 指令</h2><p>ADD 指令将同尺寸的源操作数和目的操作数相加，格式是：<code>ADD dest, source</code>。</p>
+<p>在操作中，源操作数不能改变，相加之<strong>和存放在目的操作数中</strong>。</p>
+<p>该指令可以使用的操作数与 MOV 指令相同。</p>
+<p>进位标志位、零标志位、符号标志位、溢出标志位、辅助进位标志位和奇偶标志位根据<strong>存入目标操作数的数值</strong>进行变化。</p>
+<h2 id="SUB-指令"><a href="#SUB-指令" class="headerlink" title="SUB 指令"></a>SUB 指令</h2><p>SUB 指令<strong>将源操作数从目的操作数中减掉</strong>，操作数格式与 ADD 和 MOV 指令操作数相同。</p>
+<p>格式是：<code>SUB dest, source</code>。</p>
+<p>进位标志位、零标志位、符号标志位、溢出标志位、辅助进位标志位和奇偶标志位根据<strong>存入目标操作数的数值</strong>进行变化。</p>
+<p>有一种执行减法而无需使用额外的数字电路单元的简单方法：对源操作数求补，然后把源操作数和目的操作数相加。</p>
+<h2 id="NEG-指令"><a href="#NEG-指令" class="headerlink" title="NEG 指令"></a>NEG 指令</h2><p>NEG (negate) 指令通过将数字转换为对应的补码而求得其相反数（将目标操作数按位取反再加1，就可以得到这个数的二进制补码)。</p>
+<p>格式是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NEG reg</span><br><span class="line">NEG mem</span><br></pre></td></tr></table></figure>
+
+<p>进位标志位、零标志位、符号标志位、溢出标志位、辅助进位标志位和奇偶标志位根据<strong>存入目标操作数的数值</strong>进行变化。</p>
 
     
 
