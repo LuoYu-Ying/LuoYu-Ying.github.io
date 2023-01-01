@@ -18,7 +18,7 @@
 <meta property="og:description" content="HTTP Secure &#x2F; HTTP over SSL &#x2F; HTTP over TLS   即工作在 SSL（或 TLS）上的 HTTP。说白了就是加密通信的 HTTP。  SSL : Secure Socket Layer（安全套接字层）（TLS 前身） TLS : Transport Layer Security（传输层安全性）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-26T02:48:39.000Z">
-<meta property="article:modified_time" content="2023-01-01T18:05:30.254Z">
+<meta property="article:modified_time" content="2023-01-01T18:09:32.281Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="HTTP&#x2F;HTTPS">
 <meta name="twitter:card" content="summary">
@@ -359,7 +359,7 @@
 </li>
 <li><p>客户端向服务器发送1个字节的数据（值为20，名称为 Change Cipher Spec），通知自己将使用加密通信。</p>
 </li>
-<li><p>客户端将前7步得到的数据通过客户端加密密钥以及客户端 MAC Secret 加密，然后发送给服务器。服务器对获得的结果进行验证。</p>
+<li><p>客户端将前7步得到的数据通过客户端加密密钥以及客户端 <code>MAC Secret</code> 加密，然后发送给服务器。服务器对获得的结果进行验证。</p>
 <p>消息名称为 Encrypted Handshake Message。</p>
 <p><strong>此步之后，客户端就可以通过对称加密发送信息了。</strong></p>
 </li>
@@ -674,11 +674,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTP/HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTP/HTTPS</a>
               </li>
             
             <div class="clearfix"></div>
