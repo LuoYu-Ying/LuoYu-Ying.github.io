@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231844357.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231955497.png">
 <meta property="article:published_time" content="2023-01-01T14:40:36.000Z">
-<meta property="article:modified_time" content="2023-01-01T15:43:10.168Z">
+<meta property="article:modified_time" content="2023-01-01T16:50:08.887Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">740字</span>
+      <span class="post-count">1.2k字</span>
     </span>
   </span>
 
@@ -222,7 +222,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -241,7 +241,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">堆栈操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A0%86%E6%A0%88%EF%BC%8832%E4%BD%8D%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">运行时堆栈（32位模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PUSH-%E5%92%8C-POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">PUSH 和 POP 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">PUSH 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">POP 指令</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">堆栈操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A0%86%E6%A0%88%EF%BC%8832%E4%BD%8D%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">运行时堆栈（32位模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PUSH-%E5%92%8C-POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">PUSH 和 POP 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">PUSH 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">POP 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHFD-%E5%92%8C-POPFD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.3.</span> <span class="toc-text">PUSHFD 和 POPFD 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHAD-%E5%92%8C-POPAD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.4.</span> <span class="toc-text">PUSHAD 和 POPAD 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHA-%E5%92%8C-POPA-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.5.</span> <span class="toc-text">PUSHA 和 POPA 指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%B9%B6%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">定义并使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PROC-%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">PROC 伪指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CALL-%E5%92%8C-RET-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">CALL 和 RET 指令</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -304,7 +304,26 @@
 <li>从栈顶的位置读出数据，复制到寄存器 <code>ebx</code>：<code>mov ebx, [esp] </code>。</li>
 <li>将栈顶的指针加8（因为 <code>q</code> 表示的是8个字节）：<code>add esp, 4</code>。</li>
 </ol>
+<h3 id="PUSHFD-和-POPFD-指令"><a href="#PUSHFD-和-POPFD-指令" class="headerlink" title="PUSHFD 和 POPFD 指令"></a>PUSHFD 和 POPFD 指令</h3><p>PUSHFD 指令把 32 位 EFLAGS 寄存器内容压入堆栈。</p>
+<p>POPFD 指令则把栈顶单元内容弹出到 EFLAGS 寄存器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pushfd</span><br><span class="line">popfd</span><br></pre></td></tr></table></figure>
 
+<h3 id="PUSHAD-和-POPAD-指令"><a href="#PUSHAD-和-POPAD-指令" class="headerlink" title="PUSHAD 和 POPAD 指令"></a>PUSHAD 和 POPAD 指令</h3><p>PUSHAD 指令按照 EAX、ECX、EDX、EBX、ESP(执行 PUSHAD 之前的值)、EBP、ESI 和 EDI 的顺序，将所有 32 位通用寄存器压入堆栈。</p>
+<p>POPAD 指令按照相反顺序将同样的寄存器弹出堆栈。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pushad</span><br><span class="line">popad</span><br></pre></td></tr></table></figure>
+
+<p>如果编写的过程会修改 32 位寄存器的值，则在过程开始时使用 PUSHAD 指令，在结束时使用 POPAD 指令，以此保存和恢复寄存器的内容。</p>
+<h3 id="PUSHA-和-POPA-指令"><a href="#PUSHA-和-POPA-指令" class="headerlink" title="PUSHA 和 POPA 指令"></a>PUSHA 和 POPA 指令</h3><p>与之相似，PUSHA 指令按序（AX、CX、DX、BX、SP、BP、SI 和 DI) 将 16 位通用寄存器压入堆栈。</p>
+<p>POPA 指令按照相反顺序将同样的寄存器弹出堆栈。在 16 位模式下,只能使用 PUSHA 和 POPA 指令。</p>
+<hr>
+<h1 id="定义并使用过程"><a href="#定义并使用过程" class="headerlink" title="定义并使用过程"></a>定义并使用过程</h1><p>在汇编语言中，通常用术语过程 (procedure) 来指代子程序。在其他语言中，子程序也被称为方法或函数。</p>
+<h2 id="PROC-伪指令"><a href="#PROC-伪指令" class="headerlink" title="PROC 伪指令"></a>PROC 伪指令</h2><p>可以把过程非正式地定义为：以返回语句结束的命令语句块。</p>
+<p>过程使用 PROC 伪指令和 ENDP 伪指令来声明，另外还必须给过程定义一个名字。</p>
+<p>程序启动过程之外的其他过程以 RET 指令结束，以强制 CPU 返回到过程被调用的地方：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Function PROC</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    RET</span><br><span class="line">Function ENDP</span><br></pre></td></tr></table></figure>
+
+<p>但是启动过程（main）是个特例，它以 exit 语句结束。如果程序中使用了 <code>INCLUDE Irvine32.inc</code> 语句的话，exit 语句实际上就是对 ExitProcess 函数的调用，ExitProcess 是用来终止程序的系统函数：<code>INVOKE ExitProcess, 0</code>。</p>
+<h2 id="CALL-和-RET-指令"><a href="#CALL-和-RET-指令" class="headerlink" title="CALL 和 RET 指令"></a>CALL 和 RET 指令</h2>
     
 
     
