@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101130934870.png">
 <meta property="article:published_time" content="2023-01-01T05:10:34.000Z">
-<meta property="article:modified_time" content="2023-01-01T05:30:01.120Z">
+<meta property="article:modified_time" content="2023-01-01T05:31:46.541Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -212,7 +212,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">632字</span>
+      <span class="post-count">637字</span>
     </span>
   </span>
 
@@ -306,12 +306,13 @@
 <p>下面是 MOV 指令的标准格式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV reg, reg</span><br><span class="line">MOV mem, reg</span><br><span class="line">MOV reg, mem</span><br><span class="line">MOV mem, imm</span><br><span class="line">MOV reg, imm</span><br></pre></td></tr></table></figure>
 
-<p>需要特别注意以下的原则：</p>
+<p>**<code>需要特别注意以下的原则</code>**：</p>
 <ul>
 <li>两个操作数必须是同样的大小。</li>
 <li>两个操作数不能同时为内存操作数。</li>
 <li>指令指针寄存器 (<code>IP</code>、<code>EIP</code>、<code>RIP</code>) 不能作为目标寄存器。</li>
 </ul>
+<p><font size = 4><b>内存到内存</b></font></p>
 <p>单条 MOV 指令不能用于直接将数据从一个内存位置传送到另一个内存位置。相反，在将源操作数的值赋给内存操作数之前，必须先将该数值传送给一个寄存器。在将整型常数复制到一个变量或寄存器时，必须考虑该常量需要的最少字节数。</p>
 
     
