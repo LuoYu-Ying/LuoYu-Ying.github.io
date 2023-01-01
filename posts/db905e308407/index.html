@@ -17,11 +17,13 @@
 <meta property="og:site_name" content="洛语 の Blog">
 <meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第四章学习笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101130934870.png">
 <meta property="article:published_time" content="2022-12-31T15:46:34.000Z">
-<meta property="article:modified_time" content="2023-01-01T04:18:40.317Z">
+<meta property="article:modified_time" content="2023-01-01T05:29:17.323Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101130934870.png">
   
     <link rel="alternative" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
   
@@ -210,7 +212,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">22字</span>
+      <span class="post-count">632字</span>
     </span>
   </span>
 
@@ -219,7 +221,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -238,7 +240,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">操作数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">操作数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">直接内存操作数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">数据传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MOV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">MOV 指令</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -264,6 +266,54 @@
     <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第四章学习笔记</b></font></center><br>
 
 <span id="more"></span>
+
+<h1 id="操作数"><a href="#操作数" class="headerlink" title="操作数"></a>操作数</h1><h2 id="操作数类型"><a href="#操作数类型" class="headerlink" title="操作数类型"></a>操作数类型</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 73</p>
+</blockquote>
+<p>x86 指令格式：<code>[label:] mnemonic [operands] [; comment]</code>。其中，指令包含的操作数个数可以是 0个，1个，2个或3个。</p>
+<p>操作数有 3 种基本类型：</p>
+<ul>
+<li><strong>立即数</strong> (<code>imm</code>) ——使用数字文本表达式</li>
+<li><strong>寄存器操作数</strong> (<code>reg</code>) ——使用 CPU 内已命名的寄存器</li>
+<li><strong>内存操作数</strong> (<code>mem</code>) ——引用内存位置</li>
+</ul>
+<center><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101130934870.png" style="zoom: 50%;" /></center>
+
+<h2 id="直接内存操作数"><a href="#直接内存操作数" class="headerlink" title="直接内存操作数"></a>直接内存操作数</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 74</p>
+</blockquote>
+<p>变量名引用的是数据段内的偏移量。</p>
+<p>例如，如下变量 var1 的声明表示，该变量的大小类型为字节，值为十六进制的 10：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 BYTE 10h</span><br></pre></td></tr></table></figure>
+
+<p>可以编写指令，通过内存操作数的地址来解析（查找）这些操作数。</p>
+<p>假设 var1 的地址偏移量为 10400h。如下指令将该变量的值复制到 AL 寄存器中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov al var1</span><br></pre></td></tr></table></figure>
+
+<p>指令会被汇编为下面的机器指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A0 00010400</span><br></pre></td></tr></table></figure>
+
+<p>这条机器指令的第一个字节是操作代码（即操作码 (opcode) ）。剩余部分是 var1 的 32 位十六进制地址。虽然编程时有可能只使用数字地址，但是如同 var1 一样的符号标号会让使用内存更加容易。</p>
+<hr>
+<h1 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 75</p>
+</blockquote>
+<h2 id="MOV-指令"><a href="#MOV-指令" class="headerlink" title="MOV 指令"></a>MOV 指令</h2><p>MOV指令将源操作数复制到目的操作数。</p>
+<p>在它的基本格式中，<strong>第一个操作数是目的操作数</strong>，<strong>第二个操作数是源操作数</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV destination, source</span><br></pre></td></tr></table></figure>
+
+<p>其中，目的操作数的内容会发生改变，而源操作数不会改变。</p>
+<p>下面是 MOV 指令的标准格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV reg, reg</span><br><span class="line">MOV mem, reg</span><br><span class="line">MOV reg, mem</span><br><span class="line">MOV mem, imm</span><br><span class="line">MOV reg, imm</span><br></pre></td></tr></table></figure>
+
+<p>需要特别注意以下的原则：</p>
+<ul>
+<li>两个操作数必须是同样的大小。</li>
+<li>两个操作数不能同时为内存操作数。</li>
+<li>指令指针寄存器 (<code>IP</code>、<code>EIP</code>、<code>RIP</code>) 不能作为目标寄存器。</li>
+</ul>
+<p>单条 MOV 指令不能用于直接将数据从一个内存位置传送到另一个内存位置。相反，在将源操作数的值赋给内存操作数之前，必须先将该数值传送给一个寄存器。在将整型常数复制到一个变量或寄存器时，必须考虑该常量需要的最少字节数。</p>
+
     
 
     
