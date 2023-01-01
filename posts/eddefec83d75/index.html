@@ -19,8 +19,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231844357.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230101231955497.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102012440040.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102012631839.png">
 <meta property="article:published_time" content="2023-01-01T14:40:36.000Z">
-<meta property="article:modified_time" content="2023-01-01T17:14:54.502Z">
+<meta property="article:modified_time" content="2023-01-01T17:26:52.788Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -213,7 +215,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.4k字</span>
+      <span class="post-count">1.5k字</span>
     </span>
   </span>
 
@@ -241,7 +243,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">堆栈操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A0%86%E6%A0%88%EF%BC%8832%E4%BD%8D%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">运行时堆栈（32位模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PUSH-%E5%92%8C-POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">PUSH 和 POP 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">PUSH 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">POP 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHFD-%E5%92%8C-POPFD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.3.</span> <span class="toc-text">PUSHFD 和 POPFD 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHAD-%E5%92%8C-POPAD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.4.</span> <span class="toc-text">PUSHAD 和 POPAD 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHA-%E5%92%8C-POPA-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.5.</span> <span class="toc-text">PUSHA 和 POPA 指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%B9%B6%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">定义并使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PROC-%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">PROC 伪指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CALL-%E5%92%8C-RET-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">CALL 和 RET 指令</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">堆栈操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A0%86%E6%A0%88%EF%BC%8832%E4%BD%8D%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">运行时堆栈（32位模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PUSH-%E5%92%8C-POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">PUSH 和 POP 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">PUSH 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">POP 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHFD-%E5%92%8C-POPFD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.3.</span> <span class="toc-text">PUSHFD 和 POPFD 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHAD-%E5%92%8C-POPAD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.4.</span> <span class="toc-text">PUSHAD 和 POPAD 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSHA-%E5%92%8C-POPA-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.5.</span> <span class="toc-text">PUSHA 和 POPA 指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%B9%B6%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">定义并使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PROC-%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">PROC 伪指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CALL-%E5%92%8C-RET-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">CALL 和 RET 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.3.</span> <span class="toc-text">程序示例</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -316,7 +318,10 @@
 <h3 id="PUSHA-和-POPA-指令"><a href="#PUSHA-和-POPA-指令" class="headerlink" title="PUSHA 和 POPA 指令"></a>PUSHA 和 POPA 指令</h3><p>与之相似，PUSHA 指令按序（AX、CX、DX、BX、SP、BP、SI 和 DI) 将 16 位通用寄存器压入堆栈。</p>
 <p>POPA 指令按照相反顺序将同样的寄存器弹出堆栈。在 16 位模式下,只能使用 PUSHA 和 POPA 指令。</p>
 <hr>
-<h1 id="定义并使用过程"><a href="#定义并使用过程" class="headerlink" title="定义并使用过程"></a>定义并使用过程</h1><p>在汇编语言中，通常用术语过程 (procedure) 来指代子程序。在其他语言中，子程序也被称为方法或函数。</p>
+<h1 id="定义并使用过程"><a href="#定义并使用过程" class="headerlink" title="定义并使用过程"></a>定义并使用过程</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 112</p>
+</blockquote>
+<p>在汇编语言中，通常用术语过程 (procedure) 来指代子程序。在其他语言中，子程序也被称为方法或函数。</p>
 <h2 id="PROC-伪指令"><a href="#PROC-伪指令" class="headerlink" title="PROC 伪指令"></a>PROC 伪指令</h2><p>可以把过程非正式地定义为：以返回语句结束的命令语句块。</p>
 <p>过程使用 PROC 伪指令和 ENDP 伪指令来声明，另外还必须给过程定义一个名字。</p>
 <p>程序启动过程之外的其他过程以 RET 指令结束，以强制 CPU 返回到过程被调用的地方：</p>
@@ -327,7 +332,10 @@
 <p>从底层细节角度来讲，CALL 指令把返回地址压入堆栈并把被调用过程的地址复制到指令指针寄存器 (EIP &#x2F; IP) 中。当程序返回时，RET 指令从堆栈中弹出返回地址并送到指令指针寄存器中。</p>
 <p>在 32 位模式下，CPU 总是执行 EIP（指令指针寄存器）所指向的内存出的指令；在 16 位模式下，CPU 总是执行 IP 寄存器指向的指令。</p>
 <p>需要注意的是，进入过程后如果在没有 PUSH 操作的情况下直接 POP，会将之前存入的 CALL 指令后一条指令的地址弹出，从而导致 RET 指令无法正确的返回调用该过程的地址。</p>
+<h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><p>下面的程序通过传递一个32位整数数组的偏移量和长度来测试ArraySum过程。调用ArraySum之后，程序将过程的返回值保存在变量theSum 中。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102012440040.png" alt="" style="zoom:67%;" />
 
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102012631839.png" style="zoom:67%;" />
     
 
     
