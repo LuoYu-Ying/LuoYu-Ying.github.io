@@ -2109,7 +2109,7 @@ pre .id {
 }
 
 .article img {
-    max-width: 100%
+    max-width: 100%;
     /* 图片居中 BEGIN*/
     display: block;
     margin: 0px auto;
