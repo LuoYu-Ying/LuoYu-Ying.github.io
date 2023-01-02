@@ -22,8 +22,13 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154417565.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154711457.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154729952.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102163745683.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164214600.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164334615.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164428457.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164453778.png">
 <meta property="article:published_time" content="2023-01-02T06:36:16.000Z">
-<meta property="article:modified_time" content="2023-01-02T07:55:38.449Z">
+<meta property="article:modified_time" content="2023-01-02T08:48:18.564Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -216,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.1k字</span>
+      <span class="post-count">1.4k字</span>
     </span>
   </span>
 
@@ -225,7 +230,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -244,7 +249,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%92%8C%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">布尔和比较指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E7%9A%84%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.1.</span> <span class="toc-text">CPU的状态标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AND-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">AND 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">OR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XOR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">XOR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOT-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">NOT 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TEST-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">TEST 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">CMP 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E6%B8%85%E9%99%A4%E5%8D%95%E4%B8%AA-CPU-%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.8.</span> <span class="toc-text">设置和清除单个 CPU 状态标志</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%92%8C%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">布尔和比较指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E7%9A%84%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.1.</span> <span class="toc-text">CPU的状态标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AND-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">AND 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">OR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XOR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">XOR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOT-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">NOT 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TEST-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">TEST 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">CMP 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E6%B8%85%E9%99%A4%E5%8D%95%E4%B8%AA-CPU-%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.8.</span> <span class="toc-text">设置和清除单个 CPU 状态标志</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC"><span class="toc-number">2.</span> <span class="toc-text">条件跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jcond-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">Jcond 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%AE%9A%E7%9A%84%E6%A0%87%E5%BF%97%E5%80%BC%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">基于特定的标志值的跳转指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%81%92%E7%AD%89%E6%80%A7%E6%AF%94%E8%BE%83%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">基于恒等性比较的跳转指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%AF%94%E8%BE%83%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">基于无符号数比较的跳转指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%AF%94%E8%BE%83%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">2.5.</span> <span class="toc-text">基于有符号数比较的跳转指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%8C%87%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">条件循环指令</span></a></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -312,7 +317,7 @@
 <p>从下面的数据集例子中，可以推断只有当所有测试位都清 0 时,零标志位才置 1（本例中的0000 1001称为位掩码。）：</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154417565.png" alt="image" style="zoom:80%;" />
 
-<h2 id="CMP-指令"><a href="#CMP-指令" class="headerlink" title="CMP 指令"></a>CMP 指令</h2><p>CMP（比较）指令执行从目的操作数中减去源操作数的隐含减法操作，并且不修改任何操作数：</p>
+<h2 id="CMP-指令"><a href="#CMP-指令" class="headerlink" title="CMP 指令"></a>CMP 指令</h2><p>CMP（比较）指令执行<strong>从目的操作数中减去源操作数</strong>的隐含减法操作，并且不修改任何操作数：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CMP dest, source</span><br></pre></td></tr></table></figure>
 
 <p>当实际的减法发生时，CMP指令按照计算结果修改溢出、符号、零、进位、辅助进位和奇偶标志位。</p>
@@ -325,6 +330,29 @@
 <p>CMP 指令是创建条件逻辑结构的有效工具。<strong>IF 语句在汇编语言中等价于在 CMP 指令后跟一条条件跳转指令。</strong></p>
 <h2 id="设置和清除单个-CPU-状态标志"><a href="#设置和清除单个-CPU-状态标志" class="headerlink" title="设置和清除单个 CPU 状态标志"></a>设置和清除单个 CPU 状态标志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">test al, 0     ; 零标志位置 1</span><br><span class="line">and  al, 0     ; 零标志位置 1</span><br><span class="line">or   al, 1     ; 零标志位清零</span><br><span class="line"></span><br><span class="line">or   al, 80h   ; 符号标志位置 1</span><br><span class="line">and  al, 7Fh   ; 符号标志位清零</span><br><span class="line"></span><br><span class="line">stc            ; 进位标志位置 1</span><br><span class="line">clc            ; 进位标志位清零</span><br><span class="line"></span><br><span class="line">mov  al, 7Fh   ; AL = +127</span><br><span class="line">inc  al        ; AL = 80h (-128), OF = 1, 溢出标志位置 1</span><br><span class="line"></span><br><span class="line">or   eax, 0    ; 溢出标志位清零</span><br></pre></td></tr></table></figure>
 
+<hr>
+<h1 id="条件跳转"><a href="#条件跳转" class="headerlink" title="条件跳转"></a>条件跳转</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 156</p>
+</blockquote>
+<h2 id="Jcond-指令"><a href="#Jcond-指令" class="headerlink" title="Jcond 指令"></a>J<i>cond</i> 指令</h2><p> 条件跳转指令在标志条件为真时分支跳转到新的目的标号处，如果条件标志为假，那么执行紧跟在跳转跳转指令之后的指令。格式如下：<br>$$<br>Jcond\space destination<br>$$<br> 格式中的 <em>cond</em> 指的是一个标志条件，用来表示一个或多个标志的状态。例如：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102163745683.png" alt="" style="zoom:80%;" />
+
+<p>CPU 状态标志位最常见的设置方法是通过算术运算、比较和布尔运算指令。条件跳转指令评估标志位状态，利用它们来决定是否发生跳转。</p>
+<p>限制：MASM 在默认情况下要求跳转的目的地址在当前的过程之内，为了突破这种限制，可以声明一个全局标号（标号后面跟 <code>::</code>）。</p>
+<h2 id="基于特定的标志值的跳转指令"><a href="#基于特定的标志值的跳转指令" class="headerlink" title="基于特定的标志值的跳转指令"></a>基于特定的标志值的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164214600.png" style="zoom:80%;" />
+
+<h2 id="基于恒等性比较的跳转指令"><a href="#基于恒等性比较的跳转指令" class="headerlink" title="基于恒等性比较的跳转指令"></a>基于恒等性比较的跳转指令</h2><p>$$<br>CMP \space\space leftOP,\space rightOP<br>$$</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164334615.png" style="zoom:80%;" />
+
+<p>JE 指令和 JZ 指令是等价的，JNZ 指令和 JNE 指令是等价的。</p>
+<h2 id="基于无符号数比较的跳转指令"><a href="#基于无符号数比较的跳转指令" class="headerlink" title="基于无符号数比较的跳转指令"></a>基于无符号数比较的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164428457.png" alt="" style="zoom:80%;" />
+
+<h2 id="基于有符号数比较的跳转指令"><a href="#基于有符号数比较的跳转指令" class="headerlink" title="基于有符号数比较的跳转指令"></a>基于有符号数比较的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164453778.png" style="zoom:80%;" />
+
+<hr>
+<h1 id="条件循环指令"><a href="#条件循环指令" class="headerlink" title="条件循环指令"></a>条件循环指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 163</p>
+</blockquote>
 
     
 
