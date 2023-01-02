@@ -19,8 +19,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102144806527.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102144839025.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154417565.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154711457.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154729952.png">
 <meta property="article:published_time" content="2023-01-02T06:36:16.000Z">
-<meta property="article:modified_time" content="2023-01-02T07:40:43.712Z">
+<meta property="article:modified_time" content="2023-01-02T07:55:38.449Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -213,7 +216,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">708字</span>
+      <span class="post-count">1.1k字</span>
     </span>
   </span>
 
@@ -222,7 +225,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -241,7 +244,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%92%8C%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">布尔和比较指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E7%9A%84%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.1.</span> <span class="toc-text">CPU的状态标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AND-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">AND 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">OR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XOR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">XOR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOT-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">NOT 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TEST-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">TEST 指令</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%92%8C%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">布尔和比较指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E7%9A%84%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.1.</span> <span class="toc-text">CPU的状态标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AND-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">AND 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">OR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XOR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">XOR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOT-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">NOT 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TEST-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">TEST 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMP-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">CMP 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E6%B8%85%E9%99%A4%E5%8D%95%E4%B8%AA-CPU-%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="toc-number">1.8.</span> <span class="toc-text">设置和清除单个 CPU 状态标志</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -306,6 +309,22 @@
 <p>TEST 指令的操作数格式与 AND 相同。</p>
 <p>该指令在测试操作数某些位是否被设置时特别有用。</p>
 <p>TEST 指令总是<strong>清除溢出和进位标志位</strong>，其修改符号标志位、零标志位和奇偶标志位的方法与 AND 指令相同。</p>
+<p>从下面的数据集例子中，可以推断只有当所有测试位都清 0 时,零标志位才置 1（本例中的0000 1001称为位掩码。）：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154417565.png" alt="image" style="zoom:80%;" />
+
+<h2 id="CMP-指令"><a href="#CMP-指令" class="headerlink" title="CMP 指令"></a>CMP 指令</h2><p>CMP（比较）指令执行从目的操作数中减去源操作数的隐含减法操作，并且不修改任何操作数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CMP dest, source</span><br></pre></td></tr></table></figure>
+
+<p>当实际的减法发生时，CMP指令按照计算结果修改溢出、符号、零、进位、辅助进位和奇偶标志位。</p>
+<p>如果比较的是两个<strong>无符号数</strong>，则零标志位和进位标志位表示的两个操作数之间的关系如下图所示：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154711457.png" style="zoom:80%;" />
+
+<p>如果比较的是两个<strong>有符号数</strong>，则符号标志位、零标志位和溢出标志位表示的两个操作数之间的关系如下图所示：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154729952.png" style="zoom:80%;" />
+
+<p>CMP 指令是创建条件逻辑结构的有效工具。<strong>IF 语句在汇编语言中等价于在 CMP 指令后跟一条条件跳转指令。</strong></p>
+<h2 id="设置和清除单个-CPU-状态标志"><a href="#设置和清除单个-CPU-状态标志" class="headerlink" title="设置和清除单个 CPU 状态标志"></a>设置和清除单个 CPU 状态标志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">test al, 0     ; 零标志位置 1</span><br><span class="line">and  al, 0     ; 零标志位置 1</span><br><span class="line">or   al, 1     ; 零标志位清零</span><br><span class="line"></span><br><span class="line">or   al, 80h   ; 符号标志位置 1</span><br><span class="line">and  al, 7Fh   ; 符号标志位清零</span><br><span class="line"></span><br><span class="line">stc            ; 进位标志位置 1</span><br><span class="line">clc            ; 进位标志位清零</span><br><span class="line"></span><br><span class="line">mov  al, 7Fh   ; AL = +127</span><br><span class="line">inc  al        ; AL = 80h (-128), OF = 1, 溢出标志位置 1</span><br><span class="line"></span><br><span class="line">or   eax, 0    ; 溢出标志位清零</span><br></pre></td></tr></table></figure>
+
 
     
 
