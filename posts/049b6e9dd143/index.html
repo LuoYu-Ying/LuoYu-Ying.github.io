@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164428457.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164453778.png">
 <meta property="article:published_time" content="2023-01-02T06:36:16.000Z">
-<meta property="article:modified_time" content="2023-01-02T10:54:03.796Z">
+<meta property="article:modified_time" content="2023-01-02T11:05:03.273Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -334,14 +334,14 @@
 <h1 id="条件跳转"><a href="#条件跳转" class="headerlink" title="条件跳转"></a>条件跳转</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 156</p>
 </blockquote>
-<h2 id="Jcond-指令"><a href="#Jcond-指令" class="headerlink" title="Jcond 指令"></a>J<i>cond</i> 指令</h2><p> 条件跳转指令在标志条件为真时分支跳转到新的目的标号处，如果条件标志为假，那么执行紧跟在跳转跳转指令之后的指令。格式如下：<br>$$<br>Jcond\space destination<br>$$<br> 格式中的 <em>cond</em> 指的是一个标志条件，用来表示一个或多个标志的状态。例如：</p>
+<h2 id="Jcond-指令"><a href="#Jcond-指令" class="headerlink" title="Jcond 指令"></a>J<i>cond</i> 指令</h2><p> 条件跳转指令在标志条件为真时分支跳转到新的目的标号处，如果条件标志为假，那么执行紧跟在跳转跳转指令之后的指令。格式如下：<br>$$<br>Jcond\space\space destination<br>$$<br> 格式中的 <em>cond</em> 指的是一个标志条件，用来表示一个或多个标志的状态。例如：</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102163745683.png" alt="" style="zoom:80%;" />
 
 <p>CPU 状态标志位最常见的设置方法是通过算术运算、比较和布尔运算指令。条件跳转指令评估标志位状态，利用它们来决定是否发生跳转。</p>
 <p>限制：MASM 在默认情况下要求跳转的目的地址在当前的过程之内，为了突破这种限制，可以声明一个全局标号（标号后面跟 <code>::</code>）。</p>
 <h2 id="基于特定的标志值的跳转指令"><a href="#基于特定的标志值的跳转指令" class="headerlink" title="基于特定的标志值的跳转指令"></a>基于特定的标志值的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164214600.png" style="zoom:80%;" />
 
-<h2 id="基于恒等性比较的跳转指令"><a href="#基于恒等性比较的跳转指令" class="headerlink" title="基于恒等性比较的跳转指令"></a>基于恒等性比较的跳转指令</h2><p>$$<br>CMP \space\space leftOP,\space rightOP<br>$$</p>
+<h2 id="基于恒等性比较的跳转指令"><a href="#基于恒等性比较的跳转指令" class="headerlink" title="基于恒等性比较的跳转指令"></a>基于恒等性比较的跳转指令</h2><p>$$<br>CMP \space\space leftOp,\space rightOp<br>$$</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164334615.png" style="zoom:80%;" />
 
 <p>JE 指令和 JZ 指令是等价的，JNZ 指令和 JNE 指令是等价的。</p>
@@ -353,8 +353,8 @@
 <h1 id="条件循环指令"><a href="#条件循环指令" class="headerlink" title="条件循环指令"></a>条件循环指令</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 163</p>
 </blockquote>
-<h2 id="LOOPZ-和-LOOPE-指令"><a href="#LOOPZ-和-LOOPE-指令" class="headerlink" title="LOOPZ 和 LOOPE 指令"></a>LOOPZ 和 LOOPE 指令</h2><p>ECX 大于 0，并且零标志位置 1 则循环。<br>$$<br>LOOPZ\space\space destination<br>\LOOPE\space\space destination<br>$$</p>
-<h2 id="LOOPNZ-和-LOOPNE-指令"><a href="#LOOPNZ-和-LOOPNE-指令" class="headerlink" title="LOOPNZ 和 LOOPNE 指令"></a>LOOPNZ 和 LOOPNE 指令</h2><p>ECX 大于 0，并且零标志位为 0 则循环。<br>$$<br>LOOPNZ\space\space distination<br>\LOOPNE\space\space distination<br>$$</p>
+<h2 id="LOOPZ-和-LOOPE-指令"><a href="#LOOPZ-和-LOOPE-指令" class="headerlink" title="LOOPZ 和 LOOPE 指令"></a>LOOPZ 和 LOOPE 指令</h2><p>ECX 大于 0，并且零标志位置 1 则循环。<br>$$<br>LOOPZ\space\space destination \<br>LOOPE\space\space destination<br>$$</p>
+<h2 id="LOOPNZ-和-LOOPNE-指令"><a href="#LOOPNZ-和-LOOPNE-指令" class="headerlink" title="LOOPNZ 和 LOOPNE 指令"></a>LOOPNZ 和 LOOPNE 指令</h2><p>ECX 大于 0，并且零标志位为 0 则循环。<br>$$<br>LOOPNZ\space\space distination \<br>LOOPNE\space\space distination<br>$$</p>
 <hr>
 <h1 id="条件结构"><a href="#条件结构" class="headerlink" title="条件结构"></a>条件结构</h1><h2 id="IF-语句"><a href="#IF-语句" class="headerlink" title="IF 语句"></a>IF 语句</h2><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 165</p>
