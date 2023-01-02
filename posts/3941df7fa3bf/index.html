@@ -17,11 +17,26 @@
 <meta property="og:site_name" content="洛语 の Blog">
 <meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210528302.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211036985.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211511996.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212019795.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212338300.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212630840.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212743503.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213018857.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213058864.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213650659.png">
 <meta property="article:published_time" content="2023-01-02T12:49:54.000Z">
-<meta property="article:modified_time" content="2023-01-02T12:50:58.027Z">
+<meta property="article:modified_time" content="2023-01-02T13:39:05.592Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210528302.png">
   
     <link rel="alternative" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
   
@@ -210,7 +225,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">39字</span>
+      <span class="post-count">1.1k字</span>
     </span>
   </span>
 
@@ -219,7 +234,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -238,7 +253,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">移位和循环移位指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SHL-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">SHL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">SHR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAL-%E5%92%8C-SAR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">SAL 和 SAR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROL-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">ROL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">ROR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCL-%E5%92%8C-RCR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">RCL 和 RCR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHLD-%E5%92%8C-SHRD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">SHLD 和 SHRD 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.8.</span> <span class="toc-text">程序示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%92%8C%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">乘法和除法指令</span></a></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -265,8 +280,77 @@
 
 <span id="more"></span>
 
-<blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 148</p>
+<h1 id="移位和循环移位指令"><a href="#移位和循环移位指令" class="headerlink" title="移位和循环移位指令"></a>移位和循环移位指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 192</p>
+</blockquote>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210528302.png" alt="" style="zoom:80%;" />
+
+<p>移动操作数的位有两种方法。</p>
+<ul>
+<li>第一种是<strong>逻辑移位</strong> (logic shift)，<strong>空出来的位用 0 填充</strong>。如下图所示，一个字节的数据向右移动一位。也就是说，每一位都被移动到其旁边的低位上。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png" alt="" style="zoom:67%;" />
+
+<ul>
+<li>另一种移位的方法是<strong>算术移位</strong> (arithmetic shift)，空出来的位用原数据的符号位填充。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png" alt="" style="zoom:70%;" />
+
+<h2 id="SHL-指令"><a href="#SHL-指令" class="headerlink" title="SHL 指令"></a>SHL 指令</h2><p>逻辑左移。SHL 的第一个操作数是目的操作数,第二个操作数是移位次数：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211036985.png" alt="" style="zoom:70%;" />
+$$
+SHL \space \space destination,count
+$$
+该指令可用的操作数类型如下所示：
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SHL reg, imm8</span><br><span class="line">SHL mem, imm8</span><br><span class="line">SHL reg, CL</span><br><span class="line">SHL mem, CL</span><br></pre></td></tr></table></figure>
+
+<p>x86处理器允许 imm8 为 0～255 中的任何整数。另外，CL 寄存器包含的是移位计数。上述格式同样适用于 SHR、SAL、SAR、ROR、ROL、RCR 和  RCL 指令。</p>
+<h2 id="SHR-指令"><a href="#SHR-指令" class="headerlink" title="SHR 指令"></a>SHR 指令</h2><p>逻辑右移。SHR 的指令格式与 SHL 相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png" alt="" style="zoom:67%;" />
+
+<h2 id="SAL-和-SAR-指令"><a href="#SAL-和-SAR-指令" class="headerlink" title="SAL 和 SAR 指令"></a>SAL 和 SAR 指令</h2><p>SAL(算术左移)指令的操作与SHL指令一样。</p>
+<p>每次移动时，SAL 都将目的操作数中的每一位移动到下一个最高位上。<strong>最低位用0填充</strong>；最高位移入进位标志位，该标志位原来的值被丢弃：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211511996.png" alt="" style="zoom:70%;" />
+
+<p>SAR 指令为算术右移，指令格式与 SHL 相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png" alt="" style="zoom:70%;" />
+
+<h2 id="ROL-指令"><a href="#ROL-指令" class="headerlink" title="ROL 指令"></a>ROL 指令</h2><p>以循环方式来移位即为位元循环 (Bitwise Rotation)。一些操作中，从数的一端移出的位立即复制到该数的另一端。还有一种类型则是把进位标志位当作移动位的中间点。</p>
+<p>ROL（循环左移）指令把所有位都向左移。最高位复制到进位标志位和最低位。该指令格式与 SHL 指令相同：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212019795.png" alt="image-20230102212019795" style="zoom:80%;" />
+
+<p>位循环不会丢弃位。从数的一端循环出去的位会出现在该数的另一端。</p>
+<p><font size = 4><b>特点</b></font></p>
+<ol>
+<li>当循环计数值大于 1 时，进位标志位保存的是最后循环移出 MSB 的位。</li>
+<li>位组交换利用 ROL 可以交换一个字节的高四位(位 4～7)和低四位(位 0～3)。例如，26h 向任何方向循环移动 4 位就变为 62h。当多字节整数以四位为单位进行循环移位时，其效果相当于一次向右或向左移动一个十六进制位。例如，将 6A4Bh 反复循环左移四位，最后就会回到初始值。</li>
+</ol>
+<h2 id="ROR-指令"><a href="#ROR-指令" class="headerlink" title="ROR 指令"></a>ROR 指令</h2><p>ROR（循环右移）指令把所有位都向右移，最低位复制到进位标志位和最高位。该指令格式与 SHL 指令相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212338300.png" alt="" style="zoom:70%;" />
+
+<p>当循环计数值大于 1 时，进位标志位保存的是最后循环移出 LSB 的位。</p>
+<h2 id="RCL-和-RCR-指令"><a href="#RCL-和-RCR-指令" class="headerlink" title="RCL 和 RCR 指令"></a>RCL 和 RCR 指令</h2><p>RCL（带进位循环左移）指令把每一位都向左移，进位标志位复制到 LSB，而 MSB 复制到进位标志位：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212630840.png" alt="" style="zoom:70%;" />
+
+<p>RCR（带进位循环右移）指令把每一位都向右移，进位标志位复制到 MSB，而 LSB 复制到进位标志位：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212743503.png" alt="" style="zoom:70%;" />
+
+<h2 id="SHLD-和-SHRD-指令"><a href="#SHLD-和-SHRD-指令" class="headerlink" title="SHLD 和 SHRD 指令"></a>SHLD 和 SHRD 指令</h2><p>SHLD（双精度左移）指令将目的操作数向左移动指定位数。移动形成的空位由源操作数的高位填充。源操作数不变，但是符号标志位、零标志位、辅助进位标志位、奇偶标志位和进位标志位会受影响：<br>$$<br>SHLD \space \space dest, source, count<br>$$<br>下图展示的是 SHLD 执行移动一位的过程。源操作数的最高位复制到目的操作数的最低位上。目的操作数的所有位都向左移动：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213018857.png" alt="" style="zoom:67%;" />
+
+<p>SHRD（双精度右移）指令将目的操作数向右移动指定位数。移动形成的空位由源操作数的低位填充：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213058864.png" alt="" style="zoom:67%;" />
+
+<p>SHLD 和 SHRD 的指令格式中，目标操作数可以是寄存器或内存操作数；<strong>源操作数必须是寄存器</strong>；移位次数可以是 CL 寄存器或者 8 位立即数。</p>
+<h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 200</p>
+</blockquote>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213650659.png" alt="" style="zoom:80%;" />
+
+<hr>
+<h1 id="乘法和除法指令"><a href="#乘法和除法指令" class="headerlink" title="乘法和除法指令"></a>乘法和除法指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 201</p>
 </blockquote>
 
     
