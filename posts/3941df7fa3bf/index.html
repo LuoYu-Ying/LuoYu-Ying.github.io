@@ -31,8 +31,14 @@
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213018857.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213058864.png">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213650659.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102222115899.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102224014015.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102234944257.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235908443.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235932603.png">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230103000107626.png">
 <meta property="article:published_time" content="2023-01-02T12:49:54.000Z">
-<meta property="article:modified_time" content="2023-01-02T13:39:05.592Z">
+<meta property="article:modified_time" content="2023-01-02T16:03:18.055Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
@@ -225,7 +231,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.1k字</span>
+      <span class="post-count">2.3k字</span>
     </span>
   </span>
 
@@ -234,7 +240,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -253,7 +259,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">移位和循环移位指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SHL-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">SHL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">SHR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAL-%E5%92%8C-SAR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">SAL 和 SAR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROL-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">ROL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">ROR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCL-%E5%92%8C-RCR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">RCL 和 RCR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHLD-%E5%92%8C-SHRD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">SHLD 和 SHRD 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.8.</span> <span class="toc-text">程序示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%92%8C%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">乘法和除法指令</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">移位和循环移位指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SHL-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">SHL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">SHR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAL-%E5%92%8C-SAR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">SAL 和 SAR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROL-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">ROL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">ROR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCL-%E5%92%8C-RCR-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">RCL 和 RCR 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHLD-%E5%92%8C-SHRD-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">SHLD 和 SHRD 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.8.</span> <span class="toc-text">程序示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%92%8C%E9%99%A4%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">乘法和除法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MUL-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">MUL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IMUL-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">IMUL 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DIV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">DIV 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDIV-%E6%8C%87%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">IDIV 指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">扩展加减法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ADC-%E6%8C%87%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">ADC 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B-1"><span class="toc-number">3.2.</span> <span class="toc-text">程序示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SBB-%E6%8C%87%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">SBB 指令</span></a></li></ol></li></ol>
         </div>
   <script type="text/javascript">
   function showToc(){
@@ -352,6 +358,52 @@ $$
 <h1 id="乘法和除法指令"><a href="#乘法和除法指令" class="headerlink" title="乘法和除法指令"></a>乘法和除法指令</h1><blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 201</p>
 </blockquote>
+<h2 id="MUL-指令"><a href="#MUL-指令" class="headerlink" title="MUL 指令"></a>MUL 指令</h2><p>32位模式下，MUL（<strong>无符号数</strong>乘法）指令有三种类型：</p>
+<ul>
+<li>第一种执行 8 位操作数与 <strong>AL 寄存器</strong>的乘法</li>
+<li>第二种执行16位操作数与 <strong>AX 寄存器</strong>的乘法</li>
+<li>第三种执行 32 位操作数与 <strong>EAX 寄存器</strong>的乘法</li>
+</ul>
+<p>乘数和被乘数的大小必须保持一致，<strong>乘积的大小则是它们的一倍</strong>。这三种类型都可以使用寄存器和内存操作数，但不能使用立即数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MUL reg/mem8</span><br><span class="line">MUL reg/mem16</span><br><span class="line">MUL reg/mem32</span><br></pre></td></tr></table></figure>
+
+<p>MUL 指令中的单操作数是乘数。下图按照乘数的大小，列出了默认的被乘数和乘积。</p>
+<p>由于目的操作数是被乘数和乘数大小的两倍，因此<strong>不会发生溢出</strong>。</p>
+<p>如果乘积的高半部分不为零，则 MUL 会把<strong>进位标志位和溢出标志位</strong>置 1。因为进位标志位常常用于无符号数的算术运算。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102222115899.png" alt="" style="zoom:80%;" />
+
+<p>例如，当 AX 乘以一个 16 位操作数时，乘积存放在 DX 和 AX 寄存器对中。其中，乘积的高 16 位存放在 DX，低 16 位存放在 AX。如果 DX 不等于零，则进位标志位置 1，这就意味着隐含的目的操作数的低半部分容纳不了整个乘积。</p>
+<h2 id="IMUL-指令"><a href="#IMUL-指令" class="headerlink" title="IMUL 指令"></a>IMUL 指令</h2><p>IMUL（有符号数乘法）指令执行有符号整数乘法。与 MUL 指令不同，IMUL 会<strong>保留乘积的符号</strong>，实现的方法是，将乘积低半部分的最高位符号扩展到高半部分。x86指令集支持三种格式的 IMUL 指令:单操作数、双操作数和三操作数。</p>
+<p><font size = 4><b>单操作数格式</b></font></p>
+<p>单操作数格式中，乘数和被乘数大小相同，而乘积的大小是它们的两倍。单操作数格式将乘积存放在 AX、DX:AX 或 EDX: EAX 中：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102224014015.png" style="zoom: 71%;" />
+
+<p>和 MUL 指令一样，其乘积的存储大小使得<strong>溢出不会发生</strong>。同时，如果乘积的高半部分不是其低半部分的符号扩展，则进位标志位和溢出标志位置1。利用这个特点可以决定是否忽略乘积的高半部分。</p>
+<p><font size = 4><b>双操作数格式（32位模式）</b></font></p>
+<p>32 位模式中的双操作数 IMUL 指令把乘积存放在第一个操作数中，这个操作数必须是寄存器。第二个操作数（乘数）可以是寄存器、内存操作数和立即数。<br>$$<br>IMUL \space \space reg, \space reg&#x2F;mem&#x2F;imm<br>$$<br>双操作数格式会按照目的操作数的大小来截取乘积。如果被丢弃的是有效位则溢出标志位和进位标志位置 1。因此，在执行了有两个操作数的 IMUL 操作后，必须检查这些标志位中的一个。</p>
+<p><font size = 4><b>三操作数格式</b></font></p>
+<p>32 位模式下的三操作数格式将乘积保存在第一个操作数中。第二个操作数可以是16位寄存器或内存操作数，它与第三个操作数相乘，该操作数是一个8位或16位立即数。<br>$$<br>IMUL \space \space reg, \space reg&#x2F;mem, \space imm<br>$$<br>IMUL 执行时，若乘积有效位被丢弃，则溢出标志位和进位标志位置 1。因此，在执行了有三个操作数的 IMUL 操作后,必须检查这些标志位中的一个。</p>
+<h2 id="DIV-指令"><a href="#DIV-指令" class="headerlink" title="DIV 指令"></a>DIV 指令</h2><p>32 位模式下，DIV（无符号除法）指令执行 8 位、16 位和 32 位无符号数除法。其中，单寄存器或内存操作数是除数。格式如下:<br>$$<br>DIV\space\space reg&#x2F;mem<br>$$<br>下图给出了被除数、除数、商和余数之间的关系：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102234944257.png" style="zoom: 67%;" />
+
+<p>64 位模式下，DIV 指令用 RDX:RAX 作被除数，用 64 位寄存器和内存操作数作除数商存放到 RAX，余数存放在 RDX 中。</p>
+<h2 id="IDIV-指令"><a href="#IDIV-指令" class="headerlink" title="IDIV 指令"></a>IDIV 指令</h2><p>IDIV（有符号除法）指令执行有符号整数除法，其操作数与 DIV 指令相同。执行 8 位除法之前，被除数 (AX) 必须完成符号扩展。余数的符号总是与被除数相同。</p>
+<hr>
+<h1 id="扩展加减法"><a href="#扩展加减法" class="headerlink" title="扩展加减法"></a>扩展加减法</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 212</p>
+</blockquote>
+<h2 id="ADC-指令"><a href="#ADC-指令" class="headerlink" title="ADC 指令"></a>ADC 指令</h2><p>ADC（带进位加法）指令将源操作数和进位标志位的值都与目的操作数相加。该指令格式与 ADD 指令一样,且操作数大小必须相同：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ADC reg, reg</span><br><span class="line">ADC mem, reg</span><br><span class="line">ADC reg, mem</span><br><span class="line">ADC mem, imm</span><br><span class="line">ADC reg, imm</span><br></pre></td></tr></table></figure>
+
+<h2 id="程序示例-1"><a href="#程序示例-1" class="headerlink" title="程序示例"></a>程序示例</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235908443.png" style="zoom:60%;" />
+
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235932603.png" style="zoom:60%;" />
+
+<p>下面的代码示例调用 Extended_Add，并向其传递两个 8 字节的整数。要注意为和数多分配一个字节：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230103000107626.png" style="zoom:60%;" />
+
+<p>上述程序的输出，加法产生了一个进位：<code>0122C32B0674BB5736</code></p>
+<h2 id="SBB-指令"><a href="#SBB-指令" class="headerlink" title="SBB 指令"></a>SBB 指令</h2><p>SBB（带借位减法）指令从目的操作数中减去源操作数和进位标志位的值。允许使用的操作数与 ADC 指令相同。</p>
 
     
 
