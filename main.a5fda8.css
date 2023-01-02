@@ -979,7 +979,8 @@ html {
 
 .article-entry .highlight,
 .article-entry pre {
-    background: #1a0139;
+    /* background: #1a0139; */
+    background: #1B2341;
     margin: 10px 0;
     padding: 10px;
     overflow: hidden;
