@@ -6,22 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://luoyuy.top">
-  <title>洛语 の Blog</title>
+  <title>汇编语言:基于x86处理器-学习笔记-第七章 | 洛语 の Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content="一期一会"> -->
-  
-  <meta name="description" content="一期一会">
-<meta property="og:type" content="website">
-<meta property="og:title" content="洛语 の Blog">
-<meta property="og:url" content="https://luoyuy.top/index.html">
+  <meta name="description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编语言:基于x86处理器-学习笔记-第七章">
+<meta property="og:url" content="https://luoyuy.top/posts/3941df7fa3bf/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="一期一会">
+<meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-02T12:49:54.000Z">
+<meta property="article:modified_time" content="2023-01-02T12:50:58.027Z">
 <meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="洛语 の Blog" type="application/atom+xml">
@@ -178,25 +177,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-汇编语言-基于x86处理器-学习笔记-Part6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-汇编语言-基于x86处理器-学习笔记-Part6" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/3941df7fa3bf/">汇编语言:基于x86处理器-学习笔记-第七章</a>
-	
+    <h1 class="article-title" itemprop="name">
+      汇编语言:基于x86处理器-学习笔记-第七章
     </h1>
   
 
 
   
   
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/posts/3941df7fa3bf/" class="archive-article-date">
         <time datetime="2023-01-02T12:49:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-02</time>
 </a>
@@ -204,6 +203,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">39字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -211,651 +231,68 @@
 
   <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
   
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="icon-font icon-category"></span>
+          <span class="btn-text">目录</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+          
+        </div>
+  <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+    showBtn();
+  </script>
+      
   <!-- 目录内容结束 -->
 
 
   <div class="article-entry" itemprop="articleBody">
     
     <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第七章学习笔记</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/3941df7fa3bf/#more">more >></a>
-    
-    
 
-    
+<span id="more"></span>
 
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/3941df7fa3bf/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-汇编语言-基于x86处理器-学习笔记-Part5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/049b6e9dd143/">汇编语言:基于x86处理器-学习笔记-第六章</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/049b6e9dd143/" class="archive-article-date">
-        <time datetime="2023-01-02T06:36:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第六章学习笔记</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/049b6e9dd143/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/049b6e9dd143/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-汇编语言-基于x86处理器-学习笔记-Part4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/eddefec83d75/">汇编语言:基于x86处理器-学习笔记-Part4</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/eddefec83d75/" class="archive-article-date">
-        <time datetime="2023-01-01T14:40:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第五章学习笔记</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/eddefec83d75/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/eddefec83d75/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-汇编语言-基于x86处理器-学习笔记-Part3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/a23aca48ee77/">汇编语言:基于x86处理器-学习笔记-Part3</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/a23aca48ee77/" class="archive-article-date">
-        <time datetime="2023-01-01T05:10:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第四章学习笔记</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/a23aca48ee77/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/a23aca48ee77/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-汇编语言-基于x86处理器-学习笔记-Part2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/84d13931adf9/">汇编语言:基于x86处理器-学习笔记-Part2</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/84d13931adf9/" class="archive-article-date">
-        <time datetime="2022-12-31T08:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-31</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第三章学习笔记</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/84d13931adf9/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/84d13931adf9/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-汇编语言-基于x86处理器-学习笔记-Part1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/0adefcb064e3/">汇编语言:基于x86处理器-学习笔记-Part1</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/0adefcb064e3/" class="archive-article-date">
-        <time datetime="2022-12-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第一、二章学习笔记</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/0adefcb064e3/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/0adefcb064e3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-计算机网络-TCPIP协议族" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/6ed3afd2e436/">计算机网络-TCP/IP协议族</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/6ed3afd2e436/" class="archive-article-date">
-        <time datetime="2022-12-27T07:03:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <blockquote>
-<p>   一系列协议所组成的一个网络分层模型。</p>
+<blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 148</p>
 </blockquote>
-    
-    <a class="article-more-a" href="/posts/6ed3afd2e436/#more">more >></a>
-    
-    
 
     
 
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          LuoYu-Ying
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://luoyuy.top/posts/3941df7fa3bf/" title="汇编语言:基于x86处理器-学习笔记-第七章" target="_blank">https://luoyuy.top/posts/3941df7fa3bf/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -867,7 +304,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">汇编语言</a>
         		</li>
       		
 		</ul>
@@ -879,7 +316,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/计算机网络//" class="article-tag-list-link color1">计算机网络</a>
+        			<a href="/categories/汇编语言-基于x86处理器//" class="article-tag-list-link color4">汇编语言:基于x86处理器</a>
         		</li>
       		
 		</ul>
@@ -887,16 +324,24 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/6ed3afd2e436/">展开全文 >></a>
-    </p>
-    
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/posts/049b6e9dd143/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">汇编语言:基于x86处理器-学习笔记-第六章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -917,337 +362,14 @@
 
 
 
-  
-    <article id="post-计算机网络-登录和授权" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/e26999fccebc/">计算机网络-登录和授权</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/e26999fccebc/" class="archive-article-date">
-        <time datetime="2022-12-26T10:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="登录和授权的区别"><a href="#登录和授权的区别" class="headerlink" title="登录和授权的区别"></a><font size = 5><b>登录和授权的区别</b></font></h1><ul>
-<li>登录：身份认证，即确认「你是你」的过程。 </li>
-<li>授权：由身份或持有的令牌确认享有某些权限（例如获取用户信息）。而登录过程实质上的⽬的也是为了确认权限。</li>
-</ul>
-    
-    <a class="article-more-a" href="/posts/e26999fccebc/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTP/HTTPS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机网络//" class="article-tag-list-link color1">计算机网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/e26999fccebc/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-    <article id="post-计算机网络-HTTPS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/0a77f507cef9/">计算机网络-HTTPS</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/0a77f507cef9/" class="archive-article-date">
-        <time datetime="2022-12-26T02:48:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <blockquote>
-<p>   <code>HTTP Secure</code> &#x2F; <code>HTTP over SSL</code> &#x2F; <code>HTTP over TLS</code></p>
-<p>  即工作在 <code>SSL</code>（或 <code>TLS</code>）上的 <code>HTTP</code>。说白了就是加密通信的 <code>HTTP</code>。</p>
-<ul>
-<li><code>SSL</code> : Secure Socket Layer（安全套接字层）（<code>TLS</code> 前身）</li>
-<li><code>TLS</code> : Transport Layer Security（传输层安全性）</li>
-</ul>
-</blockquote>
-    
-    <a class="article-more-a" href="/posts/0a77f507cef9/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTP/HTTPS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机网络//" class="article-tag-list-link color1">计算机网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/0a77f507cef9/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-    <article id="post-深入理解计算机系统-习题整理-第5-10章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/3d59d0a6e542/">深入理解计算机系统-练习题整理-Part2</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/3d59d0a6e542/" class="archive-article-date">
-        <time datetime="2022-11-25T15:32:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-
-  <!-- 目录内容  https://blog.csdn.net/qq_40922859/article/details/97035497 -->
-  
-  <!-- 目录内容结束 -->
-
-
-  <div class="article-entry" itemprop="articleBody">
-    
-    <center><font size = 5><b>《深入理解计算机系统》<br>第五至十章习题整理</b></font></center><br>
-    
-    <a class="article-more-a" href="/posts/3d59d0a6e542/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深入理解计算机系统//" class="article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/3d59d0a6e542/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1323,8 +445,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
