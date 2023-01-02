@@ -2110,10 +2110,10 @@ pre .id {
 
 .article img {
     max-width: 100%;
-    /* 图片居中 BEGIN*/
+    /* 图片居中 BEGIN */
     display: block;
     margin: 0px auto;
-    /* 图片剧中 END */
+    /* 图片居中 END */
 }
 
 .article-inner h1.article-title,
