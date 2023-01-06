@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HTTPS 的定义以及连接的流程">
+    <meta name="description" content="AutoHotKey v1 中类的方法绑定类中定义的热键以及 GUI 的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络-HTTPS">
-<meta property="og:url" content="https://luoyuy.top/posts/0a77f507cef9/index.html">
+<meta property="og:title" content="AutoHotkey v1 类的定义与部分使用技巧">
+<meta property="og:url" content="https://luoyuy.top/posts/61bd48ea70cc/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="HTTPS 的定义以及连接的流程">
+<meta property="og:description" content="AutoHotKey v1 中类的方法绑定类中定义的热键以及 GUI 的方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-HTTPS.png">
-<meta property="article:published_time" content="2022-12-26T02:48:39.000Z">
-<meta property="article:modified_time" content="2023-01-06T06:28:25.895Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
+<meta property="article:published_time" content="2022-07-12T09:33:37.000Z">
+<meta property="article:modified_time" content="2023-01-06T08:44:09.040Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="HTTPS">
+<meta property="article:tag" content="AutoHotkey">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-HTTPS.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
   
   
   
-  <title>计算机网络-HTTPS - 洛语 の Blog</title>
+  <title>AutoHotkey v1 类的定义与部分使用技巧 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计算机网络-HTTPS"></span>
+            <span id="subtitle" data-typed-text="AutoHotkey v1 类的定义与部分使用技巧"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-26 10:48" pubdate>
-          2022年12月26日 上午
+        <time datetime="2022-07-12 17:33" pubdate>
+          2022年7月12日 下午
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.3k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          22 分钟
+          20 分钟
         
       </span>
     
@@ -283,118 +283,66 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">计算机网络-HTTPS</h1>
+            <h1 style="display: none">AutoHotkey v1 类的定义与部分使用技巧</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>   <code>HTTP Secure</code> &#x2F; <code>HTTP over SSL</code> &#x2F; <code>HTTP over TLS</code></p>
-<p>  即工作在 <code>SSL</code>（或 <code>TLS</code>）上的 <code>HTTP</code>。说白了就是加密通信的 <code>HTTP</code>。</p>
-<ul>
-<li><code>SSL</code> : Secure Socket Layer（安全套接字层）（<code>TLS</code> 前身）</li>
-<li><code>TLS</code> : Transport Layer Security（传输层安全性）</li>
-</ul>
+<p>本文所使用的AHK版本为 AutoHotKey_v1 。</p>
 </blockquote>
 <hr>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>在 <code>HTTP</code> 和 <code>TCP</code> 之间增加了一个 <strong>安全层</strong>（安全的加密层），用于保障 <code>HTTP</code> 的加密传输。</p>
-<p>即 <code>HTTP</code> 将数据交给 <code>TCP</code> 之前，先把数据交给 <code>TLS</code>，由 <code>TLS</code> 将数据进行加密后，再往下交给 <code>TCP</code> 进行数据去传输。</p>
-<p>以及对面的接受方在 <code>TCP</code> 层收到数据且拼接好之后，不直接交给 <code>HTTP</code> 层，而是先交给 <code>TCP</code> 层进行解密，解密完后再由 <code>TLS</code> 交给 <code>HTTP</code>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本人想在 AHK 中使用面向对象的方式编写代码，但是发现在官方文档中仅有较少关于 class&#96; 的操作代码示例，所以根据自己这两天的代码编写过程，整理出常用的一些使用技巧供大家参考。</p>
 <hr>
-<h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>在客户端和服务器之间用 <strong>非对称加密</strong> 协商出一套 <strong>对称密钥</strong> ，每次发送信息之前将内容加密，收到之后解密，达到内容的加密传输。</p>
-<h2 id="为什么不直接用非对称加密"><a href="#为什么不直接用非对称加密" class="headerlink" title="为什么不直接用非对称加密"></a>为什么不直接用非对称加密</h2><p>非对称加密由于使用了复杂了数学原理，因此计算相当复杂，如果完全使用非对称 加密来加密通信内容，会严重影响用络通信的性能</p>
+<h1 id="类的创建和使用"><a href="#类的创建和使用" class="headerlink" title="类的创建和使用"></a>类的创建和使用</h1><p>类的创建使用 <code>class</code>  关键字。可以显式定义构造方法以及析构方法：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey"><span class="hljs-comment">; 类的创建</span><br>class A &#123;<br>    <span class="hljs-comment">; 静态变量的创建</span><br>    static var1 := Expression1<br>    <span class="hljs-comment">; 类字段的创建</span><br>    var2 := Expression2<br>    <br>    <span class="hljs-comment">; 构造方法，可传入任意参数，也可不传入参数</span><br>    __New(...) &#123;<br>    &#125;<br>    <br>    <span class="hljs-comment">; 方法的创建</span><br>    <span class="hljs-comment">; 可传入任意参数，参数支持默认参数值</span><br>    <span class="hljs-comment">; 根据需要可不写 return</span><br>    methodName(...) &#123;<br>        ...<br>        <span class="hljs-keyword">return</span> ...<br>    &#125;<br>    <br>    <span class="hljs-comment">; 析构方法</span><br>    __Delete() &#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>类的使用：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">a := <span class="hljs-keyword">new</span> A(...)   <span class="hljs-comment">; 类的实例化，根据构造方法传入对应的参数</span><br>a.methodName(...) <span class="hljs-comment">; 使用变量的方法</span><br></code></pre></td></tr></table></figure>
+
 <hr>
-<h1 id="HTTPS-TLS-的连接"><a href="#HTTPS-TLS-的连接" class="headerlink" title="HTTPS (TLS) 的连接"></a>HTTPS (TLS) 的连接</h1><h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><ol>
-<li>客户端请求建立 <code>TLS</code> 连接</li>
-<li>服务器发挥证书</li>
-<li>客户端验证服务器证书</li>
-<li>客户端信任服务器后，和服务器协商对称密钥（此时通过非对称加密的方式协商对称密钥）</li>
-<li>使用对称密码开始通信</li>
-</ol>
-<h2 id="详细流程"><a href="#详细流程" class="headerlink" title="详细流程"></a>详细流程</h2><blockquote>
-<p>  可以通过 WireShark 进行更加详细的查看。</p>
-</blockquote>
+<h1 id="在类中创建热键并绑定类方法"><a href="#在类中创建热键并绑定类方法" class="headerlink" title="在类中创建热键并绑定类方法"></a>在类中创建热键并绑定类方法</h1><p>使用面向对象的思想编写代码的话，我们或许需要在类中创建热键及其响应逻辑的方法：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">class A &#123;<br>    <span class="hljs-comment">; 自定义的一个方法，用于加载类中所有的热键</span><br>    loadHotKey() &#123;<br>        <span class="hljs-comment">; 创建响应方法的方法引用</span><br>        varFunctionA := ObjBindMethod(this, <span class="hljs-string">&quot;functionA&quot;</span>)<br><br>        <span class="hljs-comment">; 创建 Alt + A 的热键以及绑定其响应方法</span><br><span class="hljs-built_in">        HotKey,</span> !A, % varFunctionA, On<br>    &#125;<br>    <br>    functionA() &#123;<br>    	<span class="hljs-comment">; 热键的响应逻辑</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码便在类中创建了一个使用类中方法作为响应逻辑的热键。其中：</p>
 <ol>
-<li><p>客户端和服务器第一次打招呼。</p>
-<p>客户端向服务器发送 Client Hello（大小为1字节的数据，值为1，这个数据的名字叫做 Client Hello）。</p>
-<p>同时，也会再附加信息中发送服务器可选的 <code>TLS</code> 版本、可选的加密套件（对称加密算法、非对称加密算法、哈希算法）、客户端生成的随机数。</p>
+<li><code>varFunctionA := ObjBindMethod(this, &quot;functionA&quot;)</code> 部分：<ol>
+<li><code>&quot;functionA&quot;</code> 中双引号必须保留，双引号中间内容为对应的方法名。</li>
+<li><code>varFunctionName</code> 为自定义的变量名称，与第7行第3个参数相对应。</li>
+</ol>
 </li>
-<li><p>服务器收到 Client Hello 后，确定双方可以共同使用的 <code>TLS</code> 版本、加密套件 ，以及服务端自己生成的以及随机数，并将这些信息发回给客户端，称为 Server Hello。Server Hello 也是一个单字节数据，值为2。</p>
-<p>如果没有可以共同使用的内容，那么 <code>HTTPS</code> 就直接建立失败。</p>
+<li><code>HotKey, !A, % varFunctionA, On</code> 部分：<ol>
+<li><code>!A</code> 为热键的内容，具体可以参考文档中 <strong>热键</strong> 部分内容。</li>
+<li><code>% varFunctionA</code> 中百分号必须保留，后面的内容对应上面一行自定义的变量名。</li>
+</ol>
 </li>
-<li><p>服务器发送自己的证书。</p>
-<blockquote>
-<p>   <strong>证书中主要包含了</strong>：</p>
+</ol>
+<p>热键的使用：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-keyword">new</span> A().loadHotKey()<br></code></pre></td></tr></table></figure>
+
+<p>通过对该类的实例化并调用实例化对象的 <code>loadHotKey</code> 方法即可。</p>
+<hr>
+<h1 id="在类中绘制-UI-并绑定类方法"><a href="#在类中绘制-UI-并绑定类方法" class="headerlink" title="在类中绘制 UI 并绑定类方法"></a>在类中绘制 <code>UI</code> 并绑定类方法</h1><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">class B &#123;<br>    <span class="hljs-comment">; 自定义的一个方法，用于绘制 UI 以及绑定响应的方法</span><br>    loadView() &#123;<br>        <span class="hljs-comment">; 绘制了一个按钮</span><br><span class="hljs-built_in">        Gui,</span> Add, Button, w200 h35 hwndHFuncB, This is a button.<br><br>        <span class="hljs-comment">; 创建了响应方法的方法引用</span><br>        varFuncB := ObjBindMethod(this, <span class="hljs-string">&quot;functionB&quot;</span>)<br><br>        <span class="hljs-comment">; 通过 HWND 将按钮与方法绑定</span><br><span class="hljs-built_in">        GuiControl,</span> +g, <span class="hljs-variable">%HFuncB%</span>, % varFuncB<br>    &#125;<br>    <br>    functionB() &#123;<br>        <span class="hljs-comment">; 按钮的响应逻辑</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <ol>
-<li>服务器的公钥（其实是个数据）</li>
-<li>服务器的证书的签名（由证书签发机构的私钥对服务器证书的签名）</li>
-<li>证书签发机构的公钥（用户验证这个“公钥签名”的另一个公钥）</li>
-<li>证书签发机构的证书的签名</li>
-<li>证书签发机构的签发机构（根证书机构）的公钥</li>
-<li>服务器主机名</li>
-</ol>
-</blockquote>
-<p>可以让客户端进行信息加密。客户端通过服务器的公钥进行信息加密，服务器可以通过自己的密钥进行信息的解密。</p>
-<blockquote>
-<p>   <strong>服务器公钥的签名</strong></p>
-<p>   用私钥对服务器公钥的 Hash 值版进行一次非对称加密的计算得到的结果数据。这个数据可以被该私钥对应的公钥所解开。</p>
-<p>   如果解开签名之后的值正好等于服务器公钥经过一次 Hash 计算后的结果值，那么就证明这个源数据是没有问题的。</p>
-<p>   注意：用于解开的公钥和被签名的公钥不是同一个，它是由私钥生成的另一个公钥。</p>
-</blockquote>
-</li>
-<li><p>客户端验证公钥的正确性。</p>
-<p>证书签发机构的签发机构的证书，在所有的操作系统中都默认带有一份，被认为是最可信的证书，被称为“根证书”。</p>
-<p>当需要查询这些证书的时候，会从设备中进行查询，如果能够查询的到的话，那么第5个文件内容就是可信的了。</p>
-<p>当证书签发机构的签发机构的公钥是可信的话，我们就可以使用这个公钥去验证第4个内容的正确性。再使用第3个内容的公钥去验证第2个内容的正确性了。</p>
-<p>如果第2个内容是正确的话，那么说明服务器的公钥就是正确的了。</p>
-<blockquote>
-<p>  除了操作系统自带的根证书，我们也可以自行往自己的设备中安装自己需要的根证书。</p>
-</blockquote>
-<p><strong>注：客户端除了验证公钥是否正确，还需要验证服务器主机名是否是我们所需要到达的地址。</strong></p>
-</li>
-<li><p>客户端发送 <code>Pre-master Secret</code> 的数据</p>
-<p>使用的服务器的公钥加密发过去的，也是一个客户端生成的随机数。</p>
-</li>
-<li><p>客户端和服务器都通过上述三个随机数生成一个 <code>Master Secret</code> 的值</p>
-<p>通过 <code>Master Secret</code> 就可以算出双方进行对称加密的密钥等相关的一些信息了。然后双方就可以进行加密通信了。</p>
-<p><code>Master Secret</code> 会生成四个内容：</p>
-<ol>
-<li>客户端加密密钥</li>
-<li>服务端加密密钥</li>
-<li>客户端 <code>MAC Secret</code></li>
-<li>服务端 <code>MAC Secret</code></li>
-</ol>
-<blockquote>
-<p>  <strong>为什么使用三个随机数生成数据，而不是仅使用 <code>Pre-master Secret</code> 来生成数据？</strong></p>
-<p>  为了防止<strong>重放攻击</strong>。通过多个随机数，防止攻击者使用一个以前收到的随机数就可以获取用户的身份认证。</p>
-<blockquote>
-<p>  <strong>重放攻击(Replay Attacks)</strong></p>
-<p>  又称重播攻击、回放攻击，是指攻击者发送一个目的主机已接收过的包，来达到欺骗系统的目的，主要用于身份认证过程，破坏认证的正确性。重放攻击可以由发起者，也可以由拦截并重发该数据的敌方进行。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>  为什么客户端和服务器要使用两个加密密钥呢？</p>
-<p>  为了防止出现攻击人将客户端发送的消息重新发送给客户端，使用相同的密钥会使客户端能够解密并认为这个服务器发送的数据，从而导致数据错误。而通过两个不同的密钥，便可以防止客户端和服务器双方无法分辨数据的来源了。</p>
-</blockquote>
-<p>注意：</p>
-<ol>
-<li>客户端向服务端发送对称加密数据时，双方使用客户端加密密钥进行加解密操作。服务端向客户端发送对称加密数据时，双方使用服务端加密密钥进行加解密操作。</li>
-<li><code>MAC Secret</code>。其中 <code>MAC</code> 也即 <code>HMAC</code> (Hash-based Message Authentication Code 哈希运算消息认证码)，可以使数据进行带密码的哈希计算。仅仅只是无密码的哈希算法容易被攻击者碰撞，但是使用带特定的密码的哈希算法就是极大的增加难度。当接收方也使用带该密码的，相同的哈希算法进行计算后，与发送过来的哈希值进行比较，如果两者一样的话，那么就可以证明数据使对方发的且是安全的。</li>
+<li><code>Gui, Add, Button, w200 h35 hwndHFuncB, This is a button.</code> 中 <code>hwndHFuncB</code> 部分：<ol>
+<li>形式为 <code>hwnd + 自定义变量名</code></li>
+<li>自定义变量名与第9行中第3个参数相对应。</li>
 </ol>
 </li>
-<li><p>客户端向服务器发送1个字节的数据（值为20，名称为 Change Cipher Spec），通知自己将使用加密通信。</p>
-</li>
-<li><p>客户端将前7步得到的数据通过客户端加密密钥以及客户端 <code>MAC Secret</code> 加密，然后发送给服务器。服务器对获得的结果进行验证。</p>
-<p>消息名称为 Encrypted Handshake Message。</p>
-<p><strong>此步之后，客户端就可以通过对称加密发送信息了。</strong></p>
-</li>
-<li><p>服务器向客户端发送1个字节的数据（值为20，名称为 Change Cipher Spec），通知自己将使用加密通信。</p>
-</li>
-<li><p>服务器将前9步得到的数据通过服务器加密密钥以及服务器 <code>MAC Secret</code> 加密，然后发送给客户端。客户端对获得的结果进行验证。</p>
-<p>消息名称为 Encrypted Handshake Message。</p>
-<p><strong>此步之后，服务器也可以通过对称加密发送信息了。</strong></p>
-</li>
+<li><code>varFuncB := ObjBindMethod(this, &quot;functionB&quot;)</code> 部分：<ol>
+<li><code>varFuncB</code> 为另一个自定义变量名，与第9行中第4个变量名相对应。</li>
+<li><code>&quot;functionB&quot;</code> 中双引号必须保留，双引号中间内容为对应的方法名。</li>
 </ol>
+</li>
+<li><code>GuiControl, +g, %HFuncB%, % varFuncB</code> 中第3、4个参数分别为上述的两个自定义变量名。</li>
+</ol>
+<hr>
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><blockquote>
+<p>  使用面向对象思想重构 <a target="_blank" rel="noopener" href="https://luoyu-ying.github.io/posts/050a11a7817a/">通过 AutoHotKey 简化 Hexo 操作 | 洛语 の Blog (luoyu-ying.github.io)</a> 中 Deploy 部分的操作。</p>
+</blockquote>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-comment">; 加载类的 UI 以及热键</span><br><span class="hljs-keyword">new</span> Deploy().load()<br><br><span class="hljs-comment">; -------------------------</span><br><br><span class="hljs-comment">; 类的创建</span><br>class Deploy &#123;<br><br>    load() &#123;<br>        this.loadView()<br>        this.loadHotKey()<br>    &#125;<br>    <br>    <span class="hljs-comment">; 本代码中 GAD -&gt; generate and deploy</span><br>    <br>    loadView() &#123;<br><span class="hljs-built_in">        Gui,</span> Add, Button, w200 h35 hwndHGAD, Generate &amp;&amp; Deploy<br>        <br>        varGAD := ObjBindMethod(this, <span class="hljs-string">&quot;generateDeploy&quot;</span>)<br><span class="hljs-built_in">        </span><br><span class="hljs-built_in">        GuiControl,</span> +g, <span class="hljs-variable">%HGAD%</span>, % varGAD<br>    &#125;<br>    <br>    loadHotKey() &#123;<br>        varGAD := ObjBindMethod(this, <span class="hljs-string">&quot;generateDeploy&quot;</span>)<br><span class="hljs-built_in">        </span><br><span class="hljs-built_in">        Hotkey,</span> CapsLock &amp; G, % varGAD, On<br>    &#125;<br>    <br>    generateDeploy() &#123;<br><span class="hljs-built_in">        Run,</span> <span class="hljs-variable">%comSpec%</span> /c hexo g &amp;&amp; hexo d, , Min<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -413,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  <a href="/categories/AutoHotkey/" class="category-chain-item">AutoHotkey</a>
   
   
 
@@ -428,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/HTTPS/">#HTTPS</a>
+        <a href="/tags/AutoHotkey/">#AutoHotkey</a>
       
     </div>
   
@@ -440,8 +388,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计算机网络-HTTPS</div>
-      <div>https://luoyuy.top/posts/0a77f507cef9/</div>
+      <div>AutoHotkey v1 类的定义与部分使用技巧</div>
+      <div>https://luoyuy.top/posts/61bd48ea70cc/</div>
     </div>
     <div class="license-meta">
       
@@ -453,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月26日</div>
+          <div>2022年7月12日</div>
         </div>
       
       
@@ -485,9 +433,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/e26999fccebc/" title="计算机网络-登录和授权">
+                      <a href="/posts/82303f29c0e9/" title="AutoHotkey v1 变量和字符串">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计算机网络-登录和授权</span>
+                        <span class="hidden-mobile">AutoHotkey v1 变量和字符串</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -495,8 +443,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/82303f29c0e9/" title="AutoHotkey v1 变量和字符串">
-                        <span class="hidden-mobile">AutoHotkey v1 变量和字符串</span>
+                      <a href="/posts/8f286d636eff/" title="AutoHotkey v1 问题解决记录">
+                        <span class="hidden-mobile">AutoHotkey v1 问题解决记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
