@@ -25,9 +25,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E7%99%BB%E5%BD%95%E5%92%8C%E6%8E%88%E6%9D%83.png">
 <meta property="article:published_time" content="2022-12-26T10:31:50.000Z">
-<meta property="article:modified_time" content="2023-01-06T06:28:33.202Z">
+<meta property="article:modified_time" content="2023-01-06T06:46:56.951Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="HTTP&#x2F;HTTPS">
+<meta property="article:tag" content="OAuth2">
+<meta property="article:tag" content="Cookie">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E7%99%BB%E5%BD%95%E5%92%8C%E6%8E%88%E6%9D%83.png">
   
@@ -378,7 +379,7 @@
 <p>  为什么 <code>OAuth</code> 要引入 <code>Authorization code</code>，并需要申请授权的第三方将 <code>Authorization code</code> 发送回自己的服务器，再从服务器来获取 <code>access token</code>， 而不是直接返回 <code>access token</code> ？这样复杂的流程意义何在？ </p>
 <p>  为了安全。<code>OAuth</code> 不强制授权流程必须使用 <code>HTTPS</code>，因此需要保证当通信路径中存在窃听者时，依然具有足够高的安全性。</p>
 </blockquote>
-<h4 id="微信登录流程"><a href="#微信登录流程" class="headerlink" title="微信登录流程"></a>微信登录流程</h4><p>第三方 App 通过微信登录的流程，也是一个 OAuth2 流程：</p>
+<h4 id="微信登录流程"><a href="#微信登录流程" class="headerlink" title="微信登录流程"></a>微信登录流程</h4><p>第三方 App 通过微信登录的流程，也是一个 <code>OAuth2</code> 流程：</p>
 <ol start="0">
 <li>第三方 App 向腾讯申请第三方授权合作，拿到 <code>client_id</code> 和 <code>client_secret</code></li>
 <li>用户在使用第三方 App 时，点击「通过微信登录」，第三方 App 将使用微信 SDK 跳转到微信，并传入自己的 <code>client_id</code> 作为自己的身份标识</li>
@@ -440,7 +441,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/HTTP-HTTPS/">#HTTP/HTTPS</a>
+        <a href="/tags/OAuth2/">#OAuth2</a>
+      
+        <a href="/tags/Cookie/">#Cookie</a>
       
     </div>
   
@@ -611,7 +614,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/fluid-js/duration.js"></script> </div> 
     </div>
   
   
