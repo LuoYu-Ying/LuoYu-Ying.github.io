@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
 <meta property="article:published_time" content="2022-07-12T09:33:37.000Z">
-<meta property="article:modified_time" content="2023-01-06T08:44:09.040Z">
+<meta property="article:modified_time" content="2023-01-06T09:24:33.932Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="AutoHotkey">
 <meta name="twitter:card" content="summary_large_image">
@@ -87,7 +87,7 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
-<body>
+<body><!-- hexo injector body_begin start --><script src="/fluid-js/postTimeleness.js"></script><!-- hexo injector body_begin end -->
   
 
   <header>
@@ -288,11 +288,11 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>本文所使用的AHK版本为 AutoHotKey_v1 。</p>
-</blockquote>
-<hr>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本人想在 AHK 中使用面向对象的方式编写代码，但是发现在官方文档中仅有较少关于 class&#96; 的操作代码示例，所以根据自己这两天的代码编写过程，整理出常用的一些使用技巧供大家参考。</p>
+                <div class="note note-warning">
+            <p>本文所使用的 AHK 版本为 AutoHotKey v1 。</p>
+          </div>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本人想在 AHK 中使用面向对象的方式编写代码，但是发现在官方文档中仅有较少关于 <code>class</code> 的操作代码示例，所以根据自己这两天的代码编写过程，整理出常用的一些使用技巧供大家参考。</p>
 <hr>
 <h1 id="类的创建和使用"><a href="#类的创建和使用" class="headerlink" title="类的创建和使用"></a>类的创建和使用</h1><p>类的创建使用 <code>class</code>  关键字。可以显式定义构造方法以及析构方法：</p>
 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey"><span class="hljs-comment">; 类的创建</span><br>class A &#123;<br>    <span class="hljs-comment">; 静态变量的创建</span><br>    static var1 := Expression1<br>    <span class="hljs-comment">; 类字段的创建</span><br>    var2 := Expression2<br>    <br>    <span class="hljs-comment">; 构造方法，可传入任意参数，也可不传入参数</span><br>    __New(...) &#123;<br>    &#125;<br>    <br>    <span class="hljs-comment">; 方法的创建</span><br>    <span class="hljs-comment">; 可传入任意参数，参数支持默认参数值</span><br>    <span class="hljs-comment">; 根据需要可不写 return</span><br>    methodName(...) &#123;<br>        ...<br>        <span class="hljs-keyword">return</span> ...<br>    &#125;<br>    <br>    <span class="hljs-comment">; 析构方法</span><br>    __Delete() &#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
