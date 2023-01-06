@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-view.png">
 <meta property="article:published_time" content="2022-04-18T13:49:55.000Z">
-<meta property="article:modified_time" content="2023-01-06T08:09:19.951Z">
+<meta property="article:modified_time" content="2023-01-06T08:18:39.774Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="View">
@@ -306,7 +306,7 @@
 <h2 id="DecorView"><a href="#DecorView" class="headerlink" title="DecorView"></a><code>DecorView</code></h2><p><code>DecorView</code>作为<code>顶层View</code>，继承自<code>FrameLayout</code>。一般情况下它的内部都会包含一个<code>LinearLayout</code>。而<code>LinearLayout</code>中有上下两个部分，分别为标题栏和内容栏。我们平时设置指定布局文件的方法<code>setContentView</code>，就是指的是内容栏中的布局。</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-8f887429daf00df80319901f69cd1d35_720w.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
 
-<p>通过源码，我们可以得知，**<code>DecorView</code>其实是一个<code>LinearLayout</code>**，<code>View</code>层的事件都先通过<code>DecorView</code>，然后才传递给我们的<code>View</code>。</p>
+<p>通过源码，我们可以得知，**<code>DecorView</code> 其实是一个 <code>LinearLayout</code>**，<code>View</code> 层的事件都先通过 <code>DecorView</code>，然后才传递给我们的 <code>View</code>。</p>
 <h2 id="MeasureSpec"><a href="#MeasureSpec" class="headerlink" title="MeasureSpec"></a><code>MeasureSpec</code></h2><blockquote>
 <p>  <code>spec</code> <strong><code>英[spek]</code></strong><code>n.</code>规格 <code>vt.</code>按特定标准设计并制造</p>
 </blockquote>
