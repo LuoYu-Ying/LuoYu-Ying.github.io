@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <link rel="icon" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuoYu-Ying">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编语言:基于x86处理器-学习笔记-第七章">
+<meta property="og:url" content="https://luoyuy.top/posts/3941df7fa3bf/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-asm.png">
+<meta property="article:published_time" content="2023-01-02T12:49:54.000Z">
+<meta property="article:modified_time" content="2023-01-06T07:01:57.169Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="汇编语言">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-asm.png">
+  
+  
+  
+  <title>汇编语言:基于x86处理器-学习笔记-第七章 - 洛语 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"luoyuy.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>洛语 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="汇编语言:基于x86处理器-学习笔记-第七章"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-02 20:49" pubdate>
+          2023年1月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">汇编语言:基于x86处理器-学习笔记-第七章</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第七章学习笔记</b></font></center><br>
+
+<span id="more"></span>
+
+<h1 id="移位和循环移位指令"><a href="#移位和循环移位指令" class="headerlink" title="移位和循环移位指令"></a>移位和循环移位指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 192</p>
+</blockquote>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210528302.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+
+<p>移动操作数的位有两种方法。</p>
+<ul>
+<li>第一种是<strong>逻辑移位</strong> (logic shift)，<strong>空出来的位用 0 填充</strong>。如下图所示，一个字节的数据向右移动一位。也就是说，每一位都被移动到其旁边的低位上。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
+
+<ul>
+<li>另一种移位的方法是<strong>算术移位</strong> (arithmetic shift)，空出来的位用原数据的符号位填充。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+
+<h2 id="SHL-指令"><a href="#SHL-指令" class="headerlink" title="SHL 指令"></a>SHL 指令</h2><p>逻辑左移。SHL 的第一个操作数是目的操作数,第二个操作数是移位次数：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211036985.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+$$
+SHL \space \space destination,count
+$$
+该指令可用的操作数类型如下所示：
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs assembly">SHL reg, imm8<br>SHL mem, imm8<br>SHL reg, CL<br>SHL mem, CL<br></code></pre></td></tr></table></figure>
+
+<p>x86处理器允许 imm8 为 0～255 中的任何整数。另外，CL 寄存器包含的是移位计数。上述格式同样适用于 SHR、SAL、SAR、ROR、ROL、RCR 和  RCL 指令。</p>
+<h2 id="SHR-指令"><a href="#SHR-指令" class="headerlink" title="SHR 指令"></a>SHR 指令</h2><p>逻辑右移。SHR 的指令格式与 SHL 相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
+
+<h2 id="SAL-和-SAR-指令"><a href="#SAL-和-SAR-指令" class="headerlink" title="SAL 和 SAR 指令"></a>SAL 和 SAR 指令</h2><p>SAL(算术左移)指令的操作与SHL指令一样。</p>
+<p>每次移动时，SAL 都将目的操作数中的每一位移动到下一个最高位上。<strong>最低位用0填充</strong>；最高位移入进位标志位，该标志位原来的值被丢弃：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211511996.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+
+<p>SAR 指令为算术右移，指令格式与 SHL 相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+
+<h2 id="ROL-指令"><a href="#ROL-指令" class="headerlink" title="ROL 指令"></a>ROL 指令</h2><p>以循环方式来移位即为位元循环 (Bitwise Rotation)。一些操作中，从数的一端移出的位立即复制到该数的另一端。还有一种类型则是把进位标志位当作移动位的中间点。</p>
+<p>ROL（循环左移）指令把所有位都向左移。最高位复制到进位标志位和最低位。该指令格式与 SHL 指令相同：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212019795.png" srcset="/img/loading.gif" lazyload alt="image-20230102212019795" style="zoom:80%;" />
+
+<p>位循环不会丢弃位。从数的一端循环出去的位会出现在该数的另一端。</p>
+<p><font size = 4><b>特点</b></font></p>
+<ol>
+<li>当循环计数值大于 1 时，进位标志位保存的是最后循环移出 MSB 的位。</li>
+<li>位组交换利用 ROL 可以交换一个字节的高四位(位 4～7)和低四位(位 0～3)。例如，26h 向任何方向循环移动 4 位就变为 62h。当多字节整数以四位为单位进行循环移位时，其效果相当于一次向右或向左移动一个十六进制位。例如，将 6A4Bh 反复循环左移四位，最后就会回到初始值。</li>
+</ol>
+<h2 id="ROR-指令"><a href="#ROR-指令" class="headerlink" title="ROR 指令"></a>ROR 指令</h2><p>ROR（循环右移）指令把所有位都向右移，最低位复制到进位标志位和最高位。该指令格式与 SHL 指令相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212338300.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+
+<p>当循环计数值大于 1 时，进位标志位保存的是最后循环移出 LSB 的位。</p>
+<h2 id="RCL-和-RCR-指令"><a href="#RCL-和-RCR-指令" class="headerlink" title="RCL 和 RCR 指令"></a>RCL 和 RCR 指令</h2><p>RCL（带进位循环左移）指令把每一位都向左移，进位标志位复制到 LSB，而 MSB 复制到进位标志位：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212630840.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+
+<p>RCR（带进位循环右移）指令把每一位都向右移，进位标志位复制到 MSB，而 LSB 复制到进位标志位：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212743503.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+
+<h2 id="SHLD-和-SHRD-指令"><a href="#SHLD-和-SHRD-指令" class="headerlink" title="SHLD 和 SHRD 指令"></a>SHLD 和 SHRD 指令</h2><p>SHLD（双精度左移）指令将目的操作数向左移动指定位数。移动形成的空位由源操作数的高位填充。源操作数不变，但是符号标志位、零标志位、辅助进位标志位、奇偶标志位和进位标志位会受影响：<br>$$<br>SHLD \space \space dest, source, count<br>$$<br>下图展示的是 SHLD 执行移动一位的过程。源操作数的最高位复制到目的操作数的最低位上。目的操作数的所有位都向左移动：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213018857.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
+
+<p>SHRD（双精度右移）指令将目的操作数向右移动指定位数。移动形成的空位由源操作数的低位填充：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213058864.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
+
+<p>SHLD 和 SHRD 的指令格式中，目标操作数可以是寄存器或内存操作数；<strong>源操作数必须是寄存器</strong>；移位次数可以是 CL 寄存器或者 8 位立即数。</p>
+<h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 200</p>
+</blockquote>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213650659.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+
+<hr>
+<h1 id="乘法和除法指令"><a href="#乘法和除法指令" class="headerlink" title="乘法和除法指令"></a>乘法和除法指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 201</p>
+</blockquote>
+<h2 id="MUL-指令"><a href="#MUL-指令" class="headerlink" title="MUL 指令"></a>MUL 指令</h2><p>32位模式下，MUL（<strong>无符号数</strong>乘法）指令有三种类型：</p>
+<ul>
+<li>第一种执行 8 位操作数与 <strong>AL 寄存器</strong>的乘法</li>
+<li>第二种执行16位操作数与 <strong>AX 寄存器</strong>的乘法</li>
+<li>第三种执行 32 位操作数与 <strong>EAX 寄存器</strong>的乘法</li>
+</ul>
+<p>乘数和被乘数的大小必须保持一致，<strong>乘积的大小则是它们的一倍</strong>。这三种类型都可以使用寄存器和内存操作数，但不能使用立即数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs assembly">MUL reg/mem8<br>MUL reg/mem16<br>MUL reg/mem32<br></code></pre></td></tr></table></figure>
+
+<p>MUL 指令中的单操作数是乘数。下图按照乘数的大小，列出了默认的被乘数和乘积。</p>
+<p>由于目的操作数是被乘数和乘数大小的两倍，因此<strong>不会发生溢出</strong>。</p>
+<p>如果乘积的高半部分不为零，则 MUL 会把<strong>进位标志位和溢出标志位</strong>置 1。因为进位标志位常常用于无符号数的算术运算。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102222115899.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+
+<p>例如，当 AX 乘以一个 16 位操作数时，乘积存放在 DX 和 AX 寄存器对中。其中，乘积的高 16 位存放在 DX，低 16 位存放在 AX。如果 DX 不等于零，则进位标志位置 1，这就意味着隐含的目的操作数的低半部分容纳不了整个乘积。</p>
+<h2 id="IMUL-指令"><a href="#IMUL-指令" class="headerlink" title="IMUL 指令"></a>IMUL 指令</h2><p>IMUL（有符号数乘法）指令执行有符号整数乘法。与 MUL 指令不同，IMUL 会<strong>保留乘积的符号</strong>，实现的方法是，将乘积低半部分的最高位符号扩展到高半部分。x86指令集支持三种格式的 IMUL 指令:单操作数、双操作数和三操作数。</p>
+<p><font size = 4><b>单操作数格式</b></font></p>
+<p>单操作数格式中，乘数和被乘数大小相同，而乘积的大小是它们的两倍。单操作数格式将乘积存放在 AX、DX:AX 或 EDX: EAX 中：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102224014015.png" srcset="/img/loading.gif" lazyload style="zoom: 71%;" />
+
+<p>和 MUL 指令一样，其乘积的存储大小使得<strong>溢出不会发生</strong>。同时，如果乘积的高半部分不是其低半部分的符号扩展，则进位标志位和溢出标志位置1。利用这个特点可以决定是否忽略乘积的高半部分。</p>
+<p><font size = 4><b>双操作数格式（32位模式）</b></font></p>
+<p>32 位模式中的双操作数 IMUL 指令把乘积存放在第一个操作数中，这个操作数必须是寄存器。第二个操作数（乘数）可以是寄存器、内存操作数和立即数。<br>$$<br>IMUL \space \space reg, \space reg&#x2F;mem&#x2F;imm<br>$$<br>双操作数格式会按照目的操作数的大小来截取乘积。如果被丢弃的是有效位则溢出标志位和进位标志位置 1。因此，在执行了有两个操作数的 IMUL 操作后，必须检查这些标志位中的一个。</p>
+<p><font size = 4><b>三操作数格式</b></font></p>
+<p>32 位模式下的三操作数格式将乘积保存在第一个操作数中。第二个操作数可以是16位寄存器或内存操作数，它与第三个操作数相乘，该操作数是一个8位或16位立即数。<br>$$<br>IMUL \space \space reg, \space reg&#x2F;mem, \space imm<br>$$<br>IMUL 执行时，若乘积有效位被丢弃，则溢出标志位和进位标志位置 1。因此，在执行了有三个操作数的 IMUL 操作后,必须检查这些标志位中的一个。</p>
+<h2 id="DIV-指令"><a href="#DIV-指令" class="headerlink" title="DIV 指令"></a>DIV 指令</h2><p>32 位模式下，DIV（无符号除法）指令执行 8 位、16 位和 32 位无符号数除法。其中，单寄存器或内存操作数是除数。格式如下:<br>$$<br>DIV\space\space reg&#x2F;mem<br>$$<br>下图给出了被除数、除数、商和余数之间的关系：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102234944257.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+
+<p>64 位模式下，DIV 指令用 RDX:RAX 作被除数，用 64 位寄存器和内存操作数作除数商存放到 RAX，余数存放在 RDX 中。</p>
+<h2 id="IDIV-指令"><a href="#IDIV-指令" class="headerlink" title="IDIV 指令"></a>IDIV 指令</h2><p>IDIV（有符号除法）指令执行有符号整数除法，其操作数与 DIV 指令相同。执行 8 位除法之前，被除数 (AX) 必须完成符号扩展。余数的符号总是与被除数相同。</p>
+<hr>
+<h1 id="扩展加减法"><a href="#扩展加减法" class="headerlink" title="扩展加减法"></a>扩展加减法</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 212</p>
+</blockquote>
+<h2 id="ADC-指令"><a href="#ADC-指令" class="headerlink" title="ADC 指令"></a>ADC 指令</h2><p>ADC（带进位加法）指令将源操作数和进位标志位的值都与目的操作数相加。该指令格式与 ADD 指令一样,且操作数大小必须相同：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ADC reg, reg<br>ADC mem, reg<br>ADC reg, mem<br>ADC mem, imm<br>ADC reg, imm<br></code></pre></td></tr></table></figure>
+
+<h2 id="程序示例-1"><a href="#程序示例-1" class="headerlink" title="程序示例"></a>程序示例</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235908443.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235932603.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+
+<p>下面的代码示例调用 Extended_Add，并向其传递两个 8 字节的整数。要注意为和数多分配一个字节：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230103000107626.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
+
+<p>上述程序的输出，加法产生了一个进位：<code>0122C32B0674BB5736</code></p>
+<h2 id="SBB-指令"><a href="#SBB-指令" class="headerlink" title="SBB 指令"></a>SBB 指令</h2><p>SBB（带借位减法）指令从目的操作数中减去源操作数和进位标志位的值。允许使用的操作数与 ADC 指令相同。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E5%9F%BA%E4%BA%8Ex86%E5%A4%84%E7%90%86%E5%99%A8/" class="category-chain-item">汇编语言:基于x86处理器</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">#汇编语言</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>汇编语言:基于x86处理器-学习笔记-第七章</div>
+      <div>https://luoyuy.top/posts/3941df7fa3bf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LuoYu-Ying</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/cecb127ec7d7/" title="汇编语言:基于x86处理器-学习笔记-第八章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第八章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/049b6e9dd143/" title="汇编语言:基于x86处理器-学习笔记-第六章">
+                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第六章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/fluid-js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
