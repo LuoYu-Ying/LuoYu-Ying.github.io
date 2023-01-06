@@ -16,21 +16,22 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="HTTPS 的定义以及连接的流程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://luoyuy.top/posts/ab7e3e593cd4/index.html">
+<meta property="og:title" content="计算机网络-HTTPS">
+<meta property="og:url" content="https://luoyuy.top/posts/0a77f507cef9/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="HTTPS 的定义以及连接的流程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-05T12:32:38.785Z">
-<meta property="article:modified_time" content="2023-01-05T12:32:38.785Z">
+<meta property="article:published_time" content="2022-12-26T02:48:39.000Z">
+<meta property="article:modified_time" content="2023-01-06T06:01:13.572Z">
 <meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="HTTPS">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - 洛语 の Blog</title>
+  <title>计算机网络-HTTPS - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="计算机网络-HTTPS"></span>
           
         </div>
 
@@ -219,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-05 20:32" pubdate>
-          2023年1月5日 晚上
+        <time datetime="2022-12-26 10:48" pubdate>
+          2022年12月26日 上午
         </time>
       </span>
     
@@ -231,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          2.6k 字
         
       </span>
     
@@ -242,7 +243,7 @@
         
         
         
-          4 分钟
+          22 分钟
         
       </span>
     
@@ -280,24 +281,118 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">计算机网络-HTTPS</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <blockquote>
+<p>   <code>HTTP Secure</code> &#x2F; <code>HTTP over SSL</code> &#x2F; <code>HTTP over TLS</code></p>
+<p>  即工作在 <code>SSL</code>（或 <code>TLS</code>）上的 <code>HTTP</code>。说白了就是加密通信的 <code>HTTP</code>。</p>
+<ul>
+<li><code>SSL</code> : Secure Socket Layer（安全套接字层）（<code>TLS</code> 前身）</li>
+<li><code>TLS</code> : Transport Layer Security（传输层安全性）</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>在 <code>HTTP</code> 和 <code>TCP</code> 之间增加了一个 <strong>安全层</strong>（安全的加密层），用于保障 <code>HTTP</code> 的加密传输。</p>
+<p>即 <code>HTTP</code> 将数据交给 <code>TCP</code> 之前，先把数据交给 <code>TLS</code>，由 <code>TLS</code> 将数据进行加密后，再往下交给 <code>TCP</code> 进行数据去传输。</p>
+<p>以及对面的接受方在 <code>TCP</code> 层收到数据且拼接好之后，不直接交给 <code>HTTP</code> 层，而是先交给 <code>TCP</code> 层进行解密，解密完后再由 <code>TLS</code> 交给 <code>HTTP</code>。</p>
+<hr>
+<h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>在客户端和服务器之间用 <strong>非对称加密</strong> 协商出一套 <strong>对称密钥</strong> ，每次发送信息之前将内容加密，收到之后解密，达到内容的加密传输。</p>
+<h2 id="为什么不直接用非对称加密"><a href="#为什么不直接用非对称加密" class="headerlink" title="为什么不直接用非对称加密"></a>为什么不直接用非对称加密</h2><p>非对称加密由于使用了复杂了数学原理，因此计算相当复杂，如果完全使用非对称 加密来加密通信内容，会严重影响用络通信的性能</p>
+<hr>
+<h1 id="HTTPS-TLS-的连接"><a href="#HTTPS-TLS-的连接" class="headerlink" title="HTTPS (TLS) 的连接"></a>HTTPS (TLS) 的连接</h1><h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><ol>
+<li>客户端请求建立 <code>TLS</code> 连接</li>
+<li>服务器发挥证书</li>
+<li>客户端验证服务器证书</li>
+<li>客户端信任服务器后，和服务器协商对称密钥（此时通过非对称加密的方式协商对称密钥）</li>
+<li>使用对称密码开始通信</li>
+</ol>
+<h2 id="详细流程"><a href="#详细流程" class="headerlink" title="详细流程"></a>详细流程</h2><blockquote>
+<p>  可以通过 WireShark 进行更加详细的查看。</p>
+</blockquote>
+<ol>
+<li><p>客户端和服务器第一次打招呼。</p>
+<p>客户端向服务器发送 Client Hello（大小为1字节的数据，值为1，这个数据的名字叫做 Client Hello）。</p>
+<p>同时，也会再附加信息中发送服务器可选的 <code>TLS</code> 版本、可选的加密套件（对称加密算法、非对称加密算法、哈希算法）、客户端生成的随机数。</p>
+</li>
+<li><p>服务器收到 Client Hello 后，确定双方可以共同使用的 <code>TLS</code> 版本、加密套件 ，以及服务端自己生成的以及随机数，并将这些信息发回给客户端，称为 Server Hello。Server Hello 也是一个单字节数据，值为2。</p>
+<p>如果没有可以共同使用的内容，那么 <code>HTTPS</code> 就直接建立失败。</p>
+</li>
+<li><p>服务器发送自己的证书。</p>
+<blockquote>
+<p>   <strong>证书中主要包含了</strong>：</p>
+<ol>
+<li>服务器的公钥（其实是个数据）</li>
+<li>服务器的证书的签名（由证书签发机构的私钥对服务器证书的签名）</li>
+<li>证书签发机构的公钥（用户验证这个“公钥签名”的另一个公钥）</li>
+<li>证书签发机构的证书的签名</li>
+<li>证书签发机构的签发机构（根证书机构）的公钥</li>
+<li>服务器主机名</li>
+</ol>
+</blockquote>
+<p>可以让客户端进行信息加密。客户端通过服务器的公钥进行信息加密，服务器可以通过自己的密钥进行信息的解密。</p>
+<blockquote>
+<p>   <strong>服务器公钥的签名</strong></p>
+<p>   用私钥对服务器公钥的 Hash 值版进行一次非对称加密的计算得到的结果数据。这个数据可以被该私钥对应的公钥所解开。</p>
+<p>   如果解开签名之后的值正好等于服务器公钥经过一次 Hash 计算后的结果值，那么就证明这个源数据是没有问题的。</p>
+<p>   注意：用于解开的公钥和被签名的公钥不是同一个，它是由私钥生成的另一个公钥。</p>
+</blockquote>
+</li>
+<li><p>客户端验证公钥的正确性。</p>
+<p>证书签发机构的签发机构的证书，在所有的操作系统中都默认带有一份，被认为是最可信的证书，被称为“根证书”。</p>
+<p>当需要查询这些证书的时候，会从设备中进行查询，如果能够查询的到的话，那么第5个文件内容就是可信的了。</p>
+<p>当证书签发机构的签发机构的公钥是可信的话，我们就可以使用这个公钥去验证第4个内容的正确性。再使用第3个内容的公钥去验证第2个内容的正确性了。</p>
+<p>如果第2个内容是正确的话，那么说明服务器的公钥就是正确的了。</p>
+<blockquote>
+<p>  除了操作系统自带的根证书，我们也可以自行往自己的设备中安装自己需要的根证书。</p>
+</blockquote>
+<p><strong>注：客户端除了验证公钥是否正确，还需要验证服务器主机名是否是我们所需要到达的地址。</strong></p>
+</li>
+<li><p>客户端发送 <code>Pre-master Secret</code> 的数据</p>
+<p>使用的服务器的公钥加密发过去的，也是一个客户端生成的随机数。</p>
+</li>
+<li><p>客户端和服务器都通过上述三个随机数生成一个 <code>Master Secret</code> 的值</p>
+<p>通过 <code>Master Secret</code> 就可以算出双方进行对称加密的密钥等相关的一些信息了。然后双方就可以进行加密通信了。</p>
+<p><code>Master Secret</code> 会生成四个内容：</p>
+<ol>
+<li>客户端加密密钥</li>
+<li>服务端加密密钥</li>
+<li>客户端 <code>MAC Secret</code></li>
+<li>服务端 <code>MAC Secret</code></li>
+</ol>
+<blockquote>
+<p>  <strong>为什么使用三个随机数生成数据，而不是仅使用 <code>Pre-master Secret</code> 来生成数据？</strong></p>
+<p>  为了防止<strong>重放攻击</strong>。通过多个随机数，防止攻击者使用一个以前收到的随机数就可以获取用户的身份认证。</p>
+<blockquote>
+<p>  <strong>重放攻击(Replay Attacks)</strong></p>
+<p>  又称重播攻击、回放攻击，是指攻击者发送一个目的主机已接收过的包，来达到欺骗系统的目的，主要用于身份认证过程，破坏认证的正确性。重放攻击可以由发起者，也可以由拦截并重发该数据的敌方进行。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>  为什么客户端和服务器要使用两个加密密钥呢？</p>
+<p>  为了防止出现攻击人将客户端发送的消息重新发送给客户端，使用相同的密钥会使客户端能够解密并认为这个服务器发送的数据，从而导致数据错误。而通过两个不同的密钥，便可以防止客户端和服务器双方无法分辨数据的来源了。</p>
+</blockquote>
+<p>注意：</p>
+<ol>
+<li>客户端向服务端发送对称加密数据时，双方使用客户端加密密钥进行加解密操作。服务端向客户端发送对称加密数据时，双方使用服务端加密密钥进行加解密操作。</li>
+<li><code>MAC Secret</code>。其中 <code>MAC</code> 也即 <code>HMAC</code> (Hash-based Message Authentication Code 哈希运算消息认证码)，可以使数据进行带密码的哈希计算。仅仅只是无密码的哈希算法容易被攻击者碰撞，但是使用带特定的密码的哈希算法就是极大的增加难度。当接收方也使用带该密码的，相同的哈希算法进行计算后，与发送过来的哈希值进行比较，如果两者一样的话，那么就可以证明数据使对方发的且是安全的。</li>
+</ol>
+</li>
+<li><p>客户端向服务器发送1个字节的数据（值为20，名称为 Change Cipher Spec），通知自己将使用加密通信。</p>
+</li>
+<li><p>客户端将前7步得到的数据通过客户端加密密钥以及客户端 <code>MAC Secret</code> 加密，然后发送给服务器。服务器对获得的结果进行验证。</p>
+<p>消息名称为 Encrypted Handshake Message。</p>
+<p><strong>此步之后，客户端就可以通过对称加密发送信息了。</strong></p>
+</li>
+<li><p>服务器向客户端发送1个字节的数据（值为20，名称为 Change Cipher Spec），通知自己将使用加密通信。</p>
+</li>
+<li><p>服务器将前9步得到的数据通过服务器加密密钥以及服务器 <code>MAC Secret</code> 加密，然后发送给客户端。客户端对获得的结果进行验证。</p>
+<p>消息名称为 Encrypted Handshake Message。</p>
+<p><strong>此步之后，服务器也可以通过对称加密发送信息了。</strong></p>
+</li>
+</ol>
 
                 
               </div>
@@ -306,6 +401,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HTTPS/">#HTTPS</a>
+      
+    </div>
   
 </div>
 
@@ -315,8 +438,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>https://luoyuy.top/posts/ab7e3e593cd4/</div>
+      <div>计算机网络-HTTPS</div>
+      <div>https://luoyuy.top/posts/0a77f507cef9/</div>
     </div>
     <div class="license-meta">
       
@@ -328,7 +451,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月5日</div>
+          <div>2022年12月26日</div>
         </div>
       
       
@@ -360,15 +483,15 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/posts/e26999fccebc/" title="计算机网络-登录和授权">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算机网络-登录和授权</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/posts/6ed3afd2e436/" title="计算机网络-TCP/IP协议族">
-                        <span class="hidden-mobile">计算机网络-TCP/IP协议族</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
