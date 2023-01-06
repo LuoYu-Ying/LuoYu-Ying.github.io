@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <link rel="icon" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuoYu-Ying">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Android View 的绘制原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="View 的绘制原理">
+<meta property="og:url" content="https://luoyuy.top/posts/19429a22b2b2/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="Android View 的绘制原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-d165daed428c4a5312c1ce1af6a9693a_720w.jpg">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-8f887429daf00df80319901f69cd1d35_720w.jpg">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-3d1255a5093de81fd5bdc27a300d2f0d_720w.jpg">
+<meta property="article:published_time" content="2022-04-18T13:49:55.000Z">
+<meta property="article:modified_time" content="2023-01-06T07:40:46.185Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="View">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-d165daed428c4a5312c1ce1af6a9693a_720w.jpg">
+  
+  
+  
+  <title>View 的绘制原理 - 洛语 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"luoyuy.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>洛语 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="View 的绘制原理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-18 21:49" pubdate>
+          2022年4月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">View 的绘制原理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="ViewRoot"><a href="#ViewRoot" class="headerlink" title="ViewRoot"></a><code>ViewRoot</code></h2><p><code>ViewRoot</code>对应于<code>ViewRootImpl</code>类，它是连接<code>WindowManager</code>和<code>DecorView</code>的纽带。<code>View</code>的三大流程都是通过<code>ViewRoot</code>来完成的。</p>
+<p>在<code>ActivityThread</code>中，当<code>Activity</code>对象被创建完毕后，会将<code>DecorView</code>添加到<code>Window</code>中，同时也会创建<code>ViewRootImpl</code>对象，并将<code>ViewRootImpl</code>对象与<code>DecorView</code>建立关联。</p>
+<h2 id="View的三大绘制流程"><a href="#View的三大绘制流程" class="headerlink" title="View的三大绘制流程"></a><code>View</code>的三大绘制流程</h2><p><code>View</code>的绘制流程主要有<code>measure</code>、<code>layout</code>和<code>draw</code>过程。</p>
+<ol>
+<li><code>measure</code>：用来确定<code>View</code>的测量宽高。</li>
+<li><code>layout</code>：用来确定<code>View</code>的最终宽高以及四个顶点的位置。</li>
+<li><code>draw</code>：将<code>View</code>绘制在屏幕上。</li>
+</ol>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-d165daed428c4a5312c1ce1af6a9693a_720w.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><code>View</code>的绘制流程由<code>ViewRoot</code>的<code>performTraversals</code>方法开始。</p>
+<p><code>performTraversals</code>方法会依次调用<code>performMeasure</code>、<code>performLayout</code>、<code>performDraw</code>方法。<strong>这三个方法会分别完成<code>顶层View</code>的<code>measure</code>、<code>layout</code>、<code>draw</code>过程。</strong></p>
+<p>其中、<code>performMeasure</code>方法会调用其中的<code>measure</code>方法，在<code>measure</code>方法中又会调用<code>onMeasure</code>方法，在<code>onMeasure</code>方法中会对所有的子元素进行<code>measure</code>过程，这个时候<code>measure</code>的流程就从父容器传递到了子元素中，这样就完成了一轮<code>measure</code>过程。不断的对子元素进行<code>measure</code>过程。如此反复便完成了对<code>View</code>树的遍历。</p>
+<p>其中，<code>performMeasure</code>方法位于<code>ViewRootImpl</code>中的<code>measureHierarchy</code>方法中(<code>hierarchy</code>：<code>n.</code>层次结构)。</p>
+<p><code>performLayout</code>方法、<code>performDraw</code>方法的流程与之同理，需要注意一点的是，<code>draw</code>流程的传递是通过<code>draw</code>方法中的<code>dispatchDraw</code>实现的，不过并无本质的区别。</p>
+<h2 id="DecorView"><a href="#DecorView" class="headerlink" title="DecorView"></a><code>DecorView</code></h2><p><code>DecorView</code>作为<code>顶层View</code>，继承自<code>FrameLayout</code>。一般情况下它的内部都会包含一个<code>LinearLayout</code>。而<code>LinearLayout</code>中有上下两个部分，分别为标题栏和内容栏。我们平时设置指定布局文件的方法<code>setContentView</code>，就是指的是内容栏中的布局。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-8f887429daf00df80319901f69cd1d35_720w.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+
+<p>通过源码，我们可以得知，**<code>DecorView</code>其实是一个<code>LinearLayout</code>**，<code>View</code>层的事件都先通过<code>DecorView</code>，然后才传递给我们的<code>View</code>。</p>
+<h2 id="MeasureSpec"><a href="#MeasureSpec" class="headerlink" title="MeasureSpec"></a><code>MeasureSpec</code></h2><blockquote>
+<p>  <code>spec</code> <strong><code>英[spek]</code></strong><code>n.</code>规格 <code>vt.</code>按特定标准设计并制造</p>
+</blockquote>
+<p><code>MeasureSpec</code>参与了<code>View</code>的<code>measure</code>过程。在测量过程中，系统将<code>View</code>的<code>LayoutParams</code>根据父容器所施加的规则转换成对应的<code>MeasureSpec</code>，然后再根据这个<code>MeasureSpec</code>来测量出<code>View</code>的测量宽&#x2F;高。</p>
+<p><code>MeasureSpec</code>代表一个32位的<code>int</code>值，高两位代表 测量模式<code>SpecMode</code>，低30位代表 该测量模式下的规格大小<code>SpecSize</code>。</p>
+<p><code>MeasureSpec</code>与<code>SpecMode</code>、<code>SpecSize</code>之间可以通过位运算互相求出。</p>
+<p>每个<code>View</code>的<code>measure</code>过程之前都会先计算其<code>MeasureSpec</code>的值，然后再对其进行<code>measure</code>。</p>
+<p><strong>注意</strong>：<code>View</code>的宽和高各有一个<code>MeasureSpec</code>值，分别为<code>widthMeasureSpec</code>和<code>heightMeasureSpec</code>。</p>
+<h3 id="SpecMode的三种状态"><a href="#SpecMode的三种状态" class="headerlink" title="SpecMode的三种状态"></a><code>SpecMode</code>的三种状态</h3><ol>
+<li><p><code>UNSPECIFIED</code></p>
+<p>父容器不对<code>View</code>做任何的限制，要多大给多大。<strong>这种情况一般用于系统的内部</strong>，表示一种测量方式的状态。</p>
+</li>
+<li><p><code>EXACTLY</code></p>
+<p>父容器已经测出了<code>View</code>所需要的精确大小，此时的大小就是<code>View</code>的最终大小。</p>
+<p>它对应于<code>LayoutParams</code>的<code>match_parent</code>和具体的数值这两种模式。</p>
+</li>
+<li><p><code>AT_MOST</code></p>
+<p>父容器指定了一个可用的大小，<code>View</code>的大小不能大于这个值。</p>
+<p>它对应于<code>LayoutParams</code>中的<code>wrap_content</code>。</p>
+</li>
+</ol>
+<h3 id="MeasureSpec和LayoutParams的对应关系"><a href="#MeasureSpec和LayoutParams的对应关系" class="headerlink" title="MeasureSpec和LayoutParams的对应关系"></a><code>MeasureSpec</code>和<code>LayoutParams</code>的对应关系</h3><p>对于<code>DecorView</code>和普通<code>View</code>来说，<code>MeasureSpec</code>的转化过程略有不同。</p>
+<p><strong>对于<code>DecorView</code>：</strong></p>
+<p><strong><code>DecorView</code>的<code>MeasureSpec</code>由窗口的大小和<code>DecorView</code>自身的<code>LayoutParams</code>共同决定的。</strong></p>
+<p>通过在<code>ViewRootImpl</code>中的<code>measureHierarchy</code>方法中，调用<code>getRootMeasureSpec</code>方法，获得<code>DecorView</code>的<code>MeasureSpec</code>。</p>
+<p>其中<code>getRootMeasureSpec</code>方法中，根据自身<code>LayoutParams</code>的不同大小，共有三种情况：</p>
+<ol>
+<li><code>LayoutParams.MATCH_PARENT</code>：精确模式，大小就是窗口的大小。</li>
+<li><code>LayoutParams.WRAP_CONTENT</code>：最大模式，大小不定，但是不能超过窗口的大小。</li>
+<li>固定大小(比如100dp)：精确模式，大小为<code>LayoutParams</code>中指定的大小。</li>
+</ol>
+<p><strong>对于普通<code>View</code>：</strong></p>
+<p><strong>普通<code>View</code>的<code>MeasureSpec</code>由父容器的<code>MeasureSpec</code>和自身的<code>LayoutParams</code>共同决定的。</strong></p>
+<p>通过在父容器的<code>measureChildWithMargins</code>中的<code>getChildMeasureSpec</code>方法获得<code>View</code>的<code>MeasureSpec</code>。</p>
+<p>其中<code>getChildMeasureSpec</code>方法的参数中使用到了父容器的<code>MeasureSpec</code>。在这个方法中通过<code>switch</code>和<code>if</code>语句，对<code>View</code>的<code>MeasureSpec</code>进行了决定。结果如下：</p>
+<table>
+<thead>
+<tr>
+<th><code>childLayoutParams</code> \ <code>parentMeasureSpec</code></th>
+<th><code>EXACTLY</code></th>
+<th><code>AT_MOST</code></th>
+<th><code>UNSPECIFIED</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dp</code>&#x2F;<code>px</code></td>
+<td><code>EXACTLY</code><br>childSize</td>
+<td><code>EXACTLY</code><br/>childSize</td>
+<td><code>EXACTLY</code><br/>childSize</td>
+</tr>
+<tr>
+<td><code>match_parent</code></td>
+<td><code>EXACTLY</code><br/>parentSize</td>
+<td><code>AT_MOST</code><br>parentSize</td>
+<td><code>UNSPECIFIED</code><br>0</td>
+</tr>
+<tr>
+<td><code>wrap_content</code></td>
+<td><code>AT_MOST</code><br>parentSize</td>
+<td><code>AT_MOST</code><br/>parentSize</td>
+<td><code>UNSPECIFIED</code><br/>0</td>
+</tr>
+</tbody></table>
+<p>上图可以简单记为：除了<code>dp</code>&#x2F;<code>px</code>的精确模式情况外，三种<code>MeasureSpec</code>的级别为：<code>EXACTLY</code> &lt; <code>AT_MOST</code> &lt; <code>UNSPECIFIED</code> 且<code>childMeasureSpec</code> &#x3D; max(<code>childLayoutParams</code> , <code>parentMeasureSpec</code>)。（<strong>实际上并无级别之分</strong>）</p>
+<p>通过上面的表格，可以更加直观的看出：<strong>普通<code>View</code>的<code>MeasureSpec</code>由父容器的<code>MeasureSpec</code>和自身的<code>LayoutParams</code>共同决定的。</strong></p>
+<h1 id="View的工作流程"><a href="#View的工作流程" class="headerlink" title="View的工作流程"></a><code>View</code>的工作流程</h1><h2 id="measure过程"><a href="#measure过程" class="headerlink" title="measure过程"></a><code>measure</code>过程</h2><p><code>measure</code>过程分为两种情况：</p>
+<ol>
+<li><code>View</code>的<code>measure</code>过程：只需要测量自身即可。</li>
+<li><code>ViewGroup</code>的<code>measure</code>过程：则除了完成自己的测量外，还需要遍历去调用所有子元素的<code>measure</code>过程。</li>
+</ol>
+<p>以下对这两种情况分别讨论。</p>
+<h3 id="View的measure过程"><a href="#View的measure过程" class="headerlink" title="View的measure过程"></a><code>View</code>的<code>measure</code>过程</h3><p><code>View</code>的<code>measure</code>方法是<code>final</code>类型的方法，不可以重写，<code>measure</code>方法里面调用了<code>onMeasure</code>方法。</p>
+<p>在<code>onMeasure</code>方法里面也只调用了一个<code>setMeasuredDimension</code>方法来设置<code>View</code>的宽&#x2F;高的测量值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onMeasure</span><span class="hljs-params">(<span class="hljs-type">int</span> widthMeasureSpec, <span class="hljs-type">int</span> heightMeasureSpec)</span> &#123;<br>    setMeasuredDimension(getDefaultSize(getSuggestedMininumWidth(), <br>                                        widthMeasureSpec), <br>                         getDefaultSize(getSuggestedMininumHeight(), <br>                                        heightMeasureSpec));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>而在<code>setMeasureDimension</code>方法的参数中，则使用了<code>getDefaultSize</code>的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getDefaultSize</span><span class="hljs-params">(<span class="hljs-type">int</span> size, <span class="hljs-type">int</span> measureSpec)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> size;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">specMode</span> <span class="hljs-operator">=</span> MeasureSpec.getMode(measureSpec);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">specSize</span> <span class="hljs-operator">=</span> Measurespec.getSize(measureSpec);<br><br>    <span class="hljs-keyword">switch</span> (specMode) &#123;<br>        <span class="hljs-keyword">case</span> MeasureSpec.UNSPECIFIED:<br>            result = size;<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> MeasureSpec.AT_MOST:<br>        <span class="hljs-keyword">case</span> MeasureSpec.EXACTLY:<br>            result = specsize;<br>            <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="对于AT-MOST和EXACTLY的情况"><a href="#对于AT-MOST和EXACTLY的情况" class="headerlink" title="对于AT_MOST和EXACTLY的情况"></a>对于<code>AT_MOST</code>和<code>EXACTLY</code>的情况</h4><p>通过代码可以看出，最终返回的值就是传入的<code>MeasureSpec</code>的中<code>View</code><strong>测量后</strong>的大小（<code>View</code>的<strong>最终的</strong>大小是在<code>layout</code>阶段确定的，但是几乎所有情况下，<code>View</code>的测量大小和最终大小都是相同的）。</p>
+<h4 id="对于UNSPECIFIED的情况"><a href="#对于UNSPECIFIED的情况" class="headerlink" title="对于UNSPECIFIED的情况"></a>对于<code>UNSPECIFIED</code>的情况</h4><p><code>getDefaultSize</code>方法返回的值是<code>getsuggestedMininumWidth</code>方法和<code>getsuggestedMininumHeight</code>方法决定的。</p>
+<p>这里只讨论<code>getsuggestedMininumWidth</code>方法的逻辑，另一个方法同理：</p>
+<ol>
+<li>如果<code>View</code>没有设置背景，那么此方法的返回值就是<code>android:minWidth</code>这个属性所指定的值，这个值默认为0。</li>
+<li>如果<code>View</code>设置了背景，则返回<code>android:minWidth</code>和背景的最小宽度这两者中的最大值。</li>
+</ol>
+<h4 id="对于自定义View的情况"><a href="#对于自定义View的情况" class="headerlink" title="对于自定义View的情况"></a>对于自定义<code>View</code>的情况</h4><p>对于直接继承<code>View</code>的自定义<code>View</code>来说，<strong>需要重写<code>onMeasure</code>方法并设置在<code>wrap_content</code>情况时的自身大小</strong>，否则在布局中使用<code>wrap_content</code>就相当于使用<code>match_parent</code>。</p>
+<p>因为当自定义<code>View</code>处于<code>wrap_content</code>时，它的<code>SpecMode</code>为<code>AT_MOST</code>模式，由前文可知，当父容器无论为<code>AT_MOST</code>还是<code>ECACTLY</code>模式时，自定义<code>View</code>都为<code>AT_MOST</code>模式且尺寸大小为<code>parentSize</code>，也就是父容器的剩余空间，即自定义<code>View</code>的大小变得与父容器的剩余空间大小一致，显然不是我们需要的。</p>
+<p><strong>解决方法：</strong></p>
+<p>解决方法也是非常简单的。我们只需要在<code>onMeasure</code>方法中对</p>
+<ol>
+<li>仅<code>width</code>方向为<code>AT_MOST</code>模式</li>
+<li>仅<code>height</code>方向为<code>AT_MOST</code>模式</li>
+<li><code>width</code>方向以及<code>height</code>方向都为<code>AT_MOST</code>模式</li>
+<li>其他的情况</li>
+</ol>
+<p>这四个状态单独判断，分别使用<code>setMeasuredDimension</code>方法直接为自定义<code>View</code>设置我们需要的值即可。</p>
+<p>源码中对于<code>TextView</code>、<code>ImageView</code>等控件的<code>wrap_content</code>也做了特殊的处理。</p>
+<h3 id="ViewGroup的measure过程"><a href="#ViewGroup的measure过程" class="headerlink" title="ViewGroup的measure过程"></a><code>ViewGroup</code>的<code>measure</code>过程</h3><p>对于<code>ViewGroup</code>来说，处理要完成它自己的<code>measure</code>过程，还需要遍历去调用所有子元素的<code>measure</code>方法，对子元素也进行<code>measure</code>过程。</p>
+<p>由于<code>ViewGroup</code>是一个抽象类，不能重写<code>View</code>的<code>onMeasure</code>方法，但是他提供了一个<code>measureChildren</code>的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">measureChildren</span><span class="hljs-params">(<span class="hljs-type">int</span> widthMeasureSepc, <span class="hljs-type">int</span> heightMeasureSpec)</span> &#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> mChildrenCount;<br>    <span class="hljs-keyword">final</span> View[] children = mChildren;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">View</span> <span class="hljs-variable">child</span> <span class="hljs-operator">=</span> children[i];<br>        <span class="hljs-keyword">if</span> (...) &#123;<br>            measureChild(child, widthMeasureSpec, heightMeasureSpec);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>从代码中，可以清晰的看出，<code>measureChildren</code>方法遍历了所有的子元素，并对他们使用了<code>measureChild</code>方法。</p>
+<p>在<code>measureChild</code>方法中，通过</p>
+<ol>
+<li>参数<code>child</code>获得了<code>child.LayoutParams</code>；</li>
+<li><code>measureChild</code>方法中的<code>getChildMeasureSpec</code>方法配合参数中父容器的两个<code>MeasureSpec</code>值，得到子元素的两个<code>MeasureSpec</code>值。</li>
+</ol>
+<p>接着将子元素的两个<code>MeasureSpec</code>值传递给<code>child.measure</code>方法来进行测量，到此便结束了一轮的<code>measure</code>过程。</p>
+<p><strong>注意</strong>：不同的<code>ViewGroup</code>有着不同的布局特性，不易写出通用的供<code>ViewGroup</code>使用的<code>onMeasure</code>方法。故设置成抽象类，需要测量过程中的各个子类（如<code>LinearLayout</code>、<code>RelativeLayout</code>等）自己去具体实现<code>onMeasure</code>方法。</p>
+<h3 id="在Activity启动时获得一个View的宽-x2F-高信息的方法"><a href="#在Activity启动时获得一个View的宽-x2F-高信息的方法" class="headerlink" title="在Activity启动时获得一个View的宽&#x2F;高信息的方法"></a>在<code>Activity</code>启动时获得一个<code>View</code>的宽&#x2F;高信息的方法</h3><p>由于<code>Activity</code>的启动和<code>View</code>的测量过程并不是同步进行的，因此无法保证在<code>Activity</code>启动时某个<code>View</code>已经测量完毕了。所以我们在<code>Activity</code>启动的时候，如果直接通过<code>getMeasuredWidth</code>&#x2F;<code>getMeasuredHeight</code>方法获得的值可能为0。</p>
+<p>以下有四种方法可以解决这个问题（详细代码见《Android开发艺术探索》190页）。</p>
+<ol>
+<li><p><code>Activity/View#onWindowFocusChanged</code></p>
+<p>在<code>Activity</code>的<code>onResume</code>和<code>onPause</code>方法启动时，<code>onWindowFocusChanged</code>方法也会同时被调用，可以重写里面的内容，使之计算<code>View</code>的宽高。</p>
+<p><strong>注意</strong>：<code>onWindowFocusChanged</code>方法会在<code>View</code>已经初始化完毕后才开始调用。</p>
+</li>
+<li><p><code>view.post(runnable)</code></p>
+<p>通过<code>post</code>可以将一个<code>runnable</code>投递都消息队列的尾部，然后等待<code>Looper</code>调用此<code>runnable</code>的时候，<code>View</code>也已经初始化好了。</p>
+</li>
+<li><p><code>ViewTreeObserver</code></p>
+<p><code>ViewTreeObserver</code>中的众多回调可以完成这个功能。</p>
+<p>比如<code>OnGlobalLayoutListener</code>接口，当<code>View</code>树的状态发生改变或者<code>View</code>树内部的<code>View</code>的可见性发生改变的时候，<code>onGlobalLayout</code>方法将被回调，此时就可以获取<code>View</code>的宽高了。</p>
+</li>
+<li><p><code>view.measure(int widthMeasureSpec, int heightMeasureSpec)</code></p>
+<p>可以主动调用该方法开始计算<code>view</code>的宽高。</p>
+<ol>
+<li><p><strong><code>match_parent</code></strong></p>
+<p>由于正常的<code>measure</code>过程中，我们需要父容器的<code>MeasureSpec</code>的值，而此时父容器并没开始计算，我们无从得知这两个值的大小。故我们无法对<code>match_parent</code>的<code>view</code>计算其宽高。</p>
+</li>
+<li><p><strong><code>dp</code>&#x2F;<code>px</code></strong></p>
+<p>因为有精确的数值了，所以我们可以直接使用这个精确的数值通过<code>MeasureSpec.makeMeasureSpec</code>方法构建<code>view</code>的<code>MeasureSpec</code>。</p>
+</li>
+<li><p><strong><code>wrap_content</code></strong></p>
+<p>直接将<code>MeasureSpec.makeMeasureSpec</code>方法中参数的值设置为<code>(1&lt;&lt;30)-1</code>即可，这是<code>View</code>理论上可以支持的最大值，所以这样构建<code>MeasureSpec</code>是合理的。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="layout过程"><a href="#layout过程" class="headerlink" title="layout过程"></a><code>layout</code>过程</h2><p><code>layout</code>的作用是<code>ViewGroup</code>用来确定子元素的位置。当调用一个<code>View</code>的<code>layout</code>方法时，它会在<code>layout</code>方法中通过<code>setFrame</code>方法确定自身的位置，然后调用<code>onLayout</code>方法确定子元素的位置。</p>
+<p>在<code>onLayout</code>方法中，会遍历所有子元素，对它们计算各自的位置后，调用子元素的<code>layout</code>方法，完成一轮<code>layout</code>过程。</p>
+<p><code>View</code>中实现了<code>layout</code>方法，但是由于<code>onLayout</code>的实现与不同<code>View</code>各自的布局有关，所以源码中仅给出了一个空<code>onLayout</code>方法。需要每个<code>View</code>和<code>ViewGroup</code>自己去重写。</p>
+<p><strong>注意</strong>：单一<code>View</code>一般不需要重写<code>onLayout</code>方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Assign a size and position to a view and all of its</span><br><span class="hljs-comment"> * descendants</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * &lt;p&gt;This is the second phase of the layout mechanism.</span><br><span class="hljs-comment"> * (The first is measuring). In this phase, each parent calls</span><br><span class="hljs-comment"> * layout on all of its children to position them.</span><br><span class="hljs-comment"> * This is typically done using the child measurements</span><br><span class="hljs-comment"> * that were stored in the measure pass().&lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * &lt;p&gt;Derived classes should not override this method.</span><br><span class="hljs-comment"> * Derived classes with children should override</span><br><span class="hljs-comment"> * onLayout. In that method, they should</span><br><span class="hljs-comment"> * call layout on each of their children.&lt;/p&gt;</span><br><span class="hljs-comment"> </span><br><span class="hljs-comment"> * 为视图及其所有子体指定大小和位置</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 这是布局机制的第二阶段。</span><br><span class="hljs-comment"> * （第一个是测量）。在此阶段中，每个父级调用其所有子级上的layout来定位它们。</span><br><span class="hljs-comment"> * 这通常使用存储在方法pass()中的子测量值来完成。</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 派生类不应重写此方法。</span><br><span class="hljs-comment"> * 具有子级的派生类应重写onLayout。在该方法中，他们应该对每个子对象调用布局。  </span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onLayout</span><span class="hljs-params">(<span class="hljs-type">boolean</span> changed, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> top, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> bottom)</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="draw过程"><a href="#draw过程" class="headerlink" title="draw过程"></a><code>draw</code>过程</h2><p><code>draw</code>过程就比较简单，它的作用是将<code>View</code>绘制到屏幕上面。</p>
+<p><code>View</code>的绘制过程遵循以下的4步：</p>
+<ol>
+<li>绘制背景：<code>background.draw(canvas)</code></li>
+<li>绘制自己：<code>onDraw</code>方法</li>
+<li>绘制children：<code>dispatchDraw</code>方法</li>
+<li>绘制装饰：<code>onDrawScrollBars</code>方法</li>
+</ol>
+<p>所有的绘制过程都在<code>draw</code>方法中进行。</p>
+<p>其中，<code>View</code>绘制过程的传递是通过<code>dispatchDraw</code>方法实现的，<code>dispatchDraw</code>方法会遍历所有的子元素并调用他们的<code>draw</code>方法，完成一轮的<code>draw</code>过程。</p>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>单一<code>View</code>需要重写<code>onDraw</code>方法绘制自身。</li>
+<li><code>ViewGroup</code>需要重写<code>onDraw</code>方法绘制自身以及遍历子元素对它们进行绘制。</li>
+</ol>
+<h2 id="View的工作流程图"><a href="#View的工作流程图" class="headerlink" title="View的工作流程图"></a>View的工作流程图</h2><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-3d1255a5093de81fd5bdc27a300d2f0d_720w.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="TODO：自定义View"><a href="#TODO：自定义View" class="headerlink" title="TODO：自定义View"></a><em>TODO</em>：自定义<code>View</code></h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android/">#Android</a>
+      
+        <a href="/tags/View/">#View</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>View 的绘制原理</div>
+      <div>https://luoyuy.top/posts/19429a22b2b2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LuoYu-Ying</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/38fdb1d1c50f/" title="View 的事件体系">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">View 的事件体系</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/51f783f2dca4/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/fluid-js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
