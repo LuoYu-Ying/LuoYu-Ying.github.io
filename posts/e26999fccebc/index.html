@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E7%99%BB%E5%BD%95%E5%92%8C%E6%8E%88%E6%9D%832.png">
 <meta property="article:published_time" content="2022-12-26T10:31:50.000Z">
-<meta property="article:modified_time" content="2023-01-06T08:49:55.076Z">
+<meta property="article:modified_time" content="2023-01-06T18:19:37.411Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="OAuth2">
 <meta property="article:tag" content="Cookie">
@@ -343,7 +343,7 @@
 <p>可以通过 <code>HttpOnly</code> 进行防护，作用是让 <code>Cookie</code> 只能用于发送请求时自动携带，而无法通过 <code>JavaScript</code> 主动获取。添加方法形如 <code>Set-Cookie:session_id=123;HttpOnly</code> 即可。</p>
 <h2 id="XSRF-Cross-site-request-forgery"><a href="#XSRF-Cross-site-request-forgery" class="headerlink" title="XSRF(Cross-site request forgery)"></a><code>XSRF(Cross-site request forgery)</code></h2><p><strong>跨站请求伪造。</strong>在用户不知情的情况下访问了一个用户保存了 <code>Cookie</code> 的网站，以此来进行一些越权操作。</p>
 <p>例如，私自访问用户保存了 <code>Cookie</code> 的银行网站并通过添加 <code>url</code> 参数来进行转账操作等等。</p>
-<p>可以通过 <code>Referer</code> 校验解决，通过在发送请求的时候 <strong>自动且强制</strong> 在 Header 中添加 <code>Referer</code> 参数，其中保存了从哪一个网址跳转进入了该网址。服务器只需要校验 <code>Referer</code> 参数是否在白名单中即可保证访问安全。</p>
+<p>可以通过 <code>Referer</code> 校验解决，通过在发送请求的时候 <strong>自动且强制</strong> 在 Header 中添加 <code>Referer</code> 参数，参数保存了从哪一个网址跳转进入了该网址。服务器只需要校验 <code>Referer</code> 参数是否在白名单中即可保证访问安全。</p>
 <hr>
 <h1 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a><code>Authorization</code></h1><blockquote>
 <p>  目前较 <code>Cookie</code> 更加流行。</p>
@@ -383,7 +383,7 @@
 <ol start="0">
 <li>第三方 App 向腾讯申请第三方授权合作，拿到 <code>client_id</code> 和 <code>client_secret</code></li>
 <li>用户在使用第三方 App 时，点击「通过微信登录」，第三方 App 将使用微信 SDK 跳转到微信，并传入自己的 <code>client_id</code> 作为自己的身份标识</li>
-<li>微信通过和服务器交互，拿到第三方 App 的信息，并限制在界面中，然后询问用户是否同意授权该 App 使用微信来登录。</li>
+<li>微信通过和服务器交互，拿到第三方 App 的信息，并显示在界面中，然后询问用户是否同意授权该 App 使用微信来登录。</li>
 <li>用户点击「使用微信登录」后，微信和服务器交互将授权信息提交，然后跳转回第三方 App，并传入 <code>Authorization code</code> 作为用户认可的凭证。</li>
 <li>第三方 App 调用自己服务器的「微信登录」API，并传入 <code>Authorization code</code>，然后等待服务器的响应。</li>
 <li>服务器在收到登录请求后，拿收到的 <code>Authorization code</code> 去向微信的第三方授权接口发送请求，将 <code>Authorization code</code> 和自己的 <code>client_secret</code> 一起作为参数发送，微信在验证通过后，返回 <code>access token</code>。</li>
@@ -393,7 +393,7 @@
 <li>客户端收到服务器响应，用户登录成功。</li>
 </ol>
 <h4 id="在自家-App-中使用-Bearer-token-登录"><a href="#在自家-App-中使用-Bearer-token-登录" class="headerlink" title="在自家 App 中使用 Bearer token 登录"></a>在自家 App 中使用 <code>Bearer token</code> 登录</h4><p>有的 App 会在 API 的设计中，将登录和授权设计成类似 OAuth2 的过程，但简化掉 <code>Authorization code</code> 概念。</p>
-<p>即：登录接口请求成功时，会直接返回 <code>access token</code>，然后客户端在之后的请求中，就可以使用这个 <code>access token</code> 来当做<br><code>bearer token</code> 进⾏用户操作了。</p>
+<p>即：登录接口请求成功时，会直接返回 <code>access token</code>，然后客户端在之后的请求中，就可以使用这个 <code>access token</code> 来当做 <code>bearer token</code> 进行用户操作了。</p>
 <blockquote>
 <p>  <strong>Refresh token</strong></p>
   <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>   <span class="hljs-attr">&quot;token_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Bearer&quot;</span><span class="hljs-punctuation">,</span><br>   <span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxx&quot;</span><span class="hljs-punctuation">,</span><br>   <span class="hljs-attr">&quot;refresh_token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxx&quot;</span><span class="hljs-punctuation">,</span><br>   <span class="hljs-attr">&quot;expires_time&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxx&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
