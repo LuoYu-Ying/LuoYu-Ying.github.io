@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-asm.png">
 <meta property="article:published_time" content="2022-12-31T08:52:41.000Z">
-<meta property="article:modified_time" content="2023-01-06T07:01:27.823Z">
+<meta property="article:modified_time" content="2023-01-07T05:51:19.675Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
@@ -329,7 +329,7 @@
 <p>解析见上文整理内容。</p>
 <blockquote>
 <hr>
-<p>  在 x86 汇编语言中，汇编程序常用的三个段，分别是（代码段）、（数据段）和（堆栈段）；<br>  对于 <strong>32位 CPU</strong>，用于在循环中控制循环次数的寄存器是（$ECX$），包含下一跳将要执行指令的地址的寄存器是（$EIP</span>$）。</p>
+<p>  在 x86 汇编语言中，汇编程序常用的三个段，分别是（代码段）、（数据段）和（堆栈段）；<br>  对于 <strong>32位 CPU</strong>，用于在循环中控制循环次数的寄存器是（$ECX$），包含下一跳将要执行指令的地址的寄存器是（$EIP$）。</p>
 </blockquote>
 <p>解析见上文整理内容。</p>
 <blockquote>
@@ -655,6 +655,12 @@
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -846,6 +852,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
