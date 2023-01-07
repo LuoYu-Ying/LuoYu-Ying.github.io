@@ -1,0 +1,1027 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <link rel="icon" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuoYu-Ying">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JVM 中类加载机制、内存模型以及垃圾回收机制等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM - Android校招面试整理2022">
+<meta property="og:url" content="https://luoyuy.top/posts/d479c1bb49e9/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="JVM 中类加载机制、内存模型以及垃圾回收机制等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-jvm.png">
+<meta property="article:published_time" content="2022-05-27T12:18:37.000Z">
+<meta property="article:modified_time" content="2023-01-07T10:47:40.880Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="JVM Class Loader">
+<meta property="article:tag" content="JVM Garbage Collection">
+<meta property="article:tag" content="JVM Data Area">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-jvm.png">
+  
+  
+  
+  <title>JVM - Android校招面试整理2022 - 洛语 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"luoyuy.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><script src="/fluid-js/postTimeleness.js"></script><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>洛语 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JVM - Android校招面试整理2022"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-27 20:18" pubdate>
+          2022年5月27日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          79 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JVM - Android校招面试整理2022</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JVM-的体系结构"><a href="#JVM-的体系结构" class="headerlink" title="JVM 的体系结构"></a><code>JVM</code> 的体系结构</h1><blockquote>
+<p>  答案参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102702428">十分钟带你了解JVM的结构体系 - 知乎 (zhihu.com)</a></li>
+</ul>
+</blockquote>
+<p><code>JVM</code>的组成：</p>
+<ul>
+<li>类加载子系统 Class loader</li>
+<li>运行时数据区</li>
+<li>执行引擎</li>
+</ul>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-f3141f2dd349b87c98543fbc9fc00495_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><ul>
+<li>负责加载 <code>class</code>文件(<code>class</code>文件在文件开头有特定的文件标识)，将 <code>class</code>文件字节码内容加载到内存中，并将这些内容转换成方法区中的运行时数据结构。</li>
+<li><code>ClassLoader</code>只负责加载 <code>class</code>文件的加载，至于它是否可以运行，则由<code>Execution Engine</code>决定。</li>
+</ul>
+<p>在 Java 9 以前，一共有三种类加载器：</p>
+<ul>
+<li>启动类加载器（**<code>BootStrap ClassLoader</code>**）</li>
+<li>扩展类加载器（**<code>Extension ClassLoader</code>**）</li>
+<li>应用类加载器（**<code>Application ClassLoader</code>**）</li>
+</ul>
+<p>在 Java 9 之后，经过更改后变成了两种：</p>
+<ul>
+<li>启动类加载器</li>
+<li>平台类加载器</li>
+</ul>
+<p>启动类加载器是所有类加载器的祖先，由 C++ 编程，没有对应的 Java 对象，因此在 Java 中用 <code>null</code> 来指代。</p>
+<p>除了启动类加载器，其他的加载器都有对应的 Java 对象。这些类加载器需要先由另一个类加载器，比如说启动类加载器，加载至 Java 虚拟机中，方能执行类加载。</p>
+<hr>
+<h1 id="双亲委派机制及其优势"><a href="#双亲委派机制及其优势" class="headerlink" title="双亲委派机制及其优势"></a>双亲委派机制及其优势</h1><ul>
+<li><p><strong>全盘负责：</strong> </p>
+<p>当前线程的类加载器负责加载某个<code>Class</code>时，该<code>Class</code>所依赖的和引用的其他<code>Class</code>也将由该类加载器负责载入，除非显示使用<code>CLassLoader.loadClass()</code>指定类加载器来载入。</p>
+</li>
+<li><p><strong>父类委托：</strong> </p>
+<p>先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类。所以我们在开发中尽量不要使用与JDK相同的类（例如自定义一个<code>java.lang.System</code>类），因为父类加载器中已经有一份<code>java.lang.System</code>类了，它会直接将该类给程序使用，而你自定义的类压根就不会被加载。</p>
+</li>
+<li><p><strong>双亲委派模型：</strong></p>
+<p>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把请求委托给父加载器去完成，依次向上，因此，所有的类加载请求最终都应该被传递到顶层的启动类加载器中。</p>
+<p>只有当父加载器在它的搜索范围中没有找到所需的类时，即无法完成该加载，子加载器才会尝试自己去加载该类。</p>
+</li>
+<li><p><strong>双亲委派模型的工作流程：</strong></p>
+<ol>
+<li><p>当<code>AppClassLoader</code>加载一个<code>class</code>时，它首先不会自己去尝试加载这个类，而是把类加载请求委派给父类加载器<code>ExtClassLoader</code>去完成。</p>
+</li>
+<li><p>当<code>ExtClassLoader</code>加载一个class时，它首先也不会自己去尝试加载这个类，而是把类加载请求委派给<code>BootStrap ClassLoader</code>去完成。</p>
+</li>
+<li><p>如果<code>BootStrap ClassLoader</code>加载失败（例如在<code>$JAVA_HOME/jre/lib</code>里未查找到该<code>class</code>），会使用<code>ExtClassLoader</code>来尝试加载。</p>
+</li>
+<li><p>若<code>ExtClassLoader</code>也加载失败，则会使用<code>AppClassLoader</code>来加载，如果<code>AppClassLoader</code>也加载失败，则会报出异常<code>ClassNotFoundException</code>。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>双亲委派模型的优势：</strong></p>
+<ol>
+<li>系统类防止内存中出现多份同样的字节码</li>
+<li>保证<code>Java</code>程序安全稳定运行</li>
+</ol>
+</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/408997874.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+
+<hr>
+<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-205a2605346856d95aec826ed9263c03_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="线程私有内存"><a href="#线程私有内存" class="headerlink" title="线程私有内存"></a>线程私有内存</h2><p><strong><font size="5">程序计数器(Program Counter Register)</font></strong></p>
+<p>程序计数器可以看作是<strong>当前线程所执行的字节码的行号指示器</strong>。</p>
+<p>字节码解释器工作是就是通过改变程序计数器的值来选取下一条需要执行的字节码指令（执行本地方法的时候，程序计数器的值为 <code>null</code>）。</p>
+<p><strong>每条线程都需要有一个独立的程序计数器</strong>，各条的程序计数器互不影响，独立存储。</p>
+<p>此内存区域是唯一一个没有规定任何 <code>OutOfMemoryError</code> 情况的区域。</p>
+<p><strong><font size="5">Java 虚拟机栈(VM Stack)</font></strong></p>
+<p>Java 虚拟机栈为虚拟机执行 Java 方法服务。</p>
+<p><strong>Java 虚拟机栈的生命周期和线程相同。</strong></p>
+<p>虚拟机栈描述的是 Java 方法执行的线程内存模型：每个方法被执行的时候，Java 虚拟机都会在虚拟机栈中同步创建一个 <strong>栈帧</strong> 用于存储局部变量表、操作数栈、方法出口等信息。</p>
+<p>每一个方法被调用直至执行完毕的过程，就对应这一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">栈帧：<br><span class="hljs-bullet">1.</span> 局部变量表<br><span class="hljs-bullet">2.</span> 操作数栈<br><span class="hljs-bullet">3.</span> 动态链接<br><span class="hljs-bullet">4.</span> 方法出口<br><span class="hljs-bullet">5.</span> ... <br></code></pre></td></tr></table></figure>
+
+<p><strong><font size="5">本地方法栈(Native Method Stack)</font></strong></p>
+<p>本地方法栈为虚拟机使用本地<code>Native</code>方法服务。</p>
+<h2 id="线程共享内存"><a href="#线程共享内存" class="headerlink" title="线程共享内存"></a>线程共享内存</h2><p><strong><font size="5">Java 堆(Java Heap)</font></strong></p>
+<p>Java 堆是虚拟机所管理的内存中最大的一块。Java 堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。</p>
+<p><strong>此内存区域的唯一目的就是存放对象实例</strong>，Java 世界里“几乎”所有的对象实例都在这里分配内存。</p>
+<p>Java 堆是垃圾收集器管理的内存区域，因此一些资料中它也被称作“GC堆”。</p>
+<p>Java 堆可以处于物理上不连续的内存空间中，但在逻辑上都连续存放。</p>
+<p>从分配内存的角度看，所有线程共享的 Java 堆中可以划分出多个线程私有的分配缓冲区，以提升对象分配时的效率。无论如何划分，无论是那个区域，存储的都只能是对象的实例。</p>
+<p><strong>Java 堆既可以实现成固定大小的，也可以是扩展的。</strong> 如果在 Java 堆中没有内存完成对象分配时，并且堆也无法再扩展时，Java 虚拟机将会抛出 <code>OutOfMemoryError</code> 异常。</p>
+<p><strong><font size="5">方法区(Method Area)</font></strong></p>
+<p>方法区与 Java 堆一样，是各个线程共享的内存区域，<strong>它用于存储已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</strong></p>
+<p>如果方法区无法满足新的内存分配需求时，将抛出 <code>OutOfMemoryError</code> 异常。</p>
+<p>在 JDK 1.8 之前，<code>HotSpot</code> 虚拟机把它当作永久代进行垃圾回收。</p>
+<p>在 JDK 1.8 以后，移除永久代，并将永久代拆分至堆和元空间。元空间位于本地内存中，而不是虚拟机内存中，存储类的元数据；堆中则额外存放方法区的静态变量和常量池等。</p>
+<p><strong><font size="4">运行时常量池(Runtime Constant Pool)</font></strong></p>
+<p>运行时常量池是方法区的一部分。</p>
+<p>Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池表，用于存放编译器生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</p>
+<p>除了 <strong>保存 Class 文件中描述的符号引用</strong> 外，还会把符号引用翻译出来的直接引用也存储再运行时常量池中。</p>
+<p>运行时常量池是方法区的一部分，自然受到方法区内存的限制，当常量池无法再申请到内存时会抛出 <code>OutOfMemoryError</code> 异常。</p>
+<hr>
+<h1 id="类加载机制的几个阶段"><a href="#类加载机制的几个阶段" class="headerlink" title="类加载机制的几个阶段"></a>类加载机制的几个阶段</h1><blockquote>
+<p>  Java 语言的类型可以分为两个大类：基本类型和引用类型。</p>
+<p>  其中的引用类型，Java 又将其细分为了四种：类、接口、数组类以及泛型参数。</p>
+<p>  其中，泛型参数会在编译过程中被擦除，数组类则是由 Java 虚拟机直接在内存中动态构造出来的。所以我们只讨论类和接口的加载过程。</p>
+</blockquote>
+<p><strong>类的加载过程：</strong></p>
+<p><code>JVM</code> 将 <code>javac</code> 编译好的<code>class</code>字节码文件加载到内存中，并对该数据进行验证、解析和初始化、形成<code>JVM</code>可以直接使用的<code>JAVA</code>类，最终回收(卸载)的过程。</p>
+<p><strong>字节码（<code>.class</code>）文件来源：</strong></p>
+<ul>
+<li>从本地系统中直接加载</li>
+<li>通过网络下载<code>.class</code>文件</li>
+<li>从<code>zip</code>, <code>jar</code>等归档文件中加载<code>.class</code>文件</li>
+<li>从专有数据库中提取<code>.class</code>文件</li>
+<li>将<code>Java</code>源文件动态编译为<code>.class</code>文件</li>
+</ul>
+<hr>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/879896-20160414224549770-60006655.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:70%;" />
+
+
+
+<p><strong><font size="5">加载</font></strong></p>
+<p>加载阶段是类加载的第一个部分，在此阶段需要完成三件事情：</p>
+<ol>
+<li>通过类的完全限定名找到该类对应的二进制字节流。</li>
+<li>将该字节流表示的静态存储结构转换为方法区的运行时存储结构。</li>
+<li>在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。</li>
+</ol>
+<p>对于非数组类的其他类而言，Java 虚拟机需要通过类加载器来完成查找字节流的过程。</p>
+<p><strong><font size="5">验证</font></strong></p>
+<p>验证阶段是连接阶段的第一步，目的是为了确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</p>
+<p><strong><font size="5">准备</font></strong></p>
+<p>准备阶段是正式为**类变量(类字段)**（即静态变量，被 <code>static</code> 修饰的变量）分配内存并设置类变量初始值的阶段。</p>
+<p>这些变量所使用的内存都将在方法区中分配，只包括类变量。</p>
+<p>初始值“通常情况”下是数据类型的零值。</p>
+<p>“特殊情况”下，如果类字段的字段属性表中存在 <code>ConstantValue</code> 属性（即被 <code>final</code> 修饰的变量），那么在准备阶段变量的值就会被初始化为 <code>ConstantValue</code> 属性所指定的值。</p>
+<p><strong><font size="5">解析</font></strong></p>
+<p>虚拟机将常量池内的符号引用替换为直接引用的过程。</p>
+<p>这个过程可以在初始化阶段之后进行。</p>
+<p><strong><font size="5">初始化</font></strong></p>
+<p>类加载过程中的最后一步。</p>
+<p>初始化阶段是执行类构造器 <code>&lt;clinit&gt;()</code> 方法的过程。</p>
+<p><code>&lt;clinit&gt;()</code> 方法是由编译器自动收集类中的所有类变量的赋值动作和静态语句块中的语句合并产生的。</p>
+<p><code>&lt;clinit&gt;()</code> 与类的构造函数不同，它不需要显示地调用父类构造器，虚拟机会保证在子类的 <code>&lt;clinit&gt;()</code> 方法执行之前，父类的 <code>&lt;clinit&gt;()</code> 方法已经执行完毕。</p>
+<p>如果一个类没有声明任何的类变量，也没有静态代码块，那么可以没有类<code>&lt;clinit&gt;</code>方法。</p>
+<p><code>JVM</code> 必须确保一个类在初始化的过程中，如果是多线程需要同时初始化它，仅仅只能允许其中一个线程对其执行初始化操作，其余线程必须等待，只有在活动线程执行完对类的初始化操作之后，才会通知正在等待的其他线程(所以<strong>可以利用静态内部类实现线程安全的单例模式</strong>)。</p>
+<p><strong>简单地说，初始化就是对类变量进行赋值及执行静态代码块。</strong></p>
+<p><strong><font size="5">使用</font></strong></p>
+<p>程序使用 <code>JVM</code> 加载的类。</p>
+<p><strong><font size="5">卸载</font></strong></p>
+<p>触发卸载的五个时机：</p>
+<ul>
+<li>执行了 <code>System.exit()</code> 方法</li>
+<li><code>JVM </code>垃圾回收机制触发回收</li>
+<li>程序正常执行结束</li>
+<li>程序在执行过程中遇到了异常或错误而异常终止</li>
+<li>由于操作系统出现错误而导致Java虚拟机进程终止</li>
+</ul>
+<hr>
+<h1 id="何时触发初始化"><a href="#何时触发初始化" class="headerlink" title="何时触发初始化"></a>何时触发初始化</h1><ol>
+<li><p>遇到 <code>new</code>，<code>getstatic</code>，<code>putstatic</code> 或 <code>invokestatic</code> 这4条字节码指令时，如果类没有进行过初始化，则需要先触发初始化。<br> 生成这4条指令的最常见的Java代码场景是：</p>
+<ol>
+<li>使用new关键字实例化对象的时候</li>
+<li>读取或设置一个类的静态字段的时候</li>
+<li>调用一个类的静态方法的时候</li>
+</ol>
+</li>
+<li><p>使用 <code>java.lang.reflect</code> 包的方法对类进行反射调用的时候。</p>
+</li>
+<li><p>当初始化一个类的时候，发现其父类还没有进行过初始化，则需要先出发父类的初始化。</p>
+</li>
+<li><p>当虚拟机启动时，用户需要指定一个要执行的主类（包含 <code>main()</code> 方法的那个类），虚拟机会先初始化这个主类。</p>
+</li>
+</ol>
+<hr>
+<h1 id="对象实例化时的顺序"><a href="#对象实例化时的顺序" class="headerlink" title="对象实例化时的顺序"></a>对象实例化时的顺序</h1><blockquote>
+<p>  答案参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sc179/article/details/109779168">Java实例化对象时的初始化顺序_hellosc01的博客-CSDN博客</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>   注：（A，B）表示A和B为同一阶段初始化，执行顺序取决于它们在代码中的顺序。</p>
+</blockquote>
+<p><strong><font size="5">无继承</font></strong></p>
+<p>（静态变量，静态代码块）-&gt; （实例变量，普通代码块） -&gt; 构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 静态变量和静态语句块的初始化顺序取决于它们在代码中的顺序</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">staticField</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;静态变量&quot;</span>;<br><br><span class="hljs-keyword">static</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;静态语句块&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-variable">field</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;实例变量&quot;</span>;<br><br>&#123;<br>    System.out.println(<span class="hljs-string">&quot;普通语句块&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-title function_">InitialOrderTest</span><span class="hljs-params">()</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;构造函数&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong><font size="5">有继承</font></strong></p>
+<ol>
+<li>父类（静态变量、静态语句块）</li>
+<li>子类（静态变量、静态语句块）</li>
+<li>父类（实例变量、普通语句块）</li>
+<li>父类（构造函数）</li>
+<li>子类（实例变量、普通语句块）</li>
+<li>子类（构造函数）</li>
+</ol>
+<hr>
+<h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><blockquote>
+<p>  答案参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/13091">11 | 垃圾回收（上） (geekbang.org)</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cyc2018.xyz/Java">Java 虚拟机 | CS-Notes (cyc2018.xyz)</a></li>
+</ul>
+</blockquote>
+<h2 id="判断对象是否存活"><a href="#判断对象是否存活" class="headerlink" title="判断对象是否存活"></a>判断对象是否存活</h2><p><strong><font size="5">引用计数法</font></strong></p>
+<p>它的做法是为每个对象添加一个引用计数器，用来统计指向该对象的引用个数。一旦某个对象的引用计数器为 0，则说明该对象已经死亡，便可以被回收了。</p>
+<p>它的具体实现是这样子的：如果有一个引用，被赋值为某一对象，那么将该对象的引用计数器 +1。如果一个指向某一对象的引用，被赋值为其他值，那么将该对象的引用计数器 -1。也就是说，我们<strong>需要截获所有的引用更新操作</strong>，并且相应地增减目标对象的引用计数器。</p>
+<p>除了<strong>需要额外的空间来存储计数器</strong>，以及<strong>繁琐的更新操作</strong>，引用计数法还有一个重大的漏洞，那便是<strong>无法处理循环引用对象</strong>。举个例子，假设对象 a 与 b 相互引用，除此之外没有其他引用指向 a 或者 b。在这种情况下，a 和 b 实际上已经死了，但由于它们的引用计数器皆不为 0，在引用计数法的心中，这两个对象还活着。因此，这些循环引用对象所占据的空间将不可回收，从而造成了内存泄露。</p>
+<p><strong><font size="5">可达性分析</font></strong></p>
+<p>Java 虚拟机的主流垃圾回收器采取的是可达性分析算法。这个算法的实质在于将一系列 GC Roots 作为初始的存活对象合集（live set），然后<strong>从该合集出发，探索所有能够被该集合引用到的对象，并将其加入到该集合中</strong>，这个过程我们也称之为标记（mark）。最终，<strong>未被探索到的对象便是死亡的，是可以回收的。</strong></p>
+<p><strong><font size="4">GC Roots</font></strong></p>
+<p>可以暂时理解为由堆外指向堆内的引用，一般而言，GC Roots 包括（但不限于）如下几种：</p>
+<ul>
+<li>Java 方法栈桢中的局部变量；</li>
+<li>已加载类的静态变量；</li>
+<li>JNI handles；</li>
+<li>已启动且未停止的 Java 线程。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/83d909d2-3858-4fe1-8ff4-16471db0b180.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" />
+
+<p>可达性分析可以解决引用计数法所不能解决的循环引用问题。</p>
+<p>虽然可达性分析的算法本身很简明，但是在实践中还是有不少其他问题需要解决的。</p>
+<p>比如说，在多线程环境下，其他线程可能会更新已经访问过的对象中的引用，从而造成<strong>误报</strong>（将引用设置为 null）或者<strong>漏报</strong>（将引用设置为未被访问过的对象）。</p>
+<p>误报并没有什么伤害，Java 虚拟机至多损失了部分垃圾回收的机会。漏报则比较麻烦，因为垃圾回收器可能回收事实上仍被引用的对象内存。一旦从原引用访问已经被回收了的对象，则很有可能会直接导致 Java 虚拟机崩溃。</p>
+<p>怎么解决这个问题呢？在 Java 虚拟机里，传统的垃圾回收算法采用的是一种简单粗暴的方式，那便是 <strong>Stop-the-world</strong>，停止其他非垃圾回收线程的工作，直到完成垃圾回收。这也就造成了<strong>垃圾回收所谓的暂停时间（GC pause）</strong>。</p>
+<h2 id="方法区的回收"><a href="#方法区的回收" class="headerlink" title="方法区的回收"></a>方法区的回收</h2><p>因为方法区主要存放永久代对象，而永久代对象的回收率比新生代低很多，所以在方法区上进行回收性价比不高。</p>
+<p>主要是对常量池的回收和对类的卸载。</p>
+<p>为了避免内存溢出，在大量使用反射和动态代理的场景都需要虚拟机具备类卸载功能。</p>
+<p>类的卸载条件很多，需要满足以下三个条件，并且满足了条件也不一定会被卸载：</p>
+<ul>
+<li>该类所有的实例都已经被回收，此时堆中不存在该类的任何实例。</li>
+<li>加载该类的 <code>ClassLoader</code> 已经被回收。</li>
+<li>该类对应的 <code>Class</code> 对象没有在任何地方被引用，也就无法在任何地方通过反射访问该类方法。</li>
+</ul>
+<h2 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a><code>finalize</code>方法</h2><p>类似 C++ 的析构函数，<strong>用于关闭外部资源</strong>。但是 try-finally 等方式可以做得更好，并且该方法<strong>运行代价很高，不确定性大</strong>，无法保证各个对象的调用顺序，因此<strong>最好不要使用</strong>。</p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>判定对象是否可被回收都与引用有关。</p>
+<ol>
+<li><p>强引用</p>
+<p>被强引用关联的对象不会被回收。</p>
+<p>使用 <code>new</code> 一个新对象的方式来创建强引用。</p>
+</li>
+<li><p>软引用</p>
+<p>被软引用关联的对象只有在内存不够的情况下才会被回收。</p>
+<p>使用 <code>SoftReference</code> 类来创建软引用。</p>
+</li>
+<li><p>弱引用</p>
+<p>被弱引用关联的对象一定会被回收，也就是说它只能存活到下一次垃圾回收发生之前。</p>
+<p>使用 <code>WeakReference</code> 类来创建弱引用。</p>
+</li>
+<li><p>虚引用</p>
+<p>又称为幽灵引用或者幻影引用，一个对象是否有虚引用的存在，不会对其生存时间造成影响，也无法通过虚引用得到一个对象。</p>
+<p>为一个对象设置虚引用的唯一目的是能在这个对象被回收时收到一个系统通知。</p>
+<p>使用 <code>PhantomReference</code> 来创建虚引用。</p>
+</li>
+</ol>
+<h2 id="垃圾回收的三种方式"><a href="#垃圾回收的三种方式" class="headerlink" title="垃圾回收的三种方式"></a>垃圾回收的三种方式</h2><ol>
+<li><p>标记-清除</p>
+<p>即把死亡对象所占据的内存标记为空闲内存，并记录在一个空闲列表（free list）之中。当需要新建对象时，内存管理模块便会从该空闲列表中寻找空闲内存，并划分给新建的对象。</p>
+<p>缺点：</p>
+<ul>
+<li>会造成内存碎片。由于 Java 虚拟机的堆中对象必须是连续分布的，因此可能出现总空闲内存足够，但是无法分配的极端情况。</li>
+<li>分配效率较低。如果是一块连续的内存空间，那么我们可以通过指针加法（pointer bumping）来做分配。而对于空闲列表，Java 虚拟机则需要逐个访问列表中的项，来查找能够放入新建对象的空闲内存。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/005b481b-502b-4e3f-985d-d043c2b330aa.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" />
+</li>
+<li><p>标记-整理（压缩）</p>
+<p>即把存活的对象聚集到内存区域的起始位置，从而留下一段连续的内存空间。这种做法能够解决内存碎片化的问题，但<strong>代价是压缩算法的性能开销</strong>。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/ccd773a5-ad38-4022-895c-7ac318f31437.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+</li>
+<li><p>标记-复制</p>
+<p>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</p>
+<p><strong>主要不足是只使用了内存的一半。</strong></p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/b2b77b9e-958c-4016-8ae5-9c6edd83871e.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+
+<blockquote>
+<p>  现在的商业虚拟机都<strong>采用</strong>这种<strong>复制收集算法回收新生代</strong>，但是并不是划分为大小相等的两块，而是一块较大的 <code>Eden</code> 空间和两块较小的 <code>Survivor</code> 空间，每次使用 <code>Eden</code> 和其中一块 <code>Survivor</code>。在回收时，将 <code>Eden</code> 和 <code>Survivor</code> 中还存活着的对象全部复制到另一块 <code>Survivor</code> 上，最后清理 <code>Eden</code> 和使用过的那一块 <code>Survivor</code>。</p>
+<p>  <code>HotSpot</code> 虚拟机的 <code>Eden</code> 和 <code>Survivor</code> 大小比例默认为 8:1，保证了内存的利用率达到 90%。如果每次回收有多于 10% 的对象存活，那么一块 <code>Survivor</code> 就不够用了，此时需要依赖于老年代进行空间分配担保，也就是借用老年代的空间存储放不下的对象。</p>
+</blockquote>
+</li>
+<li><p><strong>分代收集</strong></p>
+<p>现在的商业虚拟机采用分代收集算法，它根据对象存活周期将内存划分为几块，不同块采用适当的收集算法。</p>
+<p>一般将堆分为新生代和老年代。</p>
+<ul>
+<li>新生代使用：<strong>复制算法</strong></li>
+<li>老年代使用：<strong>标记-清除</strong> 或者 <strong>标记-整理</strong> 算法</li>
+</ul>
+</li>
+</ol>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/c625baa0-dde6-449e-93df-c3a67f2f430f.jpg" srcset="/img/loading.gif" lazyload alt="img"  />
+
+<p>以上是 HotSpot 虚拟机中的 7 个垃圾收集器，连线表示垃圾收集器可以配合使用。‘</p>
+<p><strong><font size="4">基本概念</font></strong></p>
+<ul>
+<li>单线程与多线程：单线程指的是垃圾收集器只使用一个线程，而多线程使用多个线程；</li>
+<li>串行与并行：串行指的是垃圾收集器与用户程序交替执行，这意味着在执行垃圾收集的时候需要停顿用户程序；并行指的是垃圾收集器和用户程序同时执行。除了 CMS 和 G1 之外，其它垃圾收集器都是以串行的方式执行。</li>
+</ul>
+<p>针对新生代的垃圾回收器共有三个：Serial，Parallel Scavenge 和 Parallel New。这三个采用的都是<strong>标记 - 复制</strong>算法。其中，Serial 是一个单线程的，Parallel New 可以看成 Serial 的多线程版本。Parallel Scavenge 和 Parallel New 类似，但更加注重吞吐率。此外，Parallel Scavenge 不能与 CMS 一起使用。</p>
+<p>针对老年代的垃圾回收器也有三个：刚刚提到的 Serial Old 和 Parallel Old，以及 CMS。Serial Old 和 Parallel Old 都是<strong>标记 - 压缩</strong>算法。同样，前者是单线程的，而后者可以看成前者的多线程版本。</p>
+<p>CMS 采用的是<strong>标记 - 清除</strong>算法，并且是并发的。除了少数几个操作需要 Stop-the-world 之外，它可以在应用程序运行过程中进行垃圾回收。在并发收集失败的情况下，Java 虚拟机会使用其他两个压缩型垃圾回收器进行一次垃圾回收。由于 G1 的出现，CMS 在 Java 9 中已被废弃。</p>
+<p>G1（Garbage First）是一个横跨新生代和老年代的垃圾回收器。实际上，它已经打乱了前面所说的堆结构，直接将堆分成极其多个区域。每个区域都可以充当 Eden 区、Survivor 区或者老年代中的一个。它采用的是<strong>标记 - 压缩</strong>算法，而且和 CMS 一样都能够在应用程序运行过程中并发地进行垃圾回收。</p>
+<p>G1 能够针对每个细分的区域来进行垃圾回收。<strong>在选择进行垃圾回收的区域时，它会优先回收死亡对象较多的区域。</strong> 这也是 G1 名字的由来。</p>
+<hr>
+<h1 id="回收策略和内存分配策略"><a href="#回收策略和内存分配策略" class="headerlink" title="回收策略和内存分配策略"></a>回收策略和内存分配策略</h1><p><strong><font size="4">Minor GC &amp; Full GC</font></strong></p>
+<ul>
+<li>Minor GC：回收新生代，因为新生代对象存活时间很短，因此 Minor GC 会频繁执行，执行的速度一般也会比较快。</li>
+<li>Full GC：回收老年代和新生代，老年代对象其存活时间长，因此 Full GC 很少执行，执行速度会比 Minor GC 慢很多。</li>
+</ul>
+<p><strong><font size="4">内存分配策略流程</font></strong></p>
+<ol>
+<li>一个人（对象）出来（new 出来）后会在Eden Space（伊甸园）无忧无虑的生活，直到GC到来打破了他们平静的生活。GC会逐一问清楚每个对象的情况，有没有钱（此对象的引用）啊，因为GC想赚钱呀，有钱的才可以敲诈嘛。然后富人就会进入Survivor Space（幸存者区），穷人的就直接kill掉。</li>
+<li>并不是进入Survivor Space（幸存者区）后就保证人身是安全的，但至少可以活段时间。GC会定期（可以自定义）会对这些人进行敲诈，亿万富翁每次都给钱，GC很满意，就让其进入了Genured Gen(养老区)。万元户经不住几次敲诈就没钱了，GC看没有啥价值啦，就直接kill掉了。</li>
+<li>进入到养老区的人基本就可以保证人身安全啦，但是亿万富豪有的也会挥霍成穷光蛋，只要钱没了，GC还是kill掉。</li>
+</ol>
+<p><strong><font size="4">内存分配策略总结</font></strong></p>
+<ol>
+<li><p>对象优先在 Eden 分配</p>
+<p> 大多数情况下，对象在新生代 Eden 上分配，当 Eden 空间不够时，发起 Minor GC。</p>
+</li>
+<li><p>大对象直接进入老年代</p>
+<p> 大对象是指<strong>需要连续内存空间的对象</strong>，最典型的大对象是那种<strong>很长的字符串以及数组</strong>。</p>
+<p> 经常出现大对象会提前触发垃圾收集以获取足够的连续空间分配给大对象。</p>
+</li>
+<li><p>长期存活的对象直接进入老年代</p>
+<p> 为对象定义年龄计数器，对象在 Eden 出生并经过 Minor GC 依然存活，将移动到 Survivor 中，年龄就增加 1 岁，增加到一定年龄则移动到老年代中。</p>
+<p> Java 虚拟机会记录 Survivor 区中的对象一共被来回复制了几次。如果一个对象被复制的次数为 15，那么该对象将被晋升（promote）至老年代。</p>
+</li>
+<li><p>动态对象年龄判定</p>
+<p> 另外，如果单个 Survivor 区已经被占用了 50%，那么较高复制次数的对象也会被晋升至老年代。</p>
+</li>
+<li><p>空间分配担保</p>
+<p> 在发生 Minor GC 之前，虚拟机先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果条件成立的话，那么 Minor GC 可以确认是安全的。否则会继续判断其他条件，选择是否进行Full GC。</p>
+</li>
+</ol>
+<p><strong><font size="4">GC 触发条件</font></strong></p>
+<p>对于 Minor GC，其触发条件非常简单，<strong>当 Eden 空间满时，就将触发一次 Minor GC。</strong> 而 Full GC 则相对复杂，有以下条件：</p>
+<ol>
+<li><p>调用 <code>System.gc()</code></p>
+<p> 只是建议虚拟机执行 Full GC，但是虚拟机不一定真正去执行。不建议使用这种方式，而是让虚拟机管理内存。</p>
+</li>
+<li><p>老年代空间不足</p>
+<p> 老年代空间不足的常见场景为前文所讲的大对象直接进入老年代、长期存活的对象进入老年代等。</p>
+</li>
+<li><p>空间分配担保失败</p>
+<p> 使用复制算法的 Minor GC 需要老年代的内存空间作担保，如果担保失败会执行一次 Full GC。（可参考上文“内存分配策略总结”第5点。）</p>
+</li>
+<li><p>Concurrent Mode Failure</p>
+<p> 执行 CMS GC 的过程中同时有对象要放入老年代，而此时老年代空间不足（可能是 GC 过程中浮动垃圾过多导致暂时性的空间不足），便会报 Concurrent Mode Failure 错误，并触发 Full GC。（可参考上文“垃圾收集器”部分。）</p>
+</li>
+</ol>
+<hr>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><ol>
+<li>JVM中synchronized的实现</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/2022%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/" class="category-chain-item">2022校招面试整理</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JVM/" class="category-chain-item">JVM</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JVM-Class-Loader/">#JVM Class Loader</a>
+      
+        <a href="/tags/JVM-Garbage-Collection/">#JVM Garbage Collection</a>
+      
+        <a href="/tags/JVM-Data-Area/">#JVM Data Area</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JVM - Android校招面试整理2022</div>
+      <div>https://luoyuy.top/posts/d479c1bb49e9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LuoYu-Ying</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/1bfe28981f7d/" title="AutoHotkey v1 问题解决记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AutoHotkey v1 问题解决记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/0557737935e1/" title="View事件分发 - Android校招面试整理2022">
+                        <span class="hidden-mobile">View事件分发 - Android校招面试整理2022</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/fluid-js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
