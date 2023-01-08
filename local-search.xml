@@ -331,6 +331,31 @@
   
   
   <entry>
+    <title>hexo-theme-butterfly 修改侧边栏分类排序规则</title>
+    <link href="/posts/bd6604dc1b1f/"/>
+    <url>/posts/bd6604dc1b1f/</url>
+    
+    <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><code>Hexo Butterfly</code> 主题中，主页侧边栏中的 <code>categories</code> 默认显示顺序是按 <code>name</code> 排序，导致某些分类下虽然文章数量较少，但却排序靠前。并且默认设置下，主题中侧边 <code>categories</code> 只显示8条（如需修改可以修改<strong>主题配置文件</strong>）。</p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220608210201564.png" alt="image" style="zoom:67%;" /><p>便想将其修改为 <strong>按照分类内文章的数量进行降序排序</strong> 。</p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><blockquote><p>  该方法需要修改源代码，建议及时备份需要修改的文件。</p></blockquote><ol><li><p>找到 <code>themes\butterfly\scripts\helpers\aside_categories.js</code> 文件，并修改源代码。</p></li><li><p>修改以下代码：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// const orderby = options.orderby || &#x27;name&#x27; // name(default) -&gt; 按 categories 字母顺序</span><br><span class="hljs-keyword">const</span> orderby = options.<span class="hljs-property">orderby</span> || <span class="hljs-string">&#x27;length&#x27;</span>  <span class="hljs-comment">// length -&gt; 按 categories 下文章数量排序</span><br><span class="hljs-comment">// const order = options.order || 1  // 1(default) -&gt; 升序; -1 -&gt; 逆序</span><br><span class="hljs-keyword">const</span> order = options.<span class="hljs-property">order</span> || -<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li><li><p>执行 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 查看修改效果。</p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220608205749969.png" alt="image" style="zoom: 67%;" /></li></ol><h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><ul><li><a href="https://www.yanchengxu.top/hexo-categories-sort/">【Hexo-Butterfly】修改侧边栏分类排序规则 | yanchengxu</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Hexo</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo-theme-butterfly</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JVM - Android校招面试整理2022</title>
     <link href="/posts/d479c1bb49e9/"/>
     <url>/posts/d479c1bb49e9/</url>
@@ -340,18 +365,18 @@
     
     <categories>
       
-      <category>JVM</category>
-      
       <category>2022校招面试整理</category>
+      
+      <category>JVM</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JVM Garbage Collection</tag>
-      
       <tag>JVM Class Loader</tag>
+      
+      <tag>JVM Garbage Collection</tag>
       
       <tag>JVM Data Area</tag>
       
