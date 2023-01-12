@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="AutoHotKey v1 代码中遇到的问题以及解决的方案。">
+    <meta name="description" content="Kotlin 中函数嵌套的使用方法、使用场景以及尾递归的优化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AutoHotkey v1 问题解决记录">
-<meta property="og:url" content="https://luoyuy.top/posts/1bfe28981f7d/index.html">
+<meta property="og:title" content="Kotlin 函数嵌套">
+<meta property="og:url" content="https://luoyuy.top/posts/47063eb1b5ed/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="AutoHotKey v1 代码中遇到的问题以及解决的方案。">
+<meta property="og:description" content="Kotlin 中函数嵌套的使用方法、使用场景以及尾递归的优化。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
-<meta property="article:published_time" content="2022-07-11T06:41:25.000Z">
-<meta property="article:modified_time" content="2023-01-06T08:44:15.169Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E5%87%BD%E6%95%B0%E5%B5%8C%E5%A5%97.png">
+<meta property="article:published_time" content="2022-07-09T15:24:11.000Z">
+<meta property="article:modified_time" content="2023-01-12T13:08:55.210Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="AutoHotkey">
+<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E5%87%BD%E6%95%B0%E5%B5%8C%E5%A5%97.png">
   
   
   
-  <title>AutoHotkey v1 问题解决记录 - 洛语 の Blog</title>
+  <title>Kotlin 函数嵌套 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AutoHotkey v1 问题解决记录"></span>
+            <span id="subtitle" data-typed-text="Kotlin 函数嵌套"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-11 14:41" pubdate>
-          2022年7月11日 下午
+        <time datetime="2022-07-09 23:24" pubdate>
+          2022年7月9日 晚上
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          842 字
+          1.9k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          8 分钟
+          16 分钟
         
       </span>
     
@@ -283,48 +283,66 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">AutoHotkey v1 问题解决记录</h1>
+            <h1 style="display: none">Kotlin 函数嵌套</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>更多的资料请参考 AHK 官方技术文档以及 AHK 社区。</p>
-</blockquote>
-<hr>
-<h1 id="代码中有些代码总是无法运行"><a href="#代码中有些代码总是无法运行" class="headerlink" title="代码中有些代码总是无法运行"></a>代码中有些代码总是无法运行</h1><blockquote>
-<p>  处理方法参考自：</p>
+<p>本文参考自：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Scripts.htm#auto">脚本 - 定义与使用 | AutoHotkey (autoahk.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/100103401">朱涛 · Kotlin 编程第一课 (geekbang.org)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Anker/archive/2013/03/04/2943498.html">递归与尾递归总结 - Rabbit_Dale - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zsp765098084/article/details/90901260">kotlin学习笔记之尾递归优化（tailrec）_mictoy_朱的博客-CSDN博客_kotlin tailrec</a></li>
 </ul>
 </blockquote>
-<blockquote>
-<p>  下文中的所有链接皆为 AHK 技术文档中该词条的链接，可正常使用。</p>
-</blockquote>
-<p><strong><font size="4"><a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Scripts.htm#auto">脚本顶部(自动执行段)</a></font></strong></p>
-<p>脚本加载完成后, 它会从顶行开始执行, 直到遇到 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Return.htm">Return</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Exit.htm">Exit</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Hotkeys.htm">热键&#x2F;热字串标签</a> 或脚本的底部(无论最先遇到哪个). 脚本的这个顶端部分被称为 <em>自动执行段</em>.</p>
-<blockquote>
-<p>   <strong>注意:</strong> 虽然脚本的 <em>第一个</em> 热键&#x2F;热字串标签与 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Return.htm">return(返回)</a> 的效果相同, 但其他热键和标签却没有.</p>
-</blockquote>
-<p>如果脚本不是<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/_Persistent.htm">持续运行的</a>, 它将在自动执行部分完成后终止. 否则, 它会以空闲状态持续运行, 从而对诸如<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Hotkeys.htm">热键</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Hotstrings.htm">热字串</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Gui.htm#label">GUI 事件</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Menu.htm">自定义菜单项</a>和<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/SetTimer.htm">计时器</a>等事件做出响应. 如果一个脚本包含了热键, 热字串, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/OnMessage.htm">OnMessage()</a> 或 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Gui.htm">GUI</a>, 以及一些其他情况, 它就会自动变为持续运行的. 也可以用 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/_Persistent.htm">#Persistent</a> 指令来显式地使脚本持续运行.</p>
 <hr>
-<h1 id="通过函数创建热键"><a href="#通过函数创建热键" class="headerlink" title="通过函数创建热键"></a>通过函数创建热键</h1><p>通过 <code>HotKey</code> 函数动态的创建一个热键。</p>
-<blockquote>
-<p>   具体参数可以查看文档：<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Hotkey.htm">Hotkey | AutoHotkey (autoahk.com)</a></p>
-</blockquote>
-<p>示例：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-comment">; 创建一个 CapsLock + K 的一个热键，效果为 Sfunction Lable 中的内容</span><br><span class="hljs-built_in">HotKey,</span> CapsLocks &amp; K, function<br><br>function() &#123;<br><span class="hljs-built_in">	MsgBox,</span> <span class="hljs-string">&quot;Hello World!&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>在 <code>Kotlin</code> 中，我们可以在函数的代码块中创建另一个新的函数并使用该函数。并且该函数可以使用外部函数的变量。</p>
+<p>如下方的代码；</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">outerMethod</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span><br>    <br>    <span class="hljs-comment">// 计算 1 + 2 + 3 + ...</span><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">innerMethod</span><span class="hljs-params">(c: <span class="hljs-type">Int</span> = <span class="hljs-number">10</span>)</span></span> &#123;<br>        sum += c<br>        <span class="hljs-keyword">if</span> (c &gt; <span class="hljs-number">0</span>)<br>        	innerMethod(c - <span class="hljs-number">1</span>)<br>    &#125;  <br>    <br>    innerMethod()<br>  	println(sum)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    outerMethod()<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="通过函数创建热字串"><a href="#通过函数创建热字串" class="headerlink" title="通过函数创建热字串"></a>通过函数创建热字串</h1><p>通过 <code>HotString</code> 函数动态的创建一个热字串。</p>
-<blockquote>
-<p>  具体的参数可以查看文档：<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Hotstring.htm">Hotstring() | AutoHotkey (autoahk.com)</a></p>
-</blockquote>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>函数嵌套在工程中应尽量少的使用，容易造成代码可读性的降低。</p>
+<p>但是在两种情况下可以创建内部函数：</p>
+<ol>
+<li>在某些情况下需要临时使用 <strong>递归</strong> 函数，如上文中的代码。</li>
+<li>不希望被外部函数访问到的函数。</li>
+</ol>
 <hr>
-<h1 id="无法正常使用分号（注释符号）"><a href="#无法正常使用分号（注释符号）" class="headerlink" title="无法正常使用分号（注释符号）"></a>无法正常使用分号（注释符号）</h1><p>当我们想要使用 分号 作为热键中的一部分时，我们可以使用 <code>SC027</code> 替换分号的位置，以达到分号的作用、</p>
-<p>示例：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-comment">; 创建一个 CapsLock + K 的一个热键，效果为 function Lable 中的内容</span><br><span class="hljs-built_in">HotKey,</span> CapsLocks &amp; SC027, function <br></code></pre></td></tr></table></figure>
+<h1 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h1><p>实际上，在函数式编程当中，我们有时候也会使用递归来替代循环。</p>
+<p>我们知道，递归都是有调用栈开销的，所以我们应该尽量使用 <strong>尾递归</strong>。对于这种类型的递归，在经过栈复用优化以后，它的开销就可以忽略不计了，我们可以认为它的空间复杂度是 O(1)。</p>
+<blockquote>
+<p>  尾递归就是从最后开始计算，每递归一次就算出相应的结果，也就是说, 函数调用出现在调用者函数的尾部，因为是尾部，所以根本没有必要去保存任何局部变量，直接让被调用的函数返回时越过调用者，返回到调用者的调用者去。</p>
+<p>  <strong>尾递归就是把当前的运算结果（或路径）放在参数里传给下层函数</strong>，深层函数所面对的不是越来越简单的问题，而是越来越复杂的问题，因为参数里带有前面若干步的运算路径。</p>
+<p>  尾递归是极其重要的，不用尾递归，函数的堆栈耗用难以估量，需要保存很多中间函数的堆栈。</p>
+</blockquote>
+<h2 id="尾递归的特点"><a href="#尾递归的特点" class="headerlink" title="尾递归的特点"></a>尾递归的特点</h2><ul>
+<li>递归的一种特殊形式</li>
+<li>调用自身后无其他操作</li>
+<li><code>tailrec</code> 关键字提示编译器尾递归优化</li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">data</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-keyword">val</span> value:<span class="hljs-built_in">Int</span>,<span class="hljs-keyword">var</span> next:ListNode? = <span class="hljs-literal">null</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">findListNode</span><span class="hljs-params">(head:<span class="hljs-type">ListNode</span>?,value:<span class="hljs-type">Int</span>)</span></span>:ListNode?&#123; <span class="hljs-comment">//定义一个递归函数</span><br>    head?:<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (head.value == value) <span class="hljs-keyword">return</span> head<br>    <span class="hljs-keyword">return</span> findListNode(head.next,value)    <span class="hljs-comment">//return除了调用自己，没有多余的操作，所以是尾递归</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h2 id="尾递归优化的使用"><a href="#尾递归优化的使用" class="headerlink" title="尾递归优化的使用"></a>尾递归优化的使用</h2><p>在 <code>Kotlin</code> 语言中，我们即使写出了符合尾递归的递归函数，编译器也不会自动帮我们进行优化。</p>
+<p>我们需要在 <code>fun</code> 关键字前面加上 <code>tailrec</code> 关键字以表示我们需要进行尾递归优化。</p>
+<p>示例代码1：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">data</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-keyword">val</span> value:<span class="hljs-built_in">Int</span>,<span class="hljs-keyword">var</span> next:ListNode? = <span class="hljs-literal">null</span>)<br><br><span class="hljs-keyword">tailrec</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">findListNode</span><span class="hljs-params">(head:<span class="hljs-type">ListNode</span>?,value:<span class="hljs-type">Int</span>)</span></span>:ListNode?&#123; <span class="hljs-comment">//定义一个递归函数</span><br>    head?:<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (head.value == value) <span class="hljs-keyword">return</span> head<br>    <span class="hljs-keyword">return</span> findListNode(head.next,value)    <span class="hljs-comment">//return除了调用自己，没有多余的操作，所以是尾递归</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>示例代码2：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">recursionLoop</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Int</span> &#123;<br><span class="hljs-comment">// 变化在这里</span><br><span class="hljs-comment">//     ↓</span><br>    <span class="hljs-keyword">tailrec</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">go</span><span class="hljs-params">(i: <span class="hljs-type">Int</span>, sum: <span class="hljs-type">Int</span>)</span></span>: <span class="hljs-built_in">Int</span> =<br>        <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">10</span>) sum <span class="hljs-keyword">else</span> go(i + <span class="hljs-number">1</span>, sum + i)<br><br>    <span class="hljs-keyword">return</span> go(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="尾递归优化的实质"><a href="#尾递归优化的实质" class="headerlink" title="尾递归优化的实质"></a>尾递归优化的实质</h2><p>通过对上文中的 <code>findListNode</code> 方法对 <strong>加了 <code>tailrec</code> 关键字</strong> 与 <strong>去除 <code>tailrec</code> 关键字</strong> 的两份代码分别进行反编译，我们发现：</p>
+<ul>
+<li><p>没有优化的 <code>findListNode</code> 对应的 <code>Java</code> 代码依然是递归函数，并且递归运行次数较大时出现了 <code>StackOverflowError</code> 错误；</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135701617.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 90%;" />
+
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135611929.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:87%;" />
+</li>
+<li><p>优化后（即添加了 <code>tailrec</code> 关键字）的 <code>findListNode</code> 方法对应的 <code>Java</code> 代码已经不再是递归函数，而是通过循环来实现功能，这样就不会再出现 <code>stackoverflowerror</code> 了。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135710491.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:90%;" /></li>
+</ul>
+<p>这样我们就在 <code>Kotlin</code> 中既实现了递归函数代码简洁的优势，又规避了在 <code>Java</code> 中使用递归函数容易出出现的问题。</p>
 
                 
               </div>
@@ -343,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/AutoHotkey/" class="category-chain-item">AutoHotkey</a>
+  <a href="/categories/Kotlin/" class="category-chain-item">Kotlin</a>
   
   
 
@@ -358,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AutoHotkey/">#AutoHotkey</a>
+        <a href="/tags/Kotlin/">#Kotlin</a>
       
     </div>
   
@@ -370,8 +388,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AutoHotkey v1 问题解决记录</div>
-      <div>https://luoyuy.top/posts/1bfe28981f7d/</div>
+      <div>Kotlin 函数嵌套</div>
+      <div>https://luoyuy.top/posts/47063eb1b5ed/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月11日</div>
+          <div>2022年7月9日</div>
         </div>
       
       
@@ -415,9 +433,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/de88f66d3fa1/" title="AutoHotkey v1 类的定义与部分使用技巧">
+                      <a href="/posts/1bfe28981f7d/" title="AutoHotkey v1 问题解决记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AutoHotkey v1 类的定义与部分使用技巧</span>
+                        <span class="hidden-mobile">AutoHotkey v1 问题解决记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -425,8 +443,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/47063eb1b5ed/" title="Kotlin 函数嵌套">
-                        <span class="hidden-mobile">Kotlin 函数嵌套</span>
+                      <a href="/posts/bd6604dc1b1f/" title="hexo-theme-butterfly 修改侧边栏分类排序规则">
+                        <span class="hidden-mobile">hexo-theme-butterfly 修改侧边栏分类排序规则</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
