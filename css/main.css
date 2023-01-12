@@ -1369,8 +1369,6 @@ figure.highlight td.code > pre {
 .markdown-body > h1,
 .markdown-body h2 {
   border-bottom-color: var(--line-color);
-  padding-bottom: 0em;
-  border-bottom: 0px;
 }
 .markdown-body > h1,
 .markdown-body h2,
