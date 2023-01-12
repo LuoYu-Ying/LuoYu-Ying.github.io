@@ -1382,7 +1382,7 @@ figure.highlight td.code > pre {
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   font-weight: bold;
   margin-bottom: 0.75em;
-  margin-top: 2em;
+  margin-top: 1.5em;
 }
 .markdown-body > h1::before,
 .markdown-body h2::before,
