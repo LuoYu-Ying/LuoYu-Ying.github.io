@@ -440,18 +440,18 @@
     
     <categories>
       
-      <category>面试整理-2022</category>
-      
       <category>JVM</category>
+      
+      <category>面试整理-2022</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JVM Class Loader</tag>
-      
       <tag>JVM Garbage Collection</tag>
+      
+      <tag>JVM Class Loader</tag>
       
       <tag>JVM Data Area</tag>
       
