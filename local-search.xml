@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>Android 设计模式-策略模式</title>
+    <link href="/posts/585ed55901e2/"/>
+    <url>/posts/585ed55901e2/</url>
+    
+    <content type="html"><![CDATA[<hr>]]></content>
+    
+    
+    <categories>
+      
+      <category>Android 设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>策略模式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>设计模式 单例模式</title>
+    <link href="/posts/c178efd01826/"/>
+    <url>/posts/c178efd01826/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>汇编语言:基于x86处理器-学习笔记-第八章</title>
     <link href="/posts/cecb127ec7d7/"/>
     <url>/posts/cecb127ec7d7/</url>
@@ -440,18 +478,18 @@
     
     <categories>
       
-      <category>面试整理-2022</category>
-      
       <category>JVM</category>
+      
+      <category>面试整理-2022</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JVM Class Loader</tag>
-      
       <tag>JVM Garbage Collection</tag>
+      
+      <tag>JVM Class Loader</tag>
       
       <tag>JVM Data Area</tag>
       
