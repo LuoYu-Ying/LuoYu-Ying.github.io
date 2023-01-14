@@ -1,0 +1,809 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <link rel="icon" href="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/luoyuy-favicon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuoYu-Ying">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="动画的三个分类 View 动画 帧动画 属性动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 动画深入分析">
+<meta property="og:url" content="https://luoyuy.top/posts/89ece43bd0a9/index.html">
+<meta property="og:site_name" content="洛语 の Blog">
+<meta property="og:description" content="动画的三个分类 View 动画 帧动画 属性动画">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Animation.png">
+<meta property="article:published_time" content="2022-04-17T13:54:03.000Z">
+<meta property="article:modified_time" content="2023-01-14T14:58:57.618Z">
+<meta property="article:author" content="LuoYu-Ying">
+<meta property="article:tag" content="Animation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Animation.png">
+  
+  
+  
+  <title>Android 动画深入分析 - 洛语 の Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"luoyuy.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>洛语 の Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Android 动画深入分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-17 21:54" pubdate>
+          2022年4月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android 动画深入分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="动画的三个分类"><a href="#动画的三个分类" class="headerlink" title="动画的三个分类"></a>动画的三个分类</h1><ol>
+<li><code>View</code> 动画</li>
+<li>帧动画</li>
+<li>属性动画</li>
+</ol>
+<span id="more"></span>
+
+<hr>
+<h1 id="View动画"><a href="#View动画" class="headerlink" title="View动画"></a><code>View</code>动画</h1><h2 id="四个动画效果"><a href="#四个动画效果" class="headerlink" title="四个动画效果"></a>四个动画效果</h2><p><code>View</code>动画的作用对象是<code>View</code>，它有四个动画效果：平移动画、缩放动画、旋转动画、透明度动画。</p>
+<p><code>View</code>动画的四个变化效果对应着<code>Animation</code>的四个子类：</p>
+<ol>
+<li>平移动画：<code>TranslateAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;translate&gt;</code></li>
+<li>缩放动画：<code>ScaleAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;scale&gt;</code></li>
+<li>旋转动画：<code>RotateAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;rotate&gt;</code></li>
+<li>透明度动画：<code>AlphaAnimation</code>，<code>XML</code>中对应的标签为<code>&lt;alpha&gt;</code></li>
+</ol>
+<h2 id="lt-set-gt-标签"><a href="#lt-set-gt-标签" class="headerlink" title="&lt;set&gt;标签"></a><code>&lt;set&gt;</code>标签</h2><p><code>&lt;set&gt;</code>标签表示动画的集合，对应着<code>AnimationSet</code>类，其中可以包含着若干的动画，也可以有子动画。</p>
+<p>标签有两个属性：</p>
+<ol>
+<li><code>android:interpolator=&quot;@anim/...&quot;</code>：选定集合所使用的插值器。</li>
+<li><code>android:shareInterpolator=[&quot;true&quot;|&quot;false&quot;]</code>：是否让集合中的动画和集合使用相同的插值器，如果为<code>false</code>，则需要为每一个动画指定一个插值器。</li>
+</ol>
+<h2 id="自定义View动画"><a href="#自定义View动画" class="headerlink" title="自定义View动画"></a>自定义<code>View</code>动画</h2><p>通过继承抽象类<code>Animation</code>，并重写其中的<code>intialize</code>和<code>applyTransformation</code>方法。</p>
+<p><code>intialize</code>方法做初始化工作。</p>
+<p><code>applyTransformation</code>方法中进行相应的矩阵变换，很多时候需要采用<code>Camera</code>类来简化矩阵变换的过程。</p>
+<h2 id="View动画的特殊使用场景"><a href="#View动画的特殊使用场景" class="headerlink" title="View动画的特殊使用场景"></a><code>View</code>动画的特殊使用场景</h2><h3 id="LayoutAnimation"><a href="#LayoutAnimation" class="headerlink" title="LayoutAnimation"></a><code>LayoutAnimation</code></h3><p><code>LayoutAnimation</code>作用于<code>ViewGroup</code>，为<code>ViewGroup</code>指定一个动画，这样当这个<code>ViewGroup</code>的子元素出场时都会具有这个动画效果。</p>
+<p>常常被用在<code>ListView</code>中，让其中的<code>item</code>在出场时都具有动画效果。</p>
+<p><strong>使用步骤：</strong></p>
+<ol>
+<li><p>在<code>XML</code>中定义<code>LayoutAnimation</code>，标签为<code>&lt;layoutAnimation&gt;</code>。其中有两个参数：<code>android:delay</code>和<code>android:animationOrder</code>。两者的作用如下：</p>
+<ol>
+<li><code>android:delay</code>：使子元素的出场时间向后延迟指定的时间，单位为毫秒。</li>
+<li><code>android:animationOrder</code>：指定子元素的出场顺序。有三种选项：<code>normal</code>顺序出场、<code>reverse</code>逆序出场、<code>random</code>随机出场。</li>
+</ol>
+</li>
+<li><p>在<code>XML</code>中指定出场时的动画。</p>
+</li>
+<li><p>在<code>XML</code>中的<code>ViewGroup</code>部分使用<code>android:layoutAnimation</code>参数指定第1步中的<code>LayoutAnimation</code>文件，便可以为<code>ViewGroup</code>中的子元素指定出场动画。</p>
+<p>除了可以在<code>XML</code>中指定<code>ViewGroup</code>的<code>android:layoutAnimation</code>属性，也可以在代码中通过<code>LayoutAnimationController</code>来实现。</p>
+</li>
+</ol>
+<h3 id="Activity的切换效果"><a href="#Activity的切换效果" class="headerlink" title="Activity的切换效果"></a><code>Activity</code>的切换效果</h3><p><code>View</code>动画也可以对<code>Activity</code>的切换效果进行设置，效果如<code>Navigation</code>的<code>Fragment</code>切换效果。</p>
+<p>这个效果是可以自定义的，我们可以通过<code>overridePendingTransition(int enterAnim, int exitAnim)</code>方法，这个方法<code>startActivity(Intent intent)</code>函数或者<code>finish()</code>函数之后被调用才能生效，否则动画效果将不起作用。</p>
+<p>两个参数分别是设置的<strong>入场动画</strong>和<strong>退场动画</strong>的资源Id。</p>
+<p>使用方法例子如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(...);<br>startActivity(intent);<br>overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">finish</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-built_in">super</span>.finish();<br>    overridePendingTransition(R.anim.enter_anim, R.anim.exit_anim);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Fragment的切换效果"><a href="#Fragment的切换效果" class="headerlink" title="Fragment的切换效果"></a><code>Fragment</code>的切换效果</h3><p>由于<code>Fragment</code>类是在<code>API11</code>中才被新加入的，所以我们使用<code>support-v4</code>这个兼容包。</p>
+<p>我们使用<code>FragmentTransaction</code>类中的<code>setCustomAnimation()</code>方法来添加切换动画，该处的动画<strong>需要是<code>View</code>动画</strong>，而<strong>不能是属性动画</strong>。</p>
+<hr>
+<h1 id="帧动画"><a href="#帧动画" class="headerlink" title="帧动画"></a>帧动画</h1><p>通过<code>&lt;animation-list&gt;</code>标签，并在其中预设好一组图片，类似于电影的播放，按顺序依次播放。</p>
+<p>系统中提供<code>AnimationDrawable</code>类来使用帧动画。</p>
+<p>应避免使用尺寸较大的图片，以防止<code>OOM</code>的发生。</p>
+<hr>
+<h1 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h1><p>属性动画<strong>可以对任意对象的属性进行动画</strong>而不仅仅是<code>View</code>。</p>
+<p>动画的默认时间间隔为<code>300ms</code>，默认的帧率为<code>10ms/帧</code>。</p>
+<p>达到的效果是：在一个时间间隔内完成对象从一个属性值到另一个属性值的改变。</p>
+<p>常用的几个动画类是：<code>ValueAnimator</code>、<code>ObjectAnimator</code>和<code>AnimatorSet</code>。</p>
+<p>其中，<code>ObjectAnimator</code>继承自<code>ValueAnimator</code>，<code>AnimatorSet</code>是动画集合，可以定义一组动画。</p>
+<h2 id="Nineoldandroids"><a href="#Nineoldandroids" class="headerlink" title="Nineoldandroids"></a><code>Nineoldandroids</code></h2><p><code>API11</code>前，可以使用<code>nineoldandroids</code>开源动画库完成类似属性动画的效果，其使用的语法与<code>API11</code>后属性动画的语法完全一致，不同的是，<code>nineoldandroids</code>通过<code>View</code>动画来完成属性动画的效果。</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>属性动画可以通过代码的方式完成，也可以在<code>XML</code>文件中定义。属性动画需要定义在<code>res/animator</code>中。</p>
+<p>上述三个动画类在<code>XML</code>文件中的表示方式如下：</p>
+<h3 id="AnimatorSet"><a href="#AnimatorSet" class="headerlink" title="AnimatorSet"></a><code>AnimatorSet</code></h3><p>对应的标签为<code>&lt;set&gt;</code>。</p>
+<p>其中的属性<code>android:ordering=[&quot;together&quot;|&quot;sequentially&quot;]</code>有两个可选值：</p>
+<ol>
+<li><code>together</code>表示集合中所有的子动画同时播放。</li>
+<li><code>sequentially</code>表示集合中的子动画依次播放。</li>
+</ol>
+<h3 id="ObjectAnimator"><a href="#ObjectAnimator" class="headerlink" title="ObjectAnimator"></a><code>ObjectAnimator</code></h3><p>对应的标签为<code>&lt;objectAnimator&gt;</code>。</p>
+<p>部分属性即解释如下：</p>
+<ul>
+<li><p><code>android:propertyName=&quot;string&quot;</code>：表示属性动画的作用对象的属性的名称。</p>
+</li>
+<li><p><code>android:startOffset=&quot;int&quot;</code>：表示动画的延迟时间，当动画开始后，需要延迟多少毫秒才会真正播放此动画。</p>
+</li>
+<li><p><code>android:repeatCount=&quot;int&quot;</code>：表示动画的重复次数，默认值为<code>0</code>，<code>-1</code>表示无限循环。</p>
+</li>
+<li><p><code>android:repearMode=[&quot;restart&quot;|&quot;reverse&quot;]</code>：表示动画的重复模式。</p>
+<ul>
+<li><code>&quot;restart&quot;</code>表示连续重复，即每次都重新开始播放。</li>
+<li><code>&quot;reverse&quot;</code>表示逆向重复，即第一次正放动画，第二次倒放动画，第三次正放动画，第四次倒放动画，如此反复。</li>
+</ul>
+</li>
+<li><p><code>&quot;android:valueType=[&quot;intType&quot;|&quot;floatType&quot;]</code>：表示<code>android:perpertyName</code>所指定的属性的类型，如果指定的属性为颜色，那么不需要指定该属性，系统会自动对颜色类型的属性做处理。</p>
+</li>
+</ul>
+<h3 id="ValueAnimator"><a href="#ValueAnimator" class="headerlink" title="ValueAnimator"></a><code>ValueAnimator</code></h3><p>对应的标签为<code>&lt;animator&gt;</code></p>
+<p>其属性比<code>ObjectAnimator</code>少了一个<code>android:perpertyName</code>，其余的属性都是一样的，故不多介绍。</p>
+<h2 id="理解插值器和估值器"><a href="#理解插值器和估值器" class="headerlink" title="理解插值器和估值器"></a>理解插值器和估值器</h2><p>插值器和估值器是实现非匀速动画的重要手段。</p>
+<h3 id="TimeInterpolator"><a href="#TimeInterpolator" class="headerlink" title="TimeInterpolator"></a><code>TimeInterpolator</code></h3><p>时间插值器。作用为<strong>根据时间的流逝的百分比计算当前属性值改变的百分比</strong>。</p>
+<p>预设的有多种插值器，常见的三种如下：</p>
+<ol>
+<li><code>LinearInterpolator</code>——线性插值器：匀速动画</li>
+<li><code>AccelerateDecelerateInterpolator</code>——加速减速插值器：动画两头慢中间快</li>
+<li><code>DecelerateInterpolator</code>——减速插值器：动画越来越慢</li>
+</ol>
+<p>三个类都实现了<code>Interpolartor</code>接口，接口内部只有一个用来计算属性值的改变的百分比的<code>getInterpolation</code>方法需要实现。</p>
+<h3 id="TypeEvaluator"><a href="#TypeEvaluator" class="headerlink" title="TypeEvaluator"></a><code>TypeEvaluator</code></h3><p>类型估值算法，也叫估值器。作用是<strong>根据属性值改变的百分比来计算改变后的属性值</strong>。</p>
+<p>系统预置的有3种：</p>
+<ol>
+<li><code>IntEvaluator</code>：针对整形属性</li>
+<li><code>FloatEvaluator</code>：针对浮点型属性</li>
+<li><code>ArgbEvaluator</code>：针对Color属性</li>
+</ol>
+<p>三个类都实现了<code>TypeEvalator</code>接口，接口内部只有一个用来计算改变后的属性值的<code>evaluate</code>方法需要实现。</p>
+<h3 id="计算顺序"><a href="#计算顺序" class="headerlink" title="计算顺序"></a>计算顺序</h3><p>系统会根据当前的帧所在时刻与动画播放的总时间求出时间的流逝的百分比，再通过插值器计算出当前属性值改变的百分比，后用此值通过估值器计算出当前的属性改变后的确定的值是多少并通过<code>set</code>方法对属性赋值。</p>
+<p>故属性动画要求对象的该属性有<code>set</code>方法（必须有）和<code>get</code>方法（可选）。</p>
+<h3 id="自定义插值器和估值器"><a href="#自定义插值器和估值器" class="headerlink" title="自定义插值器和估值器"></a>自定义插值器和估值器</h3><p>我们可以自定义插值器和估值器，来实现自己想要的动画效果。实现方式也很简单。</p>
+<p>因为插值器和估值器都是一个接口，且内部都只有一个方法，所以我们只需要派生一个类并实现接口就可以了，然后就可以做出千奇百怪的动画效果了。即：</p>
+<ul>
+<li>自定义插值器需要实现<code>Interpolator</code>或者<code>TimeInterpolator</code>接口</li>
+<li>自定义估值器需要实现<code>TypeEvaluator</code>接口。</li>
+</ul>
+<h2 id="属性动画的监听器"><a href="#属性动画的监听器" class="headerlink" title="属性动画的监听器"></a>属性动画的监听器</h2><p>监听器用于监听动画的播放过程，主要有两个接口：<code>AnimatorUpdateListener</code>和<code>AnimatorListener</code>。</p>
+<h3 id="AnimatorUpdateListener"><a href="#AnimatorUpdateListener" class="headerlink" title="AnimatorUpdateListener"></a><code>AnimatorUpdateListener</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">AnimatorUpdateListener</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">onAnimationUpdate</span><span class="hljs-params">(ValueAnimator animation)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该接口会监听整个动画过程，即每播放一帧，<code>onAnimationUpdate</code>就会被调用一次。</p>
+<h3 id="AnimatorListener"><a href="#AnimatorListener" class="headerlink" title="AnimatorListener"></a><code>AnimatorListener</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">AnimatiorListener</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">onAnimatorStart</span><span class="hljs-params">(Animator animation)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">onAnimatorEnd</span><span class="hljs-params">(Animator animation)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">onAnimatorCancel</span><span class="hljs-params">(Animator animation)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">onAnimatorRepeat</span><span class="hljs-params">(Animator animation)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该接口会监听动画的开始、结束、取消以及重复播放。同时为了方便开发，系统还提供了<code>AnimatorListenerAdapter</code>这个类，它是<code>AnimatorListener</code>的适配器类，这样我们就可以有选择地实现上面的4个方法了。</p>
+<h2 id="对任意属性做动画"><a href="#对任意属性做动画" class="headerlink" title="对任意属性做动画"></a>对任意属性做动画</h2><p>属性动画<strong>可以对任意对象的属性进行动画</strong>而不仅仅是<code>View</code>。</p>
+<h3 id="属性动画的工作流程"><a href="#属性动画的工作流程" class="headerlink" title="属性动画的工作流程"></a>属性动画的工作流程</h3><p>属性动画要求动画作用的对象提供该属性的<code>set</code>方法，属性动画根据你传递的该属性的初始值和最终值，以动画的效果多次去调用<code>set</code>方法。每次传递给<code>set</code>方法的值都不一样，确切来说是随着时间的推移，所传递的值越来越接近最终值。如果动画的时候没有传递初始值，那么还要提供<code>get</code>方法，因为系统要去获取属性的初始值。即：</p>
+<ul>
+<li><p>必须要有该属性的<code>set</code>方法（如果这条不满足则会无效果）</p>
+</li>
+<li><p>如果没有传递初始值，那么必须要有该属性的<code>get</code>方法（如果这条不满足则程序直接Crash）</p>
+</li>
+</ul>
+<h3 id="动画不生效时的解决方法"><a href="#动画不生效时的解决方法" class="headerlink" title="动画不生效时的解决方法"></a>动画不生效时的解决方法</h3><p>当有些对象的内部并没有该属性的<code>set</code>方法时，动画会无效果，那么我们有三个方法去解决这个问题：</p>
+<ol>
+<li><p><strong>如果有权限的话，直接给对象加上<code>get</code>和<code>set</code>方法</strong></p>
+<p>很多时候，我们是没有权限的去添加方法的，比如我们给<code>Button</code>或者<code>TextView</code>等等，因为这些都是Android SDK内部实现的，我们无法更改。</p>
+</li>
+<li><p><strong>用一个类来包装原始对象，间隔为其提供<code>get</code>和<code>set</code>方法</strong></p>
+<p>因为属性动画可以对任意对象进行动画，所以我们可以用一个类来包装原始对象，并在该类中为原始对象提供<code>get</code>和<code>set</code>方法。</p>
+<p>然后对该类进行属性动画，即可修改原始对象的属性值。</p>
+</li>
+<li><p><strong>利用<code>ValueAnimator</code>，监听动画过程，自己实现属性的改变</strong></p>
+<p>使用<code>AnimatorUpdateListener</code>接口监听整个动画过程，在其中的<code>onAnimationUpdate</code>方法中，对每一帧通过调用插值器和估值器计算当前的属性值，并通过<code>set</code>方法直接为该属性赋值，实现属性的改变。</p>
+</li>
+</ol>
+<p><strong>注：自己写的<code>set</code>方法中，在对属性值进行修改后，需要调用<code>view.requestLayout()</code>方法重绘界面，否则无法显示更改后的界面。</strong></p>
+<h2 id="属性动画的工作原理"><a href="#属性动画的工作原理" class="headerlink" title="属性动画的工作原理"></a>属性动画的工作原理</h2><p><code>ObjectAnimatior#start</code>方法会调用其父类<code>ValueAnimator#start</code>方法，在父类的<code>start</code>方法中会调用<code>AnimationHandler#start</code>方法，<code>AnimationHandler</code>是一个<code>Runnable</code>，我已属性动画需要运行在有<code>Looper</code>的线程中。</p>
+<p>中间通过一系列的方法调用，然后会使用<code>ValueAnimator#doAnimationFrame</code>方法，在此方法中又调用了<code>animationFrame</code>方法，内部又调用了<code>animateValue</code>方法，其中的<code>calculateValue</code>方法就是计算每帧动画所对应的属性的值，其中的<code>setupValue</code>方法通过反射调用对象的<code>get</code>方法，<code>setAnimationValue</code>方法通过反射的方式调用了对象的<code>set</code>方法。</p>
+<hr>
+<h1 id="使用动画的注意事项"><a href="#使用动画的注意事项" class="headerlink" title="使用动画的注意事项"></a>使用动画的注意事项</h1><p><strong>来源：《Android开发艺术探索》</strong></p>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/Android%E5%8A%A8%E7%94%BB%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Animation/">#Animation</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Android 动画深入分析</div>
+      <div>https://luoyuy.top/posts/89ece43bd0a9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LuoYu-Ying</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/19429a22b2b2/" title="View 的绘制原理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">View 的绘制原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/da60d3fddfed/" title="Drawable 解析">
+                        <span class="hidden-mobile">Drawable 解析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/fluid-js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/fluid-js/postTimeleness.js"></script><!-- hexo injector body_end end --></body>
+</html>
