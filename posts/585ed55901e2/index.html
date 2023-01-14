@@ -18,14 +18,14 @@
   
     <meta name="description" content="策略模式的定义、实现以及在 Android 中的应用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 设计模式-策略模式">
+<meta property="og:title" content="Android 设计模式- 策略模式">
 <meta property="og:url" content="https://luoyuy.top/posts/585ed55901e2/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
 <meta property="og:description" content="策略模式的定义、实现以及在 Android 中的应用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F3.png">
 <meta property="article:published_time" content="2023-01-14T12:54:46.000Z">
-<meta property="article:modified_time" content="2023-01-14T13:35:18.081Z">
+<meta property="article:modified_time" content="2023-01-14T14:36:16.501Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="策略模式">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
   
   
   
-  <title>Android 设计模式-策略模式 - 洛语 の Blog</title>
+  <title>Android 设计模式- 策略模式 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Android 设计模式-策略模式"></span>
+            <span id="subtitle" data-typed-text="Android 设计模式- 策略模式"></span>
           
         </div>
 
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.7k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          1 分钟
+          15 分钟
         
       </span>
     
@@ -283,12 +283,42 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Android 设计模式-策略模式</h1>
+            <h1 style="display: none">Android 设计模式- 策略模式</h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>考虑下面的一段没有实际用处的代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> animalPrinter = AnimalPrinter()<br>    AnimalPrinter(<span class="hljs-string">&quot;CAT&quot;</span>)<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AnimalPrinter</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printAnimal</span><span class="hljs-params">(animal: <span class="hljs-type">String</span>)</span></span> &#123;<br>        <span class="hljs-keyword">when</span> (animal) &#123;<br>            <span class="hljs-string">&quot;CAT&quot;</span> -&gt; printCat()<br>            <span class="hljs-string">&quot;DOG&quot;</span> -&gt; printDog()<br>            <span class="hljs-string">&quot;PARROT&quot;</span> -&gt; printParrot()<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printCat</span><span class="hljs-params">()</span></span> = println(<span class="hljs-string">&quot;I have a cat.&quot;</span>)<br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printDog</span><span class="hljs-params">()</span></span> = println(<span class="hljs-string">&quot;I have a dog&quot;</span>)<br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printParrot</span><span class="hljs-params">()</span></span> = println(<span class="hljs-string">&quot;I have a parrot&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当我们需要在 <code>main</code> 函数中输出其他的动物时，就需要在 <code>AnimalPrinter#printAnimal</code> 函数中添加新的动物以及对应的实现逻辑，同时在 <code>AnimalPrinter</code> 类中添加对应动物的打印函数，肯定会修改对应的源代码，但是这就违反了单一职责原则。</p>
+<p>那么如果将这些算法或者策略抽象出来，提供一个统一的接口，不同的算法或者策略有不同的实现类，这样在程序客户端就可以通过注入不同的实现对象来实现算法或者策略的动态替换。</p>
+<p>这种模式的可扩展性、可维护性也就更高，也就是我们所说的策略模式。</p>
+<hr>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>策略模式定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。</p>
+<p>策略模式让算法独立于使用它的客户而独立变化。</p>
+<hr>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ul>
+<li><p>针对同一类型问题的多种处理方式，仅仅是具体行为有差别时。</p>
+</li>
+<li><p>需要安全地封装多种同一类型的操作时。</p>
+</li>
+<li><p>出现同一抽象类有多个子类，而又需要使用 <code>if-else</code> 或者 <code>switch-case</code> 来选择具体子类时。</p>
+</li>
+</ul>
+<hr>
+<h1 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h1><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230114222817018.png" srcset="/img/loading.gif" lazyload alt="Strategy Pattern" style="zoom:80%;" />
+
+<p>其中，上图中的类和接口的定义如下：</p>
+<ul>
+<li><strong>Context</strong>：用来操作策略的上下文环境。</li>
+<li><strong>Strategy</strong>：策略的抽象接口。</li>
+<li><strong>Concrete Strategy A</strong>、<strong>Concrete Strategy B</strong>：具体的策略实现。</li>
+</ul>
+<hr>
+<h1 id="引言代码修改"><a href="#引言代码修改" class="headerlink" title="引言代码修改"></a>引言代码修改</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> animalPrinter = AnimalPrinter()<br>    animalPrinter.setAnimal(CatPrinter())<br>    animalPrinter.printAnimal()<br>&#125;<br><br><span class="hljs-comment">// UML 类图中 Context 类</span><br>Class AnimalPrinter &#123;<br>    <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">val</span> animal : IAnimalPrinter<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">setAnimal</span><span class="hljs-params">(IAnimalPrinter iAnimalPrinter)</span></span> &#123;<br>        animal = iAnimalPrinter<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printAnimal</span><span class="hljs-params">()</span></span> = animal.print()<br>&#125;<br><br><span class="hljs-comment">// UML 类图中 Strategy 接口</span><br>Interface IAnimalPrinter &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span><br>&#125;<br><br><span class="hljs-comment">// 实现 Strategy 接口的具体实现类，即 Concrete Strategy 类</span><br>Class CatPrinter : IAnimalPrinter &#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span> = println(<span class="hljs-string">&quot;I have a cat.&quot;</span>)<br>&#125;<br><br>Class DogPrinter : IAnimalPrinter &#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span> = println(<span class="hljs-string">&quot;I have a dog.&quot;</span>)<br>&#125;<br><br>Class ParrotPrinter : IAnimalPrinter &#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span> = println(<span class="hljs-string">&quot;I have a parrot.&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -334,7 +364,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Android 设计模式-策略模式</div>
+      <div>Android 设计模式- 策略模式</div>
       <div>https://luoyuy.top/posts/585ed55901e2/</div>
     </div>
     <div class="license-meta">
