@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-asm.png">
 <meta property="article:published_time" content="2022-12-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-01-07T05:50:42.727Z">
+<meta property="article:modified_time" content="2023-01-16T04:26:51.747Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.8k 字
+          7.9k 字
         
       </span>
     
@@ -292,32 +292,32 @@
 
 <span id="more"></span>
 
-<h1 id="汇编语言基本概念"><a href="#汇编语言基本概念" class="headerlink" title="汇编语言基本概念"></a>汇编语言基本概念</h1><p><font size = 4><b>汇编语言可移植吗?</b></font></p>
+<h1 id="汇编语言基本概念"><a href="#汇编语言基本概念" class="headerlink" title="汇编语言基本概念"></a>汇编语言基本概念</h1><p><font size = 4><b>1. 汇编语言可移植吗?</b></font></p>
 <blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 3</p>
 </blockquote>
 <p>一种语言，如果它的源程序能够在各种各样的计算机系统中进行编译和运行，那么这种语言被称为是可移植的 (portable)。</p>
 <p>例如，一个C++程序，除非需要特别引用某种操作系统的库函数，否则它就几乎可以在任何一台计算机上编译和运行。Java语言的一大特点就是，其编译好的程序几乎能在所有计算机系统中运行。</p>
 <p><strong>汇编语言不是可移植的，因为它是为特定处理器系列设计的。</strong> 目前广泛使用的有多种不同的汇编语言，每一种都基于一个处理器系列。对于一些广为人知的处理器系列如 <code>Motorola68x00</code>、<code>x86</code>、<code>SUN Sparc</code>、<code>Vax</code> 和 <code>IBM-370</code>，汇编语言指令会直接与该计算机体系结构相匹配，或者在执行时用一种被称为微代码解释器 (microcode interpreter) 的处理器内置程序来进行转换。</p>
-<p><font size = 4><b>汇编语言与机器语言有什么关系?</b></font></p>
+<p><font size = 4><b>2. 汇编语言与机器语言有什么关系?</b></font></p>
 <blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 3</p>
 </blockquote>
 <p>机器语言 (machine language) 是一种数字语言，专门设计成能被计算机处理器（CPU）理解。所有 <code>x86</code> 处理器都理解共同的机器语言。汇编语言 (assembly language) 包含用短助记符如 <code>ADD</code>、<code>MOV</code>、<code>SUB</code> 和 <code>CALL</code> 书写的语句。</p>
 <p><strong>汇编语言与机器语言是一对一 (one-to-one) 的关系：每一条汇编语言指令对应一条机器语言指令。</strong></p>
-<p><font size = 4><b>C++ 和 Java 与汇编语言有什么关系?</b></font></p>
+<p><font size = 4><b>3. C++ 和 Java 与汇编语言有什么关系?</b></font></p>
 <blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 3</p>
 </blockquote>
 <p><strong>高级语言如 <code>Python</code>、<code>C++</code> 和 <code>Java</code> 与汇编语言和机器语言的关系是一对多 (one-to-many)。</strong></p>
 <p>比如，<code>C++</code> 的一条语句就会扩展为多条汇编指令或机器指令。这种转换需要多条语句，因为每条汇编语句只对应一条机器指令。</p>
-<p><font size = 4><b>汇编语言有规则吗?</b></font></p>
+<p><font size = 4><b>4. 汇编语言有规则吗?</b></font></p>
 <blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 4</p>
 </blockquote>
 <p><strong>大多数汇编语言规则都是以目标处理器及其机器语言的物理局限性为基础的。</strong> 比如，CPU要求两个指令操作数的大小相同。</p>
 <p>与 C++ 或 Java 相比，汇编语言的规则较少，因为，前者是用语法规则来减少意外的逻辑错误，而这是以限制底层数据访问为代价的。反之，汇编语言可以访问所有的内存地址。</p>
-<p><font size = 4><b>为什么高级语言这么发达还会用汇编语言？</b></font></p>
+<p><font size = 4><b>5. 为什么高级语言这么发达还会用汇编语言？</b></font></p>
 <blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 3</p>
 </blockquote>
@@ -329,7 +329,7 @@
 <li><p>电脑游戏要求软件在减少代码大小和加快执行速度方面进行高度优化。游戏程序员经常选择汇编语言作为工具，因为汇编语言允许直接访问计算机硬件，所以，为了提高速度可以对代码进行手工优化。</p>
 </li>
 </ul>
-<p><font size = 4><b>汇编语言与高级语言的比较</b></font></p>
+<p><font size = 4><b>6. 汇编语言与高级语言的比较</b></font></p>
 <blockquote>
 <p>  《汇编语言：基于x86处理器（原书第7版）》Page 4</p>
 </blockquote>
