@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>Android 设计模式 - 代理模式</title>
-    <link href="/posts/c885847880fc/"/>
-    <url>/posts/c885847880fc/</url>
+    <title>UML 类图详解</title>
+    <link href="/posts/6070f0351e80/"/>
+    <url>/posts/6070f0351e80/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>UML 类图是使用最频繁的 UML 图之一。</p><p>类图是面向对象系统建模中最常用和最重要的图，是定义其它图的基础。类图主要是用来显示系统中的类、接口以及它们之间的静态结构和关系的一种静态模型。类图中最基本的元素是类、接口。软件设计师设计出类图后，程序员就可以用代码实现类图中包含的内容。</p><hr><h1 id="具体类、抽象、接口和包的表示"><a href="#具体类、抽象、接口和包的表示" class="headerlink" title="具体类、抽象、接口和包的表示"></a>具体类、抽象、接口和包的表示</h1><h2 id="类图中表示具体类"><a href="#类图中表示具体类" class="headerlink" title="类图中表示具体类"></a>类图中表示具体类</h2><p>具体类在类图中用矩形框表示，矩形框分为三层：第一层是类名字；第二层是类的成员变量；第三层是类的方法。</p><p>UML 规定类图中属性的表示方式为：</p><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">可见性 名称 : 类型 [ = 缺省值]<br></code></pre></td></tr></table></figure><p>类图中的方法可以表示为：</p><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">可见性 方法名 [参数名 : 参数类型] : 返回值类型<br></code></pre></td></tr></table></figure><p>其中，方法的多个参数间用逗号隔开，无返回值时，其类型为 <code>void</code>。</p><p>成员变量以及方法前的访问修饰符用符号来表示：</p><ul><li><code>-</code>：<em>短横线</em>表示 <code>private</code></li><li><code>#</code>：表示 <code>protected</code></li><li><code>~</code>：表示 <code>default</code>，也就是包权限 </li><li><code>_</code>：<em>下划线</em>表示 <code>static</code></li><li><code>+</code>：表示 <code>public</code></li><li><code>斜体</code>：<em>斜体</em>表示 <code>abstract</code>，抽象类的类名以及抽象方法的名字都需要用斜体字表示</li></ul>]]></content>
     
     
     <categories>
@@ -20,7 +20,7 @@
     
     <tags>
       
-      <tag>代理模式</tag>
+      <tag>UML</tag>
       
     </tags>
     
