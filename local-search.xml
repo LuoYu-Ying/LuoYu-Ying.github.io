@@ -501,9 +501,9 @@
     
     <tags>
       
-      <tag>JVM Class Loader</tag>
-      
       <tag>JVM Garbage Collection</tag>
+      
+      <tag>JVM Class Loader</tag>
       
       <tag>JVM Data Area</tag>
       
