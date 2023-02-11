@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0.png">
 <meta property="article:published_time" content="2023-02-11T08:34:06.000Z">
-<meta property="article:modified_time" content="2023-02-11T08:41:07.737Z">
+<meta property="article:modified_time" content="2023-02-11T08:56:43.956Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="Program Optimization">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.9k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          14 分钟
+          16 分钟
         
       </span>
     
@@ -289,6 +289,14 @@
               <div class="markdown-body">
                 
                 <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+<h1 id="程序优化的方法"><a href="#程序优化的方法" class="headerlink" title="程序优化的方法"></a>程序优化的方法</h1><h2 id="代码移动"><a href="#代码移动" class="headerlink" title="代码移动"></a>代码移动</h2><p>观察下列代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">getLength</span>(); i++) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>将上述代码中的 <code>for</code> 循环进行如下优化的方式叫做代码移动：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> length = <span class="hljs-built_in">getLength</span>();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过上述的操作，将 <code>getLength()</code> 函数提出到循环之外，由原来需要进行 <code>length</code> 次计算变为只需要一次计算，大大减少的计算量。</p>
+<p>但是由于编译器无法确定 <code>getLength()</code> 函数是否存在副作用，所以不会在代码优化的时候主动进行该类代码移动。 </p>
 <hr>
 <h1 id="习题整理"><a href="#习题整理" class="headerlink" title="习题整理"></a>习题整理</h1><blockquote>
 <hr>
