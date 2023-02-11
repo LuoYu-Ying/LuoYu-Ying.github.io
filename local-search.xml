@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>深入理解计算机系统-学习笔记-第五章</title>
+    <link href="/posts/cf24ab0ec051/"/>
+    <url>/posts/cf24ab0ec051/</url>
+    
+    <content type="html"><![CDATA[<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><hr><h1 id="习题整理"><a href="#习题整理" class="headerlink" title="习题整理"></a>习题整理</h1><blockquote><hr>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 1</span><br>&#123;<br>   *xp += *yp; <br>   *xp += *yp;<br>&#125; <br><span class="hljs-comment">// 2</span><br>&#123;<br>   *xp += <span class="hljs-number">2</span> * (*yp);<br>&#125;<br></code></pre></td></tr></table></figure><p>  无论何种情况下，以上两个代码块行为相同（ B ）<br>  A. 对<br>  B. 错</p></blockquote><p>当 <code>xp</code> 和 <code>yp</code> 同时指向同一个地址时，第一个代码块的结果为 <code>4(*xp)</code>，而第二个代码块的结果为 <code>3(*xp)</code>。</p><blockquote><hr><p>  <code>f1</code> 和 <code>f2</code> 是两个浮点数，关于下面两条语句，说法正确的是（ D ）</p>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">f1 =（f1 + f2) + f2; <span class="hljs-comment">// 第一条 </span><br>f1 = f1 + (f2 + f2); <span class="hljs-comment">// 第二条</span><br></code></pre></td></tr></table></figure><p>  A. 第一条执行时间快<br>  B. 第二条执行时间快<br>  C. 两条语句执行结果相同<br>  D. 两条语句执行结果可能不同</p></blockquote><p>具体内容可重新查看《深入理解计算机系统》第一、二章内容。</p><blockquote><hr><p>  关于现代微处理器，下面描述正确的是（ A B C D ）<br>  A. 可以在每个时钟周期执行多个操作。<br>  B. 指令执行的顺序不一定要与他们在机器级程序中的顺序一致。<br>  C. 指令控制单元负责从内存中读出指令序列，并据其生成一组针对程序数据的基本操作。<br>  D. 执行单元执行指令控制单元生成的操作。</p></blockquote><p>《深入理解计算机系统》5.7 理解现代处理器：</p><p>​现代微处理器取得的了不起的功绩之一是：它们采用复杂而奇异的微处理器结构，其中，<strong>多条指令可以并行地执行</strong>，同时又呈现出一种简单的顺序执行指令的表象。</p><p>​这些处理器在工业界称为超标量 (superscalar) , 意思是 <strong>它可以在每个时钟周期执行多个操作</strong>，而且是乱序的 (out-of-order) , 意思就是<strong>指令执行的顺序不一定要与它们在机器级程序中的顺序一致</strong>。</p><p>​整个设计有两个主要部分：<strong>指令控制单元</strong> (Instruction Control Unit, ICU) 和 <strong>执行单元</strong> (Execution Unit, EU) 。<strong>前者负责从内存中读出指令序列，并根据这些指令序列生成一组针对程序数据的基本操作；而后者执行这些操作。</strong></p><blockquote><hr><p>  下列说法正确的是（ A B D ）<br>  A. 现代处理器有专门的功能单元来执行加载和存储操作。<br>  B. 对于寄存器操作，在指令被译码成操作的时候，处理器就可以确定哪些指令会影响其他哪些指令。<br>  C. 对于内存操作，在指令被译码成操作的时候，处理器就可以确定哪些指令会影响其他哪些指令。<br>  D. 对于内存操作，只有到加载和存储的地址被计算出来以后，处理器才能确定哪些指令会影响其他哪些指令。</p></blockquote><ul><li><p><strong>5.7 理解现代处理器：</strong></p><p>Intel Core i7 Haswell 参考机有 8 个功能单元，编号为 0~7。下面部分列出了每个单元的功能： </p><table><thead><tr><th align="right">编号</th><th>功能</th></tr></thead><tbody><tr><td align="right">0</td><td>整数运算、浮点乘、整数和浮点数除法、分支</td></tr><tr><td align="right">1</td><td>整数运算、浮点加、整数乘、浮点乘</td></tr><tr><td align="right">2</td><td><strong>加载</strong>、地址计算</td></tr><tr><td align="right">3</td><td><strong>加载</strong>、地址计算</td></tr><tr><td align="right">4</td><td><strong>存储</strong></td></tr><tr><td align="right">5</td><td>整数运算</td></tr><tr><td align="right">6</td><td>整数运算、分支</td></tr><tr><td align="right">7</td><td><strong>存储</strong>、地址计算</td></tr></tbody></table></li><li><p><strong>5.12.2 存储的性能</strong></p><p>对于 <strong>寄存器操作</strong>，在指令被译码成操作的时候，处理器就可以确定哪些指令会影响其他哪些指令。</p><p>另一方面，对于 <strong>内存操作</strong>，只有到计算出加载和存储的地址被计算出来以后，处理器才能确定哪些指令会影响其他的哪些。</p></li></ul><blockquote><hr><p>  编写高效程序，下列说法正确的是（ A C）<br>  A. 程序员必须选择一组适当的算法和数据结构。<br>  B. 大多数编译器会优化程序员给出的算法和数据结构。<br>  C. 程序员必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。<br>  D. 大多数编译器可以轻易优化 C 语言的指针运算。</p></blockquote><p>《深入理解计算机系统》第五章 优化程序性能：</p><p>​编写高效程序需要做到以下几点：第一，<strong>我们必须选择一组适当的算法和数据结构</strong>。第二，<strong>我们必须编写出编译器能够有效优化以转换成高效可执行代码的源代码</strong>。C 语言的有些特性，例如<strong>执行指针运算</strong>和强制类型转换的能力，<strong>使得编译器很难对它进行优化</strong>。</p><p>​优化编译器会试着进行代码移动。不幸的是，就像前面讨论过的那样，对于会改变在哪里调用函数或调用多少次的变换，编译器通常会非常小心。<strong>它们不能可靠地发现一个函数是否会有副作用</strong>，因而假设函数会有副作用，并保持所有的函数调用不变。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>深入理解计算机系统</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Program Optimization</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>UML 类图详解</title>
     <link href="/posts/6070f0351e80/"/>
     <url>/posts/6070f0351e80/</url>
@@ -45,9 +70,9 @@
     
     <tags>
       
-      <tag>属性动画</tag>
-      
       <tag>策略模式</tag>
+      
+      <tag>属性动画</tag>
       
     </tags>
     
@@ -492,18 +517,18 @@
     
     <categories>
       
-      <category>面试整理-2022</category>
-      
       <category>JVM</category>
+      
+      <category>面试整理-2022</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JVM Class Loader</tag>
-      
       <tag>JVM Garbage Collection</tag>
+      
+      <tag>JVM Class Loader</tag>
       
       <tag>JVM Data Area</tag>
       
@@ -711,9 +736,9 @@
     
     <tags>
       
-      <tag>Animation</tag>
-      
       <tag>属性动画</tag>
+      
+      <tag>Animation</tag>
       
     </tags>
     
