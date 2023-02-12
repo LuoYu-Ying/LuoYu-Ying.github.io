@@ -25,9 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%85%AD%E7%AB%A0.png">
 <meta property="article:published_time" content="2023-02-12T09:08:07.000Z">
-<meta property="article:modified_time" content="2023-02-12T09:34:04.675Z">
+<meta property="article:modified_time" content="2023-02-12T09:54:54.391Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="Memory Hierarchy">
+<meta property="article:tag" content="存储器层次结构">
 <meta property="article:tag" content="Cache Memories">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%85%AD%E7%AB%A0.png">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          409 字
+          804 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          4 分钟
+          7 分钟
         
       </span>
     
@@ -305,6 +305,34 @@
 
 <p>关于上述代码，可以发现 <code>for</code> 循环中的元素的访问顺序是跳跃式的，空间局部性较差，所以这个程序有着较差的局部性。</p>
 <hr>
+<h1 id="存储器层次结构"><a href="#存储器层次结构" class="headerlink" title="存储器层次结构"></a>存储器层次结构</h1><p>软硬件的基本稳定特性：</p>
+<ul>
+<li>高速存储器技术成本高, 容量小, 且耗电大，易发热</li>
+<li>CPU 与存储器之间的速度差距越来越大</li>
+<li>编写良好的程序往往表现出良好的局部性</li>
+</ul>
+<p>以上特性给出一条设计存储器系统的途径——存储器层次结构（memory hierarchy）。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.jpg" srcset="/img/loading.gif" lazyload alt="存储器层次结构" style="zoom: 80%;" />
+
+<hr>
+<h1 id="高速缓存-Caches"><a href="#高速缓存-Caches" class="headerlink" title="高速缓存 Caches"></a>高速缓存 Caches</h1><p><strong>高速缓存（Cache）：</strong></p>
+<ul>
+<li>一种更小、速度更快的存储设备。作为更大、更慢存储设备的缓存区。</li>
+</ul>
+<p><strong>存储器层次结构的基本思想：</strong></p>
+<ul>
+<li>对于每个 k，位于 k 层的更快更小存储设备作为位于 k+1 层的更大更慢存储设备的缓存。</li>
+</ul>
+<p><strong>为什么存储器层次结构行得通？</strong></p>
+<ul>
+<li>因为局部性原理，程序访问第 k 层的数据比访问第 k+1 层的数据要频繁。</li>
+<li>因为我们不经常访问第 k+1 层的数据，所以第 k+1 层的存储设备可以更慢、容量更大、价格更便宜。</li>
+</ul>
+<p><strong>存储器层次结构构建了一个大容量的存储池：</strong></p>
+<ul>
+<li>其存储容量大小大约等于最底层存储设备的大小、同时也像底层存储器一样廉价。</li>
+<li>却可以以最高层存储设备的速度来访问。</li>
+</ul>
 
                 
               </div>
@@ -338,7 +366,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Memory-Hierarchy/">#Memory Hierarchy</a>
+        <a href="/tags/%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/">#存储器层次结构</a>
       
         <a href="/tags/Cache-Memories/">#Cache Memories</a>
       
