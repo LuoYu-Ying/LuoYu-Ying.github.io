@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%85%AD%E7%AB%A0.png">
 <meta property="article:published_time" content="2023-02-12T09:08:07.000Z">
-<meta property="article:modified_time" content="2023-02-12T09:56:05.483Z">
+<meta property="article:modified_time" content="2023-02-12T10:23:57.985Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="存储器层次结构">
 <meta property="article:tag" content="Cache Memories">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          807 字
+          1.3k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          7 分钟
+          11 分钟
         
       </span>
     
@@ -307,7 +307,7 @@
 <hr>
 <h1 id="存储器层次结构"><a href="#存储器层次结构" class="headerlink" title="存储器层次结构"></a>存储器层次结构</h1><p>软硬件的基本稳定特性：</p>
 <ul>
-<li>高速存储器技术成本高、容量小、且耗电大、易发热。</li>
+<li>高速存储器技术成本高、容量小，且耗电大、易发热。</li>
 <li>CPU 与存储器之间的速度差距越来越大。</li>
 <li>编写良好的程序往往表现出良好的局部性。</li>
 </ul>
@@ -333,6 +333,30 @@
 <ul>
 <li>其存储容量大小大约等于最底层存储设备的大小、同时也像底层存储器一样廉价。</li>
 <li>却可以以最高层存储设备的速度来访问。</li>
+</ul>
+<h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230212180510791.png" srcset="/img/loading.gif" lazyload alt="高速缓存工作方式" style="zoom: 67%;" />
+
+<p>在任何时间点，高速缓存都保存主缓存器中块的一个子集。所以高速缓存的速度会更快，但是容量也更小、价格也更加的昂贵。</p>
+<h2 id="缓存命中"><a href="#缓存命中" class="headerlink" title="缓存命中"></a>缓存命中</h2><p>当 CPU 请求的数据可以直接在高速缓存中发现的话，那么就可以直接从高速缓存中取出相应的数据块并返回给 CPU。这样会使得获取数据更快。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230212181013609.png" srcset="/img/loading.gif" lazyload alt="高速缓存缓存命中" style="zoom:67%;" />
+
+<h2 id="缓存不命中"><a href="#缓存不命中" class="headerlink" title="缓存不命中"></a>缓存不命中</h2><p>当请求的数据在高速缓存中没有发现的时候，高速缓存会先从内存中取出相应的所需要的数据，将其复制到高速缓存中，然后再从缓存中将所请求的数据返回给 CPU。所以当缓存不命中的时候会需要更长的时间。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230212181126034.png" srcset="/img/loading.gif" lazyload alt="高速缓存缓存不命中" style="zoom:67%;" />
+
+<h3 id="缓存不命中的种类"><a href="#缓存不命中的种类" class="headerlink" title="缓存不命中的种类"></a>缓存不命中的种类</h3><ul>
+<li>冷不命中（强制不命中）<ul>
+<li>最初高速缓存为空时，即没有存储任何块。对任何数据的请求都会不命中，此类不命中称为冷不命中。</li>
+</ul>
+</li>
+<li>冲突不命中<ul>
+<li>大多数缓存将第 k+1 层的某个块限制放置在第 k 层块的一个小的 子集中（有时只是一个块）。</li>
+<li>冲突不命中发生在缓存足够大，但是这些多个数据对象会映射到同 一个缓存块。</li>
+</ul>
+</li>
+<li>容量不命中<ul>
+<li>发生在当活跃块集合（工作集 working set）的大小比缓存容量大时。<br>例如高速缓存只能存储 4 个块，但是我们需要一次性请求 8 个块时，自然容量仅有 4 个块的高速缓存无法放下整个 8 个块的数组，便会出现容量不命中。</li>
+</ul>
+</li>
 </ul>
 
                 
