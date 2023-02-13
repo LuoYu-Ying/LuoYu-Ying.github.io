@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%85%AD%E7%AB%A0.png">
 <meta property="article:published_time" content="2023-02-12T09:08:07.000Z">
-<meta property="article:modified_time" content="2023-02-13T17:35:15.709Z">
+<meta property="article:modified_time" content="2023-02-13T17:53:05.317Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="存储器层次结构">
 <meta property="article:tag" content="高速缓存存储器">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.8k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          20 分钟
+          24 分钟
         
       </span>
     
@@ -398,14 +398,22 @@
 <p>CPU 访存时，将主存地址按某种映射函数关系变换成 Cache 地址的过程。</p>
 <p><strong>地址映射的方式</strong></p>
 <p>直接映射、组相联映射、全相联映射。</p>
-<h2 id="高速缓存结构图"><a href="#高速缓存结构图" class="headerlink" title="高速缓存结构图"></a>高速缓存结构图</h2><p>高速缓存是一个高速缓存组的数组。每个组包含 一个或多个行，每个行包含一个有效位，一些标记位，以及一个数据块：</p>
+<h2 id="高速缓存结构图"><a href="#高速缓存结构图" class="headerlink" title="高速缓存结构图"></a>高速缓存结构图</h2><p>高速缓存是一个高速缓存组的数组。每个组包含 一个或多个高速缓存行，每个行包含一个有效位，一些标记位，以及一个数据块。</p>
+<p>有效位（valid bit）指明这个行是否包含有意义的信息。有效位的长度为 1 个 bit，当 valid 等于 1 时，表示数据有效；当 valid 等于 0 时，表示数据无效。</p>
+<p>标记位唯一地标识存储在这个高速缓存行中的块：</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230214013032852.png" srcset="/img/loading.gif" lazyload alt="高速缓存结构图" style="zoom:67%;" />
 
-<p>高速缓存的结构将 $m$ 个地址位划分成了 $t$ 个标记位、 $s$ 个组索引位和 $b$ 个块偏移位：</p>
+<p>每个存储器地址有 $m$ 位，形成 $M&#x3D;2^m$ 个不同的地址。高速缓存的结构将 $m$ 个地址位划分成了 $t$ 个标记位、 $s$ 个组索引位和 $b$ 个块偏移位：</p>
 <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230214013237057.png" srcset="/img/loading.gif" lazyload alt="高速缓存的结构" style="zoom:67%;" />
 
 <p>一般而言，高速缓存的结构可以用元组 $(S,\space E,\space B,\space m)$ 来描述。高速缓存的大小（或容量）$C$ 指的是所有块的大小的和。标记位和有效位不包括在内。因此， $C&#x3D;S\times E \times B$ 。</p>
-
+<h2 id="高速缓存的读取方法"><a href="#高速缓存的读取方法" class="headerlink" title="高速缓存的读取方法"></a>高速缓存的读取方法</h2><p>当一条加载指令指示 CPU 从主存地址 A 中读一个字时，它将地址 A 发送到高速缓 存。如果高速缓存正保存着地址 A 处那个字的副本，它就立即将那个字发回给 CPU。</p>
+<p>那么高速缓存如何知道它是否包含地址 A 处那个字的副本的呢？</p>
+<p>参数 $S$ 和 $B$ 将 $m$ 个地址位分为了三个字段。</p>
+<p>地址 A 中的 $s$ 个组索引位是一个到 $S$ 个组的数组的索引。第一个组是组 $0$，第二个组是组 $1$，依此类推。组索引位被解释为一个无符号整数，它告诉我们这个字必须存储在哪个组中。</p>
+<p>一旦我们知道了这个字必须放在哪个组中， A 中的 $t$ 个标记位就告诉我们这个组中的哪一行包含这个字（如果有的话）。当且仅当设置了有效位并且该行的标记位与地址 A 中的标记位相匹配时，组中的这一行才包含这个字。</p>
+<p>一旦我们在由组索引标识的组中定位了由标号所标识的行，那么 $b$ 个块偏移位给出了在 $B$ 个字节的数据块中的字偏移。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%8F%96%E6%96%B9%E6%B3%95.jpg" srcset="/img/loading.gif" lazyload alt="高速缓存的读取方法" style="zoom:67%;" />
                 
               </div>
             
