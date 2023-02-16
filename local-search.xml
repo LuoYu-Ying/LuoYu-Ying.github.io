@@ -29,7 +29,7 @@
   
   
   <entry>
-    <title>Kotlin 泛型</title>
+    <title>Kotlin 理解泛型</title>
     <link href="/posts/b8e90b1cb5db/"/>
     <url>/posts/b8e90b1cb5db/</url>
     
@@ -147,9 +147,9 @@
     
     <tags>
       
-      <tag>属性动画</tag>
-      
       <tag>策略模式</tag>
+      
+      <tag>属性动画</tag>
       
     </tags>
     
@@ -594,18 +594,18 @@
     
     <categories>
       
-      <category>面试整理-2022</category>
-      
       <category>JVM</category>
+      
+      <category>面试整理-2022</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JVM Class Loader</tag>
-      
       <tag>JVM Garbage Collection</tag>
+      
+      <tag>JVM Class Loader</tag>
       
       <tag>JVM Data Area</tag>
       
@@ -813,9 +813,9 @@
     
     <tags>
       
-      <tag>Animation</tag>
-      
       <tag>属性动画</tag>
+      
+      <tag>Animation</tag>
       
     </tags>
     
