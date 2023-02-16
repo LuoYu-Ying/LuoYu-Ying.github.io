@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="学习了Kotlin 的泛型，包括泛型基础、使用处型变、声明处型变以及星投影。">
+    <meta name="description" content="链接、目标文件、静态库与动态库。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin 泛型">
-<meta property="og:url" content="https://luoyuy.top/posts/b8e90b1cb5db/index.html">
+<meta property="og:title" content="CSAPP3e-学习笔记-第七章">
+<meta property="og:url" content="https://luoyuy.top/posts/43f89c5465ee/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="学习了Kotlin 的泛型，包括泛型基础、使用处型变、声明处型变以及星投影。">
+<meta property="og:description" content="链接、目标文件、静态库与动态库。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E6%B3%9B%E5%9E%8B.png">
-<meta property="article:published_time" content="2023-02-12T13:10:19.000Z">
-<meta property="article:modified_time" content="2023-02-12T15:40:07.628Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%83%E7%AB%A0.png">
+<meta property="article:published_time" content="2023-02-16T04:38:07.000Z">
+<meta property="article:modified_time" content="2023-02-16T05:22:15.444Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="泛型">
+<meta property="article:tag" content="CSAPP3e">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E6%B3%9B%E5%9E%8B.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%83%E7%AB%A0.png">
   
   
   
-  <title>Kotlin 泛型 - 洛语 の Blog</title>
+  <title>CSAPP3e-学习笔记-第七章 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Kotlin 泛型"></span>
+            <span id="subtitle" data-typed-text="CSAPP3e-学习笔记-第七章"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-12 21:10" pubdate>
-          2023年2月12日 晚上
+        <time datetime="2023-02-16 12:38" pubdate>
+          2023年2月16日 下午
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          87 字
+          1.3k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          1 分钟
+          11 分钟
         
       </span>
     
@@ -283,16 +283,66 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Kotlin 泛型</h1>
+            <h1 style="display: none">CSAPP3e-学习笔记-第七章</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>泛型，这个概念在很多编程语言里面都存在。在中大型软件开发当中，我们对泛型的使用也十分频繁，因为它可以让我们<strong>在不同类型之间复用相似的逻辑代码</strong>。</p>
-<p>然而，泛型实在太抽象了。X﹏X</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230212213111539.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
-
+                <h1 id="习题整理"><a href="#习题整理" class="headerlink" title="习题整理"></a>习题整理</h1><blockquote>
 <hr>
+<p>  单选题：以下关于强符号和弱符号定义的描述中，错误的是（A）<br>  A. 只有初始化为 0 的全局变量在链接中才为强符号<br>  B. 局部符号没有强、弱符号的概念<br>  C. 没有初始化的全局变量是弱符号<br>  D. 全局使用的函数名都是强符号</p>
+</blockquote>
+<p><strong>CSAPP3e 7.6.1</strong></p>
+<ul>
+<li>强符号：函数和已初始化的全局变量</li>
+<li>弱符号：未初始化的全局变量</li>
+</ul>
+<blockquote>
+<hr>
+<p>  判断题：可重定位目标文件中未初始化的全局变量保存在 $.data$ 中（错）</p>
+<p>  判断题：程序的数据和代码不存放在同一个地方，代码在低地址段，数据在高地址段。（对）</p>
+</blockquote>
+<p><strong>CSAPP3e 7.4 可重定位目标文件</strong></p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230216124752525.png" srcset="/img/loading.gif" lazyload alt="典型的 ELF 可重定位目标文件" style="zoom: 50%;" />
+
+<p>夹在 ELF 头和节头部表之间的都是节。一个典型的 ELF 可重定位目标文件包含下面几个节：</p>
+<ul>
+<li><p>$.text$：已编译程序的机器代码。</p>
+</li>
+<li><p>$.rodata$：只读数据，比如 <code>printf</code> 语句中的格式串和开关语句的跳转表。</p>
+</li>
+<li><p>$.data$：已初始化的全局和静态 C 变量。</p>
+<p>局部 C 变量在运行时被保存在栈中，既不出 现在 $.data$ 节中，也不出现在 $.bss$ 节中。</p>
+</li>
+<li><p>$.bss$：未初始化的全局和静态 C 变量，以及所有被初始化为 $0$ 的全局或静态变量。</p>
+<p>用术语 $.bss$ 来表示未初始化的数据是很普遍的。一种记住 $.data$ 和 $.bss$ 节之间区别的简单方法是把 <code>bss</code>​ 看成是 “更好地节省空间（Better Save Space）” 的缩写。</p>
+</li>
+<li><p>$.symtab$：一个符号表，它存放在程序中定义和引用的函数和全局变量的信息。</p>
+</li>
+<li><p>$.rel.text$：一个 $.text$ 节中位置的列表，当链接器把这个目标文件和其他文件组合 时，需要修改这些位置。</p>
+</li>
+<li><p>$.rel.data$：被模块引用或定义的所有全局变量的重定位信息。</p>
+</li>
+</ul>
+<blockquote>
+<hr>
+<p>  单选题：以下关于 ELF 可执行目标文件的程序头表（段头表）的叙述中，错误的是（B）<br>  A. $.txt$ 节和 $.rodata$ 节都包含在只读代码段，而 $.data$ 节和 $.bss$ 节都包含在读写数据段<br>  B. 用于描述可执行文件中的节与主存储器中的存储段之间的映射关系<br>  C. 描述了段的起始虚拟地址、存储长度、存取方式和对齐方式</p>
+</blockquote>
+<p><strong>CSAPP3e 7.4 可重定位目标文件</strong></p>
+<p>ELF 头（ELF header）以一个 16 字节的序列开始，这个序列描述了生成该文件的系统的字的大小和字节顺序。 </p>
+<p>ELF 头剩下的部分包含帮助链接器语法分析和解释目标文件的信息。其中包括：</p>
+<ul>
+<li>ELF 头的大小</li>
+<li>目标文件的类型（如可重定位、可执行或者共享的）</li>
+<li>机器类型（如 x86-64）</li>
+<li>节头部表（section header table）的文件偏移</li>
+<li>节头部表中条目的大小和数量</li>
+</ul>
+<p>不同节的位置和大小是由节头部表描述的，其中目标文件中每个节都有一个固定大小的条目 。</p>
+<blockquote>
+<hr>
+<p>  单选题：以下是有关静态链接和动态链接比较的描述，其中错误的是（D）<br>  A. 静态库函数更新后需对程序重新编译和链接，而共享库函数更新后程序无需重新编译和 链接<br>  B. 静态库函数代码包含在可执行目标文件中，而共享库函数代码不包含在可执行目标文件中<br>  C. 静态链接情况下静态库函数在加载时被链接，动态链接情况下共享库函数可在加载或运行时被链接<br>  D. 静态库函数代码包含在进程代码段中，而共享库函数代码不包含在进程代码段中</p>
+</blockquote>
 
                 
               </div>
@@ -311,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Kotlin/" class="category-chain-item">Kotlin</a>
+  <a href="/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="category-chain-item">深入理解计算机系统</a>
   
   
 
@@ -326,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B3%9B%E5%9E%8B/">#泛型</a>
+        <a href="/tags/CSAPP3e/">#CSAPP3e</a>
       
     </div>
   
@@ -338,8 +388,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Kotlin 泛型</div>
-      <div>https://luoyuy.top/posts/b8e90b1cb5db/</div>
+      <div>CSAPP3e-学习笔记-第七章</div>
+      <div>https://luoyuy.top/posts/43f89c5465ee/</div>
     </div>
     <div class="license-meta">
       
@@ -351,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月12日</div>
+          <div>2023年2月16日</div>
         </div>
       
       
@@ -383,18 +433,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/43f89c5465ee/" title="CSAPP3e-学习笔记-第七章">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CSAPP3e-学习笔记-第七章</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/aca7e3fdcf37/" title="CSAPP3e-学习笔记-第六章">
-                        <span class="hidden-mobile">CSAPP3e-学习笔记-第六章</span>
+                      <a href="/posts/b8e90b1cb5db/" title="Kotlin 泛型">
+                        <span class="hidden-mobile">Kotlin 泛型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -451,6 +495,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -644,6 +694,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
