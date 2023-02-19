@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>CSAPP3e-学习笔记-第十章</title>
+    <link href="/posts/d59e4c52b828/"/>
+    <url>/posts/d59e4c52b828/</url>
+    
+    <content type="html"><![CDATA[<blockquote><hr><p>  Linux 系统下的 I&#x2F;O 进程，其标准输出描述符的值是（B）<br>  A. $0$<br>  B. $1$<br>  C. $2$<br>  D. $-1$</p></blockquote><blockquote><hr><p>  在头文件中，标准输出描述符所对应的预定义常量是（B）<br>  A. <code>STDIN_FILENO</code><br>  B. <code>STDOUT_FILENO</code><br>  C. <code>STDERR_FILENO</code><br>  D. <code>STDFILE_FILENO</code></p></blockquote><p>每个 C 程序开始时都有三个打开的流（在 <code>stdio.h</code> 中定义）</p><ul><li><code>stdin</code> (standard input) 标准输入</li><li><code>stdout</code> (standard output) 标准输出</li><li><code>stderr</code> (standard error) 标准错误</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">extern</span> FILE *<span class="hljs-built_in">stdin</span>;  <span class="hljs-comment">/* standard input  (descriptor 0) */</span><br><span class="hljs-keyword">extern</span> FILE *<span class="hljs-built_in">stdout</span>; <span class="hljs-comment">/* standard output (descriptor 1) */</span><br><span class="hljs-keyword">extern</span> FILE *<span class="hljs-built_in">stderr</span>; <span class="hljs-comment">/* standard error  (descriptor 2) */</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-built_in">stdout</span>, <span class="hljs-string">&quot;Hello, world\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure><p><strong>文件描述符</strong></p><p>在 Linux 下一切皆文件，文件描述符是内核为了高效的管理<strong>已经被打开的文件所创建的索引</strong>，它是一个非负整数，用于指代被打开的文件。所有执行 I&#x2F;O 操作的系统调用都是通过文件描述符完成的。而系统调用函数 <code>open</code> 的返回值就是文件描述符 <code>-fd</code>。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">open</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">int</span> flags, <span class="hljs-type">mode_t</span> mode)</span>;<br></code></pre></td></tr></table></figure><blockquote><hr><p>  Linux系统中文件类型包含下面哪些？（A B C D）<br>  A. 普通文件<br>  B.目录<br>  C. 套接字<br>  D. 符号链接</p></blockquote><p>每个 Linux 文件都有一个类型来表明它在系统中的角色：</p><table><thead><tr><th>类型</th><th>英语</th><th>作用</th></tr></thead><tbody><tr><td>普通文件</td><td>Regular file</td><td>包含任意数据</td></tr><tr><td>套接字</td><td>Socket</td><td>用来与另一个进程进行跨网络通信的文件</td></tr><tr><td>目录</td><td>Directory</td><td>一组链接文件的索引</td></tr><tr><td>命名通道</td><td>Named pipes (FIFOs)</td><td></td></tr><tr><td>符号链接</td><td>Symbolic links</td><td></td></tr><tr><td>字符和块设备</td><td>Character and block devices</td><td></td></tr></tbody></table><blockquote><hr><p>  要读取某个目录的内容，应该使用函数（A B C）<br>  A. <code>opendir</code><br>  B. <code>readdir</code><br>  C. <code>closedir</code><br>  D. <code>writedir</code></p></blockquote><p>读取一个文件，需要打开和关闭该资源。</p><blockquote><hr><p>  如何使用 <code>dup2</code> 将标准输入重定向到描述符5？（A）<br>  A. <code>dup2(5, 0)</code><br>  B. <code>dup2(0, 5)</code><br>  C. <code>dup2(1, 5)</code><br>  D. <code>dup2(5, 1)</code></p></blockquote><p><strong><code>dup2(oldfd, newfd)</code>函数</strong></p><p>复制描述符表表项 <code>oldfd</code> 到描述符表表项 <code>newfd</code>， 覆盖描述符表表项 <code>newfd</code> 以前的内容。</p><p>调用 <code>dup2(4, 1)</code>：使得 <code>fd =  1 (stdout)</code> 指向 <code>fd = 4</code> 所指向的磁盘文件。</p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230219225416875.png" style="zoom: 80%;" />]]></content>
+    
+    
+    <categories>
+      
+      <category>深入理解计算机系统</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>I/O</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CSAPP3e-学习笔记-第七章</title>
     <link href="/posts/43f89c5465ee/"/>
     <url>/posts/43f89c5465ee/</url>
@@ -147,9 +172,9 @@
     
     <tags>
       
-      <tag>策略模式</tag>
-      
       <tag>属性动画</tag>
+      
+      <tag>策略模式</tag>
       
     </tags>
     
@@ -594,9 +619,9 @@
     
     <categories>
       
-      <category>JVM</category>
-      
       <category>面试整理-2022</category>
+      
+      <category>JVM</category>
       
     </categories>
     
@@ -813,9 +838,9 @@
     
     <tags>
       
-      <tag>属性动画</tag>
-      
       <tag>Animation</tag>
+      
+      <tag>属性动画</tag>
       
     </tags>
     
