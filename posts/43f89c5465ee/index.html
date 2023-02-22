@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%83%E7%AB%A0.png">
 <meta property="article:published_time" content="2023-02-16T04:38:07.000Z">
-<meta property="article:modified_time" content="2023-02-16T07:04:52.504Z">
+<meta property="article:modified_time" content="2023-02-22T06:01:46.779Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="CSAPP3e">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.4k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          17 分钟
+          21 分钟
         
       </span>
     
@@ -324,6 +324,20 @@
 <li><p>$.rel.data$：被模块引用或定义的所有全局变量的重定位信息。</p>
 </li>
 </ul>
+<p><strong>CSAPP3e 7.5 符号和符号表</strong></p>
+<p>每个符号都被分配到目标文件的某个节，由 section 字段表示，该字段也是一个到节头部表的索引。有三个特殊的伪节，它们在节头部表中是没有条目的：</p>
+<ul>
+<li>$ABS$ 代表不该被重定位的符号</li>
+<li>$UNDEF$ 代表未定义的符号，也就是在本目标模块中引用，但是却在其他地方定义的符号</li>
+<li>$COMMON$ 表示还未被分配位置的未初始化的数据目标</li>
+</ul>
+<p>注意， 只有可重定位目标文件中才有这些伪节，可执行目标文件中是没有的。</p>
+<p>$COMMON$ 和 $.bss$ 的区别很细微。现代的 GCC 版本根据以下规则来将可重定位目标文件中的符号分配到 $COMMON$ 和 $.bss$ 中：</p>
+<ul>
+<li>$COMMON$：未初始化的全局变量</li>
+<li>$.bss$：未初始化的静态变量，以及初始化为 $0$ 的全局或静态变量</li>
+</ul>
+<p>采用这种看上去很绝对的区分方式的原因来自于链接器执行符号解析的方式。</p>
 <blockquote>
 <hr>
 <p>  单选题：以下关于 ELF 可执行目标文件的程序头表（段头表）的叙述中，错误的是（B）<br>  A. $.txt$ 节和 $.rodata$ 节都包含在只读代码段，而 $.data$ 节和 $.bss$ 节都包含在读写数据段<br>  B. 用于描述可执行文件中的节与主存储器中的存储段之间的映射关系<br>  C. 描述了段的起始虚拟地址、存储长度、存取方式和对齐方式</p>
