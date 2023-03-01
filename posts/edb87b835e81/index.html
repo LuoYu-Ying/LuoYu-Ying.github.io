@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E6%89%A9%E5%B1%95%E5%87%BD%E6%95%B0%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7.png">
 <meta property="article:published_time" content="2023-03-01T14:26:56.000Z">
-<meta property="article:modified_time" content="2023-03-01T14:31:14.039Z">
+<meta property="article:modified_time" content="2023-03-01T15:38:18.336Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="扩展函数">
 <meta property="article:tag" content="扩展属性">
@@ -332,7 +332,7 @@
 <p>在这段的代码中，我们为 String 类型扩展了一个新的成员属性“<code>lastElement</code>”。然后在 <code>main</code> 函数当中，我们直接通过“<code>msg.lastElement</code>”方式使用了这个扩展属性，就好像它是一个成员一样。</p>
 <hr>
 <h1 id="扩展与其反编译代码"><a href="#扩展与其反编译代码" class="headerlink" title="扩展与其反编译代码"></a>扩展与其反编译代码</h1><p>为了看得更加清晰，我们用一张图来描述它们之间的关系。</p>
-<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/2a38487b61ec06e437c1425b2a69ffed.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/2a38487b61ec06e437c1425b2a69ffed.png" srcset="/img/loading.gif" lazyload></p>
 <p>上面的两个箭头，说明了扩展函数与扩展属性，它们最终会被 <code>Kotlin</code> 编译器转换成静态方法；下面两个箭头，说明了扩展函数和扩展属性的调用代码，最终会被 <code>Kotlin</code> 编译器转换成静态方法的调用。</p>
 <p>所以也就是说，<code>Kotlin</code> 的扩展表面上看起来是为一个类扩展了新的成员，<strong>但是本质上，它还是静态方法</strong>。而且，不管是扩展函数还是扩展属性，它本质上都会变成一个静态的方法。</p>
 <p><strong>那么，到底什么时候该用扩展函数，什么时候该用扩展属性呢？</strong></p>
@@ -342,7 +342,7 @@
 <p>唯有匿名内部类，由于它本身不存在名称，我们无法指定“接收者类型”，所以不能被扩展，当然了，它也没必要被扩展。</p>
 <p>可以说，<code>Kotlin</code> 扩展的应用范围还是非常广的。它最主要的用途，就是用来取代 <code>Java</code> 当中的各种工具类，比如 <code>StringUtils</code>、<code>DateUtils</code> 等等。</p>
 <p>所有 <code>Java</code> 工具类能做的事情，<code>Kotlin</code> 扩展函数都可以做，并且可以做得更好。扩展函数的优势在于，开发工具可以在编写代码的时候智能提示。</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/239e540b768560c6cd119b1bb9e1eb9c.gif" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 40%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/239e540b768560c6cd119b1bb9e1eb9c.gif" srcset="/img/loading.gif" lazyload alt="" style="zoom: 40%;" />
 
 
 
@@ -381,7 +381,7 @@
 <li>从 <strong>能力</strong> 的角度来看，<code>Kotlin</code> 扩展一共有三个限制，分别是：扩展无法被重写；扩展属性无法存储状态；扩展的作用域有限，无法访问私有成员。</li>
 <li>从 <strong>使用场景</strong> 的角度来看，<code>Kotlin</code> 扩展主要有两个使用场景，分别是：关注点分离，优化代码架构；消灭模板代码，提高可读性和开发效率。</li>
 </ol>
-<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/b4a3ce7c3e0b2228161faa4769618a10.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/b4a3ce7c3e0b2228161faa4769618a10.jpg" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <p><strong>参考文章：</strong></p>
 <ul>
