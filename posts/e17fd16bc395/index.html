@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="hexo-butterfly 主题中，主页侧边栏中的 categories 默认显示顺序是按 name 排序，导致某些分类下虽然文章数量较少，但却排序靠前。。便想将其修改为按照分类内文章的数量进行降序排序。">
+    <meta name="description" content="AutoHotKey v1 中类的方法绑定类中定义的热键以及 GUI 的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo-theme-butterfly 修改侧边栏分类排序规则">
-<meta property="og:url" content="https://luoyuy.top/posts/bd6604dc1b1f/index.html">
+<meta property="og:title" content="AutoHotkey v1 类的定义与部分使用技巧">
+<meta property="og:url" content="https://luoyuy.top/posts/e17fd16bc395/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="hexo-butterfly 主题中，主页侧边栏中的 categories 默认显示顺序是按 name 排序，导致某些分类下虽然文章数量较少，但却排序靠前。。便想将其修改为按照分类内文章的数量进行降序排序。">
+<meta property="og:description" content="AutoHotKey v1 中类的方法绑定类中定义的热键以及 GUI 的方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
-<meta property="article:published_time" content="2022-06-08T12:51:35.000Z">
-<meta property="article:modified_time" content="2023-02-16T08:59:33.388Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
+<meta property="article:published_time" content="2022-07-12T09:33:37.000Z">
+<meta property="article:modified_time" content="2023-01-06T09:24:33.932Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="hexo-theme-butterfly">
+<meta property="article:tag" content="AutoHotkey">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
   
   
   
-  <title>hexo-theme-butterfly 修改侧边栏分类排序规则 - 洛语 の Blog</title>
+  <title>AutoHotkey v1 类的定义与部分使用技巧 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="hexo-theme-butterfly 修改侧边栏分类排序规则"></span>
+            <span id="subtitle" data-typed-text="AutoHotkey v1 类的定义与部分使用技巧"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-08 20:51" pubdate>
-          2022年6月8日 晚上
+        <time datetime="2022-07-12 17:33" pubdate>
+          2022年7月12日 下午
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          590 字
+          2.3k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          5 分钟
+          20 分钟
         
       </span>
     
@@ -283,30 +283,66 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">hexo-theme-butterfly 修改侧边栏分类排序规则</h1>
+            <h1 style="display: none">AutoHotkey v1 类的定义与部分使用技巧</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><code>hexo-theme-butterfly</code> 主题中，主页侧边栏中的 <code>categories</code> 默认显示顺序是按 <code>name</code> 排序，导致某些分类下虽然文章数量较少，但却排序靠前。并且默认设置下，主题中侧边 <code>categories</code> 只显示8条（如需修改可以修改<strong>主题配置文件</strong>）。</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220608210201564.png" srcset="/img/loading.gif" lazyload alt="image" style="zoom:67%;" />
+                <div class="note note-warning">
+            <p>本文所使用的 AHK 版本为 AutoHotKey v1 。</p>
+          </div>
 
-<p>便想将其修改为 <strong>按照分类内文章的数量进行降序排序</strong> 。</p>
-<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><blockquote>
-<p>  该方法需要修改源代码，建议及时备份需要修改的文件。</p>
-</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本人想在 AHK 中使用面向对象的方式编写代码，但是发现在官方文档中仅有较少关于 <code>class</code> 的操作代码示例，所以根据自己这两天的代码编写过程，整理出常用的一些使用技巧供大家参考。</p>
+<hr>
+<h1 id="类的创建和使用"><a href="#类的创建和使用" class="headerlink" title="类的创建和使用"></a>类的创建和使用</h1><p>类的创建使用 <code>class</code>  关键字。可以显式定义构造方法以及析构方法：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey"><span class="hljs-comment">; 类的创建</span><br>class A &#123;<br>    <span class="hljs-comment">; 静态变量的创建</span><br>    static var1 := Expression1<br>    <span class="hljs-comment">; 类字段的创建</span><br>    var2 := Expression2<br>    <br>    <span class="hljs-comment">; 构造方法，可传入任意参数，也可不传入参数</span><br>    __New(...) &#123;<br>    &#125;<br>    <br>    <span class="hljs-comment">; 方法的创建</span><br>    <span class="hljs-comment">; 可传入任意参数，参数支持默认参数值</span><br>    <span class="hljs-comment">; 根据需要可不写 return</span><br>    methodName(...) &#123;<br>        ...<br>        <span class="hljs-keyword">return</span> ...<br>    &#125;<br>    <br>    <span class="hljs-comment">; 析构方法</span><br>    __Delete() &#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>类的使用：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">a := <span class="hljs-keyword">new</span> A(...)   <span class="hljs-comment">; 类的实例化，根据构造方法传入对应的参数</span><br>a.methodName(...) <span class="hljs-comment">; 使用变量的方法</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="在类中创建热键并绑定类方法"><a href="#在类中创建热键并绑定类方法" class="headerlink" title="在类中创建热键并绑定类方法"></a>在类中创建热键并绑定类方法</h1><p>使用面向对象的思想编写代码的话，我们或许需要在类中创建热键及其响应逻辑的方法：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">class A &#123;<br>    <span class="hljs-comment">; 自定义的一个方法，用于加载类中所有的热键</span><br>    loadHotKey() &#123;<br>        <span class="hljs-comment">; 创建响应方法的方法引用</span><br>        varFunctionA := ObjBindMethod(this, <span class="hljs-string">&quot;functionA&quot;</span>)<br><br>        <span class="hljs-comment">; 创建 Alt + A 的热键以及绑定其响应方法</span><br><span class="hljs-built_in">        HotKey,</span> !A, % varFunctionA, On<br>    &#125;<br>    <br>    functionA() &#123;<br>    	<span class="hljs-comment">; 热键的响应逻辑</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码便在类中创建了一个使用类中方法作为响应逻辑的热键。其中：</p>
 <ol>
-<li><p>找到 <code>themes\butterfly\scripts\helpers\aside_categories.js</code> 文件，并修改源代码。</p>
-</li>
-<li><p>修改以下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// const orderby = options.orderby || &#x27;name&#x27; // name(default) -&gt; 按 categories 字母顺序</span><br><span class="hljs-keyword">const</span> orderby = options.<span class="hljs-property">orderby</span> || <span class="hljs-string">&#x27;length&#x27;</span>  <span class="hljs-comment">// length -&gt; 按 categories 下文章数量排序</span><br><span class="hljs-comment">// const order = options.order || 1  // 1(default) -&gt; 升序; -1 -&gt; 逆序</span><br><span class="hljs-keyword">const</span> order = options.<span class="hljs-property">order</span> || -<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>执行 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 查看修改效果。</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220608205749969.png" srcset="/img/loading.gif" lazyload alt="image" style="zoom: 67%;" /></li>
+<li><code>varFunctionA := ObjBindMethod(this, &quot;functionA&quot;)</code> 部分：<ol>
+<li><code>&quot;functionA&quot;</code> 中双引号必须保留，双引号中间内容为对应的方法名。</li>
+<li><code>varFunctionName</code> 为自定义的变量名称，与第7行第3个参数相对应。</li>
 </ol>
-<h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.yanchengxu.top/hexo-categories-sort/">【Hexo-Butterfly】修改侧边栏分类排序规则 | yanchengxu</a></li>
-</ul>
+</li>
+<li><code>HotKey, !A, % varFunctionA, On</code> 部分：<ol>
+<li><code>!A</code> 为热键的内容，具体可以参考文档中 <strong>热键</strong> 部分内容。</li>
+<li><code>% varFunctionA</code> 中百分号必须保留，后面的内容对应上面一行自定义的变量名。</li>
+</ol>
+</li>
+</ol>
+<p>热键的使用：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-keyword">new</span> A().loadHotKey()<br></code></pre></td></tr></table></figure>
+
+<p>通过对该类的实例化并调用实例化对象的 <code>loadHotKey</code> 方法即可。</p>
+<hr>
+<h1 id="在类中绘制-UI-并绑定类方法"><a href="#在类中绘制-UI-并绑定类方法" class="headerlink" title="在类中绘制 UI 并绑定类方法"></a>在类中绘制 <code>UI</code> 并绑定类方法</h1><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">class B &#123;<br>    <span class="hljs-comment">; 自定义的一个方法，用于绘制 UI 以及绑定响应的方法</span><br>    loadView() &#123;<br>        <span class="hljs-comment">; 绘制了一个按钮</span><br><span class="hljs-built_in">        Gui,</span> Add, Button, w200 h35 hwndHFuncB, This is a button.<br><br>        <span class="hljs-comment">; 创建了响应方法的方法引用</span><br>        varFuncB := ObjBindMethod(this, <span class="hljs-string">&quot;functionB&quot;</span>)<br><br>        <span class="hljs-comment">; 通过 HWND 将按钮与方法绑定</span><br><span class="hljs-built_in">        GuiControl,</span> +g, <span class="hljs-variable">%HFuncB%</span>, % varFuncB<br>    &#125;<br>    <br>    functionB() &#123;<br>        <span class="hljs-comment">; 按钮的响应逻辑</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><code>Gui, Add, Button, w200 h35 hwndHFuncB, This is a button.</code> 中 <code>hwndHFuncB</code> 部分：<ol>
+<li>形式为 <code>hwnd + 自定义变量名</code></li>
+<li>自定义变量名与第9行中第3个参数相对应。</li>
+</ol>
+</li>
+<li><code>varFuncB := ObjBindMethod(this, &quot;functionB&quot;)</code> 部分：<ol>
+<li><code>varFuncB</code> 为另一个自定义变量名，与第9行中第4个变量名相对应。</li>
+<li><code>&quot;functionB&quot;</code> 中双引号必须保留，双引号中间内容为对应的方法名。</li>
+</ol>
+</li>
+<li><code>GuiControl, +g, %HFuncB%, % varFuncB</code> 中第3、4个参数分别为上述的两个自定义变量名。</li>
+</ol>
+<hr>
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><blockquote>
+<p>  使用面向对象思想重构 <a target="_blank" rel="noopener" href="https://luoyu-ying.github.io/posts/050a11a7817a/">通过 AutoHotKey 简化 Hexo 操作 | 洛语 の Blog (luoyu-ying.github.io)</a> 中 Deploy 部分的操作。</p>
+</blockquote>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-comment">; 加载类的 UI 以及热键</span><br><span class="hljs-keyword">new</span> Deploy().load()<br><br><span class="hljs-comment">; -------------------------</span><br><br><span class="hljs-comment">; 类的创建</span><br>class Deploy &#123;<br><br>    load() &#123;<br>        this.loadView()<br>        this.loadHotKey()<br>    &#125;<br>    <br>    <span class="hljs-comment">; 本代码中 GAD -&gt; generate and deploy</span><br>    <br>    loadView() &#123;<br><span class="hljs-built_in">        Gui,</span> Add, Button, w200 h35 hwndHGAD, Generate &amp;&amp; Deploy<br>        <br>        varGAD := ObjBindMethod(this, <span class="hljs-string">&quot;generateDeploy&quot;</span>)<br><span class="hljs-built_in">        </span><br><span class="hljs-built_in">        GuiControl,</span> +g, <span class="hljs-variable">%HGAD%</span>, % varGAD<br>    &#125;<br>    <br>    loadHotKey() &#123;<br>        varGAD := ObjBindMethod(this, <span class="hljs-string">&quot;generateDeploy&quot;</span>)<br><span class="hljs-built_in">        </span><br><span class="hljs-built_in">        Hotkey,</span> CapsLock &amp; G, % varGAD, On<br>    &#125;<br>    <br>    generateDeploy() &#123;<br><span class="hljs-built_in">        Run,</span> <span class="hljs-variable">%comSpec%</span> /c hexo g &amp;&amp; hexo d, , Min<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -325,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Hexo/" class="category-chain-item">Hexo</a>
+  <a href="/categories/AutoHotkey/" class="category-chain-item">AutoHotkey</a>
   
   
 
@@ -340,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo-theme-butterfly/">#hexo-theme-butterfly</a>
+        <a href="/tags/AutoHotkey/">#AutoHotkey</a>
       
     </div>
   
@@ -352,8 +388,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>hexo-theme-butterfly 修改侧边栏分类排序规则</div>
-      <div>https://luoyuy.top/posts/bd6604dc1b1f/</div>
+      <div>AutoHotkey v1 类的定义与部分使用技巧</div>
+      <div>https://luoyuy.top/posts/e17fd16bc395/</div>
     </div>
     <div class="license-meta">
       
@@ -365,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月8日</div>
+          <div>2022年7月12日</div>
         </div>
       
       
@@ -397,9 +433,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/8aab3d7fde77/" title="Kotlin 类的创建与继承">
+                      <a href="/posts/b7ed2dc4d9db/" title="AutoHotkey v1 变量和字符串">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Kotlin 类的创建与继承</span>
+                        <span class="hidden-mobile">AutoHotkey v1 变量和字符串</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -407,8 +443,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/187909e6d0a6/" title="Android面试整理 - JVM">
-                        <span class="hidden-mobile">Android面试整理 - JVM</span>
+                      <a href="/posts/c3ce2acc1b27/" title="AutoHotkey v1 问题解决记录">
+                        <span class="hidden-mobile">AutoHotkey v1 问题解决记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

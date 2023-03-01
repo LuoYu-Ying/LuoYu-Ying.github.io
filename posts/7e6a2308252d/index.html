@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="AutoHotKey v1 中变量以及字符串的基本概念与使用方法。">
+    <meta name="description" content="Android 中 Drawable 的分类以及自定义 Drawable 的方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AutoHotkey v1 变量和字符串">
-<meta property="og:url" content="https://luoyuy.top/posts/f6aa7ef17973/index.html">
+<meta property="og:title" content="Drawable 解析">
+<meta property="og:url" content="https://luoyuy.top/posts/7e6a2308252d/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="AutoHotKey v1 中变量以及字符串的基本概念与使用方法。">
+<meta property="og:description" content="Android 中 Drawable 的分类以及自定义 Drawable 的方法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
-<meta property="article:published_time" content="2022-07-23T08:23:08.000Z">
-<meta property="article:modified_time" content="2023-01-12T16:39:52.644Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Drawable.png">
+<meta property="article:published_time" content="2022-04-16T10:19:43.000Z">
+<meta property="article:modified_time" content="2023-01-25T18:04:24.636Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="AutoHotkey">
+<meta property="article:tag" content="Drawable">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Drawable.png">
   
   
   
-  <title>AutoHotkey v1 变量和字符串 - 洛语 の Blog</title>
+  <title>Drawable 解析 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AutoHotkey v1 变量和字符串"></span>
+            <span id="subtitle" data-typed-text="Drawable 解析"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-23 16:23" pubdate>
-          2022年7月23日 下午
+        <time datetime="2022-04-16 18:19" pubdate>
+          2022年4月16日 晚上
         </time>
       </span>
     
@@ -283,55 +283,60 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">AutoHotkey v1 变量和字符串</h1>
+            <h1 style="display: none">Drawable 解析</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>本文参考自：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Variables.htm">变量和表达式 | AutoHotkey (autoahk.com)</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.autohotkey.com/boards/viewtopic.php?t=14633">String literal that spans multiple lines? - AutoHotkey Community</a></li>
-</ul>
-</blockquote>
-<hr>
-<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>有关一般说明和变量如何工作的详细信息，请参阅变量。</p>
-<h2 id="给变量赋值"><a href="#给变量赋值" class="headerlink" title="给变量赋值"></a><strong>给变量赋值</strong></h2><p>要将字符串或数字存储在变量中，有两种方法: 传统方式和表达式。传统方法使用等号运算符(&#x3D;) 来指定<strong>不加引号的</strong>原义字符串或用百分号括起来的变量。例如:</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey">MyNumber = <span class="hljs-number">123</span><br>MyString = This is a literal string.<br>CopyOfVar = <span class="hljs-variable">%Var%</span>  <span class="hljs-comment">; 和 = 运算符一起使用时，需要使用百分号来获取变量的内容。</span><br></code></pre></td></tr></table></figure>
-
-<p>与之相比，表达式方法使用冒号等号运算符(:&#x3D;) 来保存数字，<strong>加引号的</strong>字符串和其他类型的表达式。以下示例在功能上与前面的例子相同:</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey">MyNumber := <span class="hljs-number">123</span><br>MyString := <span class="hljs-string">&quot;This is a literal string.&quot;</span><br>CopyOfVar := Var  <span class="hljs-comment">; 和前面段落中与其作用相同的语句不同，百分号不和 := 运算符一起使用。</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>后一种方法由于其更清晰并且与其他许多语言几乎一致的表达式语法成为大多数人的首选方法.</strong></p>
-<p>从上面的例子中您可能已经想到了有两种方法来清除变量的内容(即让变量为空):</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey">MyVar =<br>MyVar := <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>上面的这对空引号只能和 :&#x3D; 运算符一起使用，因为和 &#x3D; 运算符一起使用时，则会在变量中保存两个原义的引号字符。</p>
-<h2 id="获取变量的内容"><a href="#获取变量的内容" class="headerlink" title="获取变量的内容"></a><strong>获取变量的内容</strong></h2><p>如同赋值有两种方法，获取变量的内容也有两种方法: 传统方法和表达式方法。传统方法需要将变量名包围在百分号中来获取变量的内容。例如:</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey">MsgBox The value in the variable named Var is <span class="hljs-variable">%Var%</span>.<br>CopyOfVar = <span class="hljs-variable">%Var%</span><br></code></pre></td></tr></table></figure>
-
-<p>与之相比，表达式方法省去了变量名两边的百分号，但原义的字符串必须包围在双引号中。所以，下面的表达式作用等同于上面的例子:</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey"><span class="hljs-built_in">MsgBox %</span> <span class="hljs-string">&quot;The value in the variable named Var is &quot;</span> . Var . <span class="hljs-string">&quot;.&quot;</span>  <span class="hljs-comment">; 使用句点连接(join 拼接) 两个字符串。</span><br>CopyOfVar := Var<br></code></pre></td></tr></table></figure>
-
-<p>在上面的 MsgBox 这行，通过使用百分号和空格把参数从传统模式改变为表达式模式。因为所有的命令默认情况下使用传统模式(除了另外注明的那些), 所以这是必须的。</p>
-<h2 id="变量的比较"><a href="#变量的比较" class="headerlink" title="变量的比较"></a><strong>变量的比较</strong></h2><p>请阅读下面表达式部分中关于不同类型变量比较的重要提示，尤其是关于何时使用小括号的内容。</p>
-<hr>
-<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="保存带有引号的字符串"><a href="#保存带有引号的字符串" class="headerlink" title="保存带有引号的字符串"></a>保存带有引号的字符串</h2><p>如果我们想用变量保存一个带有双引号的字符串，需要使用 &#x3D; 操作符：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey">var = this is <span class="hljs-string">&quot; ; 输出的字符串中包含双引号</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="保存多行字符串"><a href="#保存多行字符串" class="headerlink" title="保存多行字符串"></a>保存多行字符串</h2><p>如果我们想要保存多行的字符串，可以使用 <code>()</code> 包含文本内容并使用 <code>=</code> 且 <strong>不加 <code>&quot;&quot;</code></strong> 的方式（文本中每行的字符串形式与使用 <code>=</code> 操作符保存单行字符串的形式相同）：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs AutoHotKey">var = string<br><br>exampleString =<br>(                      <span class="hljs-comment">; 左括号右侧的字符会被自动忽略，正文从下行开始</span><br>    multiple<br>        lines          <span class="hljs-comment">; 该行字符的所有字符（包括空格）会全部输出</span><br>                       <span class="hljs-comment">; 空行也会如实输出  </span><br><span class="hljs-built_in">    of</span><br><span class="hljs-built_in">        %</span>var%<br>)                      <span class="hljs-comment">; 右括号左侧不能有其他字符，否则将报错</span><br><span class="hljs-built_in"></span><br><span class="hljs-built_in">MsgBox,</span> % exampleString<br></code></pre></td></tr></table></figure>
-
-<p>输出结果截图（第一个非空字符前的空格将忽略）：</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220723170233064.png" srcset="/img/loading.gif" lazyload alt="image-20220723170233064" style="zoom: 50%;" />
-
-<p><strong>注意：</strong></p>
+                <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><code>Drawable</code>是一个抽象类，表示的是一个图像的概念。每一个具体的<code>Drawable</code>都是其子类。</p>
+<p><strong>优点：</strong></p>
 <ol>
-<li>该方式中的 <code>()</code> 必须分别、单独在一行，不能接在其他语句末尾。且文本将严格按照输入形式输出，两个括号之间的空行和空格也会如实输出，但是第一个非空字符前的空格将忽略。</li>
-<li>左括号右侧的字符会被自动忽略，正文从下行开始；右括号左侧不能有其他字符，否则将报错。</li>
-<li>如果需要使用 <code>:=</code> 操作符进行多行字符串保存，请使用 &#96;n 转义字符进行换行操作。</li>
+<li>使用简单，比自定义<code>View</code>的成本要低。</li>
+<li>非图片类型的<code>Drawable</code>占用空间较小，可以有效的减少<code>apk</code>的大小。</li>
 </ol>
+<p> <strong>内部宽&#x2F;高：</strong></p>
+<p><code>Drawable</code>有个参数比较重要，就是<strong>内部宽&#x2F;高</strong>，通过<code>getIntrinsicWidth</code>和<code>getIntrinsicHeight</code>方法获得。</p>
+<p>但是并不是所有的<code>Drawable</code>都有这两个参数，比如纯颜色的<code>Drawable</code>就没有内部宽&#x2F;高的概念，它的两个值都为<code>-1</code>，它的大小就是<code>View</code>的大小，而图片类型的<code>Drawable</code>的内部宽&#x2F;高决定了这个图片的固定大小。</p>
+<h1 id="Drawable的分类"><a href="#Drawable的分类" class="headerlink" title="Drawable的分类"></a><code>Drawable</code>的分类</h1><p><code>Drawable</code>的子类有许多，这里简单的说几个，具体的参数参考《Android开发艺术探索》Page 244。</p>
+<ul>
+<li><p><code>BitmapDrawable</code></p>
+<p>表示一张图片。</p>
+</li>
+<li><p><code>NinePatchDrawable</code></p>
+<p>表示一个.9格式的图片。</p>
+</li>
+<li><p><code>ShapeDrawable</code></p>
+<p>表示通过颜色（纯色、渐变色）来表示的图形。</p>
+</li>
+<li><p><code>LayerDrawable</code></p>
+<p><code>XML</code>中的标签为<code>&lt;layer-list&gt;</code>，表示的是一组层次化的<code>Drawable</code>集合，最终的效果是由上到下的<code>Drawable</code>的效果依次叠加。</p>
+</li>
+<li><p><code>StateListDrawable</code></p>
+<p><code>XML</code>中的标签为<code>&lt;selector&gt;</code>，表示一个<code>Drawable</code>集合，每个<code>Drawable</code>对应着<code>View</code>的一种状态，系统会根据<code>View</code>的不同状态更换不同的<code>Drawable</code>。常见的使用场景为<code>Button</code>的按下与弹起。</p>
+</li>
+<li><p><code>LevelListDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;level-list&gt;</code>，表示的是一个<code>Drawable</code>集合，其中的每一个<code>Drawable</code>都有一个等级(<code>level</code>)的概念，系统在不同的<code>level</code>下自动更换为不同的<code>Drawable</code>。</p>
+</li>
+<li><p><code>TransitionDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;transition&gt;</code>，其作用是实现两个<code>Drawable</code>之间的淡入淡出效果。</p>
+</li>
+<li><p><code>InsetDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;inset&gt;</code>，可以将其他的<code>Drawable</code>内嵌到自己的<code>Drawable</code>中，并在四周留出一定的空间。其最终显示效果为内嵌的<code>Drawable</code>的显示范围相较于不使用<code>InsetDrawable</code>时变小。</p>
+</li>
+<li><p><code>ScaleDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;scale&gt;</code>，其可以根据自身<code>Drawable</code>所设置的等级(<code>level</code>)对其内部的<code>Drawable</code>实现缩放的效果。</p>
+<p>当其<code>level</code>为<code>0</code>时，其内部的<code>Drawable</code>为不可见状态；为非<code>0</code>的值时，按照<code>XML</code>中的写入的缩放比例进行显示。</p>
+<p><code>level</code>的值默认为<code>0</code>，需要在代码中自行赋值，**系统内部约定<code>Drawable</code>的等级范围为<code>0</code>-<code>10000</code>**。</p>
+</li>
+<li><p><code>ClipDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;clip&gt;</code>，可以根据自己当前的等级(<code>level</code>)来裁剪另一个<code>Drawable</code>，裁剪的方向可以通过<code>android:clipOrientation</code>和<code>android:gravity</code>共同限制。</p>
+<p>当其<code>level</code>的值为<code>0</code>时，表示完全裁剪，即整个<code>Drawable</code>变为不可见的状态；当<code>level</code>的值设置为<code>10000</code>时，表示不裁剪；</p>
+<p>当<code>level</code>的值设置为<code>8000</code>时，表示裁剪了2000的区域，即裁剪<code>20%</code>。</p>
+</li>
+</ul>
+<h1 id="自定义Drawable"><a href="#自定义Drawable" class="headerlink" title="自定义Drawable"></a>自定义<code>Drawable</code></h1><p><code>Drawable</code>的使用场景很少，通常用在<code>View</code>的背景和作为<code>ImageView</code>中的图片两个场景。</p>
+<p>由于自定义的<code>Drawable</code>无法在<code>XML</code>中使用，但是我们可以有其他轻便的方法来自定义<code>Drawable</code>。</p>
+<p>通过<code>View</code>的工作原理可以知道，系统通过<code>Drawable</code>的<code>draw</code>方法来绘制<code>View</code>的背景，所以我们可以继承<code>Drawable</code>并重写<code>Drawable</code>的<code>draw</code>方法来实现自定义<code>Drawable</code>。</p>
 
                 
               </div>
@@ -350,7 +355,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/AutoHotkey/" class="category-chain-item">AutoHotkey</a>
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
   
   
 
@@ -365,7 +370,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AutoHotkey/">#AutoHotkey</a>
+        <a href="/tags/Drawable/">#Drawable</a>
       
     </div>
   
@@ -377,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AutoHotkey v1 变量和字符串</div>
-      <div>https://luoyuy.top/posts/f6aa7ef17973/</div>
+      <div>Drawable 解析</div>
+      <div>https://luoyuy.top/posts/7e6a2308252d/</div>
     </div>
     <div class="license-meta">
       
@@ -390,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月23日</div>
+          <div>2022年4月16日</div>
         </div>
       
       
@@ -422,9 +427,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/53768a5482ee/" title="hexo-theme-butterfly 修改分割线的样式">
+                      <a href="/posts/03160a3be19b/" title="ThreadLocal 解析 [转载]">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo-theme-butterfly 修改分割线的样式</span>
+                        <span class="hidden-mobile">ThreadLocal 解析 [转载]</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -432,8 +437,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/de88f66d3fa1/" title="AutoHotkey v1 类的定义与部分使用技巧">
-                        <span class="hidden-mobile">AutoHotkey v1 类的定义与部分使用技巧</span>
+                      <a href="/posts/51f783f2dca4/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

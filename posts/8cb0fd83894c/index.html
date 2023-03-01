@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="AutoHotKey v1 代码中遇到的问题以及解决的方案。">
+    <meta name="description" content="hexo-butterfly 主题中，主页侧边栏中的 categories 默认显示顺序是按 name 排序，导致某些分类下虽然文章数量较少，但却排序靠前。。便想将其修改为按照分类内文章的数量进行降序排序。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AutoHotkey v1 问题解决记录">
-<meta property="og:url" content="https://luoyuy.top/posts/1bfe28981f7d/index.html">
+<meta property="og:title" content="hexo-theme-butterfly 修改侧边栏分类排序规则">
+<meta property="og:url" content="https://luoyuy.top/posts/8cb0fd83894c/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="AutoHotKey v1 代码中遇到的问题以及解决的方案。">
+<meta property="og:description" content="hexo-butterfly 主题中，主页侧边栏中的 categories 默认显示顺序是按 name 排序，导致某些分类下虽然文章数量较少，但却排序靠前。。便想将其修改为按照分类内文章的数量进行降序排序。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
-<meta property="article:published_time" content="2022-07-11T06:41:25.000Z">
-<meta property="article:modified_time" content="2023-01-06T08:44:15.169Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
+<meta property="article:published_time" content="2022-06-08T12:51:35.000Z">
+<meta property="article:modified_time" content="2023-02-16T08:59:33.388Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="AutoHotkey">
+<meta property="article:tag" content="hexo-theme-butterfly">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-autohotkey.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
   
   
   
-  <title>AutoHotkey v1 问题解决记录 - 洛语 の Blog</title>
+  <title>hexo-theme-butterfly 修改侧边栏分类排序规则 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AutoHotkey v1 问题解决记录"></span>
+            <span id="subtitle" data-typed-text="hexo-theme-butterfly 修改侧边栏分类排序规则"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-11 14:41" pubdate>
-          2022年7月11日 下午
+        <time datetime="2022-06-08 20:51" pubdate>
+          2022年6月8日 晚上
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          842 字
+          590 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          8 分钟
+          5 分钟
         
       </span>
     
@@ -283,48 +283,30 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">AutoHotkey v1 问题解决记录</h1>
+            <h1 style="display: none">hexo-theme-butterfly 修改侧边栏分类排序规则</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>更多的资料请参考 AHK 官方技术文档以及 AHK 社区。</p>
+                <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><code>hexo-theme-butterfly</code> 主题中，主页侧边栏中的 <code>categories</code> 默认显示顺序是按 <code>name</code> 排序，导致某些分类下虽然文章数量较少，但却排序靠前。并且默认设置下，主题中侧边 <code>categories</code> 只显示8条（如需修改可以修改<strong>主题配置文件</strong>）。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220608210201564.png" srcset="/img/loading.gif" lazyload alt="image" style="zoom:67%;" />
+
+<p>便想将其修改为 <strong>按照分类内文章的数量进行降序排序</strong> 。</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><blockquote>
+<p>  该方法需要修改源代码，建议及时备份需要修改的文件。</p>
 </blockquote>
-<hr>
-<h1 id="代码中有些代码总是无法运行"><a href="#代码中有些代码总是无法运行" class="headerlink" title="代码中有些代码总是无法运行"></a>代码中有些代码总是无法运行</h1><blockquote>
-<p>  处理方法参考自：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Scripts.htm#auto">脚本 - 定义与使用 | AutoHotkey (autoahk.com)</a></li>
+<ol>
+<li><p>找到 <code>themes\butterfly\scripts\helpers\aside_categories.js</code> 文件，并修改源代码。</p>
+</li>
+<li><p>修改以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// const orderby = options.orderby || &#x27;name&#x27; // name(default) -&gt; 按 categories 字母顺序</span><br><span class="hljs-keyword">const</span> orderby = options.<span class="hljs-property">orderby</span> || <span class="hljs-string">&#x27;length&#x27;</span>  <span class="hljs-comment">// length -&gt; 按 categories 下文章数量排序</span><br><span class="hljs-comment">// const order = options.order || 1  // 1(default) -&gt; 升序; -1 -&gt; 逆序</span><br><span class="hljs-keyword">const</span> order = options.<span class="hljs-property">order</span> || -<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>执行 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 查看修改效果。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20220608205749969.png" srcset="/img/loading.gif" lazyload alt="image" style="zoom: 67%;" /></li>
+</ol>
+<h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.yanchengxu.top/hexo-categories-sort/">【Hexo-Butterfly】修改侧边栏分类排序规则 | yanchengxu</a></li>
 </ul>
-</blockquote>
-<blockquote>
-<p>  下文中的所有链接皆为 AHK 技术文档中该词条的链接，可正常使用。</p>
-</blockquote>
-<p><strong><font size="4"><a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Scripts.htm#auto">脚本顶部(自动执行段)</a></font></strong></p>
-<p>脚本加载完成后, 它会从顶行开始执行, 直到遇到 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Return.htm">Return</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Exit.htm">Exit</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Hotkeys.htm">热键&#x2F;热字串标签</a> 或脚本的底部(无论最先遇到哪个). 脚本的这个顶端部分被称为 <em>自动执行段</em>.</p>
-<blockquote>
-<p>   <strong>注意:</strong> 虽然脚本的 <em>第一个</em> 热键&#x2F;热字串标签与 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Return.htm">return(返回)</a> 的效果相同, 但其他热键和标签却没有.</p>
-</blockquote>
-<p>如果脚本不是<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/_Persistent.htm">持续运行的</a>, 它将在自动执行部分完成后终止. 否则, 它会以空闲状态持续运行, 从而对诸如<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Hotkeys.htm">热键</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/Hotstrings.htm">热字串</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Gui.htm#label">GUI 事件</a>, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Menu.htm">自定义菜单项</a>和<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/SetTimer.htm">计时器</a>等事件做出响应. 如果一个脚本包含了热键, 热字串, <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/OnMessage.htm">OnMessage()</a> 或 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Gui.htm">GUI</a>, 以及一些其他情况, 它就会自动变为持续运行的. 也可以用 <a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/_Persistent.htm">#Persistent</a> 指令来显式地使脚本持续运行.</p>
-<hr>
-<h1 id="通过函数创建热键"><a href="#通过函数创建热键" class="headerlink" title="通过函数创建热键"></a>通过函数创建热键</h1><p>通过 <code>HotKey</code> 函数动态的创建一个热键。</p>
-<blockquote>
-<p>   具体参数可以查看文档：<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Hotkey.htm">Hotkey | AutoHotkey (autoahk.com)</a></p>
-</blockquote>
-<p>示例：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-comment">; 创建一个 CapsLock + K 的一个热键，效果为 Sfunction Lable 中的内容</span><br><span class="hljs-built_in">HotKey,</span> CapsLocks &amp; K, function<br><br>function() &#123;<br><span class="hljs-built_in">	MsgBox,</span> <span class="hljs-string">&quot;Hello World!&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="通过函数创建热字串"><a href="#通过函数创建热字串" class="headerlink" title="通过函数创建热字串"></a>通过函数创建热字串</h1><p>通过 <code>HotString</code> 函数动态的创建一个热字串。</p>
-<blockquote>
-<p>  具体的参数可以查看文档：<a target="_blank" rel="noopener" href="https://www.autoahk.com/help/autohotkey/zh-cn/docs/commands/Hotstring.htm">Hotstring() | AutoHotkey (autoahk.com)</a></p>
-</blockquote>
-<hr>
-<h1 id="无法正常使用分号（注释符号）"><a href="#无法正常使用分号（注释符号）" class="headerlink" title="无法正常使用分号（注释符号）"></a>无法正常使用分号（注释符号）</h1><p>当我们想要使用 分号 作为热键中的一部分时，我们可以使用 <code>SC027</code> 替换分号的位置，以达到分号的作用、</p>
-<p>示例：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-comment">; 创建一个 CapsLock + K 的一个热键，效果为 function Lable 中的内容</span><br><span class="hljs-built_in">HotKey,</span> CapsLocks &amp; SC027, function <br></code></pre></td></tr></table></figure>
-
 
                 
               </div>
@@ -343,7 +325,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/AutoHotkey/" class="category-chain-item">AutoHotkey</a>
+  <a href="/categories/Hexo/" class="category-chain-item">Hexo</a>
   
   
 
@@ -358,7 +340,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AutoHotkey/">#AutoHotkey</a>
+        <a href="/tags/hexo-theme-butterfly/">#hexo-theme-butterfly</a>
       
     </div>
   
@@ -370,8 +352,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AutoHotkey v1 问题解决记录</div>
-      <div>https://luoyuy.top/posts/1bfe28981f7d/</div>
+      <div>hexo-theme-butterfly 修改侧边栏分类排序规则</div>
+      <div>https://luoyuy.top/posts/8cb0fd83894c/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +365,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月11日</div>
+          <div>2022年6月8日</div>
         </div>
       
       
@@ -415,9 +397,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/de88f66d3fa1/" title="AutoHotkey v1 类的定义与部分使用技巧">
+                      <a href="/posts/8aab3d7fde77/" title="Kotlin 类的创建与继承">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AutoHotkey v1 类的定义与部分使用技巧</span>
+                        <span class="hidden-mobile">Kotlin 类的创建与继承</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -425,8 +407,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/47063eb1b5ed/" title="Kotlin 函数嵌套">
-                        <span class="hidden-mobile">Kotlin 函数嵌套</span>
+                      <a href="/posts/1d4a22a89c9e/" title="Android面试整理 - JVM">
+                        <span class="hidden-mobile">Android面试整理 - JVM</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

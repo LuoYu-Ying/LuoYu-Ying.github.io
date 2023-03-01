@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Android 中 Drawable 的分类以及自定义 Drawable 的方法">
+    <meta name="description" content="学习大佬们的博客的时候，并没有看到详细自定义分割线样式的博客，所以想记录一下自己美化分割线的过程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Drawable 解析">
-<meta property="og:url" content="https://luoyuy.top/posts/1fa2d3c662e5/index.html">
+<meta property="og:title" content="hexo-theme-butterfly 修改分割线的样式">
+<meta property="og:url" content="https://luoyuy.top/posts/5c76ad4123cd/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="Android 中 Drawable 的分类以及自定义 Drawable 的方法">
+<meta property="og:description" content="学习大佬们的博客的时候，并没有看到详细自定义分割线样式的博客，所以想记录一下自己美化分割线的过程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Drawable.png">
-<meta property="article:published_time" content="2022-04-16T10:19:43.000Z">
-<meta property="article:modified_time" content="2023-01-25T18:04:24.636Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
+<meta property="article:published_time" content="2022-10-24T11:50:09.000Z">
+<meta property="article:modified_time" content="2023-01-08T18:25:10.222Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="Drawable">
+<meta property="article:tag" content="hexo-theme-butterfly">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Drawable.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
   
   
   
-  <title>Drawable 解析 - 洛语 の Blog</title>
+  <title>hexo-theme-butterfly 修改分割线的样式 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Drawable 解析"></span>
+            <span id="subtitle" data-typed-text="hexo-theme-butterfly 修改分割线的样式"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-16 18:19" pubdate>
-          2022年4月16日 晚上
+        <time datetime="2022-10-24 19:50" pubdate>
+          2022年10月24日 晚上
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          14 分钟
+          17 分钟
         
       </span>
     
@@ -283,60 +283,121 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Drawable 解析</h1>
+            <h1 style="display: none">hexo-theme-butterfly 修改分割线的样式</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><code>Drawable</code>是一个抽象类，表示的是一个图像的概念。每一个具体的<code>Drawable</code>都是其子类。</p>
-<p><strong>优点：</strong></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习大佬们的博客的时候，并没有看到详细自定义分割线样式的博客，所以想记录一下自己美化分割线的过程。</p>
+<blockquote>
+<p>  <strong>Butterfly 主题默认分割线样式</strong></p>
+  <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221024200848426.png" srcset="/img/loading.gif" lazyload alt="Butterfly 主题默认分割线样式" style="zoom:80%;" />
+  
+<p>  <strong>通过修改后的分割线样式</strong></p>
+  <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026222103059.png" srcset="/img/loading.gif" lazyload alt="通过修改后的分割线样式" style="zoom:90%;" />
+</blockquote>
+<hr>
+<blockquote>
+<p>   <strong>更改设置后需要进行 <code>hexo clean</code> 操作哦~</strong> </p>
+</blockquote>
+<hr>
+<h1 id="修改浮动图标图片"><a href="#修改浮动图标图片" class="headerlink" title="修改浮动图标图片"></a>修改浮动图标图片</h1><p>将剪刀图片修改为其他的图片，如上文中的小汽车图片。</p>
+<p>两种方式可以修改：</p>
 <ol>
-<li>使用简单，比自定义<code>View</code>的成本要低。</li>
-<li>非图片类型的<code>Drawable</code>占用空间较小，可以有效的减少<code>apk</code>的大小。</li>
+<li><p>修改 <code>_config.butterfly.yml</code> 文件中的 <code>hr_icon -&gt; icon</code> 内容（推荐）</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># The setting of divider icon (水平分隔線圖標設置)</span><br><span class="hljs-attr">hr_icon:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;\f5e4&#x27;</span> <span class="hljs-comment"># the unicode value of Font Awesome icon, such as &#x27;\3423&#x27;</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br></code></pre></td></tr></table></figure></li>
+<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; &amp;:before -&gt; content</code> 内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-selector-pseudo">&amp;:before</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attribute">content</span>: <span class="hljs-variable">$hr</span>-icon // 同样修改为如 <span class="hljs-string">&#x27;\3423&#x27;</span> 形式<br></code></pre></td></tr></table></figure></li>
 </ol>
-<p> <strong>内部宽&#x2F;高：</strong></p>
-<p><code>Drawable</code>有个参数比较重要，就是<strong>内部宽&#x2F;高</strong>，通过<code>getIntrinsicWidth</code>和<code>getIntrinsicHeight</code>方法获得。</p>
-<p>但是并不是所有的<code>Drawable</code>都有这两个参数，比如纯颜色的<code>Drawable</code>就没有内部宽&#x2F;高的概念，它的两个值都为<code>-1</code>，它的大小就是<code>View</code>的大小，而图片类型的<code>Drawable</code>的内部宽&#x2F;高决定了这个图片的固定大小。</p>
-<h1 id="Drawable的分类"><a href="#Drawable的分类" class="headerlink" title="Drawable的分类"></a><code>Drawable</code>的分类</h1><p><code>Drawable</code>的子类有许多，这里简单的说几个，具体的参数参考《Android开发艺术探索》Page 244。</p>
+<p>如果想去除浮动图标，仅需将参数修改为 <code>&#39;&#39;</code> 即可，例如 <code>icon: &#39;&#39;</code>。</p>
+<blockquote>
+<p>  <strong><code>the unicode value of Font Awesome icon</code> 获取方法：</strong></p>
+<ol>
+<li><p>打开 <code>Font Awesome</code> 网址：<a target="_blank" rel="noopener" href="https://fontawesome.com/v5/search">Search v5 Icons | Font Awesome</a></p>
+</li>
+<li><p>通过搜索栏选择并点击自己心仪的图标</p>
+</li>
+<li><p>下图中箭头所指内容即为 <code>the unicode value of Font Awesome icon</code></p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026225602023.png" srcset="/img/loading.gif" lazyload alt="the unicode value of Font Awesome icon" style="zoom:60%;" /></li>
+</ol>
+</blockquote>
+<hr>
+<h1 id="修改浮动图标颜色"><a href="#修改浮动图标颜色" class="headerlink" title="修改浮动图标颜色"></a>修改浮动图标颜色</h1><p>修改浮动图标的颜色，同样可以有两种方法进行更改：</p>
+<ol>
+<li><p>修改 <code>_config.butterfly.yml</code> 中的 <code>theme_color -&gt; hr_color</code> 内容（推荐）</p>
+<p><strong>可能会将分割线横线的颜色同时进行更改。</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">theme_color:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>  <span class="hljs-attr">hr_color:</span> <span class="hljs-string">&quot;#A4D8FA&quot;</span> <span class="hljs-string">//</span> <span class="hljs-string">修改此处内容</span><br></code></pre></td></tr></table></figure></li>
+<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; &amp;:before -&gt; color</code> 内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-selector-pseudo">&amp;:before</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--hr-before-color) // 修改为如 <span class="hljs-number">#A4D8FA</span> 形式<br></code></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="修改浮动图标相对于横线的位置"><a href="#修改浮动图标相对于横线的位置" class="headerlink" title="修改浮动图标相对于横线的位置"></a>修改浮动图标相对于横线的位置</h1><p>可以通过两种方式进行修改：</p>
+<ol>
+<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; &amp;:before -&gt; line-height</code> 内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-selector-pseudo">&amp;:before</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span> // 图标浮于横线中间，其他参数见下文<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  <strong><code>line-height</code> 参数说明：</strong></p>
 <ul>
-<li><p><code>BitmapDrawable</code></p>
-<p>表示一张图片。</p>
+<li><p><code>1</code></p>
+<p>图标浮于横线中间</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026230524821.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 </li>
-<li><p><code>NinePatchDrawable</code></p>
-<p>表示一个.9格式的图片。</p>
+<li><p><code>0</code></p>
+<p>图标浮于横线上方</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026230609189.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 </li>
-<li><p><code>ShapeDrawable</code></p>
-<p>表示通过颜色（纯色、渐变色）来表示的图形。</p>
-</li>
-<li><p><code>LayerDrawable</code></p>
-<p><code>XML</code>中的标签为<code>&lt;layer-list&gt;</code>，表示的是一组层次化的<code>Drawable</code>集合，最终的效果是由上到下的<code>Drawable</code>的效果依次叠加。</p>
-</li>
-<li><p><code>StateListDrawable</code></p>
-<p><code>XML</code>中的标签为<code>&lt;selector&gt;</code>，表示一个<code>Drawable</code>集合，每个<code>Drawable</code>对应着<code>View</code>的一种状态，系统会根据<code>View</code>的不同状态更换不同的<code>Drawable</code>。常见的使用场景为<code>Button</code>的按下与弹起。</p>
-</li>
-<li><p><code>LevelListDrawable</code></p>
-<p><code>XML</code>中对应的标签为<code>&lt;level-list&gt;</code>，表示的是一个<code>Drawable</code>集合，其中的每一个<code>Drawable</code>都有一个等级(<code>level</code>)的概念，系统在不同的<code>level</code>下自动更换为不同的<code>Drawable</code>。</p>
-</li>
-<li><p><code>TransitionDrawable</code></p>
-<p><code>XML</code>中对应的标签为<code>&lt;transition&gt;</code>，其作用是实现两个<code>Drawable</code>之间的淡入淡出效果。</p>
-</li>
-<li><p><code>InsetDrawable</code></p>
-<p><code>XML</code>中对应的标签为<code>&lt;inset&gt;</code>，可以将其他的<code>Drawable</code>内嵌到自己的<code>Drawable</code>中，并在四周留出一定的空间。其最终显示效果为内嵌的<code>Drawable</code>的显示范围相较于不使用<code>InsetDrawable</code>时变小。</p>
-</li>
-<li><p><code>ScaleDrawable</code></p>
-<p><code>XML</code>中对应的标签为<code>&lt;scale&gt;</code>，其可以根据自身<code>Drawable</code>所设置的等级(<code>level</code>)对其内部的<code>Drawable</code>实现缩放的效果。</p>
-<p>当其<code>level</code>为<code>0</code>时，其内部的<code>Drawable</code>为不可见状态；为非<code>0</code>的值时，按照<code>XML</code>中的写入的缩放比例进行显示。</p>
-<p><code>level</code>的值默认为<code>0</code>，需要在代码中自行赋值，**系统内部约定<code>Drawable</code>的等级范围为<code>0</code>-<code>10000</code>**。</p>
-</li>
-<li><p><code>ClipDrawable</code></p>
-<p><code>XML</code>中对应的标签为<code>&lt;clip&gt;</code>，可以根据自己当前的等级(<code>level</code>)来裁剪另一个<code>Drawable</code>，裁剪的方向可以通过<code>android:clipOrientation</code>和<code>android:gravity</code>共同限制。</p>
-<p>当其<code>level</code>的值为<code>0</code>时，表示完全裁剪，即整个<code>Drawable</code>变为不可见的状态；当<code>level</code>的值设置为<code>10000</code>时，表示不裁剪；</p>
-<p>当<code>level</code>的值设置为<code>8000</code>时，表示裁剪了2000的区域，即裁剪<code>20%</code>。</p>
-</li>
+<li><p><code>-1</code></p>
+<p>图标浮于横线下方</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026230634557.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" /></li>
 </ul>
-<h1 id="自定义Drawable"><a href="#自定义Drawable" class="headerlink" title="自定义Drawable"></a>自定义<code>Drawable</code></h1><p><code>Drawable</code>的使用场景很少，通常用在<code>View</code>的背景和作为<code>ImageView</code>中的图片两个场景。</p>
-<p>由于自定义的<code>Drawable</code>无法在<code>XML</code>中使用，但是我们可以有其他轻便的方法来自定义<code>Drawable</code>。</p>
-<p>通过<code>View</code>的工作原理可以知道，系统通过<code>Drawable</code>的<code>draw</code>方法来绘制<code>View</code>的背景，所以我们可以继承<code>Drawable</code>并重写<code>Drawable</code>的<code>draw</code>方法来实现自定义<code>Drawable</code>。</p>
+</blockquote>
+</li>
+<li><p>修改 <code>_config.butterfly.yml</code> 文件中的 <code>hr_icon -&gt; icon-top</code> 内容</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># The setting of divider icon (水平分隔線圖標設置)</span><br><span class="hljs-attr">hr_icon:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>  <span class="hljs-attr">icon-top:</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="修改横线虚实"><a href="#修改横线虚实" class="headerlink" title="修改横线虚实"></a>修改横线虚实</h1><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; border</code> 中的 <code>dashed</code> 内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dashed <span class="hljs-built_in">var</span>(--hr-border)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  <strong>其中第二个参数说明：</strong></p>
+<ul>
+<li><p><code>dashed</code></p>
+<p>虚线效果</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026222103059.png" srcset="/img/loading.gif" lazyload alt="通过修改后的分割线样式" style="zoom:90%;" />
+</li>
+<li><p><code>solid</code></p>
+<p>实线效果</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221115165404929.png" srcset="/img/loading.gif" lazyload alt="pic" style="zoom:80%;" /></li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="修改横线粗细"><a href="#修改横线粗细" class="headerlink" title="修改横线粗细"></a>修改横线粗细</h1><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; border</code> 中的 <code>2px</code> 内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dashed <span class="hljs-built_in">var</span>(--hr-border)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  <strong>数字效果对比：</strong></p>
+<ul>
+<li><p><code>2px</code></p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026222103059.png" srcset="/img/loading.gif" lazyload alt="通过修改后的分割线样式"  />
+</li>
+<li><p><code>5px</code></p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221115174052677.png" srcset="/img/loading.gif" lazyload alt="image-20221115174052677" style="zoom:90%;" /></li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="修改横线颜色"><a href="#修改横线颜色" class="headerlink" title="修改横线颜色"></a>修改横线颜色</h1><ol>
+<li><p>修改 <code>_config.butterfly.yml</code> 中的 <code>theme_color -&gt; hr_color</code> 内容（推荐）</p>
+<p><strong>可能会将分割线横线的颜色同时进行更改。</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">theme_color:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>  <span class="hljs-attr">hr_color:</span> <span class="hljs-string">&quot;#A4D8FA&quot;</span> <span class="hljs-string">//</span> <span class="hljs-string">修改此处内容</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>:root -&gt; --hr-border</code> 内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-pseudo">:root</span><br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attr">--hr-border</span>: <span class="hljs-built_in">lighten</span>(<span class="hljs-variable">$theme</span>-hr-<span class="hljs-attribute">color</span>,;<span class="hljs-number">50%</span>)<br></code></pre></td></tr></table></figure>
+
+<p>将 <code>lighten($theme-hr-color,;50%)</code> 部分修改为<strong>十六进制颜色表示方式</strong>即可。</p>
+</li>
+</ol>
 
                 
               </div>
@@ -355,7 +416,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  <a href="/categories/Hexo/" class="category-chain-item">Hexo</a>
   
   
 
@@ -370,7 +431,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Drawable/">#Drawable</a>
+        <a href="/tags/hexo-theme-butterfly/">#hexo-theme-butterfly</a>
       
     </div>
   
@@ -382,8 +443,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Drawable 解析</div>
-      <div>https://luoyuy.top/posts/1fa2d3c662e5/</div>
+      <div>hexo-theme-butterfly 修改分割线的样式</div>
+      <div>https://luoyuy.top/posts/5c76ad4123cd/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +456,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年4月16日</div>
+          <div>2022年10月24日</div>
         </div>
       
       
@@ -427,9 +488,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/89ece43bd0a9/" title="Android 动画深入分析">
+                      <a href="/posts/0a77f507cef9/" title="计算机网络-HTTPS">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Android 动画深入分析</span>
+                        <span class="hidden-mobile">计算机网络-HTTPS</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +498,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/03160a3be19b/" title="ThreadLocal 解析 [转载]">
-                        <span class="hidden-mobile">ThreadLocal 解析 [转载]</span>
+                      <a href="/posts/b7ed2dc4d9db/" title="AutoHotkey v1 变量和字符串">
+                        <span class="hidden-mobile">AutoHotkey v1 变量和字符串</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

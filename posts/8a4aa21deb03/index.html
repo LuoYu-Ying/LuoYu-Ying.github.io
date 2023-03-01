@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="学习大佬们的博客的时候，并没有看到详细自定义分割线样式的博客，所以想记录一下自己美化分割线的过程。">
+    <meta name="description" content="Android 中广播的分类、使用场景以及注册方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo-theme-butterfly 修改分割线的样式">
-<meta property="og:url" content="https://luoyuy.top/posts/53768a5482ee/index.html">
+<meta property="og:title" content="Android面试整理 - BroadcastReceiver">
+<meta property="og:url" content="https://luoyuy.top/posts/8a4aa21deb03/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="学习大佬们的博客的时候，并没有看到详细自定义分割线样式的博客，所以想记录一下自己美化分割线的过程。">
+<meta property="og:description" content="Android 中广播的分类、使用场景以及注册方法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
-<meta property="article:published_time" content="2022-10-24T11:50:09.000Z">
-<meta property="article:modified_time" content="2023-01-08T18:25:10.222Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
+<meta property="article:published_time" content="2022-05-24T07:34:00.000Z">
+<meta property="article:modified_time" content="2023-01-12T13:02:51.333Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="hexo-theme-butterfly">
+<meta property="article:tag" content="BroadcastReceiver">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-hexo-theme-butterfly.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
   
   
   
-  <title>hexo-theme-butterfly 修改分割线的样式 - 洛语 の Blog</title>
+  <title>Android面试整理 - BroadcastReceiver - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="hexo-theme-butterfly 修改分割线的样式"></span>
+            <span id="subtitle" data-typed-text="Android面试整理 - BroadcastReceiver"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-24 19:50" pubdate>
-          2022年10月24日 晚上
+        <time datetime="2022-05-24 15:34" pubdate>
+          2022年5月24日 下午
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          696 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          17 分钟
+          6 分钟
         
       </span>
     
@@ -283,121 +283,52 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">hexo-theme-butterfly 修改分割线的样式</h1>
+            <h1 style="display: none">Android面试整理 - BroadcastReceiver</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习大佬们的博客的时候，并没有看到详细自定义分割线样式的博客，所以想记录一下自己美化分割线的过程。</p>
-<blockquote>
-<p>  <strong>Butterfly 主题默认分割线样式</strong></p>
-  <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221024200848426.png" srcset="/img/loading.gif" lazyload alt="Butterfly 主题默认分割线样式" style="zoom:80%;" />
-  
-<p>  <strong>通过修改后的分割线样式</strong></p>
-  <img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026222103059.png" srcset="/img/loading.gif" lazyload alt="通过修改后的分割线样式" style="zoom:90%;" />
-</blockquote>
-<hr>
-<blockquote>
-<p>   <strong>更改设置后需要进行 <code>hexo clean</code> 操作哦~</strong> </p>
-</blockquote>
-<hr>
-<h1 id="修改浮动图标图片"><a href="#修改浮动图标图片" class="headerlink" title="修改浮动图标图片"></a>修改浮动图标图片</h1><p>将剪刀图片修改为其他的图片，如上文中的小汽车图片。</p>
-<p>两种方式可以修改：</p>
-<ol>
-<li><p>修改 <code>_config.butterfly.yml</code> 文件中的 <code>hr_icon -&gt; icon</code> 内容（推荐）</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># The setting of divider icon (水平分隔線圖標設置)</span><br><span class="hljs-attr">hr_icon:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;\f5e4&#x27;</span> <span class="hljs-comment"># the unicode value of Font Awesome icon, such as &#x27;\3423&#x27;</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br></code></pre></td></tr></table></figure></li>
-<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; &amp;:before -&gt; content</code> 内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-selector-pseudo">&amp;:before</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attribute">content</span>: <span class="hljs-variable">$hr</span>-icon // 同样修改为如 <span class="hljs-string">&#x27;\3423&#x27;</span> 形式<br></code></pre></td></tr></table></figure></li>
-</ol>
-<p>如果想去除浮动图标，仅需将参数修改为 <code>&#39;&#39;</code> 即可，例如 <code>icon: &#39;&#39;</code>。</p>
-<blockquote>
-<p>  <strong><code>the unicode value of Font Awesome icon</code> 获取方法：</strong></p>
-<ol>
-<li><p>打开 <code>Font Awesome</code> 网址：<a target="_blank" rel="noopener" href="https://fontawesome.com/v5/search">Search v5 Icons | Font Awesome</a></p>
-</li>
-<li><p>通过搜索栏选择并点击自己心仪的图标</p>
-</li>
-<li><p>下图中箭头所指内容即为 <code>the unicode value of Font Awesome icon</code></p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026225602023.png" srcset="/img/loading.gif" lazyload alt="the unicode value of Font Awesome icon" style="zoom:60%;" /></li>
-</ol>
-</blockquote>
-<hr>
-<h1 id="修改浮动图标颜色"><a href="#修改浮动图标颜色" class="headerlink" title="修改浮动图标颜色"></a>修改浮动图标颜色</h1><p>修改浮动图标的颜色，同样可以有两种方法进行更改：</p>
-<ol>
-<li><p>修改 <code>_config.butterfly.yml</code> 中的 <code>theme_color -&gt; hr_color</code> 内容（推荐）</p>
-<p><strong>可能会将分割线横线的颜色同时进行更改。</strong></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">theme_color:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>  <span class="hljs-attr">hr_color:</span> <span class="hljs-string">&quot;#A4D8FA&quot;</span> <span class="hljs-string">//</span> <span class="hljs-string">修改此处内容</span><br></code></pre></td></tr></table></figure></li>
-<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; &amp;:before -&gt; color</code> 内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-selector-pseudo">&amp;:before</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--hr-before-color) // 修改为如 <span class="hljs-number">#A4D8FA</span> 形式<br></code></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h1 id="修改浮动图标相对于横线的位置"><a href="#修改浮动图标相对于横线的位置" class="headerlink" title="修改浮动图标相对于横线的位置"></a>修改浮动图标相对于横线的位置</h1><p>可以通过两种方式进行修改：</p>
-<ol>
-<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; &amp;:before -&gt; line-height</code> 内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-selector-pseudo">&amp;:before</span><br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span> // 图标浮于横线中间，其他参数见下文<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>  <strong><code>line-height</code> 参数说明：</strong></p>
+                <h1 id="广播的分类和使用场景"><a href="#广播的分类和使用场景" class="headerlink" title="广播的分类和使用场景"></a>广播的分类和使用场景</h1><blockquote>
+<p>  答案参考自：</p>
 <ul>
-<li><p><code>1</code></p>
-<p>图标浮于横线中间</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026230524821.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
-</li>
-<li><p><code>0</code></p>
-<p>图标浮于横线上方</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026230609189.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
-</li>
-<li><p><code>-1</code></p>
-<p>图标浮于横线下方</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026230634557.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" /></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Lwenlong/p/15940123.html">Android面试——BroadcastReceiver篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li>
 </ul>
 </blockquote>
+<p> <strong><font size="4">分类</font></strong></p>
+<ol>
+<li><p>普通广播：通过Context.sendBroadcast()发送，可并行处理</p>
 </li>
-<li><p>修改 <code>_config.butterfly.yml</code> 文件中的 <code>hr_icon -&gt; icon-top</code> 内容</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># The setting of divider icon (水平分隔線圖標設置)</span><br><span class="hljs-attr">hr_icon:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>  <span class="hljs-attr">icon-top:</span><br></code></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h1 id="修改横线虚实"><a href="#修改横线虚实" class="headerlink" title="修改横线虚实"></a>修改横线虚实</h1><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; border</code> 中的 <code>dashed</code> 内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dashed <span class="hljs-built_in">var</span>(--hr-border)<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>  <strong>其中第二个参数说明：</strong></p>
-<ul>
-<li><p><code>dashed</code></p>
-<p>虚线效果</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026222103059.png" srcset="/img/loading.gif" lazyload alt="通过修改后的分割线样式" style="zoom:90%;" />
+<li><p>系统广播：系统发送的广播，只需要注册广播接收器，并定义好action等待接收广播</p>
 </li>
-<li><p><code>solid</code></p>
-<p>实线效果</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221115165404929.png" srcset="/img/loading.gif" lazyload alt="pic" style="zoom:80%;" /></li>
-</ul>
-</blockquote>
-<hr>
-<h1 id="修改横线粗细"><a href="#修改横线粗细" class="headerlink" title="修改横线粗细"></a>修改横线粗细</h1><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>hr -&gt; border</code> 中的 <code>2px</code> 内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">hr<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dashed <span class="hljs-built_in">var</span>(--hr-border)<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>  <strong>数字效果对比：</strong></p>
-<ul>
-<li><p><code>2px</code></p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221026222103059.png" srcset="/img/loading.gif" lazyload alt="通过修改后的分割线样式"  />
+<li><p>有序广播：发出的广播会被接收器按照先后顺序进行接收，发送方式为sendOrderedBroadcast(intent)； 广播接受者接收的顺序规则：按照Priority属性值排序，Priority相同者，动态注册的广播优先；</p>
 </li>
-<li><p><code>5px</code></p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20221115174052677.png" srcset="/img/loading.gif" lazyload alt="image-20221115174052677" style="zoom:90%;" /></li>
-</ul>
-</blockquote>
-<hr>
-<h1 id="修改横线颜色"><a href="#修改横线颜色" class="headerlink" title="修改横线颜色"></a>修改横线颜色</h1><ol>
-<li><p>修改 <code>_config.butterfly.yml</code> 中的 <code>theme_color -&gt; hr_color</code> 内容（推荐）</p>
-<p><strong>可能会将分割线横线的颜色同时进行更改。</strong></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">theme_color:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-string">//</span> <span class="hljs-string">...</span><br>  <span class="hljs-attr">hr_color:</span> <span class="hljs-string">&quot;#A4D8FA&quot;</span> <span class="hljs-string">//</span> <span class="hljs-string">修改此处内容</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>修改 <code>themes\butterfly\source\css\_global\index.styl</code> 文件中的 <code>:root -&gt; --hr-border</code> 内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-pseudo">:root</span><br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attr">--hr-border</span>: <span class="hljs-built_in">lighten</span>(<span class="hljs-variable">$theme</span>-hr-<span class="hljs-attribute">color</span>,;<span class="hljs-number">50%</span>)<br></code></pre></td></tr></table></figure>
-
-<p>将 <code>lighten($theme-hr-color,;50%)</code> 部分修改为<strong>十六进制颜色表示方式</strong>即可。</p>
+<li><p>APP应用内广播（Local Broadcast）：由于广播可以跨进程的特性，导致应用可能不断收到来自其他应用的广播，或者别的应用接收到当前应用的私密广播；解决方法为使用应用内广播；也称局部广播，接收者和发送者同属于一个APP，</p>
 </li>
 </ol>
+<p> <strong><font size="4">使用方法</font></strong> </p>
+<ul>
+<li><p>方法1：注册广播时设置exported属性为false；在广播发送接收时，增加权限，用于权限验证；发送广播时执行广播接收器的包名</p>
+</li>
+<li><p>方法2：使用封装好的LocalBroadcastManager,这种方式的广播只能动态注册，不能静态注册</p>
+</li>
+</ul>
+<p> <strong><font size="4">使用场景</font></strong> </p>
+<ul>
+<li><p>同一 App 内部的不同组件之间的消息通信（单个进程）；</p>
+</li>
+<li><p>不同 App 之间的组件之间消息通信；</p>
+</li>
+<li><p>Android系统在特定情况下与App之间的消息通信，如：网络变化、电池电量、屏幕开关等；</p>
+</li>
+</ul>
+<h1 id="广播的两种注册方式的区别"><a href="#广播的两种注册方式的区别" class="headerlink" title="广播的两种注册方式的区别"></a>广播的两种注册方式的区别</h1><ul>
+<li><p>静态注册</p>
+<p>常驻系统，不受组件生命周期影响，即便应用退出，广播还是可以被接收，耗电、占内存。</p>
+</li>
+<li><p>动态注册</p>
+<p>非常驻，跟随组件的生命变化，组件结束，广播结束。在组件结束前，需要先移除广播，否则容易造 成内存泄漏。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -416,7 +347,17 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Hexo/" class="category-chain-item">Hexo</a>
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86-2022/" class="category-chain-item">面试整理-2022</a>
   
   
 
@@ -431,7 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo-theme-butterfly/">#hexo-theme-butterfly</a>
+        <a href="/tags/BroadcastReceiver/">#BroadcastReceiver</a>
       
     </div>
   
@@ -443,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>hexo-theme-butterfly 修改分割线的样式</div>
-      <div>https://luoyuy.top/posts/53768a5482ee/</div>
+      <div>Android面试整理 - BroadcastReceiver</div>
+      <div>https://luoyuy.top/posts/8a4aa21deb03/</div>
     </div>
     <div class="license-meta">
       
@@ -456,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月24日</div>
+          <div>2022年5月24日</div>
         </div>
       
       
@@ -488,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/0a77f507cef9/" title="计算机网络-HTTPS">
+                      <a href="/posts/1d4a22a89c9e/" title="Android面试整理 - JVM">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计算机网络-HTTPS</span>
+                        <span class="hidden-mobile">Android面试整理 - JVM</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -498,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/f6aa7ef17973/" title="AutoHotkey v1 变量和字符串">
-                        <span class="hidden-mobile">AutoHotkey v1 变量和字符串</span>
+                      <a href="/posts/63dbfd9ddd97/" title="Android面试整理 - View 事件分发">
+                        <span class="hidden-mobile">Android面试整理 - View 事件分发</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
