@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Android 中广播的分类、使用场景以及注册方法">
+    <meta name="description" content="Android 中 Drawable 的分类以及自定义 Drawable 的方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android面试整理 - BroadcastReceiver">
-<meta property="og:url" content="https://luoyuy.top/posts/90a21a97c0cb/index.html">
+<meta property="og:title" content="Drawable 解析">
+<meta property="og:url" content="https://luoyuy.top/posts/1fa2d3c662e5/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="Android 中广播的分类、使用场景以及注册方法">
+<meta property="og:description" content="Android 中 Drawable 的分类以及自定义 Drawable 的方法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
-<meta property="article:published_time" content="2022-05-24T07:34:00.000Z">
-<meta property="article:modified_time" content="2023-01-12T13:02:51.333Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Drawable.png">
+<meta property="article:published_time" content="2022-04-16T10:19:43.000Z">
+<meta property="article:modified_time" content="2023-01-25T18:04:24.636Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="BroadcastReceiver">
+<meta property="article:tag" content="Drawable">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Drawable.png">
   
   
   
-  <title>Android面试整理 - BroadcastReceiver - 洛语 の Blog</title>
+  <title>Drawable 解析 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Android面试整理 - BroadcastReceiver"></span>
+            <span id="subtitle" data-typed-text="Drawable 解析"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-24 15:34" pubdate>
-          2022年5月24日 下午
+        <time datetime="2022-04-16 18:19" pubdate>
+          2022年4月16日 晚上
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          696 字
+          1.6k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          6 分钟
+          14 分钟
         
       </span>
     
@@ -283,52 +283,60 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Android面试整理 - BroadcastReceiver</h1>
+            <h1 style="display: none">Drawable 解析</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="广播的分类和使用场景"><a href="#广播的分类和使用场景" class="headerlink" title="广播的分类和使用场景"></a>广播的分类和使用场景</h1><blockquote>
-<p>  答案参考自：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Lwenlong/p/15940123.html">Android面试——BroadcastReceiver篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li>
-</ul>
-</blockquote>
-<p> <strong><font size="4">分类</font></strong></p>
+                <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><code>Drawable</code>是一个抽象类，表示的是一个图像的概念。每一个具体的<code>Drawable</code>都是其子类。</p>
+<p><strong>优点：</strong></p>
 <ol>
-<li><p>普通广播：通过Context.sendBroadcast()发送，可并行处理</p>
-</li>
-<li><p>系统广播：系统发送的广播，只需要注册广播接收器，并定义好action等待接收广播</p>
-</li>
-<li><p>有序广播：发出的广播会被接收器按照先后顺序进行接收，发送方式为sendOrderedBroadcast(intent)； 广播接受者接收的顺序规则：按照Priority属性值排序，Priority相同者，动态注册的广播优先；</p>
-</li>
-<li><p>APP应用内广播（Local Broadcast）：由于广播可以跨进程的特性，导致应用可能不断收到来自其他应用的广播，或者别的应用接收到当前应用的私密广播；解决方法为使用应用内广播；也称局部广播，接收者和发送者同属于一个APP，</p>
-</li>
+<li>使用简单，比自定义<code>View</code>的成本要低。</li>
+<li>非图片类型的<code>Drawable</code>占用空间较小，可以有效的减少<code>apk</code>的大小。</li>
 </ol>
-<p> <strong><font size="4">使用方法</font></strong> </p>
+<p> <strong>内部宽&#x2F;高：</strong></p>
+<p><code>Drawable</code>有个参数比较重要，就是<strong>内部宽&#x2F;高</strong>，通过<code>getIntrinsicWidth</code>和<code>getIntrinsicHeight</code>方法获得。</p>
+<p>但是并不是所有的<code>Drawable</code>都有这两个参数，比如纯颜色的<code>Drawable</code>就没有内部宽&#x2F;高的概念，它的两个值都为<code>-1</code>，它的大小就是<code>View</code>的大小，而图片类型的<code>Drawable</code>的内部宽&#x2F;高决定了这个图片的固定大小。</p>
+<h1 id="Drawable的分类"><a href="#Drawable的分类" class="headerlink" title="Drawable的分类"></a><code>Drawable</code>的分类</h1><p><code>Drawable</code>的子类有许多，这里简单的说几个，具体的参数参考《Android开发艺术探索》Page 244。</p>
 <ul>
-<li><p>方法1：注册广播时设置exported属性为false；在广播发送接收时，增加权限，用于权限验证；发送广播时执行广播接收器的包名</p>
+<li><p><code>BitmapDrawable</code></p>
+<p>表示一张图片。</p>
 </li>
-<li><p>方法2：使用封装好的LocalBroadcastManager,这种方式的广播只能动态注册，不能静态注册</p>
+<li><p><code>NinePatchDrawable</code></p>
+<p>表示一个.9格式的图片。</p>
+</li>
+<li><p><code>ShapeDrawable</code></p>
+<p>表示通过颜色（纯色、渐变色）来表示的图形。</p>
+</li>
+<li><p><code>LayerDrawable</code></p>
+<p><code>XML</code>中的标签为<code>&lt;layer-list&gt;</code>，表示的是一组层次化的<code>Drawable</code>集合，最终的效果是由上到下的<code>Drawable</code>的效果依次叠加。</p>
+</li>
+<li><p><code>StateListDrawable</code></p>
+<p><code>XML</code>中的标签为<code>&lt;selector&gt;</code>，表示一个<code>Drawable</code>集合，每个<code>Drawable</code>对应着<code>View</code>的一种状态，系统会根据<code>View</code>的不同状态更换不同的<code>Drawable</code>。常见的使用场景为<code>Button</code>的按下与弹起。</p>
+</li>
+<li><p><code>LevelListDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;level-list&gt;</code>，表示的是一个<code>Drawable</code>集合，其中的每一个<code>Drawable</code>都有一个等级(<code>level</code>)的概念，系统在不同的<code>level</code>下自动更换为不同的<code>Drawable</code>。</p>
+</li>
+<li><p><code>TransitionDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;transition&gt;</code>，其作用是实现两个<code>Drawable</code>之间的淡入淡出效果。</p>
+</li>
+<li><p><code>InsetDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;inset&gt;</code>，可以将其他的<code>Drawable</code>内嵌到自己的<code>Drawable</code>中，并在四周留出一定的空间。其最终显示效果为内嵌的<code>Drawable</code>的显示范围相较于不使用<code>InsetDrawable</code>时变小。</p>
+</li>
+<li><p><code>ScaleDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;scale&gt;</code>，其可以根据自身<code>Drawable</code>所设置的等级(<code>level</code>)对其内部的<code>Drawable</code>实现缩放的效果。</p>
+<p>当其<code>level</code>为<code>0</code>时，其内部的<code>Drawable</code>为不可见状态；为非<code>0</code>的值时，按照<code>XML</code>中的写入的缩放比例进行显示。</p>
+<p><code>level</code>的值默认为<code>0</code>，需要在代码中自行赋值，**系统内部约定<code>Drawable</code>的等级范围为<code>0</code>-<code>10000</code>**。</p>
+</li>
+<li><p><code>ClipDrawable</code></p>
+<p><code>XML</code>中对应的标签为<code>&lt;clip&gt;</code>，可以根据自己当前的等级(<code>level</code>)来裁剪另一个<code>Drawable</code>，裁剪的方向可以通过<code>android:clipOrientation</code>和<code>android:gravity</code>共同限制。</p>
+<p>当其<code>level</code>的值为<code>0</code>时，表示完全裁剪，即整个<code>Drawable</code>变为不可见的状态；当<code>level</code>的值设置为<code>10000</code>时，表示不裁剪；</p>
+<p>当<code>level</code>的值设置为<code>8000</code>时，表示裁剪了2000的区域，即裁剪<code>20%</code>。</p>
 </li>
 </ul>
-<p> <strong><font size="4">使用场景</font></strong> </p>
-<ul>
-<li><p>同一 App 内部的不同组件之间的消息通信（单个进程）；</p>
-</li>
-<li><p>不同 App 之间的组件之间消息通信；</p>
-</li>
-<li><p>Android系统在特定情况下与App之间的消息通信，如：网络变化、电池电量、屏幕开关等；</p>
-</li>
-</ul>
-<h1 id="广播的两种注册方式的区别"><a href="#广播的两种注册方式的区别" class="headerlink" title="广播的两种注册方式的区别"></a>广播的两种注册方式的区别</h1><ul>
-<li><p>静态注册</p>
-<p>常驻系统，不受组件生命周期影响，即便应用退出，广播还是可以被接收，耗电、占内存。</p>
-</li>
-<li><p>动态注册</p>
-<p>非常驻，跟随组件的生命变化，组件结束，广播结束。在组件结束前，需要先移除广播，否则容易造 成内存泄漏。</p>
-</li>
-</ul>
+<h1 id="自定义Drawable"><a href="#自定义Drawable" class="headerlink" title="自定义Drawable"></a>自定义<code>Drawable</code></h1><p><code>Drawable</code>的使用场景很少，通常用在<code>View</code>的背景和作为<code>ImageView</code>中的图片两个场景。</p>
+<p>由于自定义的<code>Drawable</code>无法在<code>XML</code>中使用，但是我们可以有其他轻便的方法来自定义<code>Drawable</code>。</p>
+<p>通过<code>View</code>的工作原理可以知道，系统通过<code>Drawable</code>的<code>draw</code>方法来绘制<code>View</code>的背景，所以我们可以继承<code>Drawable</code>并重写<code>Drawable</code>的<code>draw</code>方法来实现自定义<code>Drawable</code>。</p>
 
                 
               </div>
@@ -354,16 +362,6 @@
       </span>
     
   
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86-2022/" class="category-chain-item">面试整理-2022</a>
-  
-  
-
-      </span>
-    
-  
 </span>
 
     </div>
@@ -372,7 +370,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/BroadcastReceiver/">#BroadcastReceiver</a>
+        <a href="/tags/Drawable/">#Drawable</a>
       
     </div>
   
@@ -384,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Android面试整理 - BroadcastReceiver</div>
-      <div>https://luoyuy.top/posts/90a21a97c0cb/</div>
+      <div>Drawable 解析</div>
+      <div>https://luoyuy.top/posts/1fa2d3c662e5/</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年5月24日</div>
+          <div>2022年4月16日</div>
         </div>
       
       
@@ -429,9 +427,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/d479c1bb49e9/" title="Android面试整理 - JVM">
+                      <a href="/posts/89ece43bd0a9/" title="Android 动画深入分析">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Android面试整理 - JVM</span>
+                        <span class="hidden-mobile">Android 动画深入分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -439,8 +437,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/7e2101c01592/" title="Android面试整理 - View 事件分发">
-                        <span class="hidden-mobile">Android面试整理 - View 事件分发</span>
+                      <a href="/posts/03160a3be19b/" title="ThreadLocal 解析 [转载]">
+                        <span class="hidden-mobile">ThreadLocal 解析 [转载]</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
