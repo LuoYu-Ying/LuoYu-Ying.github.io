@@ -16,24 +16,25 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Kotlin 中函数嵌套的使用方法、使用场景以及尾递归的优化。">
+    <meta name="description" content="登录和授权的区别以及两种使用方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin 函数嵌套">
-<meta property="og:url" content="https://luoyuy.top/posts/47063eb1b5ed/index.html">
+<meta property="og:title" content="计算机网络-登录和授权">
+<meta property="og:url" content="https://luoyuy.top/posts/8dd7eb707626/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="Kotlin 中函数嵌套的使用方法、使用场景以及尾递归的优化。">
+<meta property="og:description" content="登录和授权的区别以及两种使用方式">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E5%87%BD%E6%95%B0%E5%B5%8C%E5%A5%97.png">
-<meta property="article:published_time" content="2022-07-09T15:24:11.000Z">
-<meta property="article:modified_time" content="2023-01-12T13:24:02.760Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E7%99%BB%E5%BD%95%E5%92%8C%E6%8E%88%E6%9D%83.png">
+<meta property="article:published_time" content="2022-12-26T10:31:50.000Z">
+<meta property="article:modified_time" content="2023-01-07T14:26:40.600Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="OAuth2">
+<meta property="article:tag" content="Cookie">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-kotlin-%E5%87%BD%E6%95%B0%E5%B5%8C%E5%A5%97.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E7%99%BB%E5%BD%95%E5%92%8C%E6%8E%88%E6%9D%83.png">
   
   
   
-  <title>Kotlin 函数嵌套 - 洛语 の Blog</title>
+  <title>计算机网络-登录和授权 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Kotlin 函数嵌套"></span>
+            <span id="subtitle" data-typed-text="计算机网络-登录和授权"></span>
           
         </div>
 
@@ -222,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-09 23:24" pubdate>
-          2022年7月9日 晚上
+        <time datetime="2022-12-26 18:31" pubdate>
+          2022年12月26日 晚上
         </time>
       </span>
     
@@ -234,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          3.7k 字
         
       </span>
     
@@ -245,7 +246,7 @@
         
         
         
-          16 分钟
+          31 分钟
         
       </span>
     
@@ -283,66 +284,130 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Kotlin 函数嵌套</h1>
+            <h1 style="display: none">计算机网络-登录和授权</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>本文参考自：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/100103401">朱涛 · Kotlin 编程第一课 (geekbang.org)</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Anker/archive/2013/03/04/2943498.html">递归与尾递归总结 - Rabbit_Dale - 博客园 (cnblogs.com)</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zsp765098084/article/details/90901260">kotlin学习笔记之尾递归优化（tailrec）_mictoy_朱的博客-CSDN博客_kotlin tailrec</a></li>
+                <h1 id="登录和授权的区别"><a href="#登录和授权的区别" class="headerlink" title="登录和授权的区别"></a><font size = 5><b>登录和授权的区别</b></font></h1><ul>
+<li>登录：身份认证，即确认「你是你」的过程。 </li>
+<li>授权：由身份或持有的令牌确认享有某些权限（例如获取用户信息）。而登录过程实质上的⽬的也是为了确认权限。</li>
 </ul>
-</blockquote>
 <hr>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>在 <code>Kotlin</code> 中，我们可以在函数的代码块中创建另一个新的函数并使用该函数。并且该函数可以使用外部函数的变量。</p>
-<p>如下方的代码；</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">outerMethod</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span><br>    <br>    <span class="hljs-comment">// 计算 1 + 2 + 3 + ...</span><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">innerMethod</span><span class="hljs-params">(c: <span class="hljs-type">Int</span> = <span class="hljs-number">10</span>)</span></span> &#123;<br>        sum += c<br>        <span class="hljs-keyword">if</span> (c &gt; <span class="hljs-number">0</span>)<br>        	innerMethod(c - <span class="hljs-number">1</span>)<br>    &#125;  <br>    <br>    innerMethod()<br>  	println(sum)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    outerMethod()<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>函数嵌套在工程中应尽量少的使用，容易造成代码可读性的降低。</p>
-<p>但是在两种情况下可以创建内部函数：</p>
-<ol>
-<li>在某些情况下需要临时使用 <strong>递归</strong> 函数，如上文中的代码。</li>
-<li>不希望被外部函数访问到的函数。</li>
-</ol>
-<hr>
-<h1 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h1><p>实际上，在函数式编程当中，我们有时候也会使用递归来替代循环。</p>
-<p>我们知道，递归都是有调用栈开销的，所以我们应该尽量使用 <strong>尾递归</strong>。对于这种类型的递归，在经过栈复用优化以后，它的开销就可以忽略不计了，我们可以认为它的空间复杂度是 O(1)。</p>
-<blockquote>
-<p>  尾递归就是从最后开始计算，每递归一次就算出相应的结果，也就是说, 函数调用出现在调用者函数的尾部，因为是尾部，所以根本没有必要去保存任何局部变量，直接让被调用的函数返回时越过调用者，返回到调用者的调用者去。</p>
-<p>  <strong>尾递归就是把当前的运算结果（或路径）放在参数里传给下层函数</strong>，深层函数所面对的不是越来越简单的问题，而是越来越复杂的问题，因为参数里带有前面若干步的运算路径。</p>
-<p>  尾递归是极其重要的，不用尾递归，函数的堆栈耗用难以估量，需要保存很多中间函数的堆栈。</p>
-</blockquote>
-<h2 id="尾递归的特点"><a href="#尾递归的特点" class="headerlink" title="尾递归的特点"></a>尾递归的特点</h2><ul>
-<li>递归的一种特殊形式</li>
-<li>调用自身后无其他操作</li>
-<li><code>tailrec</code> 关键字提示编译器尾递归优化</li>
+<h1 id="登录和授权的两种方式"><a href="#登录和授权的两种方式" class="headerlink" title="登录和授权的两种方式"></a><font size = 5><b>登录和授权的两种方式</b></font></h1><ul>
+<li><code>Cookie Header</code></li>
+<li><code>Authorization Header</code></li>
 </ul>
-<p>示例代码：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">data</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-keyword">val</span> value: <span class="hljs-built_in">Int</span>, <span class="hljs-keyword">var</span> next: ListNode? = <span class="hljs-literal">null</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">findListNode</span><span class="hljs-params">(head: <span class="hljs-type">ListNode</span>?, value: <span class="hljs-type">Int</span>)</span></span>: ListNode? &#123; <span class="hljs-comment">// 定义一个递归函数</span><br>    head ?: <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (head.value == value) <span class="hljs-keyword">return</span> head<br>    <span class="hljs-keyword">return</span> findListNode(head.next, value) <span class="hljs-comment">// return 除了调用自己，没有多余的操作，所以是尾递归</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="尾递归优化的使用"><a href="#尾递归优化的使用" class="headerlink" title="尾递归优化的使用"></a>尾递归优化的使用</h2><p>在 <code>Kotlin</code> 语言中，我们即使写出了符合尾递归的递归函数，编译器也不会自动帮我们进行优化。</p>
-<p>我们需要在 <code>fun</code> 关键字前面加上 <code>tailrec</code> 关键字以表示我们需要进行尾递归优化。</p>
-<p>示例代码1：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">data</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-keyword">val</span> value: <span class="hljs-built_in">Int</span>, <span class="hljs-keyword">var</span> next: ListNode? = <span class="hljs-literal">null</span>)<br><br><span class="hljs-keyword">tailrec</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">findListNode</span><span class="hljs-params">(head: <span class="hljs-type">ListNode</span>?, value: <span class="hljs-type">Int</span>)</span></span>: ListNode? &#123; <span class="hljs-comment">// 定义一个递归函数</span><br>    head ?: <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (head.value == value) <span class="hljs-keyword">return</span> head<br>    <span class="hljs-keyword">return</span> findListNode(head.next, value) <span class="hljs-comment">// return 除了调用自己，没有多余的操作，所以是尾递归</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>示例代码2：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">recursionLoop</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Int</span> &#123;<br><span class="hljs-comment">// 变化在这里</span><br><span class="hljs-comment">//     ↓</span><br>    <span class="hljs-keyword">tailrec</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">go</span><span class="hljs-params">(i: <span class="hljs-type">Int</span>, sum: <span class="hljs-type">Int</span>)</span></span>: <span class="hljs-built_in">Int</span> =<br>        <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">10</span>) sum <span class="hljs-keyword">else</span> go(i + <span class="hljs-number">1</span>, sum + i)<br><br>    <span class="hljs-keyword">return</span> go(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="尾递归优化的实质"><a href="#尾递归优化的实质" class="headerlink" title="尾递归优化的实质"></a>尾递归优化的实质</h2><p>通过对上文中的 <code>findListNode</code> 方法对 <strong>加了 <code>tailrec</code> 关键字</strong> 与 <strong>去除 <code>tailrec</code> 关键字</strong> 的两份代码分别进行反编译，我们发现：</p>
+<hr>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a><code>Cookie</code></h1><blockquote>
 <ul>
-<li><p>没有优化的 <code>findListNode</code> 对应的 <code>Java</code> 代码依然是递归函数，并且递归运行次数较大时出现了 <code>StackOverflowError</code> 错误；</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135701617.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 90%;" />
-
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135611929.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:87%;" />
+<li><p>可以把任何服务器希望存在用户本地的数据都存在用户本地。</p>
 </li>
-<li><p>优化后（即添加了 <code>tailrec</code> 关键字）的 <code>findListNode</code> 方法对应的 <code>Java</code> 代码已经不再是递归函数，而是通过循环来实现功能，这样就不会再出现 <code>stackoverflowerror</code> 了。</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/20190605135710491.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:90%;" /></li>
+<li><p>可以认为是浏览器的缓存。</p>
+</li>
+<li><p>是一个 <code>Header</code>，也是一种信息存储机制。</p>
+</li>
+<li><p>同一个服务器可以用多个 <code>Cookie</code>，只要每个 <code>Cookie</code> 的名字不一样就行了。</p>
+</li>
 </ul>
-<p>这样我们就在 <code>Kotlin</code> 中既实现了递归函数代码简洁的优势，又规避了在 <code>Java</code> 中使用递归函数容易出出现的问题。</p>
+</blockquote>
+<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><ol>
+<li><p>服务器需要客户端保存的内容，放在 <code>Set-Cookie</code> headers 里返回，客户端会<strong>自动</strong>保存。</p>
+</li>
+<li><p>客户端保存的 Cookies，会在之后的所有请求里都 <strong>自动</strong> 携带进 <code>Cookie</code> header 里发回给服务器。</p>
+</li>
+<li><p>客户端保存 <code>Cookie</code> 是按照 <strong>服务器域名</strong> 来分类的，例如 shop.com 发回的 <code>Cookie</code> 保存下来以后，在之后向 games.com 的请求中并不会携带。</p>
+</li>
+<li><p>客户端保存的 <code>Cookie</code> 在超时后会被删除、没有设置超时时间的 <code>Cookie</code> （称作 <code>Session Cookie</code>）在浏览器关闭后就会自动删除；另外，服务器也可以主动删除还未过期的客户端 Cookies。</p>
+</li>
+</ol>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>出现 <code>Cookie</code> 的时候还没有 <code>JavaScript</code> 语言，所以不能对 <code>Cookie</code> 进行浏览器本地计算，必须要将 <code>Cookie</code> 传到服务器处理。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
+<li><p>会话管理：登录状态、购物车等</p>
+<p>移动开发通常也只将 Cookie 用于登录状态管理，且现在也越来越少的进行使用了。</p>
+<blockquote>
+<p>  <strong>使用 <code>Cookie</code> 管理登录状态</strong></p>
+<p>  客户端向服务器发送用户名和密码后，当服务器验证用户登录成功后，会通过 <code>Set-Cookie</code> 向客户端传输一个 <code>SessionId</code> 的字段。<code>SessionId</code> 可以是记录了用户此次登录的会话编号。</p>
+<p>  此后客户端每次发送请求的时候通过携带该 <code>Cookie</code> 便可将 <code>HTTP</code> 从无状态变为有状态。</p>
+<p>  当服务器从数据库中发现存在一样的 <code>SessionId</code> 后，便可确认用户的身份信息了。</p>
+</blockquote>
+</li>
+<li><p>个性化：用户篇好、主题等</p>
+<p>如果由服务器网页有多个主题以及其他个性化内容的话，可以通过存储 <code>client_id</code> 等相似字段记录用户的选择，从而记录并显示用户的偏好。</p>
+</li>
+<li><p>Tracking：分析用户行为，追踪用户行为。</p>
+<p>通过记录用户访问的网站信息或者其他信息，可以更加方便得向用户推广广告。</p>
+</li>
+</ol>
+<h2 id="XSS-Cross-site-scripting"><a href="#XSS-Cross-site-scripting" class="headerlink" title="XSS(Cross-site scripting)"></a><code>XSS(Cross-site scripting)</code></h2><p><strong>跨站脚本攻击。</strong>通过 <code>JavaScript</code> 获取客户端浏览器中的 <code>Cookie</code> 并利用其中的信息，如网站登录信息等。</p>
+<p>可以通过 <code>HttpOnly</code> 进行防护，作用是让 <code>Cookie</code> 只能用于发送请求时自动携带，而无法通过 <code>JavaScript</code> 主动获取。添加方法形如 <code>Set-Cookie:session_id=123;HttpOnly</code> 即可。</p>
+<h2 id="XSRF-Cross-site-request-forgery"><a href="#XSRF-Cross-site-request-forgery" class="headerlink" title="XSRF(Cross-site request forgery)"></a><code>XSRF(Cross-site request forgery)</code></h2><p><strong>跨站请求伪造。</strong>在用户不知情的情况下访问了一个用户保存了 <code>Cookie</code> 的网站，以此来进行一些越权操作。</p>
+<p>例如，私自访问用户保存了 <code>Cookie</code> 的银行网站并通过添加 <code>url</code> 参数来进行转账操作等等。</p>
+<p>可以通过 <code>Referer</code> 校验解决，通过在发送请求的时候 <strong>自动且强制</strong> 在 Header 中添加 <code>Referer</code> 参数，参数保存了从哪一个网址跳转进入了该网址。服务器只需要校验 <code>Referer</code> 参数是否在白名单中即可保证访问安全。</p>
+<hr>
+<h1 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a><code>Authorization</code></h1><blockquote>
+<p>  目前较 <code>Cookie</code> 更加流行。</p>
+</blockquote>
+<p><font size = 5><b>两种用法</b></font></p>
+<h2 id="Basic-token"><a href="#Basic-token" class="headerlink" title="Basic token"></a><code>Basic token</code></h2><p>格式：<code>Authorization: Basic &lt;username:password(Base64ed)&gt;</code>。其中，<code>&lt;username:password(Base64ed)&gt;</code> 部分是将 <code>username:password</code> 格式的字符串进行 <code>Base64</code> 处理后重新替换到 <code>Basic</code> 后面。</p>
+<p>服务器对 token 进行校验，如果校验通过，那么授权验证通过，客户端就可以获取到用户信息。如果数据不对，那么就获取不到用户信息，服务器对报 401 错误，即权限不足。</p>
+<h2 id="Bearer-token"><a href="#Bearer-token" class="headerlink" title="Bearer token"></a><code>Bearer token</code></h2><blockquote>
+<p>  Bearer : n. 拿着的人，持票人</p>
+</blockquote>
+<p>格式：<code>Authorization: Bearer &lt;bearer token&gt;</code>。<code>&lt;bearer token&gt;</code> 是授权方发给我们的 <code>access token</code>。</p>
+<h3 id="access-token-获取方法"><a href="#access-token-获取方法" class="headerlink" title="access token 获取方法"></a><code>access token</code> 获取方法</h3><h4 id="OAuth2-流程"><a href="#OAuth2-流程" class="headerlink" title="OAuth2 流程"></a><code>OAuth2</code> 流程</h4><ol start="0">
+<li><p>第三方网站向授权方网站申请第三方授权合作，拿到 <code>client_id</code> 和 <code>client_secret</code></p>
+<blockquote>
+<p>  <code>client_id</code>：申请授权的 app 的 id。</p>
+<p>  <code>client_secret</code>：需要严格保密，保存在第三方网站服务器中，作为密码的作用，证明是第三方网站自己申请的授权。</p>
+</blockquote>
+</li>
+<li><p>用户在使用第三方网站时，点击「通过 XX (如 <code>GitHub</code>) 授权」按钮，第三方网站将页面跳转到授权方网站，并传入 <code>client_id</code> 作为自己的身份标识。</p>
+</li>
+<li><p>授权方网站根据  <code>client_id</code>  ，将第三方网站的信息和第三方网站需要的用户权限展示给用户，并询问用户是否同意授权</p>
+</li>
+<li><p>用户点击「同意授权」按钮后，授权方网站将页面跳转回第三方网站，并传入 <code>Authorization code</code> 作为用户认可的凭证。</p>
+</li>
+<li><p>第三方网站将 <code>Authorization code</code> 发送回自己的服务器。</p>
+</li>
+<li><p>服务器将 <code>Authorization code</code> 和自己的 <code>client_secret</code> ⼀并发送给授权方的服务器，授权方服务器在验证通过后，返回 <code>access token</code>。OAuth 流程结束。</p>
+</li>
+<li><p>在上面的过程结束之后，第三方网站的服务器（或者有时客户端也会）就可以使用 <code>access token</code> 作为用户授权的令牌，通过 <code>Authorization: Bearer &lt;access token&gt;</code> 向授权方网站发送请求来获取用户信息或操作用户账户。但这已经在 OAuth 流程之外。</p>
+</li>
+</ol>
+<blockquote>
+<p>  为什么 <code>OAuth</code> 要引入 <code>Authorization code</code>，并需要申请授权的第三方将 <code>Authorization code</code> 发送回自己的服务器，再从服务器来获取 <code>access token</code>， 而不是直接返回 <code>access token</code> ？这样复杂的流程意义何在？ </p>
+<p>  为了安全。<code>OAuth</code> 不强制授权流程必须使用 <code>HTTPS</code>，因此需要保证当通信路径中存在窃听者时，依然具有足够高的安全性。</p>
+</blockquote>
+<h4 id="微信登录流程"><a href="#微信登录流程" class="headerlink" title="微信登录流程"></a>微信登录流程</h4><p>第三方 App 通过微信登录的流程，也是一个 <code>OAuth2</code> 流程：</p>
+<ol start="0">
+<li>第三方 App 向腾讯申请第三方授权合作，拿到 <code>client_id</code> 和 <code>client_secret</code></li>
+<li>用户在使用第三方 App 时，点击「通过微信登录」，第三方 App 将使用微信 SDK 跳转到微信，并传入自己的 <code>client_id</code> 作为自己的身份标识</li>
+<li>微信通过和服务器交互，拿到第三方 App 的信息，并显示在界面中，然后询问用户是否同意授权该 App 使用微信来登录。</li>
+<li>用户点击「使用微信登录」后，微信和服务器交互将授权信息提交，然后跳转回第三方 App，并传入 <code>Authorization code</code> 作为用户认可的凭证。</li>
+<li>第三方 App 调用自己服务器的「微信登录」API，并传入 <code>Authorization code</code>，然后等待服务器的响应。</li>
+<li>服务器在收到登录请求后，拿收到的 <code>Authorization code</code> 去向微信的第三方授权接口发送请求，将 <code>Authorization code</code> 和自己的 <code>client_secret</code> 一起作为参数发送，微信在验证通过后，返回 <code>access token</code>。</li>
+<li>服务器在收到 <code>access token</code> 后，立即拿着 <code>access token</code> 去向微信的用户信息接口发送请求，微信验证通过后，返回用户信息。</li>
+<li>服务器在收到用户信息后，在自己的数据库中为用户创建一个账户，并使用从微信服务器拿来的用户信息填入自己的数据库，以及将用户的 ID 和用户的微信 ID 做关联。</li>
+<li>用户创建完成后，服务器向客户端的请求发送响应，传送回刚创建好的用户信息。</li>
+<li>客户端收到服务器响应，用户登录成功。</li>
+</ol>
+<h4 id="在自家-App-中使用-Bearer-token-登录"><a href="#在自家-App-中使用-Bearer-token-登录" class="headerlink" title="在自家 App 中使用 Bearer token 登录"></a>在自家 App 中使用 <code>Bearer token</code> 登录</h4><p>有的 App 会在 API 的设计中，将登录和授权设计成类似 OAuth2 的过程，但简化掉 <code>Authorization code</code> 概念。</p>
+<p>即：登录接口请求成功时，会直接返回 <code>access token</code>，然后客户端在之后的请求中，就可以使用这个 <code>access token</code> 来当做 <code>bearer token</code> 进行用户操作了。</p>
+<blockquote>
+<p>  <strong>Refresh token</strong></p>
+  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>   <span class="hljs-attr">&quot;token_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Bearer&quot;</span><span class="hljs-punctuation">,</span><br>   <span class="hljs-attr">&quot;access_token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxx&quot;</span><span class="hljs-punctuation">,</span><br>   <span class="hljs-attr">&quot;refresh_token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxx&quot;</span><span class="hljs-punctuation">,</span><br>   <span class="hljs-attr">&quot;expires_time&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxx&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>  用法：</p>
+<ul>
+<li><code>access token</code> 有失效时间，在它失效后，调⽤ <code>refresh_token</code> 接口，传入 <code>refresh_token</code> 来获取新的 <code>access token</code>。</li>
+</ul>
+<p>  目的：</p>
+<ul>
+<li>安全。当 <code>access token</code> 失窃，由于它有失效时间，因此坏人只有较短的时间来「做坏事」。</li>
+<li>同时，由于（在标准的 <code>OAuth2</code> 流程中）<code>refresh token</code> 永远只存在与第三方服务的服务器中，因此 <code>refresh token</code> 几乎没有失窃的风险。</li>
+</ul>
+</blockquote>
 
                 
               </div>
@@ -361,7 +426,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Kotlin/" class="category-chain-item">Kotlin</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
   
   
 
@@ -376,7 +441,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Kotlin/">#Kotlin</a>
+        <a href="/tags/OAuth2/">#OAuth2</a>
+      
+        <a href="/tags/Cookie/">#Cookie</a>
       
     </div>
   
@@ -388,8 +455,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Kotlin 函数嵌套</div>
-      <div>https://luoyuy.top/posts/47063eb1b5ed/</div>
+      <div>计算机网络-登录和授权</div>
+      <div>https://luoyuy.top/posts/8dd7eb707626/</div>
     </div>
     <div class="license-meta">
       
@@ -401,7 +468,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月9日</div>
+          <div>2022年12月26日</div>
         </div>
       
       
@@ -433,9 +500,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/c3ce2acc1b27/" title="AutoHotkey v1 问题解决记录">
+                      <a href="/posts/92834ef31539/" title="计算机网络-TCP/IP协议族">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AutoHotkey v1 问题解决记录</span>
+                        <span class="hidden-mobile">计算机网络-TCP/IP协议族</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -443,8 +510,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/8aab3d7fde77/" title="Kotlin 类的创建与继承">
-                        <span class="hidden-mobile">Kotlin 类的创建与继承</span>
+                      <a href="/posts/ea887c778efc/" title="计算机网络-HTTPS">
+                        <span class="hidden-mobile">计算机网络-HTTPS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
