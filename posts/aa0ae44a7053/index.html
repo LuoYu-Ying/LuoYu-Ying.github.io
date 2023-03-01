@@ -16,16 +16,16 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="《汇编语言：基于x86处理器（原书第7版）》第八章学习笔记">
+    <meta name="description" content="《汇编语言：基于x86处理器（原书第7版）》第六章学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汇编语言:基于x86处理器-学习笔记-第八章">
-<meta property="og:url" content="https://luoyuy.top/posts/cecb127ec7d7/index.html">
+<meta property="og:title" content="汇编语言:基于x86处理器-学习笔记-第六章">
+<meta property="og:url" content="https://luoyuy.top/posts/aa0ae44a7053/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第八章学习笔记">
+<meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第六章学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-asm.png">
-<meta property="article:published_time" content="2023-01-03T06:44:15.000Z">
-<meta property="article:modified_time" content="2023-01-16T04:20:35.050Z">
+<meta property="article:published_time" content="2023-01-02T06:36:16.000Z">
+<meta property="article:modified_time" content="2023-01-06T07:28:22.837Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
   
   
   
-  <title>汇编语言:基于x86处理器-学习笔记-第八章 - 洛语 の Blog</title>
+  <title>汇编语言:基于x86处理器-学习笔记-第六章 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="汇编语言:基于x86处理器-学习笔记-第八章"></span>
+            <span id="subtitle" data-typed-text="汇编语言:基于x86处理器-学习笔记-第六章"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-03 14:44" pubdate>
-          2023年1月3日 下午
+        <time datetime="2023-01-02 14:36" pubdate>
+          2023年1月2日 下午
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          2.7k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          15 分钟
+          23 分钟
         
       </span>
     
@@ -283,64 +283,131 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">汇编语言:基于x86处理器-学习笔记-第八章</h1>
+            <h1 style="display: none">汇编语言:基于x86处理器-学习笔记-第六章</h1>
             
             
               <div class="markdown-body">
                 
-                <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第八章学习笔记</b></font></center><br>
+                <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第六章学习笔记</b></font></center><br>
 
 <span id="more"></span>
 
-<h1 id="堆栈帧"><a href="#堆栈帧" class="headerlink" title="堆栈帧"></a>堆栈帧</h1><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》 Page 227</p>
+<h1 id="布尔和比较指令"><a href="#布尔和比较指令" class="headerlink" title="布尔和比较指令"></a>布尔和比较指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 148</p>
 </blockquote>
-<p>堆栈帧 (stack frame)（或活动记录 (activation record)）是一块堆栈保留区域，用于存放<strong>被传递的实际参数</strong>、<strong>子程序的返回值</strong>、<strong>局部变量</strong>以及<strong>被保存的寄存器</strong>。堆栈帧的创建步骤如下所示：</p>
-<ol>
-<li>被传递的实际参数。如果有，则压入堆栈。</li>
-<li>当子程序被调用时，使该子程序的返回值压入堆栈。</li>
-<li>子程序开始执行时，EBP 被压入堆栈。</li>
-<li>设置 EBP 等于 ESP。从这时开始，EBP 就变成了该子程序所有参数的引用基址。</li>
-<li>如果有局部变量，修改 ESP 以便在堆栈中为这些变量预留空间。</li>
-<li>如果需要保存寄存器，就将它们压入堆栈。</li>
-</ol>
-<blockquote>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102144806527.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102144839025.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<h2 id="CPU的状态标志"><a href="#CPU的状态标志" class="headerlink" title="CPU的状态标志"></a>CPU的状态标志</h2><p>布尔指令影响零标志、进位标志、符号标志、溢出标志和奇偶标志。</p>
 <ul>
-<li><code>ESP</code> 用于寻址堆栈（一种系统内存结构）数据。它极少用于一般算术运算和数据传输，通常被称为扩展堆栈指针 (extended stack pointer) 寄存器。</li>
-<li>高级语言通过 <code>EBP</code> 来引用堆栈中的函数参数和局部变量。除了高级编程，它不用于一般算术运算和数据传输。它常常被称为扩展帧指针 (extended frame pointer) 寄存器。</li>
+<li>操作结果等于 0 时，零标志位置 1。</li>
+<li>操作使得目标操作数的最高位有进位时，进位标志位置 1。</li>
+<li>符号标志位是目标操作数高位的副本，如果标志位置 1，表示是负数；标志位清 0，表示是正数。(假设 0 为正)</li>
+<li>指令产生的结果超出了有符号目的操作数范围时，溢出标志位置 1。</li>
+<li>指令使得目标操作数低字节中有偶数个 1 时，奇偶标志位置 1。</li>
 </ul>
+<h2 id="AND-指令"><a href="#AND-指令" class="headerlink" title="AND 指令"></a>AND 指令</h2><p>AND 指令在两个操作数的对应位之间进行（按位）逻辑与 (AND) 操作，<strong>并将结果存放在目标操作数中</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">AND dest, source<br></code></pre></td></tr></table></figure>
+
+<p>下列是被允许的操作数组合，但是<strong>立即操作数不能超过 32 位</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs assembly">AND reg, reg<br>AND reg, mem<br>AND reg, imm<br>AND mem, reg<br>AND mem, imm<br></code></pre></td></tr></table></figure>
+
+<p>AND 指令总是<strong>清除溢出和进位标志位</strong>，并根据目标操作数的值来修改符号标志位、零标志位和奇偶标志位。</p>
+<h2 id="OR-指令"><a href="#OR-指令" class="headerlink" title="OR 指令"></a>OR 指令</h2><p>OR指令在两个操作数的对应位之间进行（按位）逻辑或 (OR) 操作，并将结果存放在目标操作数中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">OR dest, source<br></code></pre></td></tr></table></figure>
+
+<p>操作数组合与 AND 指令相同。</p>
+<p>OR 指令总是<strong>清除溢出标志和进位标志</strong>。它根据目的操作数的值修改符号标志、零标志、奇偶标志。</p>
+<h2 id="XOR-指令"><a href="#XOR-指令" class="headerlink" title="XOR 指令"></a>XOR 指令</h2><p>指令在每对操作数的对应数据之间执行异或 (XOR) 操作，格式与 AND 指令相同。</p>
+<p>XOR 指令总是<strong>清除溢出标志和进位标志</strong>，它依据目的操作数的值修改符号标志、零标志和奇偶标志。</p>
+<h2 id="NOT-指令"><a href="#NOT-指令" class="headerlink" title="NOT 指令"></a>NOT 指令</h2><p>NOT 指令将一个操作数中的所有数据位取反，得到的结果成为该操作数的反码。该指令允许下面的操作数据类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">NOT reg<br>NOT mem<br></code></pre></td></tr></table></figure>
+
+<p><strong>NOT 指令不影响任何状态标志。</strong></p>
+<h2 id="TEST-指令"><a href="#TEST-指令" class="headerlink" title="TEST 指令"></a>TEST 指令</h2><p>TEST 指令在两个操作数的对应数据位之间执行隐式的 AND 操作，并相应设置标志位。</p>
+<p>TEST 指令和 AND 指令之间的<strong>唯一区别</strong>在于 TEST 指令<strong>不会修改目的操作数</strong>。</p>
+<p>TEST 指令的操作数格式与 AND 相同。</p>
+<p>该指令在测试操作数某些位是否被设置时特别有用。</p>
+<p>TEST 指令总是<strong>清除溢出和进位标志位</strong>，其修改符号标志位、零标志位和奇偶标志位的方法与 AND 指令相同。</p>
+<p>从下面的数据集例子中，可以推断只有当所有测试位都清 0 时,零标志位才置 1（本例中的0000 1001称为位掩码。）：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154417565.png" srcset="/img/loading.gif" lazyload alt="image" style="zoom:85%;" />
+
+<h2 id="CMP-指令"><a href="#CMP-指令" class="headerlink" title="CMP 指令"></a>CMP 指令</h2><p>CMP（比较）指令执行<strong>从目的操作数中减去源操作数</strong>的隐含减法操作，并且不修改任何操作数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">CMP dest, source<br></code></pre></td></tr></table></figure>
+
+<p>当实际的减法发生时，CMP指令按照计算结果修改溢出、符号、零、进位、辅助进位和奇偶标志位。</p>
+<p>如果比较的是两个<strong>无符号数</strong>，则零标志位和进位标志位表示的两个操作数之间的关系如下图所示：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154711457.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<p>如果比较的是两个<strong>有符号数</strong>，则符号标志位、零标志位和溢出标志位表示的两个操作数之间的关系如下图所示：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154729952.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<p>CMP 指令是创建条件逻辑结构的有效工具。<strong>IF 语句在汇编语言中等价于在 CMP 指令后跟一条条件跳转指令。</strong></p>
+<h2 id="设置和清除单个-CPU-状态标志"><a href="#设置和清除单个-CPU-状态标志" class="headerlink" title="设置和清除单个 CPU 状态标志"></a>设置和清除单个 CPU 状态标志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs assembly">test al, 0     ; 零标志位置 1<br>and  al, 0     ; 零标志位置 1<br>or   al, 1     ; 零标志位清零<br><br>or   al, 80h   ; 符号标志位置 1<br>and  al, 7Fh   ; 符号标志位清零<br><br>stc            ; 进位标志位置 1<br>clc            ; 进位标志位清零<br><br>mov  al, 7Fh   ; AL = +127<br>inc  al        ; AL = 80h (-128), OF = 1, 溢出标志位置 1<br><br>or   eax, 0    ; 溢出标志位清零<br></code></pre></td></tr></table></figure>
+
+<h2 id="习题整理"><a href="#习题整理" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
+<hr>
+<p>  下列语句中，有语法错误的是：（C）<br>  A. mov eax, arrayD[esi*4]<br>  B. popfd<br>  C. cmp val1, val2<br>  D. rep stosb</p>
 </blockquote>
-<p>程序内存模式和对参数传递规则的选择直接影响到堆栈帧的结构。</p>
-<p>学习用堆栈传递参数有个好理由：几乎所有的高级语言都会用到它们。比如如果想要在 32 位 Windows 应用程序接口（API）中调用函数，就必须用堆栈传递参数。而 64 位程序可以使用另一种不同的参数传递规则。</p>
-<h2 id="访问堆栈参数"><a href="#访问堆栈参数" class="headerlink" title="访问堆栈参数"></a>访问堆栈参数</h2><p>高级语言有多种方式来对函数调用的参数进行初始化和访问。以 C 和 C++ 语言为例，它们以保存 EBP 寄存器并使该寄存器指向栈顶的语句为开始 (prologue)。然后，根据实际情况，它们可以把某些寄存器入栈，以便在函数返回时恢复这些寄存器的值。在函数结尾 (epilogue) 部分，恢复 EBP 寄存器，并用 RET 指令返回调用者。</p>
-<h2 id="ENTER-指令"><a href="#ENTER-指令" class="headerlink" title="ENTER 指令"></a>ENTER 指令</h2><p>ENTER 指令为被调用过程自动创建堆栈帧。它为局部变量保留堆栈空间，把 EBP 入栈。具体来说，它执行三个操作：</p>
-<ul>
-<li>把 EBP 入栈（<code>push EBP</code>）</li>
-<li>把 EBP 设置为堆栈帧的基址（<code>mov EBP, ESP</code>）</li>
-<li>为局部变量保留空间（<code>sub ESP, numbytes</code>）</li>
-</ul>
-<p>ENTER有两个操作数：第一个是常数，定义为局部变量保存的堆栈空间字节数；第二个定义了过程的词法嵌套级。<br>$$<br>ENTER \space \space numbytes, \space nestinglevel<br>$$<br>这两个操作数都是立即数。Numbytes 总是向上舍入为 4 的倍数，以便 ESP 对齐双字边界。Nestinglevel 确定了从主调过程堆栈帧复制到当前帧的堆栈帧指针的个数。</p>
-<p><font size = 4><b>示例</b></font></p>
-<p>ENTER 指令为局部变量保留了 8 个字节的堆栈空间：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Assembly">MySub PROC<br>    enter 8, 0<br></code></pre></td></tr></table></figure>
+<p>CMP 指令两个操作数不能都为立即数。</p>
+<hr>
+<h1 id="条件跳转"><a href="#条件跳转" class="headerlink" title="条件跳转"></a>条件跳转</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 156</p>
+</blockquote>
+<h2 id="Jcond-指令"><a href="#Jcond-指令" class="headerlink" title="Jcond 指令"></a>J<i>cond</i> 指令</h2><p> 条件跳转指令在标志条件为真时分支跳转到新的目的标号处，如果条件标志为假，那么执行紧跟在跳转跳转指令之后的指令。格式如下：<br>$$<br>Jcond\space\space destination<br>$$<br> 格式中的 <em>cond</em> 指的是一个标志条件，用来表示一个或多个标志的状态。例如：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102163745683.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
 
-<p>它与如下指令等效：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Assembly">MySub PROC<br>    push  ebp<br>    mov   ebp, esp<br>    sub   esp, 8<br></code></pre></td></tr></table></figure>
+<p>CPU 状态标志位最常见的设置方法是通过算术运算、比较和布尔运算指令。条件跳转指令评估标志位状态，利用它们来决定是否发生跳转。</p>
+<p>限制：MASM 在默认情况下要求跳转的目的地址在当前的过程之内，为了突破这种限制，可以声明一个全局标号（标号后面跟 <code>::</code>）。</p>
+<h2 id="基于特定的标志值的跳转指令"><a href="#基于特定的标志值的跳转指令" class="headerlink" title="基于特定的标志值的跳转指令"></a>基于特定的标志值的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164214600.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 
-<p>下图为执行 ENTER 指令前后的堆栈示意图。</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230103180554430.png" srcset="/img/loading.gif" lazyload alt="" style="zoom: 67%;" />
+<h2 id="基于恒等性比较的跳转指令"><a href="#基于恒等性比较的跳转指令" class="headerlink" title="基于恒等性比较的跳转指令"></a>基于恒等性比较的跳转指令</h2><p>$$<br>CMP \space\space leftOp,\space rightOp<br>$$</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164334615.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 
-<h2 id="LEAVE-指令"><a href="#LEAVE-指令" class="headerlink" title="LEAVE 指令"></a>LEAVE 指令</h2><p>LEAVE 指令结束一个过程的堆栈帧。它反转了之前的 ENTER 指令操作：恢复了过程被调用时 ESP 和 EBP 的值。再次以 MySub 过程为例，现在可以编码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Assembly">MySub PROC<br>    enter 8,0<br>    .<br>    .<br>    leave<br>    ret<br>MySub ENDP<br></code></pre></td></tr></table></figure>
+<p>JE 指令和 JZ 指令是等价的，JNZ 指令和 JNE 指令是等价的。</p>
+<h2 id="基于无符号数比较的跳转指令"><a href="#基于无符号数比较的跳转指令" class="headerlink" title="基于无符号数比较的跳转指令"></a>基于无符号数比较的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164428457.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
 
-<p>下面是与之等效的指令序列，其功能是在堆栈中保存和删除 8 个字节的局部变量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Assembly">MySub PROC<br>    push  ebp<br>    mov   ebp, esp<br>    sub   esp, 8<br>    .<br>    .<br>    mov   esp, ebp<br>    pop   ebp<br>    ret<br>MySub ENDP<br></code></pre></td></tr></table></figure>
+<h2 id="基于有符号数比较的跳转指令"><a href="#基于有符号数比较的跳转指令" class="headerlink" title="基于有符号数比较的跳转指令"></a>基于有符号数比较的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164453778.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 
-<h2 id="LOCAL-指令"><a href="#LOCAL-指令" class="headerlink" title="LOCAL 指令"></a>LOCAL 指令</h2><p>不难想象，Microsoft 创建 LOCAL 伪指令是作为 ENTER 指令的高级替补。</p>
-<p>LOCAL 声明一个或多个变量名，并定义其大小属性。（另一方面，ENTER 则只为局部变量保留一块未命名的堆栈空间。）如果要使用 LOCAL 伪指令，它必须紧跟在 PROC 伪指令的后面。其语法如下所示：</p>
-<p>$$<br>LOCAL \space \space varlist<br>$$<br>$varlist$ 是变量定义列表，用逗号分隔表项，可选为跨越多行。每个变量定义采用如下格式：<br>$$<br>label: \space type<br>$$<br>其中，标号可以为任意有效标识符，类型既可以是标准类型（WORD、DWORD等），也可以是用户定义类型。</p>
-<p><font size = 4><b>示例</b></font></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Assembly">BubbleSort PROC<br>    LOCAL temp: DWORD, SwapFlag: BYTE<br></code></pre></td></tr></table></figure>
+<h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 160</p>
+</blockquote>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102192924734.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102193006278.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+
+
+<h2 id="习题整理-1"><a href="#习题整理-1" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
+<hr>
+<p>  条件转移指令中相等跳转的指令是：（C）<br>  A. JZ<br>  B. JNZ<br>  C. JE<br>  D. JNE</p>
+</blockquote>
+<p>JE 指令和 JZ 指令是等价的。</p>
+<hr>
+<h1 id="条件循环指令"><a href="#条件循环指令" class="headerlink" title="条件循环指令"></a>条件循环指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 163</p>
+</blockquote>
+<h2 id="LOOPZ-和-LOOPE-指令"><a href="#LOOPZ-和-LOOPE-指令" class="headerlink" title="LOOPZ 和 LOOPE 指令"></a>LOOPZ 和 LOOPE 指令</h2><p>ECX 大于 0，并且零标志位置 1 则循环。<br>$$<br>LOOPZ\space\space destination<br>$$</p>
+<p>$$<br>LOOPE\space\space destination<br>$$</p>
+<h2 id="LOOPNZ-和-LOOPNE-指令"><a href="#LOOPNZ-和-LOOPNE-指令" class="headerlink" title="LOOPNZ 和 LOOPNE 指令"></a>LOOPNZ 和 LOOPNE 指令</h2><p>ECX 大于 0，并且零标志位为 0 则循环。<br>$$<br>LOOPNZ\space\space distination<br>$$</p>
+<p>$$<br>LOOPNE\space\space distination<br>$$</p>
+<hr>
+<h1 id="条件结构"><a href="#条件结构" class="headerlink" title="条件结构"></a>条件结构</h1><h2 id="IF-语句"><a href="#IF-语句" class="headerlink" title="IF 语句"></a>IF 语句</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 165</p>
+</blockquote>
+<p>C++ 代码翻译为汇编代码示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">if</span> (op1 == op2)<br>&#123;<br>    X = <span class="hljs-number">1</span>;<br>    Y = <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs assembly">    mov eax, op1<br>    cmp eax, op2      ; op1 == op2 ?<br>    jne L1            ; False : Skip To L1<br>    mov X, 1          ; True : X = 1<br>    mov Y, 2          ; Y = 1<br>L1: .<br>    .<br></code></pre></td></tr></table></figure>
+
+<h2 id="WHILE-语句"><a href="#WHILE-语句" class="headerlink" title="WHILE 语句"></a>WHILE 语句</h2><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 168</p>
+</blockquote>
+<p>C++ 代码翻译为汇编代码示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">while</span> (val &lt; val2)<br>&#123;<br>    val1++;<br>    val2--;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs assembly">    mov eax, val1       ; eax = val1<br>beginWhile:<br>    cmp eax, val2       ; if not (val1 &lt; val2)<br>    jnl endWhile        ; 退出循环<br>    inc eax             ; val1++<br>    dec val2            ; val2--<br>    jmp beginWhile      ; 重复循环<br>endWhile:<br>    mov val1, eax       ; val1 = eax<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -387,8 +454,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>汇编语言:基于x86处理器-学习笔记-第八章</div>
-      <div>https://luoyuy.top/posts/cecb127ec7d7/</div>
+      <div>汇编语言:基于x86处理器-学习笔记-第六章</div>
+      <div>https://luoyuy.top/posts/aa0ae44a7053/</div>
     </div>
     <div class="license-meta">
       
@@ -400,7 +467,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月3日</div>
+          <div>2023年1月2日</div>
         </div>
       
       
@@ -432,9 +499,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/585ed55901e2/" title="Android 设计模式 - 策略模式">
+                      <a href="/posts/68212001d88c/" title="汇编语言:基于x86处理器-学习笔记-第七章">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Android 设计模式 - 策略模式</span>
+                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第七章</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -442,8 +509,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/3941df7fa3bf/" title="汇编语言:基于x86处理器-学习笔记-第七章">
-                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第七章</span>
+                      <a href="/posts/cdb2a0d3132b/" title="汇编语言:基于x86处理器-学习笔记-第五章">
+                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第五章</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

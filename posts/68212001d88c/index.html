@@ -16,16 +16,16 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="《汇编语言：基于x86处理器（原书第7版）》第六章学习笔记">
+    <meta name="description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汇编语言:基于x86处理器-学习笔记-第六章">
-<meta property="og:url" content="https://luoyuy.top/posts/049b6e9dd143/index.html">
+<meta property="og:title" content="汇编语言:基于x86处理器-学习笔记-第七章">
+<meta property="og:url" content="https://luoyuy.top/posts/68212001d88c/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第六章学习笔记">
+<meta property="og:description" content="《汇编语言：基于x86处理器（原书第7版）》第七章学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-asm.png">
-<meta property="article:published_time" content="2023-01-02T06:36:16.000Z">
-<meta property="article:modified_time" content="2023-01-06T07:28:22.837Z">
+<meta property="article:published_time" content="2023-01-02T12:49:54.000Z">
+<meta property="article:modified_time" content="2023-01-06T07:28:12.651Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
   
   
   
-  <title>汇编语言:基于x86处理器-学习笔记-第六章 - 洛语 の Blog</title>
+  <title>汇编语言:基于x86处理器-学习笔记-第七章 - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="汇编语言:基于x86处理器-学习笔记-第六章"></span>
+            <span id="subtitle" data-typed-text="汇编语言:基于x86处理器-学习笔记-第七章"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-02 14:36" pubdate>
-          2023年1月2日 下午
+        <time datetime="2023-01-02 20:49" pubdate>
+          2023年1月2日 晚上
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          3.1k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          23 分钟
+          27 分钟
         
       </span>
     
@@ -283,132 +283,133 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">汇编语言:基于x86处理器-学习笔记-第六章</h1>
+            <h1 style="display: none">汇编语言:基于x86处理器-学习笔记-第七章</h1>
             
             
               <div class="markdown-body">
                 
-                <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第六章学习笔记</b></font></center><br>
+                <center><font size = 5><b>《汇编语言：基于x86处理器（原书第7版）》<br>第七章学习笔记</b></font></center><br>
 
 <span id="more"></span>
 
-<h1 id="布尔和比较指令"><a href="#布尔和比较指令" class="headerlink" title="布尔和比较指令"></a>布尔和比较指令</h1><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 148</p>
+<h1 id="移位和循环移位指令"><a href="#移位和循环移位指令" class="headerlink" title="移位和循环移位指令"></a>移位和循环移位指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 192</p>
 </blockquote>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102144806527.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210528302.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
 
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102144839025.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
-
-<h2 id="CPU的状态标志"><a href="#CPU的状态标志" class="headerlink" title="CPU的状态标志"></a>CPU的状态标志</h2><p>布尔指令影响零标志、进位标志、符号标志、溢出标志和奇偶标志。</p>
+<p>移动操作数的位有两种方法。</p>
 <ul>
-<li>操作结果等于 0 时，零标志位置 1。</li>
-<li>操作使得目标操作数的最高位有进位时，进位标志位置 1。</li>
-<li>符号标志位是目标操作数高位的副本，如果标志位置 1，表示是负数；标志位清 0，表示是正数。(假设 0 为正)</li>
-<li>指令产生的结果超出了有符号目的操作数范围时，溢出标志位置 1。</li>
-<li>指令使得目标操作数低字节中有偶数个 1 时，奇偶标志位置 1。</li>
+<li>第一种是<strong>逻辑移位</strong> (logic shift)，<strong>空出来的位用 0 填充</strong>。如下图所示，一个字节的数据向右移动一位。也就是说，每一位都被移动到其旁边的低位上。</li>
 </ul>
-<h2 id="AND-指令"><a href="#AND-指令" class="headerlink" title="AND 指令"></a>AND 指令</h2><p>AND 指令在两个操作数的对应位之间进行（按位）逻辑与 (AND) 操作，<strong>并将结果存放在目标操作数中</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">AND dest, source<br></code></pre></td></tr></table></figure>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 
-<p>下列是被允许的操作数组合，但是<strong>立即操作数不能超过 32 位</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs assembly">AND reg, reg<br>AND reg, mem<br>AND reg, imm<br>AND mem, reg<br>AND mem, imm<br></code></pre></td></tr></table></figure>
+<ul>
+<li>另一种移位的方法是<strong>算术移位</strong> (arithmetic shift)，空出来的位用原数据的符号位填充。</li>
+</ul>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
-<p>AND 指令总是<strong>清除溢出和进位标志位</strong>，并根据目标操作数的值来修改符号标志位、零标志位和奇偶标志位。</p>
-<h2 id="OR-指令"><a href="#OR-指令" class="headerlink" title="OR 指令"></a>OR 指令</h2><p>OR指令在两个操作数的对应位之间进行（按位）逻辑或 (OR) 操作，并将结果存放在目标操作数中。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">OR dest, source<br></code></pre></td></tr></table></figure>
+<h2 id="SHL-指令"><a href="#SHL-指令" class="headerlink" title="SHL 指令"></a>SHL 指令</h2><p>逻辑左移。SHL 的第一个操作数是目的操作数,第二个操作数是移位次数：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211036985.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
+$$
+SHL \space \space destination,count
+$$
+该指令可用的操作数类型如下所示：
 
-<p>操作数组合与 AND 指令相同。</p>
-<p>OR 指令总是<strong>清除溢出标志和进位标志</strong>。它根据目的操作数的值修改符号标志、零标志、奇偶标志。</p>
-<h2 id="XOR-指令"><a href="#XOR-指令" class="headerlink" title="XOR 指令"></a>XOR 指令</h2><p>指令在每对操作数的对应数据之间执行异或 (XOR) 操作，格式与 AND 指令相同。</p>
-<p>XOR 指令总是<strong>清除溢出标志和进位标志</strong>，它依据目的操作数的值修改符号标志、零标志和奇偶标志。</p>
-<h2 id="NOT-指令"><a href="#NOT-指令" class="headerlink" title="NOT 指令"></a>NOT 指令</h2><p>NOT 指令将一个操作数中的所有数据位取反，得到的结果成为该操作数的反码。该指令允许下面的操作数据类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">NOT reg<br>NOT mem<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs assembly">SHL reg, imm8<br>SHL mem, imm8<br>SHL reg, CL<br>SHL mem, CL<br></code></pre></td></tr></table></figure>
 
-<p><strong>NOT 指令不影响任何状态标志。</strong></p>
-<h2 id="TEST-指令"><a href="#TEST-指令" class="headerlink" title="TEST 指令"></a>TEST 指令</h2><p>TEST 指令在两个操作数的对应数据位之间执行隐式的 AND 操作，并相应设置标志位。</p>
-<p>TEST 指令和 AND 指令之间的<strong>唯一区别</strong>在于 TEST 指令<strong>不会修改目的操作数</strong>。</p>
-<p>TEST 指令的操作数格式与 AND 相同。</p>
-<p>该指令在测试操作数某些位是否被设置时特别有用。</p>
-<p>TEST 指令总是<strong>清除溢出和进位标志位</strong>，其修改符号标志位、零标志位和奇偶标志位的方法与 AND 指令相同。</p>
-<p>从下面的数据集例子中，可以推断只有当所有测试位都清 0 时,零标志位才置 1（本例中的0000 1001称为位掩码。）：</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154417565.png" srcset="/img/loading.gif" lazyload alt="image" style="zoom:85%;" />
+<p>x86处理器允许 imm8 为 0～255 中的任何整数。另外，CL 寄存器包含的是移位计数。上述格式同样适用于 SHR、SAL、SAR、ROR、ROL、RCR 和  RCL 指令。</p>
+<h2 id="SHR-指令"><a href="#SHR-指令" class="headerlink" title="SHR 指令"></a>SHR 指令</h2><p>逻辑右移。SHR 的指令格式与 SHL 相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210741593.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 
-<h2 id="CMP-指令"><a href="#CMP-指令" class="headerlink" title="CMP 指令"></a>CMP 指令</h2><p>CMP（比较）指令执行<strong>从目的操作数中减去源操作数</strong>的隐含减法操作，并且不修改任何操作数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs assembly">CMP dest, source<br></code></pre></td></tr></table></figure>
+<h2 id="SAL-和-SAR-指令"><a href="#SAL-和-SAR-指令" class="headerlink" title="SAL 和 SAR 指令"></a>SAL 和 SAR 指令</h2><p>SAL(算术左移)指令的操作与SHL指令一样。</p>
+<p>每次移动时，SAL 都将目的操作数中的每一位移动到下一个最高位上。<strong>最低位用0填充</strong>；最高位移入进位标志位，该标志位原来的值被丢弃：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102211511996.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
-<p>当实际的减法发生时，CMP指令按照计算结果修改溢出、符号、零、进位、辅助进位和奇偶标志位。</p>
-<p>如果比较的是两个<strong>无符号数</strong>，则零标志位和进位标志位表示的两个操作数之间的关系如下图所示：</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154711457.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+<p>SAR 指令为算术右移，指令格式与 SHL 相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102210824137.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
-<p>如果比较的是两个<strong>有符号数</strong>，则符号标志位、零标志位和溢出标志位表示的两个操作数之间的关系如下图所示：</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102154729952.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+<h2 id="ROL-指令"><a href="#ROL-指令" class="headerlink" title="ROL 指令"></a>ROL 指令</h2><p>以循环方式来移位即为位元循环 (Bitwise Rotation)。一些操作中，从数的一端移出的位立即复制到该数的另一端。还有一种类型则是把进位标志位当作移动位的中间点。</p>
+<p>ROL（循环左移）指令把所有位都向左移。最高位复制到进位标志位和最低位。该指令格式与 SHL 指令相同：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212019795.png" srcset="/img/loading.gif" lazyload alt="image-20230102212019795" style="zoom:80%;" />
 
-<p>CMP 指令是创建条件逻辑结构的有效工具。<strong>IF 语句在汇编语言中等价于在 CMP 指令后跟一条条件跳转指令。</strong></p>
-<h2 id="设置和清除单个-CPU-状态标志"><a href="#设置和清除单个-CPU-状态标志" class="headerlink" title="设置和清除单个 CPU 状态标志"></a>设置和清除单个 CPU 状态标志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs assembly">test al, 0     ; 零标志位置 1<br>and  al, 0     ; 零标志位置 1<br>or   al, 1     ; 零标志位清零<br><br>or   al, 80h   ; 符号标志位置 1<br>and  al, 7Fh   ; 符号标志位清零<br><br>stc            ; 进位标志位置 1<br>clc            ; 进位标志位清零<br><br>mov  al, 7Fh   ; AL = +127<br>inc  al        ; AL = 80h (-128), OF = 1, 溢出标志位置 1<br><br>or   eax, 0    ; 溢出标志位清零<br></code></pre></td></tr></table></figure>
+<p>位循环不会丢弃位。从数的一端循环出去的位会出现在该数的另一端。</p>
+<p><font size = 4><b>特点</b></font></p>
+<ol>
+<li>当循环计数值大于 1 时，进位标志位保存的是最后循环移出 MSB 的位。</li>
+<li>位组交换利用 ROL 可以交换一个字节的高四位(位 4～7)和低四位(位 0～3)。例如，26h 向任何方向循环移动 4 位就变为 62h。当多字节整数以四位为单位进行循环移位时，其效果相当于一次向右或向左移动一个十六进制位。例如，将 6A4Bh 反复循环左移四位，最后就会回到初始值。</li>
+</ol>
+<h2 id="ROR-指令"><a href="#ROR-指令" class="headerlink" title="ROR 指令"></a>ROR 指令</h2><p>ROR（循环右移）指令把所有位都向右移，最低位复制到进位标志位和最高位。该指令格式与 SHL 指令相同。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212338300.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
-<h2 id="习题整理"><a href="#习题整理" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
-<hr>
-<p>  下列语句中，有语法错误的是：（C）<br>  A. mov eax, arrayD[esi*4]<br>  B. popfd<br>  C. cmp val1, val2<br>  D. rep stosb</p>
-</blockquote>
-<p>CMP 指令两个操作数不能都为立即数。</p>
-<hr>
-<h1 id="条件跳转"><a href="#条件跳转" class="headerlink" title="条件跳转"></a>条件跳转</h1><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 156</p>
-</blockquote>
-<h2 id="Jcond-指令"><a href="#Jcond-指令" class="headerlink" title="Jcond 指令"></a>J<i>cond</i> 指令</h2><p> 条件跳转指令在标志条件为真时分支跳转到新的目的标号处，如果条件标志为假，那么执行紧跟在跳转跳转指令之后的指令。格式如下：<br>$$<br>Jcond\space\space destination<br>$$<br> 格式中的 <em>cond</em> 指的是一个标志条件，用来表示一个或多个标志的状态。例如：</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102163745683.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+<p>当循环计数值大于 1 时，进位标志位保存的是最后循环移出 LSB 的位。</p>
+<h2 id="RCL-和-RCR-指令"><a href="#RCL-和-RCR-指令" class="headerlink" title="RCL 和 RCR 指令"></a>RCL 和 RCR 指令</h2><p>RCL（带进位循环左移）指令把每一位都向左移，进位标志位复制到 LSB，而 MSB 复制到进位标志位：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212630840.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
-<p>CPU 状态标志位最常见的设置方法是通过算术运算、比较和布尔运算指令。条件跳转指令评估标志位状态，利用它们来决定是否发生跳转。</p>
-<p>限制：MASM 在默认情况下要求跳转的目的地址在当前的过程之内，为了突破这种限制，可以声明一个全局标号（标号后面跟 <code>::</code>）。</p>
-<h2 id="基于特定的标志值的跳转指令"><a href="#基于特定的标志值的跳转指令" class="headerlink" title="基于特定的标志值的跳转指令"></a>基于特定的标志值的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164214600.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+<p>RCR（带进位循环右移）指令把每一位都向右移，进位标志位复制到 MSB，而 LSB 复制到进位标志位：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102212743503.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
-<h2 id="基于恒等性比较的跳转指令"><a href="#基于恒等性比较的跳转指令" class="headerlink" title="基于恒等性比较的跳转指令"></a>基于恒等性比较的跳转指令</h2><p>$$<br>CMP \space\space leftOp,\space rightOp<br>$$</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164334615.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+<h2 id="SHLD-和-SHRD-指令"><a href="#SHLD-和-SHRD-指令" class="headerlink" title="SHLD 和 SHRD 指令"></a>SHLD 和 SHRD 指令</h2><p>SHLD（双精度左移）指令将目的操作数向左移动指定位数。移动形成的空位由源操作数的高位填充。源操作数不变，但是符号标志位、零标志位、辅助进位标志位、奇偶标志位和进位标志位会受影响：<br>$$<br>SHLD \space \space dest, source, count<br>$$<br>下图展示的是 SHLD 执行移动一位的过程。源操作数的最高位复制到目的操作数的最低位上。目的操作数的所有位都向左移动：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213018857.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 
-<p>JE 指令和 JZ 指令是等价的，JNZ 指令和 JNE 指令是等价的。</p>
-<h2 id="基于无符号数比较的跳转指令"><a href="#基于无符号数比较的跳转指令" class="headerlink" title="基于无符号数比较的跳转指令"></a>基于无符号数比较的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164428457.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+<p>SHRD（双精度右移）指令将目的操作数向右移动指定位数。移动形成的空位由源操作数的低位填充：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213058864.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 
-<h2 id="基于有符号数比较的跳转指令"><a href="#基于有符号数比较的跳转指令" class="headerlink" title="基于有符号数比较的跳转指令"></a>基于有符号数比较的跳转指令</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102164453778.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
-
+<p>SHLD 和 SHRD 的指令格式中，目标操作数可以是寄存器或内存操作数；<strong>源操作数必须是寄存器</strong>；移位次数可以是 CL 寄存器或者 8 位立即数。</p>
 <h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 160</p>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 200</p>
 </blockquote>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102192924734.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102213650659.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
 
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102193006278.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
-
-
-
-<h2 id="习题整理-1"><a href="#习题整理-1" class="headerlink" title="习题整理"></a>习题整理</h2><blockquote>
 <hr>
-<p>  条件转移指令中相等跳转的指令是：（C）<br>  A. JZ<br>  B. JNZ<br>  C. JE<br>  D. JNE</p>
+<h1 id="乘法和除法指令"><a href="#乘法和除法指令" class="headerlink" title="乘法和除法指令"></a>乘法和除法指令</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 201</p>
 </blockquote>
-<p>JE 指令和 JZ 指令是等价的。</p>
+<h2 id="MUL-指令"><a href="#MUL-指令" class="headerlink" title="MUL 指令"></a>MUL 指令</h2><p>32位模式下，MUL（<strong>无符号数</strong>乘法）指令有三种类型：</p>
+<ul>
+<li>第一种执行 8 位操作数与 <strong>AL 寄存器</strong>的乘法</li>
+<li>第二种执行16位操作数与 <strong>AX 寄存器</strong>的乘法</li>
+<li>第三种执行 32 位操作数与 <strong>EAX 寄存器</strong>的乘法</li>
+</ul>
+<p>乘数和被乘数的大小必须保持一致，<strong>乘积的大小则是它们的一倍</strong>。这三种类型都可以使用寄存器和内存操作数，但不能使用立即数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs assembly">MUL reg/mem8<br>MUL reg/mem16<br>MUL reg/mem32<br></code></pre></td></tr></table></figure>
+
+<p>MUL 指令中的单操作数是乘数。下图按照乘数的大小，列出了默认的被乘数和乘积。</p>
+<p>由于目的操作数是被乘数和乘数大小的两倍，因此<strong>不会发生溢出</strong>。</p>
+<p>如果乘积的高半部分不为零，则 MUL 会把<strong>进位标志位和溢出标志位</strong>置 1。因为进位标志位常常用于无符号数的算术运算。</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102222115899.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:80%;" />
+
+<p>例如，当 AX 乘以一个 16 位操作数时，乘积存放在 DX 和 AX 寄存器对中。其中，乘积的高 16 位存放在 DX，低 16 位存放在 AX。如果 DX 不等于零，则进位标志位置 1，这就意味着隐含的目的操作数的低半部分容纳不了整个乘积。</p>
+<h2 id="IMUL-指令"><a href="#IMUL-指令" class="headerlink" title="IMUL 指令"></a>IMUL 指令</h2><p>IMUL（有符号数乘法）指令执行有符号整数乘法。与 MUL 指令不同，IMUL 会<strong>保留乘积的符号</strong>，实现的方法是，将乘积低半部分的最高位符号扩展到高半部分。x86指令集支持三种格式的 IMUL 指令:单操作数、双操作数和三操作数。</p>
+<p><font size = 4><b>单操作数格式</b></font></p>
+<p>单操作数格式中，乘数和被乘数大小相同，而乘积的大小是它们的两倍。单操作数格式将乘积存放在 AX、DX:AX 或 EDX: EAX 中：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102224014015.png" srcset="/img/loading.gif" lazyload style="zoom: 71%;" />
+
+<p>和 MUL 指令一样，其乘积的存储大小使得<strong>溢出不会发生</strong>。同时，如果乘积的高半部分不是其低半部分的符号扩展，则进位标志位和溢出标志位置1。利用这个特点可以决定是否忽略乘积的高半部分。</p>
+<p><font size = 4><b>双操作数格式（32位模式）</b></font></p>
+<p>32 位模式中的双操作数 IMUL 指令把乘积存放在第一个操作数中，这个操作数必须是寄存器。第二个操作数（乘数）可以是寄存器、内存操作数和立即数。<br>$$<br>IMUL \space \space reg, \space reg&#x2F;mem&#x2F;imm<br>$$<br>双操作数格式会按照目的操作数的大小来截取乘积。如果被丢弃的是有效位则溢出标志位和进位标志位置 1。因此，在执行了有两个操作数的 IMUL 操作后，必须检查这些标志位中的一个。</p>
+<p><font size = 4><b>三操作数格式</b></font></p>
+<p>32 位模式下的三操作数格式将乘积保存在第一个操作数中。第二个操作数可以是16位寄存器或内存操作数，它与第三个操作数相乘，该操作数是一个8位或16位立即数。<br>$$<br>IMUL \space \space reg, \space reg&#x2F;mem, \space imm<br>$$<br>IMUL 执行时，若乘积有效位被丢弃，则溢出标志位和进位标志位置 1。因此，在执行了有三个操作数的 IMUL 操作后,必须检查这些标志位中的一个。</p>
+<h2 id="DIV-指令"><a href="#DIV-指令" class="headerlink" title="DIV 指令"></a>DIV 指令</h2><p>32 位模式下，DIV（无符号除法）指令执行 8 位、16 位和 32 位无符号数除法。其中，单寄存器或内存操作数是除数。格式如下:<br>$$<br>DIV\space\space reg&#x2F;mem<br>$$<br>下图给出了被除数、除数、商和余数之间的关系：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102234944257.png" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+
+<p>64 位模式下，DIV 指令用 RDX:RAX 作被除数，用 64 位寄存器和内存操作数作除数商存放到 RAX，余数存放在 RDX 中。</p>
+<h2 id="IDIV-指令"><a href="#IDIV-指令" class="headerlink" title="IDIV 指令"></a>IDIV 指令</h2><p>IDIV（有符号除法）指令执行有符号整数除法，其操作数与 DIV 指令相同。执行 8 位除法之前，被除数 (AX) 必须完成符号扩展。余数的符号总是与被除数相同。</p>
 <hr>
-<h1 id="条件循环指令"><a href="#条件循环指令" class="headerlink" title="条件循环指令"></a>条件循环指令</h1><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 163</p>
+<h1 id="扩展加减法"><a href="#扩展加减法" class="headerlink" title="扩展加减法"></a>扩展加减法</h1><blockquote>
+<p>  《汇编语言：基于x86处理器（原书第7版）》Page 212</p>
 </blockquote>
-<h2 id="LOOPZ-和-LOOPE-指令"><a href="#LOOPZ-和-LOOPE-指令" class="headerlink" title="LOOPZ 和 LOOPE 指令"></a>LOOPZ 和 LOOPE 指令</h2><p>ECX 大于 0，并且零标志位置 1 则循环。<br>$$<br>LOOPZ\space\space destination<br>$$</p>
-<p>$$<br>LOOPE\space\space destination<br>$$</p>
-<h2 id="LOOPNZ-和-LOOPNE-指令"><a href="#LOOPNZ-和-LOOPNE-指令" class="headerlink" title="LOOPNZ 和 LOOPNE 指令"></a>LOOPNZ 和 LOOPNE 指令</h2><p>ECX 大于 0，并且零标志位为 0 则循环。<br>$$<br>LOOPNZ\space\space distination<br>$$</p>
-<p>$$<br>LOOPNE\space\space distination<br>$$</p>
-<hr>
-<h1 id="条件结构"><a href="#条件结构" class="headerlink" title="条件结构"></a>条件结构</h1><h2 id="IF-语句"><a href="#IF-语句" class="headerlink" title="IF 语句"></a>IF 语句</h2><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 165</p>
-</blockquote>
-<p>C++ 代码翻译为汇编代码示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">if</span> (op1 == op2)<br>&#123;<br>    X = <span class="hljs-number">1</span>;<br>    Y = <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="ADC-指令"><a href="#ADC-指令" class="headerlink" title="ADC 指令"></a>ADC 指令</h2><p>ADC（带进位加法）指令将源操作数和进位标志位的值都与目的操作数相加。该指令格式与 ADD 指令一样,且操作数大小必须相同：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ADC reg, reg<br>ADC mem, reg<br>ADC reg, mem<br>ADC mem, imm<br>ADC reg, imm<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs assembly">    mov eax, op1<br>    cmp eax, op2      ; op1 == op2 ?<br>    jne L1            ; False : Skip To L1<br>    mov X, 1          ; True : X = 1<br>    mov Y, 2          ; Y = 1<br>L1: .<br>    .<br></code></pre></td></tr></table></figure>
+<h2 id="程序示例-1"><a href="#程序示例-1" class="headerlink" title="程序示例"></a>程序示例</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235908443.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
 
-<h2 id="WHILE-语句"><a href="#WHILE-语句" class="headerlink" title="WHILE 语句"></a>WHILE 语句</h2><blockquote>
-<p>  《汇编语言：基于x86处理器（原书第7版）》Page 168</p>
-</blockquote>
-<p>C++ 代码翻译为汇编代码示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">while</span> (val &lt; val2)<br>&#123;<br>    val1++;<br>    val2--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230102235932603.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs assembly">    mov eax, val1       ; eax = val1<br>beginWhile:<br>    cmp eax, val2       ; if not (val1 &lt; val2)<br>    jnl endWhile        ; 退出循环<br>    inc eax             ; val1++<br>    dec val2            ; val2--<br>    jmp beginWhile      ; 重复循环<br>endWhile:<br>    mov val1, eax       ; val1 = eax<br></code></pre></td></tr></table></figure>
+<p>下面的代码示例调用 Extended_Add，并向其传递两个 8 字节的整数。要注意为和数多分配一个字节：</p>
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/image-20230103000107626.png" srcset="/img/loading.gif" lazyload style="zoom:60%;" />
 
+<p>上述程序的输出，加法产生了一个进位：<code>0122C32B0674BB5736</code></p>
+<h2 id="SBB-指令"><a href="#SBB-指令" class="headerlink" title="SBB 指令"></a>SBB 指令</h2><p>SBB（带借位减法）指令从目的操作数中减去源操作数和进位标志位的值。允许使用的操作数与 ADC 指令相同。</p>
 
                 
               </div>
@@ -454,8 +455,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>汇编语言:基于x86处理器-学习笔记-第六章</div>
-      <div>https://luoyuy.top/posts/049b6e9dd143/</div>
+      <div>汇编语言:基于x86处理器-学习笔记-第七章</div>
+      <div>https://luoyuy.top/posts/68212001d88c/</div>
     </div>
     <div class="license-meta">
       
@@ -499,9 +500,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/3941df7fa3bf/" title="汇编语言:基于x86处理器-学习笔记-第七章">
+                      <a href="/posts/19271da3fc19/" title="汇编语言:基于x86处理器-学习笔记-第八章">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第七章</span>
+                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第八章</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -509,8 +510,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/eddefec83d75/" title="汇编语言:基于x86处理器-学习笔记-第五章">
-                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第五章</span>
+                      <a href="/posts/aa0ae44a7053/" title="汇编语言:基于x86处理器-学习笔记-第六章">
+                        <span class="hidden-mobile">汇编语言:基于x86处理器-学习笔记-第六章</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
