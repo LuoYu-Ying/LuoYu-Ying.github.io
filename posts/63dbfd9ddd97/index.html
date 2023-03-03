@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-view.png">
 <meta property="article:published_time" content="2022-05-16T13:19:02.000Z">
-<meta property="article:modified_time" content="2023-03-03T05:38:12.376Z">
+<meta property="article:modified_time" content="2023-03-03T05:49:26.399Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="View">
 <meta name="twitter:card" content="summary_large_image">
@@ -245,7 +245,7 @@
         
         
         
-          42 分钟
+          41 分钟
         
       </span>
     
@@ -383,8 +383,6 @@
 <h1 id="在-ViewGroup-中的-onTouchEvent-中消费-ACTION-DOWN-事件（onInterceptTouch-默认设置），那么-ACTION-MOVE-和-ACTION-UP-事件是怎么传递的？"><a href="#在-ViewGroup-中的-onTouchEvent-中消费-ACTION-DOWN-事件（onInterceptTouch-默认设置），那么-ACTION-MOVE-和-ACTION-UP-事件是怎么传递的？" class="headerlink" title="在 ViewGroup 中的 onTouchEvent 中消费 ACTION_DOWN 事件（onInterceptTouch 默认设置），那么 ACTION_MOVE 和 ACTION_UP 事件是怎么传递的？"></a>在 <code>ViewGroup</code> 中的 <code>onTouchEvent</code> 中消费 <code>ACTION_DOWN</code> 事件（<code>onInterceptTouch</code> 默认设置），那么 <code>ACTION_MOVE</code> 和 <code>ACTION_UP</code> 事件是怎么传递的？</h1><p>首先，我们先分析一下 ACTION_DOWN 的事件走向，由于 ViewGroup 中的 onInterceptTouch 是默认设置的，那么 ACTION_DOWN 的事件最终在 ViewGroup 中的 onTouchEvent 方法中停止了，事件走向是这样的：</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs livescript">-&gt; Activity.dispatchTouchEvent<span class="hljs-function"><span class="hljs-params">()</span> </span><br><span class="hljs-function">-&gt;</span> ViewGroup1.dispatchTouchEvent<span class="hljs-function"><span class="hljs-params">()</span> </span><br><span class="hljs-function">-&gt;</span> ViewGroup1.onInterceptTouchEvent<span class="hljs-function"><span class="hljs-params">()</span></span><br><span class="hljs-function">-&gt;</span> view1.dispatchTouchEvent<span class="hljs-function"><span class="hljs-params">()</span> </span><br><span class="hljs-function">-&gt;</span> view1.onTouchEvent<span class="hljs-function"><span class="hljs-params">()</span> </span><br><span class="hljs-function">-&gt;</span> ViewGroup1.onTouchEvent() <br></code></pre></td></tr></table></figure>
 
-
-<p>接着 ACTION_MOVE 和 ACTION_UP 的事件分发流程，之后 onInterceptTouch 和 View 中的方法都不会被调用了，事件分发如下：</p>
 <p>接着 ACTION_MOVE 和 ACTION_UP 的事件分发流程，之后 onInterceptTouch 和 View 中的方法都不会被调用了，事件分发如下：</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livescript">-&gt; Activity.dispatchTouchEvent<span class="hljs-function"><span class="hljs-params">()</span> </span><br><span class="hljs-function">-&gt;</span> ViewGroup1.dispatchTouchEvent<span class="hljs-function"><span class="hljs-params">()</span> </span><br><span class="hljs-function">-&gt;</span> ViewGroup1.onTouchEvent() <br></code></pre></td></tr></table></figure>
 
@@ -490,9 +488,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/8a4aa21deb03/" title="Android面试整理 - BroadcastReceiver">
+                      <a href="/posts/b38925276d1b/" title="Android面试整理 - Activity">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Android面试整理 - BroadcastReceiver</span>
+                        <span class="hidden-mobile">Android面试整理 - Activity</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -500,8 +498,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/518a830d4173/" title="Android面试整理 - View 绘制">
-                        <span class="hidden-mobile">Android面试整理 - View 绘制</span>
+                      <a href="/posts/ac48c4fe7cd2/" title="Android面试整理 - Animation">
+                        <span class="hidden-mobile">Android面试整理 - Animation</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

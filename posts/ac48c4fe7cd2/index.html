@@ -16,24 +16,25 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Android 中广播的分类、使用场景以及注册方法">
+    <meta name="description" content="动画的类型、补间动画和属性动画的区别、自定义插值器和估值器...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android面试整理 - BroadcastReceiver">
-<meta property="og:url" content="https://luoyuy.top/posts/8a4aa21deb03/index.html">
+<meta property="og:title" content="Android面试整理 - Animation">
+<meta property="og:url" content="https://luoyuy.top/posts/ac48c4fe7cd2/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="Android 中广播的分类、使用场景以及注册方法">
+<meta property="og:description" content="动画的类型、补间动画和属性动画的区别、自定义插值器和估值器...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
-<meta property="article:published_time" content="2022-05-24T07:34:00.000Z">
-<meta property="article:modified_time" content="2023-01-12T13:02:51.333Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Animation.png">
+<meta property="article:published_time" content="2022-05-15T11:30:02.000Z">
+<meta property="article:modified_time" content="2023-03-03T06:00:16.833Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="BroadcastReceiver">
+<meta property="article:tag" content="Animation">
+<meta property="article:tag" content="属性动画">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Animation.png">
   
   
   
-  <title>Android面试整理 - BroadcastReceiver - 洛语 の Blog</title>
+  <title>Android面试整理 - Animation - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Android面试整理 - BroadcastReceiver"></span>
+            <span id="subtitle" data-typed-text="Android面试整理 - Animation"></span>
           
         </div>
 
@@ -222,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-24 15:34" pubdate>
-          2022年5月24日 下午
+        <time datetime="2022-05-15 19:30" pubdate>
+          2022年5月15日 晚上
         </time>
       </span>
     
@@ -234,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          696 字
+          2.4k 字
         
       </span>
     
@@ -245,7 +246,7 @@
         
         
         
-          6 分钟
+          20 分钟
         
       </span>
     
@@ -283,51 +284,84 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Android面试整理 - BroadcastReceiver</h1>
+            <h1 style="display: none">Android面试整理 - Animation</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="广播的分类和使用场景"><a href="#广播的分类和使用场景" class="headerlink" title="广播的分类和使用场景"></a>广播的分类和使用场景</h1><blockquote>
+                <h1 id="动画的类型"><a href="#动画的类型" class="headerlink" title="动画的类型"></a>动画的类型</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Lwenlong/p/15940123.html">Android面试——BroadcastReceiver篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/luzaiyy611/article/details/82083213">Android 属性动画和补间动画的区别和特性_luzaiyy611的博客-CSDN博客_属性动画和补间动画的区别</a></li>
 </ul>
 </blockquote>
-<p> <strong><font size="4">分类</font></strong></p>
 <ol>
-<li><p>普通广播：通过Context.sendBroadcast()发送，可并行处理</p>
+<li><p>View 动画（补间动画）</p>
+<p>只产生了一个动画效果，其真实的坐标并没有发生改变（只是改变了View的显示效果而已，并不会真正的改变View的属性）。View做在做动画的时候，它并没有真正的移动它的位置，而是根据动画时间的插值，计算出一个Matrix，然后不停的invalidate，在onDraw中的Canvas上使用这个计算出来的Matrix去draw这个View的内容，并有onLayout中还是原来的位置，所以点击事件只能点击到原来的位置才能触发</p>
 </li>
-<li><p>系统广播：系统发送的广播，只需要注册广播接收器，并定义好action等待接收广播</p>
+<li><p>帧动画</p>
 </li>
-<li><p>有序广播：发出的广播会被接收器按照先后顺序进行接收，发送方式为sendOrderedBroadcast(intent)； 广播接受者接收的顺序规则：按照Priority属性值排序，Priority相同者，动态注册的广播优先；</p>
-</li>
-<li><p>APP应用内广播（Local Broadcast）：由于广播可以跨进程的特性，导致应用可能不断收到来自其他应用的广播，或者别的应用接收到当前应用的私密广播；解决方法为使用应用内广播；也称局部广播，接收者和发送者同属于一个APP，</p>
+<li><p>属性动画</p>
+<p>属性动画可以对任何对象的属性做动画而不仅仅是View，甚至可以没有对象。除了作用对象进行扩展外，属性动画的效果也加强了，不仅能实现View动画的四种效果，还能实现其它多种效果，这些效果都是通过<code>ValuAnimator</code>或<code>ObjectAnimator</code>、<code>AnimatorSet</code>等来实现的。我们只需要告诉系统动画的运行时长，需要执行哪种类型的动画，以及动画的初始值和结束值，剩下的工作就可以全部交给系统去完成了。</p>
 </li>
 </ol>
-<p> <strong><font size="4">使用方法</font></strong> </p>
+<hr>
+<h1 id="补间动画和属性动画的区别"><a href="#补间动画和属性动画的区别" class="headerlink" title="补间动画和属性动画的区别"></a>补间动画和属性动画的区别</h1><blockquote>
+<p>  答案参考自：</p>
 <ul>
-<li><p>方法1：注册广播时设置exported属性为false；在广播发送接收时，增加权限，用于权限验证；发送广播时执行广播接收器的包名</p>
-</li>
-<li><p>方法2：使用封装好的LocalBroadcastManager,这种方式的广播只能动态注册，不能静态注册</p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lgdcoder/p/10684996.html">Android补间动画和属性动画的区别及属性动画使用详解</a></li>
 </ul>
-<p> <strong><font size="4">使用场景</font></strong> </p>
+</blockquote>
+<ol start="2">
+<li>作用对象不同，补间动画只能作用在view上，属性动画可以作用在所有对象上。</li>
+<li>属性变化不同，补间动画只是改变显示效果，不会改变view的属性，比如位置、宽高等，而属性动画实际改变对象的属性。</li>
+<li>动画效果不同，补间动画只能实现位移、缩放、旋转和透明度四种动画操作，而属性动画还能实现补间动画所有效果及其他更多动画效果。</li>
+</ol>
+<hr>
+<h1 id="ObjectAnimator，ValueAnimator及其区别"><a href="#ObjectAnimator，ValueAnimator及其区别" class="headerlink" title="ObjectAnimator，ValueAnimator及其区别"></a><code>ObjectAnimator</code>，<code>ValueAnimator</code>及其区别</h1><p><strong>ValueAnimator</strong></p>
+<p>ValueAnimator是整个属性动画机制当中最核心的一个类，前面我们已经提到了，属性动画的运行机制是通过不断地<strong>对值进行操作</strong>来实现的，而初始值和结束值之间的动画过渡就是由ValueAnimator这个类来负责计算的。它的内部使用一种时间循环的机制来计算值与值之间的动画过渡，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值这样的效果。除此之外，ValueAnimator还负责管理动画的播放次数、播放模式、以及对动画设置监听器等，确实是一个非常重要的类。</p>
+<p><strong>ObjectAnimator</strong></p>
+<p>相比于ValueAnimator，ObjectAnimator可能才是我们最常接触到的类，因为ValueAnimator只不过是对值进行了一个平滑的动画过渡，但我们实际使用到这种功能的场景好像并不多。而ObjectAnimator则就不同了，它是可以直接<strong>对任意对象的任意属性进行动画操作</strong>的，比如说View的alpha属性。</p>
+<p>不过虽说ObjectAnimator会更加常用一些，但是它其实是继承自ValueAnimator的，底层的动画实现机制也是基于ValueAnimator来完成的，因此ValueAnimator仍然是整个属性动画当中最核心的一个类。</p>
+<p><strong>总结</strong></p>
+<p><code>ValueAnimator</code> 是<strong>对 数值 进行平滑操作</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ValueAnimator</span> <span class="hljs-variable">anim</span> <span class="hljs-operator">=</span> ValueAnimator.ofFloat(<span class="hljs-number">0f</span>, <span class="hljs-number">1f</span>);  <br></code></pre></td></tr></table></figure>
+
+<p><code>ObjectAnimator</code> 功能更加强大，是<strong>对 任意对象 的 任意属性值 进行平滑操作</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ObjectAnimator</span> <span class="hljs-variable">animator</span> <span class="hljs-operator">=</span> ObjectAnimator.ofFloat(textview, <span class="hljs-string">&quot;alpha&quot;</span>, <span class="hljs-number">1f</span>, <span class="hljs-number">0f</span>, <span class="hljs-number">1f</span>);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="TimeInterpolator插值器，TypeEvaluator估值器"><a href="#TimeInterpolator插值器，TypeEvaluator估值器" class="headerlink" title="TimeInterpolator插值器，TypeEvaluator估值器"></a>TimeInterpolator插值器，TypeEvaluator估值器</h1><blockquote>
+<p>  答案参考自：</p>
 <ul>
-<li><p>同一 App 内部的不同组件之间的消息通信（单个进程）；</p>
-</li>
-<li><p>不同 App 之间的组件之间消息通信；</p>
-</li>
-<li><p>Android系统在特定情况下与App之间的消息通信，如：网络变化、电池电量、屏幕开关等；</p>
-</li>
+<li><a href="https://luoyuy.top/posts/ac02c3bbb00b/">Android 动画深入分析 - 洛语 の Blog (luoyuy.top)</a></li>
 </ul>
-<h1 id="广播的两种注册方式的区别"><a href="#广播的两种注册方式的区别" class="headerlink" title="广播的两种注册方式的区别"></a>广播的两种注册方式的区别</h1><ul>
-<li><p>静态注册</p>
-<p>常驻系统，不受组件生命周期影响，即便应用退出，广播还是可以被接收，耗电、占内存。</p>
-</li>
-<li><p>动态注册</p>
-<p>非常驻，跟随组件的生命变化，组件结束，广播结束。在组件结束前，需要先移除广播，否则容易造 成内存泄漏。</p>
-</li>
+</blockquote>
+<p>插值器和估值器是实现非匀速动画的重要手段。</p>
+<h3 id="TimeInterpolator"><a href="#TimeInterpolator" class="headerlink" title="TimeInterpolator"></a><code>TimeInterpolator</code></h3><p>时间插值器。作用为<strong>根据时间的流逝的百分比计算当前属性值改变的百分比</strong>。</p>
+<p>预设的有多种插值器，常见的三种如下：</p>
+<ol>
+<li><code>LinearInterpolator</code>——线性插值器：匀速动画</li>
+<li><code>AccelerateDecelerateInterpolator</code>——加速减速插值器：动画两头慢中间快</li>
+<li><code>DecelerateInterpolator</code>——减速插值器：动画越来越慢</li>
+</ol>
+<p>三个类都实现了<code>Interpolartor</code>接口，接口内部只有一个用来计算属性值的改变的百分比的<code>getInterpolation</code>方法需要实现。</p>
+<h3 id="TypeEvaluator"><a href="#TypeEvaluator" class="headerlink" title="TypeEvaluator"></a><code>TypeEvaluator</code></h3><p>类型估值算法，也叫估值器。作用是<strong>根据属性值改变的百分比来计算改变后的属性值</strong>。</p>
+<p>系统预置的有3种：</p>
+<ol>
+<li><code>IntEvaluator</code>：针对整形属性</li>
+<li><code>FloatEvaluator</code>：针对浮点型属性</li>
+<li><code>ArgbEvaluator</code>：针对Color属性</li>
+</ol>
+<p>三个类都实现了<code>TypeEvalator</code>接口，接口内部只有一个用来计算改变后的属性值的<code>evaluate</code>方法需要实现。</p>
+<h3 id="计算顺序"><a href="#计算顺序" class="headerlink" title="计算顺序"></a>计算顺序</h3><p>系统会根据当前的帧所在时刻与动画播放的总时间求出时间的流逝的百分比，再通过插值器计算出当前属性值改变的百分比，后用此值通过估值器计算出当前的属性改变后的确定的值是多少并通过<code>set</code>方法对属性赋值。</p>
+<p>故属性动画要求对象的该属性有<code>set</code>方法（必须有）和<code>get</code>方法（可选）。</p>
+<hr>
+<h1 id="自定义插值器和估值器"><a href="#自定义插值器和估值器" class="headerlink" title="自定义插值器和估值器"></a>自定义插值器和估值器</h1><p>我们可以自定义插值器和估值器，来实现自己想要的动画效果。实现方式也很简单。</p>
+<p>因为插值器和估值器都是一个接口，且内部都只有一个方法，所以我们只需要派生一个类并实现接口就可以了，然后就可以做出千奇百怪的动画效果了。即：</p>
+<ul>
+<li>自定义插值器需要实现<code>Interpolator</code>或者<code>TimeInterpolator</code>接口</li>
+<li>自定义估值器需要实现<code>TypeEvaluator</code>接口。</li>
 </ul>
 
                 
@@ -372,7 +406,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/BroadcastReceiver/">#BroadcastReceiver</a>
+        <a href="/tags/Animation/">#Animation</a>
+      
+        <a href="/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/">#属性动画</a>
       
     </div>
   
@@ -384,8 +420,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Android面试整理 - BroadcastReceiver</div>
-      <div>https://luoyuy.top/posts/8a4aa21deb03/</div>
+      <div>Android面试整理 - Animation</div>
+      <div>https://luoyuy.top/posts/ac48c4fe7cd2/</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +433,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年5月24日</div>
+          <div>2022年5月15日</div>
         </div>
       
       
@@ -429,9 +465,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/1d4a22a89c9e/" title="Android面试整理 - JVM">
+                      <a href="/posts/63dbfd9ddd97/" title="Android面试整理 - View 事件分发">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Android面试整理 - JVM</span>
+                        <span class="hidden-mobile">Android面试整理 - View 事件分发</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -439,8 +475,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/b38925276d1b/" title="Android面试整理 - Activity">
-                        <span class="hidden-mobile">Android面试整理 - Activity</span>
+                      <a href="/posts/518a830d4173/" title="Android面试整理 - View 绘制">
+                        <span class="hidden-mobile">Android面试整理 - View 绘制</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
