@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-activity.png">
 <meta property="article:published_time" content="2022-05-21T08:40:02.000Z">
-<meta property="article:modified_time" content="2023-03-03T07:28:11.672Z">
+<meta property="article:modified_time" content="2023-03-03T08:33:12.553Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="Activity">
 <meta name="twitter:card" content="summary_large_image">
@@ -407,7 +407,7 @@
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8897068505d8">Android中的onNewIntent()函数 - 简书 (jianshu.com)</a></li>
 </ul>
 </blockquote>
-<p><strong>使用<code>SingleTask</code>以及<code>SingleInstance</code>启动模式的时候，会调用<code>onNewInstance</code>方法。</strong></p>
+<p><strong>使用<code>SingleTask</code>以及<code>SingleInstance</code>启动模式的时候，会调用<code>onNewInstant</code>方法。</strong></p>
 <p> <code>Activity</code>第一次启动的时候执行<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>等后续生命周期函数，也就时说第一次启动Activity并不会执行到<code>onNewIntent</code>。</p>
 <p>而后面如果再有想启动<code>Activity</code>的时候，那就是执行 <b><code>onNewIntent</code> -&gt; <code>onResart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code></b>。</p>
 <p>如果Android系统由于内存不足把已存在<code>Activity</code>释放掉了，那么再次调用的时候会重新启动<code>Activity</code>即执行<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>等。</p>
