@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-activity.png">
 <meta property="article:published_time" content="2022-05-21T08:40:02.000Z">
-<meta property="article:modified_time" content="2023-03-03T07:16:27.046Z">
+<meta property="article:modified_time" content="2023-03-03T07:28:11.672Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="Activity">
 <meta name="twitter:card" content="summary_large_image">
@@ -357,7 +357,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_14849739/article/details/78072401">Android中Activity的启动模式（LaunchMode）和使用场景_Shawpoo的博客-CSDN博客_launchmode</a></li>
 </ul>
 </blockquote>
-<p>Activity的启动模式有四种：**<code>standard</code>、<code>singleTop</code>、<code>singleTask</code>和<code>singleInstance</code>**。</p>
+<p>Activity的启动模式有四种：<b><code>standard</code>、<code>singleTop</code>、<code>singleTask</code>和<code>singleInstance</code></b>。</p>
 <p><strong><font size="5">standard：标准模式</font></strong></p>
 <p>这种启动模式为标准模式，也是默认模式。每当我们启动一个Activity，系统就会相应的创建一个实例，不管这个实例是否已经存在。这种模式，一个栈中可以有多个实例，每个实例也都有自己的任务栈。而且是谁启动了此Activity，那么这个Activity就运行在启动它的Activity所在的栈中。</p>
 <p><strong>分析总结</strong></p>
@@ -409,7 +409,7 @@
 </blockquote>
 <p><strong>使用<code>SingleTask</code>以及<code>SingleInstance</code>启动模式的时候，会调用<code>onNewInstance</code>方法。</strong></p>
 <p> <code>Activity</code>第一次启动的时候执行<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>等后续生命周期函数，也就时说第一次启动Activity并不会执行到<code>onNewIntent</code>。</p>
-<p>而后面如果再有想启动<code>Activity</code>的时候，那就是执行 **<code>onNewIntent</code> -&gt; <code>onResart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>**。</p>
+<p>而后面如果再有想启动<code>Activity</code>的时候，那就是执行 <b><code>onNewIntent</code> -&gt; <code>onResart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code></b>。</p>
 <p>如果Android系统由于内存不足把已存在<code>Activity</code>释放掉了，那么再次调用的时候会重新启动<code>Activity</code>即执行<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>等。</p>
 <p>当调用到<code>onNewIntent(intent)</code>的时候，需要在<code>onNewIntent</code>中使用<code>setIntent(intent)</code>赋值给<code>Activity</code>的<code>Intent</code>。否则，后续的<code>getIntent</code>都是得到旧的<code>Intent</code>。</p>
 <h1 id="Activity-生命周期"><a href="#Activity-生命周期" class="headerlink" title="Activity 生命周期"></a><code>Activity</code> 生命周期</h1><blockquote>
@@ -457,11 +457,11 @@
 <li><p>针对一个特定的 Activity，<strong>第一次启动</strong>，回调如下：<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>。</p>
 </li>
 <li><p>当用户<strong>打开新的 Activity</strong> 或者<strong>切换到桌面</strong>的时候，回调如下： <code>onPause</code> -&gt; <code>onStop</code>。</p>
-<p>这里有一种特殊情况，如果新 Activity 采用了透明主题,那么当前 Activity 不会回调<code>onStop</code>。</p>
+<p>这里有一种特殊情况，如果新 Activity 采用了透明主题,那么当前 Activity 不会回调 <code>onStop</code>。</p>
 </li>
 <li><p>当用户<strong>再次回到原 Activity</strong> 时，回调如下： <code>onRestart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>。</p>
 </li>
-<li><p>当用户<strong>按 back 键回退</strong>时，回调如下: <code>onPause</code> -&gt; <code>onStop</code> -&gt; <code>onDestroy</code>。</p>
+<li><p>当用户<strong>按 back 键回退</strong>时，回调如下：<code>onPause</code> -&gt; <code>onStop</code> -&gt; <code>onDestroy</code>。</p>
 </li>
 <li><p>当 <strong>Activity 被系统回收后再次打开</strong>，生命周期方法回调过程和（1）一样，注意只是生命周期方法一样，不代表所有过程都一样，比如 <code>onSaveInstanceState</code> 和 <code>onRestoreInstanceState</code> 的调用。</p>
 </li>
