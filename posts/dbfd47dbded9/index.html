@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字符串哈希模板以及通过字符串哈希来实现其他字符串算法的方法">
+    <meta name="description" content="ArrayList 的相关问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串哈希 模板">
-<meta property="og:url" content="https://luoyuy.top/posts/6b2a4d22d8f0/index.html">
+<meta property="og:title" content="Android面试整理 - ArrayList">
+<meta property="og:url" content="https://luoyuy.top/posts/dbfd47dbded9/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="字符串哈希模板以及通过字符串哈希来实现其他字符串算法的方法">
+<meta property="og:description" content="ArrayList 的相关问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C.png">
-<meta property="article:published_time" content="2022-04-28T11:49:23.000Z">
-<meta property="article:modified_time" content="2023-01-11T04:24:34.322Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-arraylist.png">
+<meta property="article:published_time" content="2022-05-20T07:21:02.000Z">
+<meta property="article:modified_time" content="2023-03-03T15:42:43.240Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="字符串哈希">
+<meta property="article:tag" content="ArrayList">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-arraylist.png">
   
   
   
-  <title>字符串哈希 模板 - 洛语 の Blog</title>
+  <title>Android面试整理 - ArrayList - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="字符串哈希 模板"></span>
+            <span id="subtitle" data-typed-text="Android面试整理 - ArrayList"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-28 19:49" pubdate>
-          2022年4月28日 晚上
+        <time datetime="2022-05-20 15:21" pubdate>
+          2022年5月20日 下午
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          2.5k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          12 分钟
+          21 分钟
         
       </span>
     
@@ -283,7 +283,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">字符串哈希 模板</h1>
+            <h1 style="display: none">Android面试整理 - ArrayList</h1>
             
             
               <div class="markdown-body">
@@ -291,48 +291,87 @@
                 <blockquote>
 <p>本文参考自：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="http://www.yhzq-blog.cc/%E5%AD%97%E7%AC%A6%E4%B8%B2hash%E6%80%BB%E7%BB%93/">字符串Hash总结 | 远航休息栈</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51596354/article/details/122398978">Java ArrayList底层原理详情笔记和相关面试题_抹泪的知更鸟的博客-CSDN博客</a></li>
 </ul>
 </blockquote>
 <hr>
-<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">namespace</span> StringHash &#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">1e5</span> + <span class="hljs-number">50</span>;<br>    <span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> BASE = <span class="hljs-number">131</span>;<br>    <span class="hljs-type">char</span> s[MAXN]; <span class="hljs-comment">// cin &gt;&gt; (s + 1);</span><br>    <span class="hljs-type">int</span> len;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> hash[MAXN], power[MAXN];<br><br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">preHash</span><span class="hljs-params">()</span> </span>&#123;<br>        power[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++) <br>            power[i] = power[i - <span class="hljs-number">1</span>] * BASE;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">calcHash</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++) &#123;<br>            hash[i] = hash[i - <span class="hljs-number">1</span>] * BASE + s[i];<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">getHash</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span>)hash[r] - hash[l - <span class="hljs-number">1</span>] * power[r - l + <span class="hljs-number">1</span>];<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">input</span><span class="hljs-params">()</span> </span>&#123;<br>        cin &gt;&gt; (s + <span class="hljs-number">1</span>);<br>        len = <span class="hljs-built_in">strlen</span>(s + <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    StringHash::<span class="hljs-built_in">input</span>();<br>    StringHash::<span class="hljs-built_in">preHash</span>();<br>    StringHash::<span class="hljs-built_in">calcHash</span>();<br>    cout &lt;&lt; StringHash::<span class="hljs-built_in">getHash</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="ArrayList是如何扩容的？"><a href="#ArrayList是如何扩容的？" class="headerlink" title="ArrayList是如何扩容的？"></a><code>ArrayList</code>是如何扩容的？</h1><p>初始容量为 10，第一扩容就为 10。</p>
+<p>以后每次的扩容都是原容量的 1.5 倍。</p>
+<hr>
+<h1 id="ArrayList继承关系"><a href="#ArrayList继承关系" class="headerlink" title="ArrayList继承关系"></a><code>ArrayList</code>继承关系</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span>&lt;E&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractList</span>&lt;E&gt;<br>        <span class="hljs-keyword">implements</span> <span class="hljs-title class_">List</span>&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable<br></code></pre></td></tr></table></figure>
+
+<h2 id="实现Serializable标记型接口"><a href="#实现Serializable标记型接口" class="headerlink" title="实现Serializable标记型接口"></a>实现<code>Serializable</code>标记型接口</h2><p>序列化：将对象转化为字节数组的过程</p>
+<p>反序列化：将字节数组转化为对象的过程</p>
+<h2 id="实现Cloneable标记型接口"><a href="#实现Cloneable标记型接口" class="headerlink" title="实现Cloneable标记型接口"></a>实现<code>Cloneable</code>标记型接口</h2><p>克隆：将<code>ArrayList</code>集合的数组clone到另一个集合</p>
+<p>实际底层调用的是Object中的<code>clone</code>方法，而<code>clone</code>是一个<code>native</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Object</span> <span class="hljs-variable">o</span> <span class="hljs-operator">=</span> list.clone();<br>System.out.println(o == list);<span class="hljs-comment">//地址不一样，深度克隆</span><br></code></pre></td></tr></table></figure>
+
+<p>使用了<code>Arrays#copyOf</code>方法进行复制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;?&gt; v = (ArrayList&lt;?&gt;) <span class="hljs-built_in">super</span>.clone();<br>v.elementData = Arrays.copyOf(elementData, size);<br></code></pre></td></tr></table></figure>
+
+<p>浅拷贝：基本数据类型可以达到完全复制，引用数据类型拷贝的是栈上的地址值，所以修改引用类型的数据，会改变原来的数据。</p>
+<p>深拷贝：基本数据类型和引用类型都可以完全复制，引用对象在堆中创建新的对象，对原数据没有任何影响。</p>
+<p><strong>深拷贝的实现方式：</strong></p>
+<p> 实现<code>Cloneable</code>接口并重写<code>clone</code>方法。</p>
+<p> 让其<code>clone</code>方法通过序列化和反序列化的方式来生成一个原对象的深拷贝副本</p>
+<h2 id="实现RandomAccess标记型接口"><a href="#实现RandomAccess标记型接口" class="headerlink" title="实现RandomAccess标记型接口"></a>实现<code>RandomAccess</code>标记型接口</h2><p><strong><code>ArrayList</code>支持随机访问。</strong></p>
+<blockquote>
+<p>  随机访问：直接 <code>first+N</code>，便可以得到第<code>N</code>个元素的地址，因为这些相邻元素是按顺序连续存储的。<br>  比如普通数组就是可随机访问的。</p>
+<p>  文件随机访问是指<strong>在某个文件内直接读写任何给定位置数据的能力</strong>。</p>
+</blockquote>
+<p>通过<code>get(i)</code>即可获得相应内存中存放的值。原因是因为<code>ArrayList</code>存放的内容在内存中是连续的，数组直接用<code>[]</code>访问，相当于直接操作内存地址，所以随机访问的效率较高。</p>
+<p>普通的for循环是随机访问的，所以遍历<code>ArrayList</code>使用普通<code>for</code>循环比增强<code>for</code>循环和迭代器的效率高。</p>
+<p>而<code>LinkedList</code>是一个双向链表，链表只能顺序访问，不支持随机访问，<code>LinkedList</code>中的<code>get</code>方法是按照顺序从列表的一端开始检查，直到找到要找的地址。所以遍历<code>LinkedList</code>使用增强<code>for</code>循环和迭代器的效率高，使用普通<code>for</code>循环会每次都从头开始遍历，效率较差。</p>
+<h2 id="AbstractList抽象类"><a href="#AbstractList抽象类" class="headerlink" title="AbstractList抽象类"></a><code>AbstractList</code>抽象类</h2><p><code>AbstractList</code> 虽然是抽象类，但其内部只有一个抽象方法 <code>get</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> E <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>从字面上看这是获取的方法，子类必须实现它，一般是作为获取元素的用途，除此之外，如果子类要操作元素，还需要重写 <code>add</code>、<code>set</code>、 <code>remove</code>方法，因为 <code>AbstractList</code> 虽然定义了这几个方法，但默认是不支持的。</p>
+<hr>
+<h1 id="ArrayList频繁扩容导致添加性能急剧下降，如何处理？"><a href="#ArrayList频繁扩容导致添加性能急剧下降，如何处理？" class="headerlink" title="ArrayList频繁扩容导致添加性能急剧下降，如何处理？"></a><code>ArrayList</code>频繁扩容导致添加性能急剧下降，如何处理？</h1><p>每次扩容都会创建一个数据，将数据复制到新数组，所以在<code>ArrayList</code>中有一个构造方法，参数是自定义长度，指定初始容量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">ArrayList</span><span class="hljs-params">(<span class="hljs-type">int</span> initialCapacity)</span> &#123; <span class="hljs-comment">// 手动初始化</span><br>    <span class="hljs-keyword">if</span> (initialCapacity &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-built_in">this</span>.elementData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[initialCapacity];<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (initialCapacity == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 如果长度为0，使用final修饰的空数组</span><br>        <span class="hljs-built_in">this</span>.elementData = EMPTY_ELEMENTDATA;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Illegal Capacity: &quot;</span>+ initialCapacity);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="字符串哈希实现其他算法"><a href="#字符串哈希实现其他算法" class="headerlink" title="字符串哈希实现其他算法"></a>字符串哈希实现其他算法</h1><h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><blockquote>
-<p>给两个字符串 S1、S2，求 S2 是否是 S1 的字串，并求出 S2 在 S1 中出现的次数。</p>
-</blockquote>
-<p>将 S2 哈希后，在 S1 中查询所有长度为 $|S2|$ 的字串，并进行哈希比较。</p>
-<blockquote>
-<p>复杂度：$O(|S1|)$。</p>
-</blockquote>
-<h2 id="AC-自动机"><a href="#AC-自动机" class="headerlink" title="AC 自动机"></a>AC 自动机</h2><blockquote>
-<p>给出 N 个单词串，和一个文章串，求每个单词串是否是文章串的子串，并求每个单词在文章中出现的次数。</p>
-</blockquote>
-<p>先把每一个单词串哈希，再把文章的每一个子串也进行整数，接下来只需要进行整数上的查找即可。</p>
-<blockquote>
-<p>复杂度：$O(|A|^2+|S|)$。$|S|$ 是单词串总长，$|A|$ 是文章串长度。</p>
-</blockquote>
-<h2 id="后缀数组"><a href="#后缀数组" class="headerlink" title="后缀数组"></a>后缀数组</h2><blockquote>
-<p>给出两个字符串 S1、S2，求它们的最长公共子串的长度。</p>
-</blockquote>
-<p>将 S1 的每一个子串都哈希成一个整数，再对 S2 的每一个字串进行哈希，并判断是否与 S1 的某一个字串相同，不断维护相同的字串的长度最大值即可。</p>
-<blockquote>
-<p>复杂度：$O(|S1|^2+|S2|^2)$。</p>
-</blockquote>
-<h2 id="马拉车"><a href="#马拉车" class="headerlink" title="马拉车"></a>马拉车</h2><blockquote>
-<p>给一个字符串 S，求 S 的最长回文子串。</p>
-</blockquote>
-<p>将 S 从前后两个方向分别进行字符串哈希。<br>对子串长度为奇数和偶数的情况分别进行求解。<br>枚举回文子串的中心位置，然后二分子串的长度，直到找到一个该位置的最长回文子串，不断维护长度最大值即可。</p>
-<blockquote>
-<p>复杂度：$O(|S|log|S|)$。</p>
-</blockquote>
-<h2 id="扩展-KMP"><a href="#扩展-KMP" class="headerlink" title="扩展 KMP"></a>扩展 KMP</h2><blockquote>
-<p>给一个字符串 S，求 S 的每个后缀与S的最长公共前缀。</p>
-</blockquote>
-<p>枚举每一个后缀的起始位置，二分长度，求出每个后缀与S的最长公共前缀。</p>
-<blockquote>
-<p>复杂度：$O(|S|log|S|)$。</p>
-</blockquote>
+<h1 id="ArrayList插入或删除元素一定比LinkedList慢吗？"><a href="#ArrayList插入或删除元素一定比LinkedList慢吗？" class="headerlink" title="ArrayList插入或删除元素一定比LinkedList慢吗？"></a><code>ArrayList</code>插入或删除元素一定比<code>LinkedList</code>慢吗？</h1><p>不一定，<code>LinkedList</code> 其底层调用了 Node的方法,该方法循环也是比较复杂的 , 如果这个<code>LinkedList</code>上的数据很多,虽说进行了折半的 但是效率也是比较低的。</p>
+<p>而<code>ArrayList</code>底层数组需要移动位置，复制数组。</p>
+<hr>
+<h1 id="ArrayList是线程安全的吗？"><a href="#ArrayList是线程安全的吗？" class="headerlink" title="ArrayList是线程安全的吗？"></a><code>ArrayList</code>是线程安全的吗？</h1><p><code>ArrayList</code>不是线程安全的，效率高。</p>
+<hr>
+<h1 id="如何解决ArrayList线程安全问题？"><a href="#如何解决ArrayList线程安全问题？" class="headerlink" title="如何解决ArrayList线程安全问题？"></a>如何解决<code>ArrayList</code>线程安全问题？</h1><p>可以使用安全集合<code>Vector</code>。</p>
+<p>可以使用<code>Collections</code>工具类中的<code>SyschronizedList</code>方法解决<code>ArrayList</code>的线程安全问题</p>
+<p>定义为全局变量，被多个线程所共享，就要考虑线程问题</p>
+<p>定义为局部变量时，调用方法会在虚拟机栈处创建一个栈帧，虚拟机栈线程私有的，每一次只有一个线程执行，所以局部变量的数据是独立的，不需要考虑安全问题</p>
+<hr>
+<h1 id="如何复制一个ArrayList集合到另一个ArrayList集合中？"><a href="#如何复制一个ArrayList集合到另一个ArrayList集合中？" class="headerlink" title="如何复制一个ArrayList集合到另一个ArrayList集合中？"></a>如何复制一个<code>ArrayList</code>集合到另一个<code>ArrayList</code>集合中？</h1><ul>
+<li><p>可以使用clone()方法</p>
+</li>
+<li><p>使用其中的构造器</p>
+</li>
+<li><p>使用addAll()方法</p>
+</li>
+<li><p>for循环遍历复制</p>
+</li>
+</ul>
+<hr>
+<h1 id="已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？"><a href="#已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？" class="headerlink" title="已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？"></a>已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？</h1><p>在多线程读写操作，<code>ArrayList</code>会抛出并发异常，所以在进行读写数据时，使用读写的操作时，使用<code>CopyOnWriteArrayList</code>这个读写分离的集合。</p>
+<hr>
+<h1 id="ArrayList和LinkedList区别？"><a href="#ArrayList和LinkedList区别？" class="headerlink" title="ArrayList和LinkedList区别？"></a><code>ArrayList</code>和<code>LinkedList</code>区别？</h1><p><strong><code>ArrayList</code></strong></p>
+<ul>
+<li><p>基于动态数组的数据结构</p>
+</li>
+<li><p><code>ArrayList</code>支持随机访问</p>
+</li>
+<li><p>查询快，增删慢，但并不一定比<code>LinkedList</code>慢</p>
+</li>
+</ul>
+<p><strong><code>LinkedList</code></strong></p>
+<ul>
+<li><p>基于链表的数据结构</p>
+</li>
+<li><p>对于顺序操作，<code>LinkedList</code>不一定比<code>ArrayList</code>慢</p>
+</li>
+<li><p>查询慢，增删快</p>
+</li>
+</ul>
 
                 
               </div>
@@ -351,7 +390,17 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Algorithm/" class="category-chain-item">Algorithm</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86-2022/" class="category-chain-item">面试整理-2022</a>
   
   
 
@@ -366,7 +415,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">#字符串哈希</a>
+        <a href="/tags/ArrayList/">#ArrayList</a>
       
     </div>
   
@@ -378,8 +427,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>字符串哈希 模板</div>
-      <div>https://luoyuy.top/posts/6b2a4d22d8f0/</div>
+      <div>Android面试整理 - ArrayList</div>
+      <div>https://luoyuy.top/posts/dbfd47dbded9/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +440,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年4月28日</div>
+          <div>2022年5月20日</div>
         </div>
       
       
@@ -423,9 +472,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/e76861a80fcd/" title="Android面试整理 - RecyclerView">
+                      <a href="/posts/b38925276d1b/" title="Android面试整理 - Activity">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Android面试整理 - RecyclerView</span>
+                        <span class="hidden-mobile">Android面试整理 - Activity</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -433,8 +482,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/ca3478f63a25/" title="View 的事件体系">
-                        <span class="hidden-mobile">View 的事件体系</span>
+                      <a href="/posts/c1827444074c/" title="Android面试整理 - HashMap">
+                        <span class="hidden-mobile">Android面试整理 - HashMap</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -491,12 +540,6 @@
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -690,49 +733,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
