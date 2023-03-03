@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-activity.png">
 <meta property="article:published_time" content="2022-05-21T08:40:02.000Z">
-<meta property="article:modified_time" content="2023-03-03T08:33:12.553Z">
+<meta property="article:modified_time" content="2023-03-03T08:39:33.400Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="Activity">
 <meta name="twitter:card" content="summary_large_image">
@@ -305,6 +305,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// SystemServer#main</span><br>    <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">SystemServer</span>().run();<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>    ···<br>    <span class="hljs-comment">// Ensure binder calls into the system always run at foreground priority.</span><br>    <span class="hljs-comment">// 确保当前进程的 binder 调用总是运行在前台优先级</span><br>    BinderInternal.disableBackgroundScheduling(<span class="hljs-literal">true</span>);<br>    ···<br>    <span class="hljs-comment">// 创建主线程 Looper</span><br>    Looper.prepareMainLooper();<br><br>    <span class="hljs-comment">// Initialize native services.</span><br>    <span class="hljs-comment">// 加载android_servers.so库，该库包含的源码在frameworks/base/services/目录下</span><br>    System.loadLibrary(<span class="hljs-string">&quot;android_servers&quot;</span>);<br>    ···<br>    <span class="hljs-comment">// Initialize the system context.</span><br>    <span class="hljs-comment">// 初始化系统上下文</span><br>    createSystemContext();<br><br>    <span class="hljs-comment">// Create the system service manager.</span><br>    <span class="hljs-comment">//创建系统服务管理</span><br>    mSystemServiceManager = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SystemServiceManager</span>(mSystemContext);<br>    <span class="hljs-comment">// 将mSystemServiceManager添加到本地服务的成员sLocalServiceObjects</span><br>    LocalServices.addService(SystemServiceManager.class, mSystemServiceManager);<br><br>    <span class="hljs-comment">// Start services.</span><br>    <span class="hljs-comment">//  启动各种系统服务</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        startBootstrapServices(); <span class="hljs-comment">// 启动引导服务</span><br>        startCoreServices();      <span class="hljs-comment">// 启动核心服务</span><br>        startOtherServices();     <span class="hljs-comment">// 启动其他服务</span><br>    &#125; <span class="hljs-keyword">catch</span> (Throwable ex) &#123;<br>        ···<br>    &#125;<br>    ···<br>    <span class="hljs-comment">// Loop forever.</span><br>    <span class="hljs-comment">// 启动 Looper 循环</span><br>    Looper.loop();<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;Main thread loop unexpectedly exited&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<hr>
 <h1 id="onSaveInstanceState和onRestoreInstanceState的调用时机"><a href="#onSaveInstanceState和onRestoreInstanceState的调用时机" class="headerlink" title="onSaveInstanceState和onRestoreInstanceState的调用时机"></a><code>onSaveInstanceState</code>和<code>onRestoreInstanceState</code>的调用时机</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -339,8 +340,10 @@
 </ol>
 <p><strong>onRestoreInstanceState(Bundle outState)</strong> 的回调时机：</p>
 <p>回调发生在<code>onStart</code>回调之后。</p>
+<hr>
 <h1 id="onCreate和onRestoreInstance方法中恢复数据时的区别"><a href="#onCreate和onRestoreInstance方法中恢复数据时的区别" class="headerlink" title="onCreate和onRestoreInstance方法中恢复数据时的区别"></a><code>onCreate</code>和<code>onRestoreInstance</code>方法中恢复数据时的区别</h1><p>因为<code>onSaveInstanceState</code> 不一定会被调用，所以<code>onCreate</code>里的<code>Bundle</code>参数可能为空，如果使用<code>onCreate</code>来恢复数据，一定要做非空判断。</p>
 <p>而<code>onRestoreInstanceState</code>的<code>Bundle</code>参数一定不会是空值，因为它只有在上次<code>activity</code>被回收了才会调用。</p>
+<hr>
 <h1 id="Activity的数据是怎么保存的-进程被Kill后-保存的数据怎么恢复的？"><a href="#Activity的数据是怎么保存的-进程被Kill后-保存的数据怎么恢复的？" class="headerlink" title="Activity的数据是怎么保存的,进程被Kill后,保存的数据怎么恢复的？"></a><code>Activity</code>的数据是怎么保存的,进程被<code>Kill</code>后,保存的数据怎么恢复的？</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -351,6 +354,7 @@
 
 <p>通过<code>onSaveInstanceState</code>方法和<code>onRestoreInstanceState</code>方法进行数据的保存和恢复。</p>
 <p>在 <code>onSaveInstanceState</code>和 <code>onRestoreInstanceState</code>方法中，系统自动为我们做了一定的恢复工作。当 <code>Activity</code> 在异常情况下需要重新创建时，系统会默认为我们保存当前<code>Activity</code> 的视图结构，并且在<code>Activity</code>重启后为我们恢复这些数据，比如文本框中用户输入的数据、<code>ListView</code>滚动的位置等。</p>
+<hr>
 <h1 id="Activity的启动模式和使用场景"><a href="#Activity的启动模式和使用场景" class="headerlink" title="Activity的启动模式和使用场景"></a><code>Activity</code>的启动模式和使用场景</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -401,6 +405,7 @@
 <p>很常见的是，电话拨号盘页面，通过自己的应用或者其他应用打开拨打电话页面 ，只要系统的栈中存在该实例，那么就会直接调用。</p>
 <p><strong><font size="5">总结</font></strong></p>
 <p>在使用APP过程中，不可避免页面之间的跳转，那么就会涉及到启动模式。其实在对界面进行跳转时，Android系统既能在同一个任务中对Activity进行调度，也能以Task（任务栈）为单位进行整体调度。在启动模式为standard或singleTop时，一般是在同一个任务中对Activity进行调度，而在启动模式为singleTask或singleInstance是，一般会对Task进行整体调度。</p>
+<hr>
 <h1 id="Activity的onNewIntent方法什么时候会执行"><a href="#Activity的onNewIntent方法什么时候会执行" class="headerlink" title="Activity的onNewIntent方法什么时候会执行"></a><code>Activity</code>的<code>onNewIntent</code>方法什么时候会执行</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -412,6 +417,7 @@
 <p>而后面如果再有想启动<code>Activity</code>的时候，那就是执行 <b><code>onNewIntent</code> -&gt; <code>onResart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code></b>。</p>
 <p>如果Android系统由于内存不足把已存在<code>Activity</code>释放掉了，那么再次调用的时候会重新启动<code>Activity</code>即执行<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>等。</p>
 <p>当调用到<code>onNewIntent(intent)</code>的时候，需要在<code>onNewIntent</code>中使用<code>setIntent(intent)</code>赋值给<code>Activity</code>的<code>Intent</code>。否则，后续的<code>getIntent</code>都是得到旧的<code>Intent</code>。</p>
+<hr>
 <h1 id="Activity-生命周期"><a href="#Activity-生命周期" class="headerlink" title="Activity 生命周期"></a><code>Activity</code> 生命周期</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -503,6 +509,7 @@
 <td>否</td>
 </tr>
 </tbody></table>
+<hr>
 <h1 id="onStart-和-onResume、onPause-和-onStop-的区别"><a href="#onStart-和-onResume、onPause-和-onStop-的区别" class="headerlink" title="onStart 和 onResume、onPause 和 onStop 的区别"></a><code>onStart</code> 和 <code>onResume</code>、<code>onPause</code> 和 <code>onStop</code> 的区别</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -511,6 +518,7 @@
 </blockquote>
 <p>从实际使用过程来说，<code>onStart</code>和 <code>onResume</code>、<code>onPause</code>和 <code>onStop</code>看起来的确差不多，甚至我们可以只保留其中一对，比如只保留<code>onStart</code>和 <code>onStop</code>。既然如此,那为什么Android系统还要提供看起来重复的接口呢？</p>
 <p>根据上面的分析，我们知道，这两个配对的回调分别表示不同的意义，<code>onStart</code>和 <code>onStop</code>是从<strong>Activity是否可见</strong>这个角度来回调的，而 <code>onResume</code>和 <code>onPause</code>是从<strong>Activity是否位于前台</strong>这个角度来回调的，除了这种区别，在实际使用中没有其他明显区别。</p>
+<hr>
 <h1 id="Activity的显式启动和隐式启动"><a href="#Activity的显式启动和隐式启动" class="headerlink" title="Activity的显式启动和隐式启动"></a><code>Activity</code>的显式启动和隐式启动</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -538,6 +546,7 @@
 <p>通过类名类启动Activity， 一般是同一个APK里面使用。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">startSecondActivityByClass</span><span class="hljs-params">()</span> &#123;<br>    Log.d(TAG, <span class="hljs-string">&quot;startSecondActivityByClass()&quot;</span>);<br>    <span class="hljs-type">Intent</span> <span class="hljs-variable">intent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Intent</span>(FirstActivity.<span class="hljs-built_in">this</span>, SecondActivity.class);<br>    <span class="hljs-keyword">try</span> &#123;<br>        startActivity(intent);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        Log.d(TAG, <span class="hljs-string">&quot;start activity error!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<hr>
 <h1 id="Activity间传递数据的方式"><a href="#Activity间传递数据的方式" class="headerlink" title="Activity间传递数据的方式"></a><code>Activity</code>间传递数据的方式</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -593,6 +602,7 @@
 <p>第二个Activity中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//静态变量</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> String name;<br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> String str;<br>tv.setText(str + name);<br></code></pre></td></tr></table></figure></li>
 </ol>
+<hr>
 <h1 id="有哪些Activity常用的标记位Flags"><a href="#有哪些Activity常用的标记位Flags" class="headerlink" title="有哪些Activity常用的标记位Flags"></a>有哪些<code>Activity</code>常用的标记位<code>Flags</code></h1><ol>
 <li><p><code>FLAG_ACTIVITY_NEW_TASK</code></p>
 <p>指定启动模式为SingleTask</p>
@@ -604,6 +614,7 @@
 <p>一般与SingleTask启动模式一起出现，启动时位于它上方的Activity出栈，如果被启动的Activity实例已存在，系统则会调用它的onNewIntent</p>
 </li>
 </ol>
+<hr>
 <h1 id="Activity任务栈是什么"><a href="#Activity任务栈是什么" class="headerlink" title="Activity任务栈是什么"></a><code>Activity</code>任务栈是什么</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -613,6 +624,7 @@
 <p>即Task，栈结构，存放Activity；退出应用程序时只有将所有任务栈找那个的所有Activity出栈，任务栈才能销毁。</p>
 <p>任务栈可以移动到后台，在其中保留每一个Activity的状态。</p>
 <p>对应的类：ActivityRecord、TaskRecord、ActivityStack。</p>
+<hr>
 <h1 id="跨App启动Activity的方式-注意事项"><a href="#跨App启动Activity的方式-注意事项" class="headerlink" title="跨App启动Activity的方式,注意事项"></a>跨<code>App</code>启动<code>Activity</code>的方式,注意事项</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -634,6 +646,7 @@
 <p>给自己的Activity 添加<code>android:permission=”xxx.xxx.xx”</code>，那么想要访问你的Activity就必须声明<code>uses-permission xxx.xxx.xx</code></p>
 </li>
 </ol>
+<hr>
 <h1 id="ANR-的四种场景"><a href="#ANR-的四种场景" class="headerlink" title="ANR 的四种场景"></a><code>ANR</code> 的四种场景</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
