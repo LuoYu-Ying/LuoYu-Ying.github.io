@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-activity.png">
 <meta property="article:published_time" content="2022-05-21T08:40:02.000Z">
-<meta property="article:modified_time" content="2023-03-03T05:55:08.189Z">
+<meta property="article:modified_time" content="2023-03-03T07:16:27.046Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="Activity">
 <meta name="twitter:card" content="summary_large_image">
@@ -425,53 +425,53 @@
 
 <ol>
 <li><p><code>onCreate</code></p>
-<p>表示 Activity 正在被创建，这是生命周期的第一个方法。在这个方法中,我们可以做一些<strong>初始化工作</strong>,比如调用<strong>setContentView</strong>去加载界面布局资源,初始化Activity所需数据等。</p>
+<p>表示 Activity 正在被创建，这是生命周期的第一个方法。在这个方法中，我们可以做一些<strong>初始化工作</strong>，比如调用 <strong>setContentView</strong> 去加载界面布局资源、初始化 Activity 所需数据等。</p>
 </li>
 <li><p><code>onStart</code></p>
-<p>表示Activity正在被启动，即将开始，这时 Activity已经<strong>可见</strong>了，但是还<strong>没有出现在前台</strong>，还<strong>无法和用户交互</strong>。这个时候其实可以理解为Activity已经显示出来了，但是我们还<strong>看不到</strong>。</p>
+<p>表示 Activity 正在被启动，即将开始，这时 Activity已经<strong>可见</strong>了，但是还<strong>没有出现在前台</strong>，还<strong>无法和用户交互</strong>。这个时候其实可以理解为 Activity 已经显示出来了，但是我们还<strong>看不到</strong>。</p>
 </li>
 <li><p><code>onResume</code></p>
-<p>表示 Activity<strong>已经可见</strong>了，并且<strong>出现在前台并开始活动</strong>。</p>
-<p>要注意这个和 onStart的对比, onStart和onResume都表示Activity已经可见,但是onStart的时候Activity还在后台，onResume的时候Activity才显示到前台。</p>
+<p>表示 Activity <strong>已经可见</strong>了，并且<strong>出现在前台并开始活动</strong>。</p>
+<p>要注意这个和 onStart 的对比，onStart 和 onResume 都表示 Activity 已经可见，但是 onStart 的时候 Activity 还在后台，onResume 的时候 Activity 才显示到前台。</p>
 </li>
 <li><p><code>onPause</code></p>
-<p>表示Activity正在停止，正常情况下，紧接着onStop就会被调用。</p>
-<p>在特殊情况下，如果这个时候快速地再回到当前Activity，那么onResume会被调用。笔者的理解是，这种情况属于极端情况，用户操作很难重现这一场景。</p>
-<p><strong>当前Activity是可见的，但不能与用户交互状态（即不在前台）。</strong></p>
-<p>此时可以做一些<strong>存储数据、停止动画</strong>等工作，但是注意<strong>不能太耗时</strong>，因为这会影响到新Activity的显示，<strong>onPause必须先执行完，新Activity 的onResume才会执行。</strong></p>
+<p>表示 Activity 正在停止，正常情况下，紧接着 onStop 就会被调用。</p>
+<p>在特殊情况下，如果这个时候快速地再回到当前 Activity，那么 onResume 会被调用。笔者的理解是，这种情况属于极端情况，用户操作很难重现这一场景。</p>
+<p><strong>当前 Activity 是可见的，但不能与用户交互状态（即不在前台）。</strong></p>
+<p>此时可以做一些<strong>存储数据、停止动画</strong>等工作，但是注意<strong>不能太耗时</strong>，因为这会影响到新 Activity 的显示，<strong>onPause 必须先执行完，新 Activity 的 onResume 才会执行。</strong></p>
 </li>
 <li><p><code>onStop</code></p>
-<p>表示Activity即将停止，此时Activity对用户是<strong>不可见</strong>的，可以做一些稍微重量级的回收工作，同样<strong>不能太耗时</strong>。</p>
+<p>表示 Activity 即将停止，此时 Activity 对用户是<strong>不可见</strong>的，可以做一些稍微重量级的回收工作，同样<strong>不能太耗时</strong>。</p>
 <p>在系统内存紧张的情况下，有可能会被系统进行回收，所以一般在当前方法可做资源回收。</p>
 </li>
 <li><p><code>onDestroy</code></p>
-<p>表示Activity即将被销毁，这是Activity生命周期中的最后一个回调,在这里我们可以做一些<strong>回收工作和最终的资源释放</strong>。</p>
+<p>表示 Activity 即将被销毁，这是 Activity 生命周期中的最后一个回调，在这里我们可以做一些<strong>回收工作和最终的资源释放</strong>。</p>
 </li>
 <li><p><code>onRestart</code></p>
-<p>表示Activity正在重新启动。一般情况下，当当前Activity 从<strong>不可见重新变为可见状态</strong>时，onRestart就会被调用。</p>
-<p>这种情形一般是用户行为所导致的，比如用户按Home键切换到桌面或者用户打开了一个新的Activity，这时当前的Activity就会暂停，也就是onPause和 onStop被执行了，接着用户又回到了这个Activity，就会出现这种情况。</p>
+<p>表示 Activity 正在重新启动。一般情况下，当当前 Activity 从<strong>不可见重新变为可见状态</strong>时，onRestart 就会被调用。</p>
+<p>这种情形一般是用户行为所导致的，比如用户按 Home 键切换到桌面或者用户打开了一个新的 Activity，这时当前的 Activity 就会暂停，也就是 onPause 和 onStop 被执行了，接着用户又回到了这个 Activity，就会出现这种情况。</p>
 </li>
 </ol>
 <p><strong>具体情况分析</strong>：</p>
 <ol>
-<li><p>针对一个特定的Activity,<strong>第一次启动</strong>,回调如下：<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>。</p>
+<li><p>针对一个特定的 Activity，<strong>第一次启动</strong>，回调如下：<code>onCreate</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>。</p>
 </li>
-<li><p>当用户<strong>打开新的Activity</strong>或者<strong>切换到桌面</strong>的时候，回调如下： <code>onPause</code> -&gt; <code>onStop</code>。</p>
-<p>这里有一种特殊情况,如果新Activity 采用了透明主题,那么当前Activity不会回调<code>onStop</code>。</p>
+<li><p>当用户<strong>打开新的 Activity</strong> 或者<strong>切换到桌面</strong>的时候，回调如下： <code>onPause</code> -&gt; <code>onStop</code>。</p>
+<p>这里有一种特殊情况，如果新 Activity 采用了透明主题,那么当前 Activity 不会回调<code>onStop</code>。</p>
 </li>
-<li><p>当用户<strong>再次回到原Activity</strong> 时，回调如下： <code>onRestart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>。</p>
+<li><p>当用户<strong>再次回到原 Activity</strong> 时，回调如下： <code>onRestart</code> -&gt; <code>onStart</code> -&gt; <code>onResume</code>。</p>
 </li>
-<li><p>当用户<strong>按back键回退</strong>时，回调如下: <code>onPause</code> -&gt; <code>onStop</code> -&gt; <code>onDestroy</code>。</p>
+<li><p>当用户<strong>按 back 键回退</strong>时，回调如下: <code>onPause</code> -&gt; <code>onStop</code> -&gt; <code>onDestroy</code>。</p>
 </li>
-<li><p>当<strong>Activity被系统回收后再次打开</strong>，生命周期方法回调过程和（1）一样，注意只是生命周期方法一样，不代表所有过程都一样，比如<code>onSaveInstanceState</code>和<code>onRestoreInstanceState</code>的调用。</p>
+<li><p>当 <strong>Activity 被系统回收后再次打开</strong>，生命周期方法回调过程和（1）一样，注意只是生命周期方法一样，不代表所有过程都一样，比如 <code>onSaveInstanceState</code> 和 <code>onRestoreInstanceState</code> 的调用。</p>
 </li>
-<li><p>从<strong>Activity_A跳转到Activity_B</strong>，会先执行A活动的<code>onPause</code>，再执行B活动的<code>onResume</code>。</p>
+<li><p>从 <strong>Activity_A跳转到Activity_B</strong>，会先执行 A 活动的 <code>onPause</code>，再执行 B 活动的 <code>onResume</code>。</p>
 </li>
-<li><p>从<strong>整个生命周期</strong>来说，<code>onCreate</code>和 <code>onDestroy</code>是配对的，分别标识着Activity 的创建和销毁，并且只可能有一次调用。</p>
+<li><p>从<strong>整个生命周期</strong>来说，<code>onCreate</code> 和 <code>onDestroy</code> 是配对的，分别标识着 Activity 的创建和销毁，并且只可能有一次调用。</p>
 </li>
-<li><p>从<strong>Activity是否可见</strong>来说，<code>onStart</code>和 <code>onStop</code>是配对的，随着用户的操作或者设备屏幕的点亮和熄灭，这两个方法可能被调用多次。</p>
+<li><p>从 <strong>Activity 是否可见</strong>来说，<code>onStart</code> 和 <code>onStop</code> 是配对的，随着用户的操作或者设备屏幕的点亮和熄灭，这两个方法可能被调用多次。</p>
 </li>
-<li><p>从 <strong>Activity是否在前台</strong>来说，<code>onResume</code>和 <code>onPause</code>是配对的,随着用户操作或者设备屏幕的点亮和熄灭，这两个方法可能被调用多次。</p>
+<li><p>从 <strong>Activity 是否在前台</strong>来说，<code>onResume</code>和 <code>onPause</code>是配对的，随着用户操作或者设备屏幕的点亮和熄灭，这两个方法可能被调用多次。</p>
 </li>
 </ol>
 <table>
