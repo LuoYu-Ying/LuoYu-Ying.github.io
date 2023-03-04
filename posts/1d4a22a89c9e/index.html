@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-jvm.png">
 <meta property="article:published_time" content="2022-05-27T12:18:37.000Z">
-<meta property="article:modified_time" content="2023-03-04T12:40:44.113Z">
+<meta property="article:modified_time" content="2023-03-04T12:51:50.928Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="JVM Class Loader">
 <meta property="article:tag" content="JVM Garbage Collection">
@@ -302,7 +302,7 @@
 <li>运行时数据区</li>
 <li>执行引擎</li>
 </ul>
-<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-f3141f2dd349b87c98543fbc9fc00495_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-f3141f2dd349b87c98543fbc9fc00495_720w.jpg" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><ul>
 <li>负责加载 <code>class</code>文件(<code>class</code>文件在文件开头有特定的文件标识)，将 <code>class</code>文件字节码内容加载到内存中，并将这些内容转换成方法区中的运行时数据结构。</li>
@@ -352,10 +352,10 @@
 </ol>
 </li>
 </ul>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/408997874.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/408997874.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 
 <hr>
-<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-205a2605346856d95aec826ed9263c03_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/v2-205a2605346856d95aec826ed9263c03_720w.jpg" srcset="/img/loading.gif" lazyload></p>
 <h2 id="线程私有内存"><a href="#线程私有内存" class="headerlink" title="线程私有内存"></a>线程私有内存</h2><p><strong><font size="5">程序计数器(Program Counter Register)</font></strong></p>
 <p>程序计数器可以看作是<strong>当前线程所执行的字节码的行号指示器</strong>。</p>
 <p>字节码解释器工作是就是通过改变程序计数器的值来选取下一条需要执行的字节码指令（执行本地方法的时候，程序计数器的值为 <code>null</code>）。</p>
@@ -404,7 +404,7 @@
 <li>将<code>Java</code>源文件动态编译为<code>.class</code>文件</li>
 </ul>
 <hr>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/879896-20160414224549770-60006655.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:70%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/879896-20160414224549770-60006655.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:70%;" />
 
 
 
@@ -506,7 +506,7 @@
 <li>JNI handles；</li>
 <li>已启动且未停止的 Java 线程。</li>
 </ul>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/83d909d2-3858-4fe1-8ff4-16471db0b180.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/83d909d2-3858-4fe1-8ff4-16471db0b180.png" srcset="/img/loading.gif" lazyload alt="" style="zoom: 67%;" />
 
 <p>可达性分析可以解决引用计数法所不能解决的循环引用问题。</p>
 <p>虽然可达性分析的算法本身很简明，但是在实践中还是有不少其他问题需要解决的。</p>
@@ -551,16 +551,16 @@
 <li>会造成内存碎片。由于 Java 虚拟机的堆中对象必须是连续分布的，因此可能出现总空闲内存足够，但是无法分配的极端情况。</li>
 <li>分配效率较低。如果是一块连续的内存空间，那么我们可以通过指针加法（pointer bumping）来做分配。而对于空闲列表，Java 虚拟机则需要逐个访问列表中的项，来查找能够放入新建对象的空闲内存。</li>
 </ul>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/005b481b-502b-4e3f-985d-d043c2b330aa.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/005b481b-502b-4e3f-985d-d043c2b330aa.png" srcset="/img/loading.gif" lazyload alt="" style="zoom: 67%;" />
 </li>
 <li><p>标记-整理（压缩）</p>
 <p>即把存活的对象聚集到内存区域的起始位置，从而留下一段连续的内存空间。这种做法能够解决内存碎片化的问题，但<strong>代价是压缩算法的性能开销</strong>。</p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/ccd773a5-ad38-4022-895c-7ac318f31437.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/ccd773a5-ad38-4022-895c-7ac318f31437.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 </li>
 <li><p>标记-复制</p>
 <p>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</p>
 <p><strong>主要不足是只使用了内存的一半。</strong></p>
-<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/b2b77b9e-958c-4016-8ae5-9c6edd83871e.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;" />
+<img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/b2b77b9e-958c-4016-8ae5-9c6edd83871e.png" srcset="/img/loading.gif" lazyload alt="" style="zoom:67%;" />
 
 <blockquote>
 <p>  现在的商业虚拟机都<strong>采用</strong>这种<strong>复制收集算法回收新生代</strong>，但是并不是划分为大小相等的两块，而是一块较大的 <code>Eden</code> 空间和两块较小的 <code>Survivor</code> 空间，每次使用 <code>Eden</code> 和其中一块 <code>Survivor</code>。在回收时，将 <code>Eden</code> 和 <code>Survivor</code> 中还存活着的对象全部复制到另一块 <code>Survivor</code> 上，最后清理 <code>Eden</code> 和使用过的那一块 <code>Survivor</code>。</p>
@@ -576,7 +576,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/c625baa0-dde6-449e-93df-c3a67f2f430f.jpg" srcset="/img/loading.gif" lazyload alt="img"  />
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/c625baa0-dde6-449e-93df-c3a67f2f430f.jpg" srcset="/img/loading.gif" lazyload />
 
 <p>以上是 HotSpot 虚拟机中的 7 个垃圾收集器，连线表示垃圾收集器可以配合使用。‘</p>
 <p><strong><font size="4">基本概念</font></strong></p>
