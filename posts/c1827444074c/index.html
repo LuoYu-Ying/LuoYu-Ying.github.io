@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-HashMap.png">
 <meta property="article:published_time" content="2022-05-18T11:40:20.000Z">
-<meta property="article:modified_time" content="2023-03-03T15:49:45.988Z">
+<meta property="article:modified_time" content="2023-03-04T08:25:45.624Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="HashMap">
 <meta property="article:tag" content="ConcurrentHashMap">
@@ -314,11 +314,11 @@
 <p> 当<code>元素的总个数 &gt; (当前数组的长度 * 负载因子)</code>，数组会进行扩容，<strong>扩容为原来的两倍</strong>。</p>
 </li>
 <li><p><code>TREEIFY_THRESHOLD</code> </p>
-<p>链表树化阙值： 默认值为 <code>8</code> 。</p>
+<p>链表树化阈值： 默认值为 <code>8</code> 。</p>
 <p>表示在一个node（Table）节点下的值的个数大于8时候，会将链表转换成为红黑树。</p>
 </li>
 <li><p><code>UNTREEIFY_THRESHOLD</code> </p>
-<p>红黑树链化阙值： 默认值为 <code>6</code> 。 </p>
+<p>红黑树链化阈值： 默认值为 <code>6</code> 。 </p>
 <p>表示在进行扩容期间，单个Node节点下的红黑树节点的个数小于6时候，会将红黑树转化成为链表。</p>
 </li>
 <li><p><code>MIN_TREEIFY_CAPACITY = 64</code> </p>
@@ -462,6 +462,7 @@
 <li>在之前使用<code>HashTable</code>。 在每一个函数前面都加上了 <code>synchronized</code> 但是<strong>效率太低</strong>我们现在不常用了。</li>
 <li>使用 <code>ConcurrentHashmap</code>。用于提高效率。</li>
 </ol>
+<hr>
 <h1 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><code>ConcurrentHashMap</code></h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
@@ -469,7 +470,7 @@
 </ul>
 </blockquote>
 <p><font size="5"><strong>对比</strong></font></p>
-<p><font size="4"><strong>与HashMap的区别是什么？</strong></font></p>
+<p><font size="4"><strong>与 HashMap 的区别是什么？</strong></font></p>
 <p>ConcurrentHashMap 是 HashMap 的升级版，HashMap 是线程不安全的，而 ConcurrentHashMap 是线程安全。而其他功能和实现原理和 HashMap 类似。</p>
 <p><font size="4"><strong>与 Hashtable 的区别是什么？</strong></font></p>
 <p>Hashtable 也是线程安全的，但每次要锁住整个结构，并发性低。相比之下，ConcurrentHashMap 获取 size 时才锁整个对象。</p>
@@ -484,29 +485,29 @@
 <li>JDK7 中的扩容是每个 Segment 内部进行扩容，不会影响其他 Segment，而 JDK8 中的扩容和 HashMap 的扩容类似，只不过支持了多线程扩容，并且保证了线程安全</li>
 </ol>
 <p><font size="5"><strong>特性</strong></font></p>
-<p><font size="4"><strong>ConcurrentHashMap是如何保证并发安全的？</strong></font></p>
-<p>JDK7中ConcurrentHashMap是通过ReentrantLock+CAS+分段思想来保证的并发安全的，ConcurrentHashMap的put方法会通过CAS的方式，把一个Segment对象存到Segment数组中，一个Segment内部存在一个HashEntry数组，相当于分段的HashMap，Segment继承了ReentrantLock，每段put开始会加锁。</p>
-<p>在JDK7的ConcurrentHashMap中，首先有一个Segment数组，存的是Segment对象，Segment相当于一个小HashMap，Segment内部有一个HashEntry的数组，也有扩容的阈值，同时Segment继承了ReentrantLock类，同时在Segment中还提供了put，get等方法，比如Segment的put方法在一开始就会去加锁，加到锁之后才会把key,value存到Segment中去，然后释放锁。同时在ConcurrentHashMap的put方法中，会通过CAS的方式把一个Segment对象存到Segment数组的某个位置中。同时因为一个Segment内部存在一个HashEntry数组，所以和HashMap对比来看，相当于分段了，每段里面是一个小的HashMap，每段公用一把锁，同时在ConcurrentHashMap的构造方法中是可以设置分段的数量的，叫做并发级别concurrencyLevel.</p>
-<p>JDK8中ConcurrentHashMap是通过synchronized+cas来实现了。在JDK8中只有一个数组，就是Node数组，Node就是key，value，hashcode封装出来的对象，和HashMap中的Entry一样，在JDK8中通过对Node数组的某个index位置的元素进行同步，达到该index位置的并发安全。同时内部也利用了CAS对数组的某个位置进行并发安全的赋值。</p>
-<p><font size="4"><strong>JDK8中的ConcurrentHashMap为什么使用synchronized来进行加锁？</strong></font></p>
-<p>JDK8中使用synchronized加锁时，是对链表头结点和红黑树根结点来加锁的，而ConcurrentHashMap会保证，数组中某个位置的元素一定是链表的头结点或红黑树的根结点，所以JDK8中的ConcurrentHashMap在对某个桶进行并发安全控制时，只需要使用synchronized对当前那个位置的数组上的元素进行加锁即可，对于每个桶，只有获取到了第一个元素上的锁，才能操作这个桶，不管这个桶是一个链表还是红黑树。</p>
-<p>想比于JDK7中使用ReentrantLock来加锁，因为JDK7中使用了分段锁，所以对于一个ConcurrentHashMap对象而言，分了几段就得有几个ReentrantLock对象，表示得有对应的几把锁。</p>
-<p>而JDK8中使用synchronized关键字来加锁就会更节省内存，并且jdk也已经对synchronized的底层工作机制进行了优化，效率更好。</p>
-<p><font size="4"><strong>JDK7中的ConcurrentHashMap是如何扩容的？</strong></font></p>
-<p>JDK7中的ConcurrentHashMap和JDK7的HashMap的扩容是不太一样的，首先JDK7中也是支持多线程扩容的，原因是，JDK7中的ConcurrentHashMap分段了，每一段叫做Segment对象，每个Segment对象相当于一个HashMap，分段之后，对于ConcurrentHashMap而言，能同时支持多个线程进行操作，前提是这些操作的是不同的Segment，而ConcurrentHashMap中的扩容是仅限于本Segment，也就是对应的小型HashMap进行扩容，所以是可以多线程扩容的。</p>
-<p>每个Segment内部的扩容逻辑和HashMap中一样。</p>
-<p><font size="4"><strong>JDK8中的ConcurrentHashMap是如何扩容的？</strong></font></p>
-<p>首先，JDK8中是支持多线程扩容的，JDK8中的ConcurrentHashMap不再是分段，或者可以理解为每个桶为一段，在需要扩容时，首先会生成一个双倍大小的数组，生成完数组后，线程就会开始转移元素，在扩容的过程中，如果有其他线程在put，那么这个put线程会帮助去进行元素的转移，虽然叫转移，但是其实是基于原数组上的Node信息去生成一个新的Node的，也就是原数组上的Node不会消失，因为在扩容的过程中，如果有其他线程在get也是可以的。</p>
-<p><font size="4"><strong>JDK8中的ConcurrentHashMap有一个CounterCell，你是如何理解的？</strong></font></p>
-<p>CounterCell是JDK8中用来统计ConcurrentHashMap中所有元素个数的，在统计ConcurentHashMap时，不能直接对ConcurrentHashMap对象进行加锁然后再去统计，因为这样会影响ConcurrentHashMap的put等操作的效率，在JDK8的实现中使用了CounterCell+baseCount来辅助进行统计，baseCount是ConcurrentHashMap中的一个属性，某个线程在调用ConcurrentHashMap对象的put操作时，会先通过CAS去修改baseCount的值，如果CAS修改成功，就计数成功，如果CAS修改失败，则会从CounterCell数组中随机选出一个CounterCell对象，然后利用CAS去修改CounterCell对象中的值，因为存在CounterCell数组，所以，当某个线程想要计数时，先尝试通过CAS去修改baseCount的值，如果没有修改成功，则从CounterCell数组中随机取出来一个CounterCell对象进行CAS计数，这样在计数时提高了效率。</p>
-<p>所以ConcurrentHashMap在统计元素个数时，就是baseCount加上所有CountCeller中的value值，所得的和就是所有的元素个数。</p>
-<h1 id="key可以是null吗，value可以是null吗"><a href="#key可以是null吗，value可以是null吗" class="headerlink" title="key可以是null吗，value可以是null吗"></a>key可以是<code>null</code>吗，<code>value</code>可以是<code>null</code>吗</h1><p>当然都是可以的，但是对于 <code>key</code>来说只能运行出现一个<code>key</code>值为<code>null</code>，但是可以出现多个<code>value</code>值为<code>null</code>。</p>
-<h1 id="一般用什么值作为key值？"><a href="#一般用什么值作为key值？" class="headerlink" title="一般用什么值作为key值？"></a>一般用什么值作为<code>key</code>值？</h1><p>一般用Integer、String这种不可变类当HashMap当key，⽽且String最为常⽤。</p>
+<p><font size="4"><strong>ConcurrentHashMap 是如何保证并发安全的？</strong></font></p>
+<p>JDK7 中 ConcurrentHashMap 是通过 <strong>ReentrantLock+CAS+分段思想</strong> 来保证的并发安全的，ConcurrentHashMap 的 put 方法会通过 CAS 的方式，把一个 Segment 对象存到 Segment 数组中，一个 Segment 内部存在一个 HashEntry 数组，相当于分段的 HashMap，Segment 继承了 ReentrantLock，每段 put 开始会加锁。</p>
+<p>在 JDK7 的 ConcurrentHashMap 中，首先有一个 Segment 数组，存的是 Segment 对象，Segment 相当于一个小 HashMap，Segment 内部有一个 HashEntry 的数组，也有扩容的阈值，同时 Segment 继承了 ReentrantLock 类，同时在 Segment 中还提供了 put、get 等方法，比如 Segment 的 put 方法在一开始就会去加锁，加到锁之后才会把 key、value 存到 Segment 中去，然后释放锁。同时在ConcurrentHashMap 的 put 方法中，会通过 CAS 的方式把一个 Segment 对象存到 Segment 数组的某个位置中。同时因为一个 Segment 内部存在一个 HashEntry 数组，所以和 HashMap 对比来看，相当于分段了，每段里面是一个小的 HashMap，每段公用一把锁，同时在ConcurrentHashMap 的构造方法中是可以设置分段的数量的，叫做并发级别 concurrencyLevel。</p>
+<p>JDK8 中 ConcurrentHashMap 是通过 <strong>synchronized+CAS</strong> 来实现了。在 JDK8 中只有一个数组，就是 Node 数组，Node 就是 key、value、hashcode 封装出来的对象，和 HashMap 中的 Entry 一样，在 JDK8 中通过对 Node 数组的某个 index 位置的元素进行同步，达到该 index 位置的并发安全。同时内部也利用了 CAS 对数组的某个位置进行并发安全的赋值。</p>
+<p><font size="4"><strong>JDK8 中的 ConcurrentHashMap 为什么使用 synchronized 来进行加锁？</strong></font></p>
+<p>JDK8 中使用 synchronized 加锁时，是对链表头结点和红黑树根结点来加锁的，而 ConcurrentHashMap 会保证，数组中某个位置的元素一定是链表的头结点或红黑树的根结点，所以 JDK8 中的 ConcurrentHashMap 在对某个桶进行并发安全控制时，只需要使用 synchronized 对当前那个位置的数组上的元素进行加锁即可，对于每个桶，只有获取到了第一个元素上的锁，才能操作这个桶，不管这个桶是一个链表还是红黑树。</p>
+<p>相比于 JDK7 中使用 ReentrantLock 来加锁，因为 JDK7 中使用了分段锁，所以对于一个 ConcurrentHashMap 对象而言，分了几段就得有几个 ReentrantLock 对象，表示得有对应的几把锁。</p>
+<p>而 JDK8 中使用 synchronized 关键字来加锁就会更节省内存，并且 JDK 也已经对 synchronized 的底层工作机制进行了优化，效率更好。</p>
+<p><font size="4"><strong>JDK7 中的 ConcurrentHashMap 是如何扩容的？</strong></font></p>
+<p>JDK7 中的 ConcurrentHashMap 和 JDK7 的 HashMap 的扩容是不太一样的。首先 JDK7 中也是支持多线程扩容的，原因是 JDK7 中的 ConcurrentHashMap 分段了，每一段叫做 Segment 对象，每个 Segment 对象相当于一个 HashMap，分段之后，对于 ConcurrentHashMap 而言，能同时支持多个线程进行操作，前提是这些操作的是不同的 Segment，而 ConcurrentHashMap 中的扩容是仅限于本 Segment，也就是对应的小型 HashMap 进行扩容，所以是可以多线程扩容的。</p>
+<p>每个 Segment 内部的扩容逻辑和 HashMap 中一样。</p>
+<p><font size="4"><strong>JDK8 中的 ConcurrentHashMap 是如何扩容的？</strong></font></p>
+<p>首先，JDK8 中是支持多线程扩容的，JDK8 中的 ConcurrentHashMap 不再是分段，或者可以理解为每个桶为一段，在需要扩容时，首先会生成一个双倍大小的数组，生成完数组后，线程就会开始转移元素，在扩容的过程中，如果有其他线程在 put，那么这个 put 线程会帮助去进行元素的转移，虽然叫转移，但是其实是基于原数组上的 Node 信息去生成一个新的 Node 的，也就是原数组上的 Node 不会消失，因为在扩容的过程中，如果有其他线程在 get 也是可以的。</p>
+<p><font size="4"><strong>JDK8 中的 ConcurrentHashMap 有一个 CounterCell，你是如何理解的？</strong></font></p>
+<p>CounterCell 是 JDK8 中用来统计 ConcurrentHashMap 中所有元素个数的，在统计 ConcurentHashMap 时，不能直接对 ConcurrentHashMap 对象进行加锁然后再去统计，因为这样会影响 ConcurrentHashMap 的 put 等操作的效率，在 JDK8 的实现中使用了 <strong>CounterCell+baseCount</strong> 来辅助进行统计，baseCount 是 ConcurrentHashMap 中的一个属性，某个线程在调用 ConcurrentHashMap 对象的 put 操作时，会先通过 CAS 去修改 baseCount 的值，如果 CAS 修改成功，就计数成功，如果 CAS 修改失败，则会从 CounterCell 数组中随机选出一个 CounterCell 对象，然后利用 CAS 去修改 CounterCell 对象中的值，因为存在 CounterCell 数组，所以，当某个线程想要计数时，先尝试通过 CAS 去修改 baseCount 的值，如果没有修改成功，则从 CounterCell 数组中随机取出来一个 CounterCell 对象进行 CAS 计数，这样在计数时提高了效率。</p>
+<p>所以 ConcurrentHashMap 在统计元素个数时，就是 baseCount 加上所有 CountCeller 中的 value 值，所得的和就是所有的元素个数。</p>
+<h1 id="key-可以是-null-吗，value-可以是-null-吗"><a href="#key-可以是-null-吗，value-可以是-null-吗" class="headerlink" title="key 可以是 null 吗，value 可以是 null 吗"></a>key 可以是 <code>null</code> 吗，<code>value</code> 可以是 <code>null</code> 吗</h1><p>当然都是可以的，但是对于 <code>key</code>来说只能运行出现一个<code>key</code>值为<code>null</code>，但是可以出现多个<code>value</code>值为<code>null</code>。</p>
+<h1 id="一般用什么值作为key值？"><a href="#一般用什么值作为key值？" class="headerlink" title="一般用什么值作为key值？"></a>一般用什么值作为<code>key</code>值？</h1><p>一般用 Integer、String 这种不可变类当 HashMap 当 key，⽽且 String 最为常用。</p>
 <ol>
-<li>因为字符串是不可变的，所以在它创建的时候hashcode就被缓存了，不需要重新计算。 这就使得字符串很适合作为Map中的键，字符串的处理速度要快过其它的键对象。 这就是HashMap中的键往往都使⽤字符串</li>
-<li>因为获取对象的时候要⽤到equals()和hashCode()⽅法，那么键对象正确的重写这两个⽅法是⾮常重要的,这些类已 经很规范的覆写了hashCode()以及equals()⽅法。</li>
+<li>因为字符串是不可变的，所以在它创建的时候 hashcode 就被缓存了，不需要重新计算。 这就使得字符串很适合作为 Map 中的键，字符串的处理速度要快过其它的键对象。 这就是 HashMap 中的键往往都使用字符串。</li>
+<li>因为获取对象的时候要用到 equals() 和 hashCode() 方法，那么键对象正确的重写这两个方法是⾮常重要的，这些类已经很规范的覆写了 hashCode() 以及 equals() 方法。</li>
 </ol>
-<h1 id="用可变类当Hashmap的key会有什么问题"><a href="#用可变类当Hashmap的key会有什么问题" class="headerlink" title="用可变类当Hashmap的key会有什么问题"></a>用可变类当<code>Hashmap</code>的<code>key</code>会有什么问题</h1><p><code>hashcode</code>可能会发生变化，导致<code>put</code>进行的值，无法<code>get</code>出来。</p>
+<h1 id="用可变类当-Hashmap-的-key-会有什么问题"><a href="#用可变类当-Hashmap-的-key-会有什么问题" class="headerlink" title="用可变类当 Hashmap 的 key 会有什么问题"></a>用可变类当 <code>Hashmap</code> 的 <code>key</code> 会有什么问题</h1><p><code>hashcode</code> 可能会发生变化，导致 <code>put</code> 进行的值，无法 <code>get</code> 出来。</p>
 
                 
               </div>
