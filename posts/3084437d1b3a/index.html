@@ -16,24 +16,24 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Android 中广播的分类、使用场景以及注册方法">
+    <meta name="description" content="OkHttp 的责任链模式、缓存处理、拦截器、线程池的相关知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BroadcastReceiver 简单介绍">
-<meta property="og:url" content="https://luoyuy.top/posts/8a4aa21deb03/index.html">
+<meta property="og:title" content="从零开始的 OkHttp">
+<meta property="og:url" content="https://luoyuy.top/posts/3084437d1b3a/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="Android 中广播的分类、使用场景以及注册方法">
+<meta property="og:description" content="OkHttp 的责任链模式、缓存处理、拦截器、线程池的相关知识。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
-<meta property="article:published_time" content="2022-05-24T07:34:00.000Z">
-<meta property="article:modified_time" content="2023-03-04T12:06:55.931Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-OkHttp.png">
+<meta property="article:published_time" content="2023-03-02T16:22:20.000Z">
+<meta property="article:modified_time" content="2023-03-04T12:04:57.401Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="BroadcastReceiver">
+<meta property="article:tag" content="OkHttp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-BroadcastReceiver.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-OkHttp.png">
   
   
   
-  <title>BroadcastReceiver 简单介绍 - 洛语 の Blog</title>
+  <title>从零开始的 OkHttp - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="BroadcastReceiver 简单介绍"></span>
+            <span id="subtitle" data-typed-text="从零开始的 OkHttp"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-24 15:34" pubdate>
-          2022年5月24日 下午
+        <time datetime="2023-03-03 00:22" pubdate>
+          2023年3月3日 凌晨
         </time>
       </span>
     
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          694 字
+          4k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          6 分钟
+          34 分钟
         
       </span>
     
@@ -283,52 +283,100 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">BroadcastReceiver 简单介绍</h1>
+            <h1 style="display: none">从零开始的 OkHttp</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="广播的分类和使用场景"><a href="#广播的分类和使用场景" class="headerlink" title="广播的分类和使用场景"></a>广播的分类和使用场景</h1><blockquote>
+                <h1 id="OkHttp源码流程"><a href="#OkHttp源码流程" class="headerlink" title="OkHttp源码流程"></a><code>OkHttp</code>源码流程</h1><blockquote>
 <p>  答案参考自：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Lwenlong/p/15940123.html">Android面试——BroadcastReceiver篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li>
+<li><a href="https://luoyuy.top/posts/4abbeeb2117b/">快速理解 OkHttp - 洛语 の Blog (luoyuy.top)</a></li>
 </ul>
 </blockquote>
-<p> <strong><font size="4">分类</font></strong></p>
+<p><strong><font size="5">基本流程</font></strong></p>
 <ol>
-<li><p>普通广播：通过 <code>Context#sendBroadcast</code> 发送，可并行处理</p>
-</li>
-<li><p>系统广播：系统发送的广播，只需要注册广播接收器，并定义好action等待接收广播</p>
-</li>
-<li><p>有序广播：发出的广播会被接收器按照先后顺序进行接收，发送方式为sendOrderedBroadcast(intent)； 广播接受者接收的顺序规则：按照Priority属性值排序，Priority相同者，动态注册的广播优先；</p>
-</li>
-<li><p>APP 应用内广播（Local Broadcast）：由于广播可以跨进程的特性，导致应用可能不断收到来自其他应用的广播，或者别的应用接收到当前应用的私密广播；解决方法为使用应用内广播；也称局部广播，接收者和发送者同属于一个 APP。</p>
-</li>
+<li>创建 OkHttpClient 对象</li>
+<li>创建 Request 对象</li>
+<li>创建 Call 对象</li>
+<li>同步请求调用 call.execute()；异步请求调用 call.enqueue()。</li>
 </ol>
-<p> <strong><font size="4">使用方法</font></strong> </p>
+<h1 id="OkHttp线程池"><a href="#OkHttp线程池" class="headerlink" title="OkHttp线程池"></a><code>OkHttp</code>线程池</h1><blockquote>
+<p>  答案参考自：</p>
 <ul>
-<li><p>方法1：注册广播时设置 exported 属性为 false；在广播发送接收时，增加权限，用于权限验证；发送广播时执行广播接收器的包名</p>
-</li>
-<li><p>方法2：使用封装好的 LocalBroadcastManager，这种方式的广播只能动态注册，不能静态注册</p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/OneDeveloper/article/details/88381817">okhttp3 读书笔记——默认的线程池，addNetworkInterceptor() 与 addInterceptor() 的区别，复用连接池_OneDeveloper的博客-CSDN博客_okhttp 默认线程数</a></li>
 </ul>
-<p> <strong><font size="4">使用场景</font></strong> </p>
+</blockquote>
+<p><code>OkHttp</code> 的异步请求是基于其内部的默认的线程池实现的。</p>
+<p>而默认的线程池是在 <code>Dispatcher</code> 被实例化的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> ExecutorService <span class="hljs-title function_">executorService</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">if</span> (executorService == <span class="hljs-literal">null</span>) &#123;<br>        executorService = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>(<br>            <span class="hljs-number">0</span>, <br>            Integer.MAX_VALUE, <br>            <span class="hljs-number">60</span>, <br>            TimeUnit.SECONDS,<br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">SynchronousQueue</span>&lt;&gt;(), <br>            Util.threadFactory(<span class="hljs-string">&quot;OkHttp Dispatcher&quot;</span>, <span class="hljs-literal">false</span>)<br>        );<br>    &#125;<br>    <span class="hljs-keyword">return</span> executorService;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该线程池的核心线程数为 0，线程池最有能容纳 <code>Integer.MAX_VALUE</code> 个线程，且线程的空闲存活时间为 60s（可以理解为 OkHttp 随时可以创建新的线程来满足需要。可以保证网络的 I&#x2F;O 任务有线程来处理，不被阻塞）。</p>
+<p>重点是使用的阻塞队列为 SynchronousQueue，参考：<br>[<a target="_blank" rel="noopener" href="https://luoming1224.github.io/2018/03/19/[java1.8%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0]SynchronousQueue%E8%AF%A6%E8%A7%A3/">java1.8源码笔记]SynchronousQueue详解 | LuoMing’s Blog (luoming1224.github.io)</a></p>
+<h1 id="OkHttp拦截器"><a href="#OkHttp拦截器" class="headerlink" title="OkHttp拦截器"></a><code>OkHttp</code>拦截器</h1><p><strong><font size="4">getResponseWithInterceptorChain()</font></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java">Response <span class="hljs-title function_">getResponseWithInterceptorChain</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-comment">// Build a full stack of interceptors.</span><br>    List&lt;Interceptor&gt; interceptors = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    interceptors.addAll(client.interceptors());<br>    interceptors.add(retryAndFollowUpInterceptor);<br>    interceptors.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BridgeInterceptor</span>(client.cookieJar()));<br>    interceptors.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CacheInterceptor</span>(client.internalCache()));<br>    interceptors.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ConnectInterceptor</span>(client));<br>    <span class="hljs-keyword">if</span> (!forWebSocket) &#123;<br>        interceptors.addAll(client.networkInterceptors());<br>    &#125;<br>    interceptors.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CallServerInterceptor</span>(forWebSocket));<br>    Interceptor.<span class="hljs-type">Chain</span> <span class="hljs-variable">chain</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RealInterceptorChain</span>(<br>        interceptors, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">0</span>, originalRequest);<br>    <span class="hljs-keyword">return</span> chain.proceed(originalRequest);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，首先，他会将客户端的 <code>interceptors</code> 添加到 <code>List</code> 当中，接着，再添加 okhttp 里面的 <code>interceptor</code>，然后构建了一个 <code>RealInterceptorChain</code> 对象，并将我们的 <code>List&lt;Interceptor&gt;</code> 作为成员变量，最后调用 <code>RealInterceptorChain</code> 的 <code>proceed</code> 方法。</p>
+<p>其中，<code>client.interceptors()</code> 为我们自己添加的请求拦截器，通常是做一些添加统一的 token 之类操作。</p>
+<p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/4122684-67fcdd5d7e5f984e.jpg" srcset="/img/loading.gif" lazyload alt="其余较重要的拦截器"></p>
+<p><strong>RetryAndFollowUpInterceptor 拦截器</strong></p>
 <ul>
-<li><p>同一 App 内部的不同组件之间的消息通信（单个进程）；</p>
-</li>
-<li><p>不同 App 之间的组件之间消息通信；</p>
-</li>
-<li><p>Android 系统在特定情况下与 App 之间的消息通信，如：网络变化、电池电量、屏幕开关等；</p>
-</li>
+<li>RetryAndFollowUpInterceptor 此拦截器顾名思义就是主要负责失败重连工作，但是并不是所有的网络请求都会进行失败重连的,在此拦截器内部会进行网络请求的异常检测和响应码的判断,如果都在限制范围内,那么就可以进行失败重连。</li>
+<li>一个循环来不停的获取response。每循环一次都会获取下一个request，如果没有，则返回response，退出循环。而获取下一个request的逻辑，是根据上一个response返回的状态码，分别作处理。</li>
 </ul>
-<hr>
-<h1 id="广播的两种注册方式的区别"><a href="#广播的两种注册方式的区别" class="headerlink" title="广播的两种注册方式的区别"></a>广播的两种注册方式的区别</h1><ul>
-<li><p>静态注册</p>
-<p>常驻系统，不受组件生命周期影响，即便应用退出，广播还是可以被接收，耗电、占内存。</p>
-</li>
-<li><p>动态注册</p>
-<p>非常驻，跟随组件的生命变化，组件结束，广播结束。在组件结束前，需要先移除广播，否则容易造成内存泄漏。</p>
-</li>
+<p><strong>桥接拦截器</strong></p>
+<ol>
+<li>请求从应用层数据类型类型转化为网络调用层的数据类型。</li>
+<li>将网络层返回的数据类型 转化为 应用层数据类型。</li>
+</ol>
+<p><strong>CacheInterceptor 拦截器</strong></p>
+<ul>
+<li>作用：将HTPTP和HTTPS的网络返回数据缓存到文件系统中，以便在服务端数据没发生变化的情况下复用，节省时间和带宽；</li>
+</ul>
+<p><strong>连接拦截器 和 最后的请求服务器的拦截器</strong></p>
+<p>这两个连接器基本上完成了最后发起网络请求的工作。</p>
+<h1 id="addInterceptor-和-addNetworkInterceptor区别"><a href="#addInterceptor-和-addNetworkInterceptor区别" class="headerlink" title="addInterceptor 和 addNetworkInterceptor区别"></a><code>addInterceptor</code> 和 <code>addNetworkInterceptor</code>区别</h1><blockquote>
+<p>  答案参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/OneDeveloper/article/details/88381817">okhttp3 读书笔记——默认的线程池，addNetworkInterceptor() 与 addInterceptor() 的区别，复用连接池_OneDeveloper的博客-CSDN博客_okhttp 默认线程数</a></li>
+</ul>
+</blockquote>
+<p>从上文构造拦截器链的过程，可以看到，通过 <code>addInterceptor()</code> 方法添加的拦截器是放在最前面的。</p>
+<p>而通过 <code>addNetworkInterceptor()</code> 方法添加的网络拦截器，则是在非 WebSocket 请求时，添加在 <code>ConnectInterceptor</code> 和 <code>CallServerInterceptor</code> 之间的。</p>
+<p><strong><font size="4">addInterceptor（应用拦截器）</font></strong></p>
+<ol>
+<li>不需要担心中间过程的响应,如重定向和重试.</li>
+<li>总是只调用一次，即使 HTTP 响应是从缓存中获取.</li>
+<li>观察应用程序的初衷. 不关心 OkHttp 注入的头信息如： <code>If-None-Match</code>.</li>
+<li>允许短路而不调用 Chain#proceed，即中止调用.</li>
+<li>允许重试,使 Chain#proceed 调用多次.</li>
+</ol>
+<p><strong><font size="4">addNetworkInterceptor（网络拦截器）</font></strong></p>
+<ol>
+<li>能够操作中间过程的响应,如重定向和重试.</li>
+<li>当网络短路而返回缓存响应时不被调用.</li>
+<li>只观察在网络上传输的数据.</li>
+<li>携带请求来访问连接.</li>
+</ol>
+<h1 id="OkHttp责任链模式"><a href="#OkHttp责任链模式" class="headerlink" title="OkHttp责任链模式"></a><code>OkHttp</code>责任链模式</h1><p><strong><font size="4">proceed()</font></strong></p>
+<blockquote>
+<p>  <code>proceed</code> <code>v.</code>继续做（或从事、进行）；接着做；继而做；行进</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Response <span class="hljs-title function_">proceed</span><span class="hljs-params">(Request request, StreamAllocation streamAllocation, HttpCodec httpCodec,</span><br><span class="hljs-params">                        Connection connection)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>    <span class="hljs-comment">// 省略无关代码</span><br><br>    <span class="hljs-comment">//  生成 list 当中下一个 interceptot 的 chain 对象</span><br>    <span class="hljs-type">RealInterceptorChain</span> <span class="hljs-variable">next</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RealInterceptorChain</span>(<br>        interceptors, streamAllocation, httpCodec, connection, index + <span class="hljs-number">1</span>, request);<br>    <span class="hljs-comment">// 当前的 interceptor</span><br>    <span class="hljs-type">Interceptor</span> <span class="hljs-variable">interceptor</span> <span class="hljs-operator">=</span> interceptors.get(index);<br>    <span class="hljs-comment">// 当前的 intercept 处理下一个 intercept 包装的 chain 对象</span><br>    <span class="hljs-type">Response</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> interceptor.intercept(next);<br><br>    <span class="hljs-comment">// ...</span><br><br>    <span class="hljs-keyword">return</span> response;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>proceed 方法也很简单，proceed方法每次从拦截器列表中取出拦截器，并调用 interceptor.intercept(next)。</p>
+<p>熟悉 Okhttp 的应该都知道，我们在 addInterceptor 创建 Interceptor 实例，最终都会调用 chain.proceed(Request request)，从而形成一种链式调用。这种便是责任链设计模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">OkHttpClient</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OkHttpClient</span>.Builder().addInterceptor(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Interceptor</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Response <span class="hljs-title function_">intercept</span><span class="hljs-params">(Chain chain)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">Request</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> chain.request();<br>        Request.<span class="hljs-type">Builder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> request.newBuilder().addHeader(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;test&quot;</span>);<br>        <span class="hljs-keyword">return</span> chain.proceed(builder.build());<br>    &#125;<br>&#125;).build();<br></code></pre></td></tr></table></figure>
+
+<p>而 OkHttp 是怎样结束循环调用的，这是因为最后一个拦截器 CallServerInterceptor 并没有调用 chain.proceed(request)，所以能够结束循环调用。</p>
+<h1 id="OkHttp缓存怎么处理"><a href="#OkHttp缓存怎么处理" class="headerlink" title="OkHttp缓存怎么处理"></a><code>OkHttp</code>缓存怎么处理</h1><blockquote>
+<p>  答案参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/00d281c226f6">Okhttp解析（五）缓存的处理 - 简书 (jianshu.com)</a></li>
+</ul>
+</blockquote>
+<h1 id="更多推荐文章"><a href="#更多推荐文章" class="headerlink" title="更多推荐文章"></a>更多推荐文章</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jimuzz/p/14040674.html">再也不用担心问RecycleView了——面试真题详解 - jimuzz - 博客园 (cnblogs.com)</a></li>
 </ul>
 
                 
@@ -373,7 +421,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/BroadcastReceiver/">#BroadcastReceiver</a>
+        <a href="/tags/OkHttp/">#OkHttp</a>
       
     </div>
   
@@ -385,8 +433,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>BroadcastReceiver 简单介绍</div>
-      <div>https://luoyuy.top/posts/8a4aa21deb03/</div>
+      <div>从零开始的 OkHttp</div>
+      <div>https://luoyuy.top/posts/3084437d1b3a/</div>
     </div>
     <div class="license-meta">
       
@@ -398,7 +446,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年5月24日</div>
+          <div>2023年3月3日</div>
         </div>
       
       
@@ -430,9 +478,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/1d4a22a89c9e/" title="JVM 内存模型、类加载以及垃圾回收">
+                      <a href="/posts/4abbeeb2117b/" title="快速理解 OkHttp">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JVM 内存模型、类加载以及垃圾回收</span>
+                        <span class="hidden-mobile">快速理解 OkHttp</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -440,8 +488,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/b38925276d1b/" title="Activity 知识点快问快答">
-                        <span class="hidden-mobile">Activity 知识点快问快答</span>
+                      <a href="/posts/edb87b835e81/" title="Kotlin-扩展函数与扩展属性">
+                        <span class="hidden-mobile">Kotlin-扩展函数与扩展属性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

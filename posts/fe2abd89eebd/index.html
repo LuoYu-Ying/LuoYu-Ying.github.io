@@ -16,24 +16,25 @@
   <meta name="author" content="LuoYu-Ying">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ArrayList 的相关问题。">
+    <meta name="description" content="动画的类型、补间动画和属性动画的区别、自定义插值器和估值器...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ArrayList 你了解这些吗？">
-<meta property="og:url" content="https://luoyuy.top/posts/383eeff4bc2c/index.html">
+<meta property="og:title" content="简单了解 Animation">
+<meta property="og:url" content="https://luoyuy.top/posts/fe2abd89eebd/index.html">
 <meta property="og:site_name" content="洛语 の Blog">
-<meta property="og:description" content="ArrayList 的相关问题。">
+<meta property="og:description" content="动画的类型、补间动画和属性动画的区别、自定义插值器和估值器...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-java-arraylist.png">
-<meta property="article:published_time" content="2022-05-20T07:21:02.000Z">
-<meta property="article:modified_time" content="2023-03-05T06:30:57.647Z">
+<meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Animation.png">
+<meta property="article:published_time" content="2022-05-15T11:30:02.000Z">
+<meta property="article:modified_time" content="2023-03-04T12:00:58.770Z">
 <meta property="article:author" content="LuoYu-Ying">
-<meta property="article:tag" content="ArrayList">
+<meta property="article:tag" content="Animation">
+<meta property="article:tag" content="属性动画">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-java-arraylist.png">
+<meta name="twitter:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-Animation.png">
   
   
   
-  <title>ArrayList 你了解这些吗？ - 洛语 の Blog</title>
+  <title>简单了解 Animation - 洛语 の Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ArrayList 你了解这些吗？"></span>
+            <span id="subtitle" data-typed-text="简单了解 Animation"></span>
           
         </div>
 
@@ -222,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-20 15:21" pubdate>
-          2022年5月20日 下午
+        <time datetime="2022-05-15 19:30" pubdate>
+          2022年5月15日 晚上
         </time>
       </span>
     
@@ -234,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          2.4k 字
         
       </span>
     
@@ -245,7 +246,7 @@
         
         
         
-          21 分钟
+          20 分钟
         
       </span>
     
@@ -283,98 +284,84 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ArrayList 你了解这些吗？</h1>
+            <h1 style="display: none">简单了解 Animation</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>本文参考自：</p>
+                <h1 id="动画的类型"><a href="#动画的类型" class="headerlink" title="动画的类型"></a>动画的类型</h1><blockquote>
+<p>  答案参考自：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51596354/article/details/122398978">Java ArrayList底层原理详情笔记和相关面试题_抹泪的知更鸟的博客-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/luzaiyy611/article/details/82083213">Android 属性动画和补间动画的区别和特性_luzaiyy611的博客-CSDN博客_属性动画和补间动画的区别</a></li>
 </ul>
 </blockquote>
+<ol>
+<li><p>View 动画（补间动画）</p>
+<p>只产生了一个动画效果，其真实的坐标并没有发生改变（只是改变了View的显示效果而已，并不会真正的改变View的属性）。View做在做动画的时候，它并没有真正的移动它的位置，而是根据动画时间的插值，计算出一个Matrix，然后不停的invalidate，在onDraw中的Canvas上使用这个计算出来的Matrix去draw这个View的内容，并有onLayout中还是原来的位置，所以点击事件只能点击到原来的位置才能触发</p>
+</li>
+<li><p>帧动画</p>
+</li>
+<li><p>属性动画</p>
+<p>属性动画可以对任何对象的属性做动画而不仅仅是View，甚至可以没有对象。除了作用对象进行扩展外，属性动画的效果也加强了，不仅能实现View动画的四种效果，还能实现其它多种效果，这些效果都是通过<code>ValueAnimator</code>或<code>ObjectAnimator</code>、<code>AnimatorSet</code>等来实现的。我们只需要告诉系统动画的运行时长，需要执行哪种类型的动画，以及动画的初始值和结束值，剩下的工作就可以全部交给系统去完成了。</p>
+</li>
+</ol>
 <hr>
-<h1 id="ArrayList是如何扩容的？"><a href="#ArrayList是如何扩容的？" class="headerlink" title="ArrayList是如何扩容的？"></a><code>ArrayList</code>是如何扩容的？</h1><p>初始容量为 10，第一扩容就为 10。</p>
-<p>以后每次的扩容都是原容量的 1.5 倍。</p>
-<hr>
-<h1 id="ArrayList继承关系"><a href="#ArrayList继承关系" class="headerlink" title="ArrayList继承关系"></a><code>ArrayList</code>继承关系</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayList</span>&lt;E&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractList</span>&lt;E&gt;<br>        <span class="hljs-keyword">implements</span> <span class="hljs-title class_">List</span>&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable<br></code></pre></td></tr></table></figure>
-
-<h2 id="实现Serializable标记型接口"><a href="#实现Serializable标记型接口" class="headerlink" title="实现Serializable标记型接口"></a>实现<code>Serializable</code>标记型接口</h2><p>序列化：将对象转化为字节数组的过程</p>
-<p>反序列化：将字节数组转化为对象的过程</p>
-<h2 id="实现Cloneable标记型接口"><a href="#实现Cloneable标记型接口" class="headerlink" title="实现Cloneable标记型接口"></a>实现<code>Cloneable</code>标记型接口</h2><p>克隆：将<code>ArrayList</code>集合的数组clone到另一个集合</p>
-<p>实际底层调用的是Object中的<code>clone</code>方法，而<code>clone</code>是一个<code>native</code>方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Object</span> <span class="hljs-variable">o</span> <span class="hljs-operator">=</span> list.clone();<br>System.out.println(o == list);<span class="hljs-comment">//地址不一样，深度克隆</span><br></code></pre></td></tr></table></figure>
-
-<p>使用了<code>Arrays#copyOf</code>方法进行复制</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;?&gt; v = (ArrayList&lt;?&gt;) <span class="hljs-built_in">super</span>.clone();<br>v.elementData = Arrays.copyOf(elementData, size);<br></code></pre></td></tr></table></figure>
-
-<p>浅拷贝：基本数据类型可以达到完全复制，引用数据类型拷贝的是栈上的地址值，所以修改引用类型的数据，会改变原来的数据。</p>
-<p>深拷贝：基本数据类型和引用类型都可以完全复制，引用对象在堆中创建新的对象，对原数据没有任何影响。</p>
-<p><strong>深拷贝的实现方式：</strong></p>
-<p> 实现<code>Cloneable</code>接口并重写<code>clone</code>方法。</p>
-<p> 让其<code>clone</code>方法通过序列化和反序列化的方式来生成一个原对象的深拷贝副本</p>
-<h2 id="实现RandomAccess标记型接口"><a href="#实现RandomAccess标记型接口" class="headerlink" title="实现RandomAccess标记型接口"></a>实现<code>RandomAccess</code>标记型接口</h2><p><strong><code>ArrayList</code>支持随机访问。</strong></p>
-<blockquote>
-<p>  随机访问：直接 <code>first+N</code>，便可以得到第<code>N</code>个元素的地址，因为这些相邻元素是按顺序连续存储的。<br>  比如普通数组就是可随机访问的。</p>
-<p>  文件随机访问是指<strong>在某个文件内直接读写任何给定位置数据的能力</strong>。</p>
+<h1 id="补间动画和属性动画的区别"><a href="#补间动画和属性动画的区别" class="headerlink" title="补间动画和属性动画的区别"></a>补间动画和属性动画的区别</h1><blockquote>
+<p>  答案参考自：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lgdcoder/p/10684996.html">Android补间动画和属性动画的区别及属性动画使用详解</a></li>
+</ul>
 </blockquote>
-<p>通过<code>get(i)</code>即可获得相应内存中存放的值。原因是因为<code>ArrayList</code>存放的内容在内存中是连续的，数组直接用<code>[]</code>访问，相当于直接操作内存地址，所以随机访问的效率较高。</p>
-<p>普通的for循环是随机访问的，所以遍历<code>ArrayList</code>使用普通<code>for</code>循环比增强<code>for</code>循环和迭代器的效率高。</p>
-<p>而<code>LinkedList</code>是一个双向链表，链表只能顺序访问，不支持随机访问，<code>LinkedList</code>中的<code>get</code>方法是按照顺序从列表的一端开始检查，直到找到要找的地址。所以遍历<code>LinkedList</code>使用增强<code>for</code>循环和迭代器的效率高，使用普通<code>for</code>循环会每次都从头开始遍历，效率较差。</p>
-<h2 id="AbstractList抽象类"><a href="#AbstractList抽象类" class="headerlink" title="AbstractList抽象类"></a><code>AbstractList</code>抽象类</h2><p><code>AbstractList</code> 虽然是抽象类，但其内部只有一个抽象方法 <code>get</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> E <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span>;<br></code></pre></td></tr></table></figure>
+<ol>
+<li>作用对象不同，补间动画只能作用在view上，属性动画可以作用在所有对象上。</li>
+<li>属性变化不同，补间动画只是改变显示效果，不会改变view的属性，比如位置、宽高等，而属性动画实际改变对象的属性。</li>
+<li>动画效果不同，补间动画只能实现位移、缩放、旋转和透明度四种动画操作，而属性动画还能实现补间动画所有效果及其他更多动画效果。</li>
+</ol>
+<hr>
+<h1 id="ObjectAnimator，ValueAnimator及其区别"><a href="#ObjectAnimator，ValueAnimator及其区别" class="headerlink" title="ObjectAnimator，ValueAnimator及其区别"></a><code>ObjectAnimator</code>，<code>ValueAnimator</code>及其区别</h1><p><strong>ValueAnimator</strong></p>
+<p>ValueAnimator是整个属性动画机制当中最核心的一个类，前面我们已经提到了，属性动画的运行机制是通过不断地<strong>对值进行操作</strong>来实现的，而初始值和结束值之间的动画过渡就是由ValueAnimator这个类来负责计算的。它的内部使用一种时间循环的机制来计算值与值之间的动画过渡，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值这样的效果。除此之外，ValueAnimator还负责管理动画的播放次数、播放模式、以及对动画设置监听器等，确实是一个非常重要的类。</p>
+<p><strong>ObjectAnimator</strong></p>
+<p>相比于ValueAnimator，ObjectAnimator可能才是我们最常接触到的类，因为ValueAnimator只不过是对值进行了一个平滑的动画过渡，但我们实际使用到这种功能的场景好像并不多。而ObjectAnimator则就不同了，它是可以直接<strong>对任意对象的任意属性进行动画操作</strong>的，比如说View的alpha属性。</p>
+<p>不过虽说ObjectAnimator会更加常用一些，但是它其实是继承自ValueAnimator的，底层的动画实现机制也是基于ValueAnimator来完成的，因此ValueAnimator仍然是整个属性动画当中最核心的一个类。</p>
+<p><strong>总结</strong></p>
+<p><code>ValueAnimator</code> 是<strong>对 数值 进行平滑操作</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ValueAnimator</span> <span class="hljs-variable">anim</span> <span class="hljs-operator">=</span> ValueAnimator.ofFloat(<span class="hljs-number">0f</span>, <span class="hljs-number">1f</span>);  <br></code></pre></td></tr></table></figure>
 
-<p>从字面上看这是获取的方法，子类必须实现它，一般是作为获取元素的用途，除此之外，如果子类要操作元素，还需要重写 <code>add</code>、<code>set</code>、 <code>remove</code>方法，因为 <code>AbstractList</code> 虽然定义了这几个方法，但默认是不支持的。</p>
-<hr>
-<h1 id="ArrayList频繁扩容导致添加性能急剧下降，如何处理？"><a href="#ArrayList频繁扩容导致添加性能急剧下降，如何处理？" class="headerlink" title="ArrayList频繁扩容导致添加性能急剧下降，如何处理？"></a><code>ArrayList</code>频繁扩容导致添加性能急剧下降，如何处理？</h1><p>每次扩容都会创建一个数据，将数据复制到新数组，所以在<code>ArrayList</code>中有一个构造方法，参数是自定义长度，指定初始容量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">ArrayList</span><span class="hljs-params">(<span class="hljs-type">int</span> initialCapacity)</span> &#123; <span class="hljs-comment">// 手动初始化</span><br>    <span class="hljs-keyword">if</span> (initialCapacity &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-built_in">this</span>.elementData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[initialCapacity];<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (initialCapacity == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 如果长度为0，使用final修饰的空数组</span><br>        <span class="hljs-built_in">this</span>.elementData = EMPTY_ELEMENTDATA;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Illegal Capacity: &quot;</span>+ initialCapacity);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>ObjectAnimator</code> 功能更加强大，是<strong>对 任意对象 的 任意属性值 进行平滑操作</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ObjectAnimator</span> <span class="hljs-variable">animator</span> <span class="hljs-operator">=</span> ObjectAnimator.ofFloat(textview, <span class="hljs-string">&quot;alpha&quot;</span>, <span class="hljs-number">1f</span>, <span class="hljs-number">0f</span>, <span class="hljs-number">1f</span>);<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="ArrayList插入或删除元素一定比LinkedList慢吗？"><a href="#ArrayList插入或删除元素一定比LinkedList慢吗？" class="headerlink" title="ArrayList插入或删除元素一定比LinkedList慢吗？"></a><code>ArrayList</code>插入或删除元素一定比<code>LinkedList</code>慢吗？</h1><p>不一定，<code>LinkedList</code> 其底层调用了 Node 的方法，该方法循环也是比较复杂的。如果这个 <code>LinkedList</code> 上的数据很多，虽说进行了折半的 但是效率也是比较低的。</p>
-<p>而 <code>ArrayList</code> 底层数组需要移动位置，复制数组。</p>
-<hr>
-<h1 id="ArrayList是线程安全的吗？"><a href="#ArrayList是线程安全的吗？" class="headerlink" title="ArrayList是线程安全的吗？"></a><code>ArrayList</code>是线程安全的吗？</h1><p><code>ArrayList</code>不是线程安全的，效率高。</p>
-<hr>
-<h1 id="如何解决ArrayList线程安全问题？"><a href="#如何解决ArrayList线程安全问题？" class="headerlink" title="如何解决ArrayList线程安全问题？"></a>如何解决<code>ArrayList</code>线程安全问题？</h1><ul>
-<li><p>可以使用安全集合 <code>Vector</code>。</p>
-</li>
-<li><p>可以使用 <code>Collections</code> 工具类中的 <code>SyschronizedList</code> 方法解决 <code>ArrayList</code> 的线程安全问题。</p>
-</li>
-</ul>
-<p>定义为全局变量，被多个线程所共享，就要考虑线程问题。</p>
-<p>定义为局部变量时，调用方法会在虚拟机栈处创建一个栈帧，虚拟机栈线程私有的，每一次只有一个线程执行，所以<strong>局部变量的数据是独立的</strong>，不需要考虑安全问题。</p>
-<hr>
-<h1 id="如何复制一个ArrayList集合到另一个ArrayList集合中？"><a href="#如何复制一个ArrayList集合到另一个ArrayList集合中？" class="headerlink" title="如何复制一个ArrayList集合到另一个ArrayList集合中？"></a>如何复制一个<code>ArrayList</code>集合到另一个<code>ArrayList</code>集合中？</h1><ul>
-<li><p>可以使用 clone() 方法</p>
-</li>
-<li><p>使用其中的构造器</p>
-</li>
-<li><p>使用 addAll() 方法</p>
-</li>
-<li><p>for 循环遍历复制</p>
-</li>
-</ul>
-<hr>
-<h1 id="已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？"><a href="#已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？" class="headerlink" title="已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？"></a>已知成员变量集合存储N多用户名称，在多线程的环境下，使用迭代器在读取集合数据的同时如何保证还可以正常的写入数据到集合？</h1><p>在多线程读写操作，<code>ArrayList</code> 会抛出并发异常，所以在进行读写数据时，使用读写的操作时，使用<code>CopyOnWriteArrayList</code>这个读写分离的集合。</p>
-<hr>
-<h1 id="ArrayList和LinkedList区别？"><a href="#ArrayList和LinkedList区别？" class="headerlink" title="ArrayList和LinkedList区别？"></a><code>ArrayList</code>和<code>LinkedList</code>区别？</h1><p><strong><code>ArrayList</code></strong></p>
+<h1 id="TimeInterpolator插值器，TypeEvaluator估值器"><a href="#TimeInterpolator插值器，TypeEvaluator估值器" class="headerlink" title="TimeInterpolator插值器，TypeEvaluator估值器"></a>TimeInterpolator插值器，TypeEvaluator估值器</h1><blockquote>
+<p>  答案参考自：</p>
 <ul>
-<li><p>基于动态数组的数据结构</p>
-</li>
-<li><p><code>ArrayList</code>支持随机访问</p>
-</li>
-<li><p>查询快，增删慢，但并不一定比<code>LinkedList</code>慢</p>
-</li>
+<li><a href="https://luoyuy.top/posts/ac02c3bbb00b/">Android 动画深入分析 - 洛语 の Blog (luoyuy.top)</a></li>
 </ul>
-<p><strong><code>LinkedList</code>（双向链表）</strong></p>
+</blockquote>
+<p>插值器和估值器是实现非匀速动画的重要手段。</p>
+<h3 id="TimeInterpolator"><a href="#TimeInterpolator" class="headerlink" title="TimeInterpolator"></a><code>TimeInterpolator</code></h3><p>时间插值器。作用为<strong>根据时间的流逝的百分比计算当前属性值改变的百分比</strong>。</p>
+<p>预设的有多种插值器，常见的三种如下：</p>
+<ol>
+<li><code>LinearInterpolator</code>——线性插值器：匀速动画</li>
+<li><code>AccelerateDecelerateInterpolator</code>——加速减速插值器：动画两头慢中间快</li>
+<li><code>DecelerateInterpolator</code>——减速插值器：动画越来越慢</li>
+</ol>
+<p>三个类都实现了<code>Interpolartor</code>接口，接口内部只有一个用来计算属性值的改变的百分比的<code>getInterpolation</code>方法需要实现。</p>
+<h3 id="TypeEvaluator"><a href="#TypeEvaluator" class="headerlink" title="TypeEvaluator"></a><code>TypeEvaluator</code></h3><p>类型估值算法，也叫估值器。作用是<strong>根据属性值改变的百分比来计算改变后的属性值</strong>。</p>
+<p>系统预置的有3种：</p>
+<ol>
+<li><code>IntEvaluator</code>：针对整形属性</li>
+<li><code>FloatEvaluator</code>：针对浮点型属性</li>
+<li><code>ArgbEvaluator</code>：针对Color属性</li>
+</ol>
+<p>三个类都实现了<code>TypeEvalator</code>接口，接口内部只有一个用来计算改变后的属性值的<code>evaluate</code>方法需要实现。</p>
+<h3 id="计算顺序"><a href="#计算顺序" class="headerlink" title="计算顺序"></a>计算顺序</h3><p>系统会根据当前的帧所在时刻与动画播放的总时间求出时间的流逝的百分比，再通过插值器计算出当前属性值改变的百分比，后用此值通过估值器计算出当前的属性改变后的确定的值是多少并通过<code>set</code>方法对属性赋值。</p>
+<p>故属性动画要求对象的该属性有<code>set</code>方法（必须有）和<code>get</code>方法（可选）。</p>
+<hr>
+<h1 id="自定义插值器和估值器"><a href="#自定义插值器和估值器" class="headerlink" title="自定义插值器和估值器"></a>自定义插值器和估值器</h1><p>我们可以自定义插值器和估值器，来实现自己想要的动画效果。实现方式也很简单。</p>
+<p>因为插值器和估值器都是一个接口，且内部都只有一个方法，所以我们只需要派生一个类并实现接口就可以了，然后就可以做出千奇百怪的动画效果了。即：</p>
 <ul>
-<li><p>基于链表的数据结构</p>
-</li>
-<li><p>对于顺序操作，<code>LinkedList</code>不一定比<code>ArrayList</code>慢</p>
-</li>
-<li><p>查询慢，增删快</p>
-</li>
+<li>自定义插值器需要实现<code>Interpolator</code>或者<code>TimeInterpolator</code>接口</li>
+<li>自定义估值器需要实现<code>TypeEvaluator</code>接口。</li>
 </ul>
 
                 
@@ -394,7 +381,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86-2022/" class="category-chain-item">面试整理-2022</a>
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
   
   
 
@@ -404,7 +391,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86-2022/" class="category-chain-item">面试整理-2022</a>
   
   
 
@@ -419,7 +406,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/ArrayList/">#ArrayList</a>
+        <a href="/tags/Animation/">#Animation</a>
+      
+        <a href="/tags/%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/">#属性动画</a>
       
     </div>
   
@@ -431,8 +420,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ArrayList 你了解这些吗？</div>
-      <div>https://luoyuy.top/posts/383eeff4bc2c/</div>
+      <div>简单了解 Animation</div>
+      <div>https://luoyuy.top/posts/fe2abd89eebd/</div>
     </div>
     <div class="license-meta">
       
@@ -444,7 +433,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年5月20日</div>
+          <div>2022年5月15日</div>
         </div>
       
       
@@ -476,9 +465,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/b38925276d1b/" title="Activity 知识点快问快答">
+                      <a href="/posts/d91279475fe0/" title="View 事件分发的那些问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Activity 知识点快问快答</span>
+                        <span class="hidden-mobile">View 事件分发的那些问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -486,8 +475,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/89f73031542a/" title="Java 中 HashMap 的那些事">
-                        <span class="hidden-mobile">Java 中 HashMap 的那些事</span>
+                      <a href="/posts/3d8d6de98fa8/" title="浅答 View 绘制部分面试知识点">
+                        <span class="hidden-mobile">浅答 View 绘制部分面试知识点</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
