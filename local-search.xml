@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>Android面试整理-序列化</title>
+    <title>Java 序列化的基本概念</title>
     <link href="/posts/81beb165cbf7/"/>
     <url>/posts/81beb165cbf7/</url>
     
@@ -13,9 +13,9 @@
     
     <categories>
       
-      <category>Android</category>
-      
       <category>面试整理-2022</category>
+      
+      <category>Java</category>
       
     </categories>
     
@@ -954,6 +954,33 @@
   
   
   <entry>
+    <title>Android Service 简单介绍</title>
+    <link href="/posts/e0ca33a300f6/"/>
+    <url>/posts/e0ca33a300f6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Service-的生命周期，两种启动方式的区别"><a href="#Service-的生命周期，两种启动方式的区别" class="headerlink" title="Service 的生命周期，两种启动方式的区别"></a><code>Service</code> 的生命周期，两种启动方式的区别</h1><blockquote><p>  答案参考自：</p><ul><li><a href="https://www.cnblogs.com/jisheng/archive/2011/12/13/2286262.html">Service生命周期 - Hecker385 - 博客园 (cnblogs.com)</a></li><li><a href="https://www.cnblogs.com/Lwenlong/p/15939996.html">Android面试——Service篇 - 向着内核前进！ - 博客园 (cnblogs.com)</a></li><li><a href="https://www.jianshu.com/p/a58780595d2b">Service-服务(一)生命周期及使用方式 - 简书 (jianshu.com)</a></li></ul></blockquote><p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/15821503-f7f98e2e43fa178b.png" alt="Service 生命周期"></p><h2 id="使用context-startService-启动Service"><a href="#使用context-startService-启动Service" class="headerlink" title="使用context.startService 启动Service"></a><strong>使用<code>context.startService</code> 启动<code>Service</code></strong></h2><p>其生命周期为 <em>context.startService()</em> -&gt; <code>onCreate()</code>- &gt; <code>onStartCommand()</code>-&gt; <strong>Service</strong> <strong>running</strong> -&gt; <em>context.stopService()</em> | -&gt; <code>onDestroy()</code> -&gt; <strong>Service</strong> <strong>stop</strong></p><ol><li>如果<code>Service</code>还没有运行，则<code>Android</code>先调用<code>onCreate()</code>然后调用onStart()；</li><li>如果<code>Service</code>已经运行，则只调用<code>onStartCommand()</code>，所以一个<code>Service</code>的<code>onStartCommand</code>方法可能会重复调用多次。</li></ol><p><code>stopService</code>的时候直接<code>onDestroy</code>，如果是调用者自己直接退出而没有调用<code>stopService</code>的话，<code>Service</code>会一直在后台运行。该Service的调用者再启动起来后可以通过<code>stopService</code>关闭<code>Service</code>。</p><p>**所以调用<code>startService</code>的生命周期为：<code>onCreate</code> –&gt; <code>onStartCommand</code>(可多次调用) –&gt; <code>onDestroy</code>**。 </p><h2 id="对于bindService启动Service会经历："><a href="#对于bindService启动Service会经历：" class="headerlink" title="对于bindService启动Service会经历："></a><strong>对于<code>bindService</code>启动<code>Service</code>会经历：</strong></h2><p><em>context.bindService()</em> -&gt; <code>onCreate()</code>-&gt; <code>onBind()</code> -&gt;<strong>Service running</strong> -&gt; <code>onUnbind()</code> -&gt; <code>onDestroy()</code> -&gt; <strong>Service stop</strong></p><p><code>onBind</code>将返回给客户端一个<code>IBind</code>接口实例，<code>IBind</code>允许客户端回调服务的方法，比如得到<code>Service</code>运行的状态或其他操作。</p><p>这个时候把调用者（<code>Context</code>，例如<code>Activity</code>）会和<code>Service</code>绑定在一起，<code>Context</code>退出了，<code>Srevice</code>就会调用<code>onUnbind</code> -&gt; <code>onDestroy</code>相应退出。</p><p><strong>所以调用<code>bindService</code>的生命周期为：<code>onCreate</code> –&gt; <code>onBind</code>(只一次，不可多次绑定) –&gt; <code>onUnbind</code> –&gt; <code>onDestory</code>。</strong></p><p>一但销毁<code>activity</code>它就结束，如果按<code>home</code>把它放到后台，那他就不退出。</p><p> <strong><font size="4">补充</font></strong> </p><p>在 Service 每一次的开启关闭过程中，只有<code>onStartCommand</code>可被多次调用(通过多次<code>startService</code>调用)，<br>其他<code>onCreate</code>，<code>onBind</code>，<code>onUnbind</code>，<code>onDestory</code>在一个生命周期中只能被调用一次。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Android</category>
+      
+      <category>面试整理-2022</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Service</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>BroadcastReceiver 简单介绍</title>
     <link href="/posts/9d71e1816c9d/"/>
     <url>/posts/9d71e1816c9d/</url>
@@ -1301,31 +1328,6 @@
   
   
   <entry>
-    <title>Drawable 解析</title>
-    <link href="/posts/7e6a2308252d/"/>
-    <url>/posts/7e6a2308252d/</url>
-    
-    <content type="html"><![CDATA[<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><code>Drawable</code>是一个抽象类，表示的是一个图像的概念。每一个具体的<code>Drawable</code>都是其子类。</p><p><strong>优点：</strong></p><ol><li>使用简单，比自定义<code>View</code>的成本要低。</li><li>非图片类型的<code>Drawable</code>占用空间较小，可以有效的减少<code>apk</code>的大小。</li></ol><p> <strong>内部宽&#x2F;高：</strong></p><p><code>Drawable</code>有个参数比较重要，就是<strong>内部宽&#x2F;高</strong>，通过<code>getIntrinsicWidth</code>和<code>getIntrinsicHeight</code>方法获得。</p><p>但是并不是所有的<code>Drawable</code>都有这两个参数，比如纯颜色的<code>Drawable</code>就没有内部宽&#x2F;高的概念，它的两个值都为<code>-1</code>，它的大小就是<code>View</code>的大小，而图片类型的<code>Drawable</code>的内部宽&#x2F;高决定了这个图片的固定大小。</p><h1 id="Drawable的分类"><a href="#Drawable的分类" class="headerlink" title="Drawable的分类"></a><code>Drawable</code>的分类</h1><p><code>Drawable</code>的子类有许多，这里简单的说几个，具体的参数参考《Android开发艺术探索》Page 244。</p><ul><li><p><code>BitmapDrawable</code></p><p>表示一张图片。</p></li><li><p><code>NinePatchDrawable</code></p><p>表示一个.9格式的图片。</p></li><li><p><code>ShapeDrawable</code></p><p>表示通过颜色（纯色、渐变色）来表示的图形。</p></li><li><p><code>LayerDrawable</code></p><p><code>XML</code>中的标签为<code>&lt;layer-list&gt;</code>，表示的是一组层次化的<code>Drawable</code>集合，最终的效果是由上到下的<code>Drawable</code>的效果依次叠加。</p></li><li><p><code>StateListDrawable</code></p><p><code>XML</code>中的标签为<code>&lt;selector&gt;</code>，表示一个<code>Drawable</code>集合，每个<code>Drawable</code>对应着<code>View</code>的一种状态，系统会根据<code>View</code>的不同状态更换不同的<code>Drawable</code>。常见的使用场景为<code>Button</code>的按下与弹起。</p></li><li><p><code>LevelListDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;level-list&gt;</code>，表示的是一个<code>Drawable</code>集合，其中的每一个<code>Drawable</code>都有一个等级(<code>level</code>)的概念，系统在不同的<code>level</code>下自动更换为不同的<code>Drawable</code>。</p></li><li><p><code>TransitionDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;transition&gt;</code>，其作用是实现两个<code>Drawable</code>之间的淡入淡出效果。</p></li><li><p><code>InsetDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;inset&gt;</code>，可以将其他的<code>Drawable</code>内嵌到自己的<code>Drawable</code>中，并在四周留出一定的空间。其最终显示效果为内嵌的<code>Drawable</code>的显示范围相较于不使用<code>InsetDrawable</code>时变小。</p></li><li><p><code>ScaleDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;scale&gt;</code>，其可以根据自身<code>Drawable</code>所设置的等级(<code>level</code>)对其内部的<code>Drawable</code>实现缩放的效果。</p><p>当其<code>level</code>为<code>0</code>时，其内部的<code>Drawable</code>为不可见状态；为非<code>0</code>的值时，按照<code>XML</code>中的写入的缩放比例进行显示。</p><p><code>level</code>的值默认为<code>0</code>，需要在代码中自行赋值，**系统内部约定<code>Drawable</code>的等级范围为<code>0</code>-<code>10000</code>**。</p></li><li><p><code>ClipDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;clip&gt;</code>，可以根据自己当前的等级(<code>level</code>)来裁剪另一个<code>Drawable</code>，裁剪的方向可以通过<code>android:clipOrientation</code>和<code>android:gravity</code>共同限制。</p><p>当其<code>level</code>的值为<code>0</code>时，表示完全裁剪，即整个<code>Drawable</code>变为不可见的状态；当<code>level</code>的值设置为<code>10000</code>时，表示不裁剪；</p><p>当<code>level</code>的值设置为<code>8000</code>时，表示裁剪了2000的区域，即裁剪<code>20%</code>。</p></li></ul><h1 id="自定义Drawable"><a href="#自定义Drawable" class="headerlink" title="自定义Drawable"></a>自定义<code>Drawable</code></h1><p><code>Drawable</code>的使用场景很少，通常用在<code>View</code>的背景和作为<code>ImageView</code>中的图片两个场景。</p><p>由于自定义的<code>Drawable</code>无法在<code>XML</code>中使用，但是我们可以有其他轻便的方法来自定义<code>Drawable</code>。</p><p>通过<code>View</code>的工作原理可以知道，系统通过<code>Drawable</code>的<code>draw</code>方法来绘制<code>View</code>的背景，所以我们可以继承<code>Drawable</code>并重写<code>Drawable</code>的<code>draw</code>方法来实现自定义<code>Drawable</code>。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>Android</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Drawable</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>ThreadLocal 解析 [转载]</title>
     <link href="/posts/a6b3bf9fb608/"/>
     <url>/posts/a6b3bf9fb608/</url>
@@ -1343,6 +1345,31 @@
     <tags>
       
       <tag>ThreadLocal</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Drawable 解析</title>
+    <link href="/posts/7e6a2308252d/"/>
+    <url>/posts/7e6a2308252d/</url>
+    
+    <content type="html"><![CDATA[<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><code>Drawable</code>是一个抽象类，表示的是一个图像的概念。每一个具体的<code>Drawable</code>都是其子类。</p><p><strong>优点：</strong></p><ol><li>使用简单，比自定义<code>View</code>的成本要低。</li><li>非图片类型的<code>Drawable</code>占用空间较小，可以有效的减少<code>apk</code>的大小。</li></ol><p> <strong>内部宽&#x2F;高：</strong></p><p><code>Drawable</code>有个参数比较重要，就是<strong>内部宽&#x2F;高</strong>，通过<code>getIntrinsicWidth</code>和<code>getIntrinsicHeight</code>方法获得。</p><p>但是并不是所有的<code>Drawable</code>都有这两个参数，比如纯颜色的<code>Drawable</code>就没有内部宽&#x2F;高的概念，它的两个值都为<code>-1</code>，它的大小就是<code>View</code>的大小，而图片类型的<code>Drawable</code>的内部宽&#x2F;高决定了这个图片的固定大小。</p><h1 id="Drawable的分类"><a href="#Drawable的分类" class="headerlink" title="Drawable的分类"></a><code>Drawable</code>的分类</h1><p><code>Drawable</code>的子类有许多，这里简单的说几个，具体的参数参考《Android开发艺术探索》Page 244。</p><ul><li><p><code>BitmapDrawable</code></p><p>表示一张图片。</p></li><li><p><code>NinePatchDrawable</code></p><p>表示一个.9格式的图片。</p></li><li><p><code>ShapeDrawable</code></p><p>表示通过颜色（纯色、渐变色）来表示的图形。</p></li><li><p><code>LayerDrawable</code></p><p><code>XML</code>中的标签为<code>&lt;layer-list&gt;</code>，表示的是一组层次化的<code>Drawable</code>集合，最终的效果是由上到下的<code>Drawable</code>的效果依次叠加。</p></li><li><p><code>StateListDrawable</code></p><p><code>XML</code>中的标签为<code>&lt;selector&gt;</code>，表示一个<code>Drawable</code>集合，每个<code>Drawable</code>对应着<code>View</code>的一种状态，系统会根据<code>View</code>的不同状态更换不同的<code>Drawable</code>。常见的使用场景为<code>Button</code>的按下与弹起。</p></li><li><p><code>LevelListDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;level-list&gt;</code>，表示的是一个<code>Drawable</code>集合，其中的每一个<code>Drawable</code>都有一个等级(<code>level</code>)的概念，系统在不同的<code>level</code>下自动更换为不同的<code>Drawable</code>。</p></li><li><p><code>TransitionDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;transition&gt;</code>，其作用是实现两个<code>Drawable</code>之间的淡入淡出效果。</p></li><li><p><code>InsetDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;inset&gt;</code>，可以将其他的<code>Drawable</code>内嵌到自己的<code>Drawable</code>中，并在四周留出一定的空间。其最终显示效果为内嵌的<code>Drawable</code>的显示范围相较于不使用<code>InsetDrawable</code>时变小。</p></li><li><p><code>ScaleDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;scale&gt;</code>，其可以根据自身<code>Drawable</code>所设置的等级(<code>level</code>)对其内部的<code>Drawable</code>实现缩放的效果。</p><p>当其<code>level</code>为<code>0</code>时，其内部的<code>Drawable</code>为不可见状态；为非<code>0</code>的值时，按照<code>XML</code>中的写入的缩放比例进行显示。</p><p><code>level</code>的值默认为<code>0</code>，需要在代码中自行赋值，**系统内部约定<code>Drawable</code>的等级范围为<code>0</code>-<code>10000</code>**。</p></li><li><p><code>ClipDrawable</code></p><p><code>XML</code>中对应的标签为<code>&lt;clip&gt;</code>，可以根据自己当前的等级(<code>level</code>)来裁剪另一个<code>Drawable</code>，裁剪的方向可以通过<code>android:clipOrientation</code>和<code>android:gravity</code>共同限制。</p><p>当其<code>level</code>的值为<code>0</code>时，表示完全裁剪，即整个<code>Drawable</code>变为不可见的状态；当<code>level</code>的值设置为<code>10000</code>时，表示不裁剪；</p><p>当<code>level</code>的值设置为<code>8000</code>时，表示裁剪了2000的区域，即裁剪<code>20%</code>。</p></li></ul><h1 id="自定义Drawable"><a href="#自定义Drawable" class="headerlink" title="自定义Drawable"></a>自定义<code>Drawable</code></h1><p><code>Drawable</code>的使用场景很少，通常用在<code>View</code>的背景和作为<code>ImageView</code>中的图片两个场景。</p><p>由于自定义的<code>Drawable</code>无法在<code>XML</code>中使用，但是我们可以有其他轻便的方法来自定义<code>Drawable</code>。</p><p>通过<code>View</code>的工作原理可以知道，系统通过<code>Drawable</code>的<code>draw</code>方法来绘制<code>View</code>的背景，所以我们可以继承<code>Drawable</code>并重写<code>Drawable</code>的<code>draw</code>方法来实现自定义<code>Drawable</code>。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Android</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Drawable</tag>
       
     </tags>
     
