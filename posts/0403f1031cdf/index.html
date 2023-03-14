@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/index-img-android-view.png">
 <meta property="article:published_time" content="2022-05-16T13:19:02.000Z">
-<meta property="article:modified_time" content="2023-03-04T12:01:25.472Z">
+<meta property="article:modified_time" content="2023-03-13T14:01:00.751Z">
 <meta property="article:author" content="LuoYu-Ying">
 <meta property="article:tag" content="View">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          5.3k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          41 分钟
+          45 分钟
         
       </span>
     
@@ -302,6 +302,20 @@
 </ul>
 </blockquote>
 <p><img src="https://lly-blog-img.oss-cn-hangzhou.aliyuncs.com/images/22046c435b7d49f29b7ad04214c4c2fb.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>  以下内容原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/muanye5091/article/details/108019063">言简意赅的View分发机制_view事件分发机制_兜哥的博客-CSDN博客</a></p>
+</blockquote>
+<p>当一个 <code>Touch</code> 事件来到时，首先 <code>Activity</code> 的 <code>dispatchTouchEvent</code> 方法会被触发，如果在 <code>Activity</code> 中没有重写该方法，那么这个方法最终会走到 <code>ViewGroup#dispatchTouchEvent</code> 中进行分发处理：</p>
+<ol>
+<li><p>首先会判断是否已经有子 <code>View</code> 拦截过该方法。</p>
+</li>
+<li><p>如果已有子 <code>View</code> 拦截了该事件，则后续的 <code>move</code> 和 <code>up</code> 事件都由这个 <code>ViewGroup</code> 处理，他的 <code>onTouchEvent</code> 被调用。</p>
+</li>
+<li><p>如果该事件没有被拦截过，他就会遍历他下面的子 <code>View</code>，然后调用子 <code>View</code> 的 <code>dispatchTouchEvent</code> 方法，若返回了 <code>true</code>，代表该  <code>View</code> 处理了事件，并将 <code>mFirstTouchTarget</code> 赋值为空，若为 <code>false</code> 则继续遍历分发（若还有子 <code>View</code> 的话）。</p>
+</li>
+<li><p>若遍历了所有的子 <code>View</code>，都没有被合适处理，则根 <code>View</code> 会自己来处理，<code>Activity</code> 的 <code>onTouchEvent</code> 会被触发。</p>
+</li>
+</ol>
 <h1 id="事件是先到-DecorView-还是先到-Window"><a href="#事件是先到-DecorView-还是先到-Window" class="headerlink" title="事件是先到 DecorView 还是先到 Window"></a>事件是先到 <code>DecorView</code> 还是先到 <code>Window</code></h1><p>由上述流程图中可以得知，事件的分发顺序为 </p>
 <p><code>Activity -&gt; Window -&gt; DecorView -&gt; ViewGroup -&gt; View</code></p>
 <h1 id="View的onTouchEvent、OnClickListerner和OnTouchListener的onTouch方法的三者优先级"><a href="#View的onTouchEvent、OnClickListerner和OnTouchListener的onTouch方法的三者优先级" class="headerlink" title="View的onTouchEvent、OnClickListerner和OnTouchListener的onTouch方法的三者优先级"></a><code>View</code>的<code>onTouchEvent</code>、<code>OnClickListerner</code>和<code>OnTouchListener</code>的<code>onTouch</code>方法的三者优先级</h1><blockquote>
